@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,14 +60,88 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="admin\admin_home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="admin\admin_home.Designer.cs">
+      <DependentUpon>admin_home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_About.Designer.cs">
+      <DependentUpon>user_About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_Basic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_Basic.Designer.cs">
+      <DependentUpon>user_Basic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_Borrow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_Borrow.Designer.cs">
+      <DependentUpon>user_Borrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_Feedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_Feedback.Designer.cs">
+      <DependentUpon>user_Feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_FeedbackRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_FeedbackRecord.Designer.cs">
+      <DependentUpon>user_FeedbackRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_home.Designer.cs">
+      <DependentUpon>user_home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_changepwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_changepwd.Designer.cs">
+      <DependentUpon>user_changepwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_pwdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_pwdEdit.Designer.cs">
+      <DependentUpon>user_pwdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_Return.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_Return.Designer.cs">
+      <DependentUpon>user_Return.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user\user_SeeBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_SeeBook.Designer.cs">
+      <DependentUpon>user_SeeBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="utils\DButil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="admin\admin_home.resx">
+      <DependentUpon>admin_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -61,6 +151,37 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="user\user_About.resx">
+      <DependentUpon>user_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_Basic.resx">
+      <DependentUpon>user_Basic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_Borrow.resx">
+      <DependentUpon>user_Borrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_Feedback.resx">
+      <DependentUpon>user_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_FeedbackRecord.resx">
+      <DependentUpon>user_FeedbackRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_home.resx">
+      <DependentUpon>user_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_changepwd.resx">
+      <DependentUpon>user_changepwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_pwdEdit.resx">
+      <DependentUpon>user_pwdEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_Return.resx">
+      <DependentUpon>user_Return.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_SeeBook.resx">
+      <DependentUpon>user_SeeBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -70,6 +191,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
