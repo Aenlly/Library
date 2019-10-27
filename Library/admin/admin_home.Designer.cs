@@ -132,7 +132,7 @@
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 27);
             this.button13.TabIndex = 11;
-            this.button13.Text = "修改用户";
+            this.button13.Text = "编辑用户";
             this.button13.UseVisualStyleBackColor = true;
             // 
             // button9
@@ -240,9 +240,9 @@
             this.button2.Location = new System.Drawing.Point(39, 50);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 27);
+            this.button2.Size = new System.Drawing.Size(87, 27);
             this.button2.TabIndex = 1;
-            this.button2.Text = "添加图书";
+            this.button2.Text = "添加/编辑";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -250,9 +250,9 @@
             this.button1.Location = new System.Drawing.Point(39, 20);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 27);
+            this.button1.Size = new System.Drawing.Size(87, 27);
             this.button1.TabIndex = 0;
-            this.button1.Text = "查询图书";
+            this.button1.Text = "查询/删除";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // admin_home
