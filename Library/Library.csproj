@@ -60,6 +60,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\admin_BookAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_BookAdd.Designer.cs">
+      <DependentUpon>admin_BookAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_BookEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_BookEdit.Designer.cs">
+      <DependentUpon>admin_BookEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_BookPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_BookPage.Designer.cs">
+      <DependentUpon>admin_BookPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin\admin_home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,11 +103,11 @@
     <Compile Include="user\user_Basic.Designer.cs">
       <DependentUpon>user_Basic.cs</DependentUpon>
     </Compile>
-    <Compile Include="user\user_Borrow.cs">
+    <Compile Include="user\user_BorrowPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="user\user_Borrow.Designer.cs">
-      <DependentUpon>user_Borrow.cs</DependentUpon>
+    <Compile Include="user\user_BorrowPage.Designer.cs">
+      <DependentUpon>user_BorrowPage.cs</DependentUpon>
     </Compile>
     <Compile Include="user\user_Feedback.cs">
       <SubType>Form</SubType>
@@ -127,15 +145,24 @@
     <Compile Include="user\user_Return.Designer.cs">
       <DependentUpon>user_Return.cs</DependentUpon>
     </Compile>
-    <Compile Include="user\user_SeeBook.cs">
+    <Compile Include="user\user_SeeBookPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="user\user_SeeBook.Designer.cs">
-      <DependentUpon>user_SeeBook.cs</DependentUpon>
+    <Compile Include="user\user_SeeBookPage.Designer.cs">
+      <DependentUpon>user_SeeBookPage.cs</DependentUpon>
     </Compile>
     <Compile Include="utils\DButil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="admin\admin_BookAdd.resx">
+      <DependentUpon>admin_BookAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_BookEdit.resx">
+      <DependentUpon>admin_BookEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_BookPage.resx">
+      <DependentUpon>admin_BookPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_home.resx">
       <DependentUpon>admin_home.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,8 +184,8 @@
     <EmbeddedResource Include="user\user_Basic.resx">
       <DependentUpon>user_Basic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user\user_Borrow.resx">
-      <DependentUpon>user_Borrow.cs</DependentUpon>
+    <EmbeddedResource Include="user\user_BorrowPage.resx">
+      <DependentUpon>user_BorrowPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="user\user_Feedback.resx">
       <DependentUpon>user_Feedback.cs</DependentUpon>
@@ -178,8 +205,8 @@
     <EmbeddedResource Include="user\user_Return.resx">
       <DependentUpon>user_Return.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user\user_SeeBook.resx">
-      <DependentUpon>user_SeeBook.cs</DependentUpon>
+    <EmbeddedResource Include="user\user_SeeBookPage.resx">
+      <DependentUpon>user_SeeBookPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

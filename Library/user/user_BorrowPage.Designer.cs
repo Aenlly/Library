@@ -1,6 +1,6 @@
 ﻿namespace Library.user
 {
-    partial class user_Borrow
+    partial class user_BorrowPage
     {
         /// <summary>
         /// Required designer variable.

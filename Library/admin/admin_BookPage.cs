@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Library.user
+namespace Library.admin
 {
-    public partial class user_Borrow : Form
+    public partial class admin_BookPage : Form
     {
-        public user_Borrow()
+        public admin_BookPage()
         {
             InitializeComponent();
         }

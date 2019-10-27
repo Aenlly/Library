@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Library.user
 {
-    public partial class user_SeeBook : Form
+    public partial class user_SeeBookPage : Form
     {
-        public user_SeeBook()
+        public user_SeeBookPage()
         {
             InitializeComponent();
         }
