@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_pwd = new System.Windows.Forms.TextBox();
-            this.txt_pwds = new System.Windows.Forms.TextBox();
+            this.text_pwd = new System.Windows.Forms.TextBox();
+            this.text_pwds = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_pwd = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -44,19 +44,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "新密码：";
             // 
-            // txt_pwd
+            // text_pwd
             // 
-            this.txt_pwd.Location = new System.Drawing.Point(93, 22);
-            this.txt_pwd.Name = "txt_pwd";
-            this.txt_pwd.Size = new System.Drawing.Size(149, 23);
-            this.txt_pwd.TabIndex = 1;
+            this.text_pwd.Location = new System.Drawing.Point(93, 22);
+            this.text_pwd.Name = "text_pwd";
+            this.text_pwd.Size = new System.Drawing.Size(149, 23);
+            this.text_pwd.TabIndex = 1;
             // 
-            // txt_pwds
+            // text_pwds
             // 
-            this.txt_pwds.Location = new System.Drawing.Point(93, 57);
-            this.txt_pwds.Name = "txt_pwds";
-            this.txt_pwds.Size = new System.Drawing.Size(149, 23);
-            this.txt_pwds.TabIndex = 3;
+            this.text_pwds.Location = new System.Drawing.Point(93, 57);
+            this.text_pwds.Name = "text_pwds";
+            this.text_pwds.Size = new System.Drawing.Size(149, 23);
+            this.text_pwds.TabIndex = 3;
             // 
             // label2
             // 
@@ -78,21 +78,22 @@
             this.btn_pwd.UseVisualStyleBackColor = true;
             this.btn_pwd.Click += new System.EventHandler(this.btn_pwd_Click);
             // 
-            // user_pwdEdit
+            // user_PwdEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 153);
             this.Controls.Add(this.btn_pwd);
-            this.Controls.Add(this.txt_pwds);
+            this.Controls.Add(this.text_pwds);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt_pwd);
+            this.Controls.Add(this.text_pwd);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "user_pwdEdit";
+            this.Name = "user_PwdEdit";
             this.Text = "修改密码";
+            this.Load += new System.EventHandler(this.user_PwdEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,8 +102,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_pwd;
-        private System.Windows.Forms.TextBox txt_pwds;
+        private System.Windows.Forms.TextBox text_pwd;
+        private System.Windows.Forms.TextBox text_pwds;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_pwd;
     }

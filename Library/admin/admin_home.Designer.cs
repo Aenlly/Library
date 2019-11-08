@@ -1,6 +1,6 @@
 ﻿namespace Library.admin
 {
-    partial class admin_home
+    partial class admin_Home
     {
         /// <summary>
         /// Required designer variable.
@@ -31,22 +31,18 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button17 = new System.Windows.Forms.Button();
+            this.btn_FeedBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_UserPage = new System.Windows.Forms.Button();
+            this.btn_Recovery = new System.Windows.Forms.Button();
+            this.btn_Operation = new System.Windows.Forms.Button();
+            this.btn_Backup = new System.Windows.Forms.Button();
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.btn_Return = new System.Windows.Forms.Button();
+            this.btn_Borrow = new System.Windows.Forms.Button();
+            this.btn_Overdue = new System.Windows.Forms.Button();
+            this.btn_SingOut = new System.Windows.Forms.Button();
+            this.btn_Book = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,22 +68,18 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button17);
+            this.panel2.Controls.Add(this.btn_FeedBack);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.button14);
-            this.panel2.Controls.Add(this.button13);
-            this.panel2.Controls.Add(this.button9);
-            this.panel2.Controls.Add(this.button12);
-            this.panel2.Controls.Add(this.button11);
-            this.panel2.Controls.Add(this.button10);
-            this.panel2.Controls.Add(this.button8);
-            this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btn_Return);
+            this.panel2.Controls.Add(this.btn_UserPage);
+            this.panel2.Controls.Add(this.btn_Recovery);
+            this.panel2.Controls.Add(this.btn_Operation);
+            this.panel2.Controls.Add(this.btn_Backup);
+            this.panel2.Controls.Add(this.btn_Login);
+            this.panel2.Controls.Add(this.btn_Borrow);
+            this.panel2.Controls.Add(this.btn_Overdue);
+            this.panel2.Controls.Add(this.btn_SingOut);
+            this.panel2.Controls.Add(this.btn_Book);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panel2.Location = new System.Drawing.Point(0, 45);
@@ -95,15 +87,16 @@
             this.panel2.Size = new System.Drawing.Size(168, 557);
             this.panel2.TabIndex = 1;
             // 
-            // button17
+            // btn_FeedBack
             // 
-            this.button17.Location = new System.Drawing.Point(39, 348);
-            this.button17.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 27);
-            this.button17.TabIndex = 14;
-            this.button17.Text = "反馈记录";
-            this.button17.UseVisualStyleBackColor = true;
+            this.btn_FeedBack.Location = new System.Drawing.Point(39, 293);
+            this.btn_FeedBack.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_FeedBack.Name = "btn_FeedBack";
+            this.btn_FeedBack.Size = new System.Drawing.Size(75, 27);
+            this.btn_FeedBack.TabIndex = 14;
+            this.btn_FeedBack.Text = "反馈记录";
+            this.btn_FeedBack.UseVisualStyleBackColor = true;
+            this.btn_FeedBack.Click += new System.EventHandler(this.btn_FeedBack_Click);
             // 
             // label1
             // 
@@ -115,147 +108,117 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // button14
+            // btn_UserPage
             // 
-            this.button14.Location = new System.Drawing.Point(39, 229);
-            this.button14.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 27);
-            this.button14.TabIndex = 12;
-            this.button14.Text = "查询用户";
-            this.button14.UseVisualStyleBackColor = true;
+            this.btn_UserPage.Location = new System.Drawing.Point(39, 259);
+            this.btn_UserPage.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_UserPage.Name = "btn_UserPage";
+            this.btn_UserPage.Size = new System.Drawing.Size(75, 27);
+            this.btn_UserPage.TabIndex = 12;
+            this.btn_UserPage.Text = "用户管理";
+            this.btn_UserPage.UseVisualStyleBackColor = true;
+            this.btn_UserPage.Click += new System.EventHandler(this.btn_UserPage_Click);
             // 
-            // button13
+            // btn_Recovery
             // 
-            this.button13.Location = new System.Drawing.Point(39, 319);
-            this.button13.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 27);
-            this.button13.TabIndex = 11;
-            this.button13.Text = "编辑用户";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btn_Recovery.Location = new System.Drawing.Point(39, 393);
+            this.btn_Recovery.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Recovery.Name = "btn_Recovery";
+            this.btn_Recovery.Size = new System.Drawing.Size(75, 27);
+            this.btn_Recovery.TabIndex = 11;
+            this.btn_Recovery.Text = "数据恢复";
+            this.btn_Recovery.UseVisualStyleBackColor = true;
+            this.btn_Recovery.Click += new System.EventHandler(this.btn_Recovery_Click);
             // 
-            // button9
+            // btn_Operation
             // 
-            this.button9.Location = new System.Drawing.Point(39, 419);
-            this.button9.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 27);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "数据恢复";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btn_Operation.Location = new System.Drawing.Point(39, 423);
+            this.btn_Operation.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Operation.Name = "btn_Operation";
+            this.btn_Operation.Size = new System.Drawing.Size(75, 27);
+            this.btn_Operation.TabIndex = 9;
+            this.btn_Operation.Text = "操作记录";
+            this.btn_Operation.UseVisualStyleBackColor = true;
+            this.btn_Operation.Click += new System.EventHandler(this.btn_Operation_Click);
             // 
-            // button12
+            // btn_Backup
             // 
-            this.button12.Location = new System.Drawing.Point(39, 289);
-            this.button12.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 27);
-            this.button12.TabIndex = 10;
-            this.button12.Text = "删除用户";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btn_Backup.Location = new System.Drawing.Point(39, 363);
+            this.btn_Backup.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Backup.Name = "btn_Backup";
+            this.btn_Backup.Size = new System.Drawing.Size(75, 27);
+            this.btn_Backup.TabIndex = 8;
+            this.btn_Backup.Text = "数据备份";
+            this.btn_Backup.UseVisualStyleBackColor = true;
+            this.btn_Backup.Click += new System.EventHandler(this.btn_Backup_Click);
             // 
-            // button11
+            // btn_Login
             // 
-            this.button11.Location = new System.Drawing.Point(39, 449);
-            this.button11.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 27);
-            this.button11.TabIndex = 9;
-            this.button11.Text = "操作记录";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btn_Login.Location = new System.Drawing.Point(39, 453);
+            this.btn_Login.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(75, 27);
+            this.btn_Login.TabIndex = 7;
+            this.btn_Login.Text = "登录记录";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
             // 
-            // button10
+            // btn_Return
             // 
-            this.button10.Location = new System.Drawing.Point(39, 389);
-            this.button10.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 27);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "数据备份";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btn_Return.Location = new System.Drawing.Point(39, 149);
+            this.btn_Return.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Return.Name = "btn_Return";
+            this.btn_Return.Size = new System.Drawing.Size(75, 27);
+            this.btn_Return.TabIndex = 6;
+            this.btn_Return.Text = "还书记录";
+            this.btn_Return.UseVisualStyleBackColor = true;
+            this.btn_Return.Click += new System.EventHandler(this.btn_Return_Click);
             // 
-            // button8
+            // btn_Borrow
             // 
-            this.button8.Location = new System.Drawing.Point(39, 479);
-            this.button8.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 27);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "登录记录";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btn_Borrow.Location = new System.Drawing.Point(39, 119);
+            this.btn_Borrow.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Borrow.Name = "btn_Borrow";
+            this.btn_Borrow.Size = new System.Drawing.Size(75, 27);
+            this.btn_Borrow.TabIndex = 5;
+            this.btn_Borrow.Text = "借书记录";
+            this.btn_Borrow.UseVisualStyleBackColor = true;
+            this.btn_Borrow.Click += new System.EventHandler(this.btn_Borrow_Click);
             // 
-            // button7
+            // btn_Overdue
             // 
-            this.button7.Location = new System.Drawing.Point(39, 119);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 27);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "还书记录";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btn_Overdue.Location = new System.Drawing.Point(39, 179);
+            this.btn_Overdue.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Overdue.Name = "btn_Overdue";
+            this.btn_Overdue.Size = new System.Drawing.Size(75, 27);
+            this.btn_Overdue.TabIndex = 4;
+            this.btn_Overdue.Text = "逾期记录";
+            this.btn_Overdue.UseVisualStyleBackColor = true;
+            this.btn_Overdue.Click += new System.EventHandler(this.btn_Overdue_Click);
             // 
-            // button6
+            // btn_SingOut
             // 
-            this.button6.Location = new System.Drawing.Point(39, 149);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 27);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "借书记录";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btn_SingOut.Location = new System.Drawing.Point(39, 509);
+            this.btn_SingOut.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_SingOut.Name = "btn_SingOut";
+            this.btn_SingOut.Size = new System.Drawing.Size(75, 27);
+            this.btn_SingOut.TabIndex = 3;
+            this.btn_SingOut.Text = "退出登录";
+            this.btn_SingOut.UseVisualStyleBackColor = true;
+            this.btn_SingOut.Click += new System.EventHandler(this.btn_SingOut_Click);
             // 
-            // button5
+            // btn_Book
             // 
-            this.button5.Location = new System.Drawing.Point(39, 179);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 27);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "逾期记录";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn_Book.Location = new System.Drawing.Point(39, 20);
+            this.btn_Book.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Book.Name = "btn_Book";
+            this.btn_Book.Size = new System.Drawing.Size(87, 27);
+            this.btn_Book.TabIndex = 0;
+            this.btn_Book.Text = "图书管理";
+            this.btn_Book.UseVisualStyleBackColor = true;
+            this.btn_Book.Click += new System.EventHandler(this.btn_Book_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(39, 509);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 27);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "退出登录";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(39, 259);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 27);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "添加用户";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(39, 50);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 27);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "添加/编辑";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(39, 20);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 27);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "查询/删除";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // admin_home
+            // admin_Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,7 +226,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Name = "admin_home";
+            this.Name = "admin_Home";
             this.Text = "图书后台管理系统";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -277,22 +240,18 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btn_Login;
+        private System.Windows.Forms.Button btn_Return;
+        private System.Windows.Forms.Button btn_Borrow;
+        private System.Windows.Forms.Button btn_Overdue;
+        private System.Windows.Forms.Button btn_SingOut;
+        private System.Windows.Forms.Button btn_Book;
+        private System.Windows.Forms.Button btn_Backup;
+        private System.Windows.Forms.Button btn_Operation;
+        private System.Windows.Forms.Button btn_Recovery;
+        private System.Windows.Forms.Button btn_UserPage;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button btn_FeedBack;
     }
 }

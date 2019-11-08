@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -138,13 +138,14 @@
     <Compile Include="admin\admin_userPage.Designer.cs">
       <DependentUpon>admin_userPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Log.cs" />
+    <Compile Include="utils\Log.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="utils\SqlDbHelper.cs" />
     <Compile Include="user\user_About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,23 +176,23 @@
     <Compile Include="user\user_FeedbackRecord.Designer.cs">
       <DependentUpon>user_FeedbackRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="user\user_home.cs">
+    <Compile Include="user\user_Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="user\user_home.Designer.cs">
-      <DependentUpon>user_home.cs</DependentUpon>
+    <Compile Include="user\user_Home.Designer.cs">
+      <DependentUpon>user_Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="user\user_changepwd.cs">
+    <Compile Include="user\user_ChangePwd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="user\user_changepwd.Designer.cs">
-      <DependentUpon>user_changepwd.cs</DependentUpon>
+    <Compile Include="user\user_ChangePwd.Designer.cs">
+      <DependentUpon>user_ChangePwd.cs</DependentUpon>
     </Compile>
-    <Compile Include="user\user_pwdEdit.cs">
+    <Compile Include="user\user_PwdEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="user\user_pwdEdit.Designer.cs">
-      <DependentUpon>user_pwdEdit.cs</DependentUpon>
+    <Compile Include="user\user_PwdEdit.Designer.cs">
+      <DependentUpon>user_PwdEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="user\user_Return.cs">
       <SubType>Form</SubType>
@@ -274,14 +275,14 @@
     <EmbeddedResource Include="user\user_FeedbackRecord.resx">
       <DependentUpon>user_FeedbackRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user\user_home.resx">
-      <DependentUpon>user_home.cs</DependentUpon>
+    <EmbeddedResource Include="user\user_Home.resx">
+      <DependentUpon>user_Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user\user_changepwd.resx">
-      <DependentUpon>user_changepwd.cs</DependentUpon>
+    <EmbeddedResource Include="user\user_ChangePwd.resx">
+      <DependentUpon>user_ChangePwd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user\user_pwdEdit.resx">
-      <DependentUpon>user_pwdEdit.cs</DependentUpon>
+    <EmbeddedResource Include="user\user_PwdEdit.resx">
+      <DependentUpon>user_PwdEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="user\user_Return.resx">
       <DependentUpon>user_Return.cs</DependentUpon>
@@ -290,6 +291,7 @@
       <DependentUpon>user_SeeBookPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="DB\图书管理系统数据库.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -306,6 +308,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DB\LibraryMS.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DB\LibraryMS.sql" />
+    <Content Include="DB\LibraryMS_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>LibraryMS.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

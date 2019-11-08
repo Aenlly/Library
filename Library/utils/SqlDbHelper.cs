@@ -7,36 +7,22 @@ using System.Text;
 
 namespace Library
 {
-    class Log
+    class SqlDbHelper
     {
-        private string name,pwd;
-        private Boolean boolean;
-
         DButil dButil = new DButil();
         SqlConnection con;
-        public Log()
-        {
 
-        }
-
-        public String Name
-        {
-            get { return name; }
-            set { this.name = value; }
-        }
-        public String Pwd
-        {
-            get { return pwd; }
-            set { this.pwd = value; }
-        }
-
-
+        /// <summary>
+        /// 修改密码事件
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public bool EditPwd(String sql)
         {
             con = dButil.SqlOpen();
             int n;
             SqlCommand command = new SqlCommand(sql, con);
-            n=command.ExecuteNonQuery();
+            n = command.ExecuteNonQuery();
             con.Close();
             if (n > 0)
             {
@@ -53,24 +39,24 @@ namespace Library
         /// <param name="user">传递账号参数</param>
         /// <param name="pass">传递密码参数</param>
         /// <returns></returns>
-        public bool Checkuser(String sql, string pwd)
+        public int Checkuser(String sql, string pwd)
         {
-            
-            SqlConnection con = dButil.SqlOpen();
+
+            SqlConnection con = dButil.SqlOpen();//
             SqlCommand command = new SqlCommand(sql, con);//链接数据库进行执行
-            SqlDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader();//
             while (reader.Read())
             {
                 if (reader["u_password"].Equals(pwd))//进行判断用户密码
                 {
                     con.Close();
-                    return true;//密码正确返回为真
+                    return 2;//2代表密码正确
                 }
-
+                return 1;//1代表密码错误
             }
             reader.Close();
             con.Close();
-            return false;//密码错误返回为假
+            return 0;//0代表账号错误
         }
 
         /// <summary>
@@ -80,7 +66,7 @@ namespace Library
         /// <param name="user">传递账号参数</param>
         /// <param name="pass">传递密码参数</param>
         /// <returns></returns>
-        public bool Checkadmin(String sql, string pwd)
+        public int Checkadmin(String sql, string pwd)
         {
             con = dButil.SqlOpen();
             SqlCommand command = new SqlCommand(sql, con);//链接数据库进行执行
@@ -90,13 +76,30 @@ namespace Library
                 if (reader["a_password"].Equals(pwd))//进行判断用户密码
                 {
                     con.Close();
-                    return true;//密码正确返回为真
+                    return 2; //2代表密码正确
                 }
-
+                return 1;//1代表密码错误
             }
             reader.Close();
             con.Close();
-            return false;//密码错误返回为假
+            return 0;//0代表账号错误
+        }
+
+        public int Checkcard(String sql,string card)
+        {
+            con = dButil.SqlOpen();
+            SqlCommand command = new SqlCommand(sql, con);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader["u_card"].Equals(card))
+                {
+                    con.Close();
+                    return 2;//身份证、账号正确
+                }
+                return 1;//身份证错误
+            }
+            return 0;//账号不存在
         }
     }
 }

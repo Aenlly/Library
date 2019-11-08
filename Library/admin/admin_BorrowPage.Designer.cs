@@ -92,7 +92,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
             this.Name = "admin_BorrowPage";
-            this.Text = "admin_BorrowPage";
+            this.Text = "借书记录";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

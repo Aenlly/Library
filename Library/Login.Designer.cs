@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_name = new System.Windows.Forms.TextBox();
-            this.txt_pass = new System.Windows.Forms.TextBox();
+            this.text_name = new System.Windows.Forms.TextBox();
+            this.text_pwd = new System.Windows.Forms.TextBox();
             this.btn_dl = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.cmb_1 = new System.Windows.Forms.ComboBox();
@@ -59,26 +59,26 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "密码:";
             // 
-            // txt_name
+            // text_name
             // 
-            this.txt_name.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_name.Location = new System.Drawing.Point(85, 126);
-            this.txt_name.MaxLength = 13;
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(166, 23);
-            this.txt_name.TabIndex = 2;
+            this.text_name.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.text_name.Location = new System.Drawing.Point(85, 126);
+            this.text_name.MaxLength = 13;
+            this.text_name.Name = "text_name";
+            this.text_name.Size = new System.Drawing.Size(166, 23);
+            this.text_name.TabIndex = 2;
             // 
-            // txt_pass
+            // text_pwd
             // 
-            this.txt_pass.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_pass.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_pass.Location = new System.Drawing.Point(85, 170);
-            this.txt_pass.MaxLength = 16;
-            this.txt_pass.Name = "txt_pass";
-            this.txt_pass.PasswordChar = '*';
-            this.txt_pass.Size = new System.Drawing.Size(166, 23);
-            this.txt_pass.TabIndex = 3;
-            this.txt_pass.WordWrap = false;
+            this.text_pwd.BackColor = System.Drawing.SystemColors.Window;
+            this.text_pwd.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.text_pwd.Location = new System.Drawing.Point(85, 170);
+            this.text_pwd.MaxLength = 16;
+            this.text_pwd.Name = "text_pwd";
+            this.text_pwd.PasswordChar = '*';
+            this.text_pwd.Size = new System.Drawing.Size(166, 23);
+            this.text_pwd.TabIndex = 3;
+            this.text_pwd.WordWrap = false;
             // 
             // btn_dl
             // 
@@ -145,8 +145,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btn_dl);
-            this.Controls.Add(this.txt_pass);
-            this.Controls.Add(this.txt_name);
+            this.Controls.Add(this.text_pwd);
+            this.Controls.Add(this.text_name);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
@@ -163,8 +163,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_name;
-        private System.Windows.Forms.TextBox txt_pass;
+        private System.Windows.Forms.TextBox text_name;
+        private System.Windows.Forms.TextBox text_pwd;
         private System.Windows.Forms.Button btn_dl;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.ComboBox cmb_1;

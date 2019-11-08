@@ -19,71 +19,79 @@ namespace Library
             InitializeComponent();
         }
         DButil dButil = new DButil();
-        SqlConnection con;
 
         private void btn_dl_Click(object sender, EventArgs e)
         {
-            String name = txt_name.Text.Trim();
-            String password = txt_pass.Text.Trim();
-            Log log = new Log();
-            log.Name = name;
+            String name = text_name.Text.Trim();
+            String pwd = text_pwd.Text.Trim();
 
-            if (txt_name.Text.Equals(""))
+
+            SqlDbHelper sqlDbHelper = new SqlDbHelper();
+
+            if (text_name.Text.Equals(""))
             {
                 MessageBox.Show("用户名不能为空", "提示错误");
-                txt_name.Focus();//输入光标移至用户框
+                text_name.Focus();//输入光标移至用户框
             }
-            if (txt_pass.Text == "")
+            else if (text_pwd.Text == "")
             {
                 MessageBox.Show("密码不能为空");//输入光标移至密码框
-                txt_pass.Focus();
+                text_pwd.Focus();
             }
             else
             {
                 //判断登录方式是否为用户
                 if (cmb_1.SelectedIndex == 0)
                 {
-                    String sql = "SELECT u_password FROM readers where u_id='" + txt_name.Text.Trim() + "'";
-                    if (!log.Checkuser(sql,txt_pass.Text.Trim()))
+                    String sql = "select u_password from [user] where u_id=" + name;
+                    int n = sqlDbHelper.Checkuser(sql, pwd);
+                    if (n == 2)//账号密码正确
                     {
-                        MessageBox.Show(this, "该账号或密码错误\n\r或登录方式错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                        txt_name.Focus();
-                    }
-                    else if (log.Checkuser(txt_name.Text.Trim(), txt_pass.Text.Trim()))
-                    {
+                        Log.log.name = text_name.Text.Trim();
+                        Log.log.pwd = text_pwd.Text.Trim();
                         user.user_Home user_Home = new user.user_Home();//用户窗体实例化
                         user_Home.Show();// 显示窗体
                         user_Home.Activate();//给予焦点
                         this.Visible = false;  // 当前窗体不可见
                     }
-                    else
+                    else if (n == 1)//密码正确
                     {
-                        MessageBox.Show("密码错误", "提示");
-                        txt_pass.Focus();//清空密码文本框控件
-                        txt_pass.SelectAll();//取得密码文本框焦点
+                        MessageBox.Show(this, "该账号密码错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        text_pwd.Focus();//光标移到密码框中
                     }
-
+                    else//账号不存在
+                    {
+                        MessageBox.Show(this, "该账号不存在或登录方式错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        text_pwd.Text = "";
+                        text_name.Focus();//光标移到账号框中
+                    }
                 }
 
                 //判断登录方式是否为管理员
                 else if (cmb_1.SelectedIndex == 1)
                 {
-                    string sql = "SELECT a_password FROM admin where a_name='" + txt_name.Text.Trim() + "'";//执行管理员查询语句
-                    if (!log.Checkadmin(sql, txt_pass.Text.Trim()))//账号判断是否为空
+                    string sql = "select a_password from [admin] where a_name='" + name + "'";//执行管理员查询语句
+                    int n = sqlDbHelper.Checkadmin(sql, pwd);
+                    if (n == 2)//账号密码正确
                     {
-                        MessageBox.Show(this, "该账号或密码错误\n\r或登录方式错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    }
-                    else if (log.Checkadmin(sql, txt_pass.Text.Trim()))//传递参数至方法中进行真假判断
-                    {
-                        admin.admin_home admin_Home = new admin.admin_home();//管理员窗体实例化
+                        Log.log.name = text_name.Text.Trim();
+                        Log.log.pwd = text_pwd.Text.Trim();
+                        admin.admin_Home admin_Home = new admin.admin_Home();//管理员窗体实例化
                         admin_Home.Show();//转到管理员的界面
+                        admin_Home.Activate();//给予焦点
                         this.Hide();
                     }
-                    else
+                    else if (n == 1)//判断账号密码是否错误
                     {
-                        MessageBox.Show(this, "密码错误", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                        txt_pass.Focus();//清空密码文本框控件
-                        txt_pass.SelectAll();//取得密码文本框焦点
+                        MessageBox.Show(this, "该账号密码错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        text_pwd.Text = "";
+                        text_pwd.Focus();//光标移到密码框中
+                    }
+                    else//账号不存在
+                    {
+                        MessageBox.Show(this, "该账号不存在或登录方式错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        text_pwd.Text="";
+                        text_name.Focus();//光标移到账号框中
                     }
                 }
             }
