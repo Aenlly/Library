@@ -78,11 +78,65 @@
     <Compile Include="admin\admin_BookPage.Designer.cs">
       <DependentUpon>admin_BookPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="admin\admin_BorrowPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_BorrowPage.Designer.cs">
+      <DependentUpon>admin_BorrowPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_FeedBackPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_FeedBackPage.Designer.cs">
+      <DependentUpon>admin_FeedBackPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin\admin_home.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="admin\admin_home.Designer.cs">
       <DependentUpon>admin_home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_loginPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_loginPage.Designer.cs">
+      <DependentUpon>admin_loginPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_OperationPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_OperationPage.Designer.cs">
+      <DependentUpon>admin_OperationPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_OverduePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_OverduePage.Designer.cs">
+      <DependentUpon>admin_OverduePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_ReturnPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_ReturnPage.Designer.cs">
+      <DependentUpon>admin_ReturnPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_userAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_userAdd.Designer.cs">
+      <DependentUpon>admin_userAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_userEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_userEdit.Designer.cs">
+      <DependentUpon>admin_userEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_userPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_userPage.Designer.cs">
+      <DependentUpon>admin_userPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="Login.cs">
@@ -163,8 +217,35 @@
     <EmbeddedResource Include="admin\admin_BookPage.resx">
       <DependentUpon>admin_BookPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_BorrowPage.resx">
+      <DependentUpon>admin_BorrowPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_FeedBackPage.resx">
+      <DependentUpon>admin_FeedBackPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_home.resx">
       <DependentUpon>admin_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_loginPage.resx">
+      <DependentUpon>admin_loginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_OperationPage.resx">
+      <DependentUpon>admin_OperationPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_OverduePage.resx">
+      <DependentUpon>admin_OverduePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_ReturnPage.resx">
+      <DependentUpon>admin_ReturnPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_userAdd.resx">
+      <DependentUpon>admin_userAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_userEdit.resx">
+      <DependentUpon>admin_userEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_userPage.resx">
+      <DependentUpon>admin_userPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

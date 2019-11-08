@@ -1,6 +1,6 @@
 ﻿namespace Library.user
 {
-    partial class user_changepwd
+    partial class user_ChangePwd
     {
         /// <summary>
         /// Required designer variable.

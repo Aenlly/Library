@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Library.user
 {
-    public partial class user_changepwd : Form
+    public partial class user_ChangePwd : Form
     {
-        public user_changepwd()
+        public user_ChangePwd()
         {
             InitializeComponent();
         }

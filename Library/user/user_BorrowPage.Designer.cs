@@ -100,7 +100,7 @@
             this.button4.Text = "进行延期";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // user_Borrow
+            // user_BorrowPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -113,8 +113,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Name = "user_Borrow";
-            this.Text = "user_Borrow";
+            this.Name = "user_BorrowPage";
+            this.Text = "借书记录";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
