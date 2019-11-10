@@ -211,6 +211,7 @@
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "user_Home";
             this.Text = "图书馆";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_Home_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

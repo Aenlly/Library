@@ -117,5 +117,17 @@ namespace Library
             cmb_1.Items.Add("管理员");//添加管理员选项
             cmb_1.SelectedIndex = 0;//使用户为默认选项
         }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult.OK==MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) )
+            {
+                System.Environment.Exit(0);  //结束全进程
+            }
+            else
+            {
+                e.Cancel = true;//当前窗体不关闭
+            }
+        }
     }
 }

@@ -60,13 +60,15 @@ namespace Library.admin
         //数据备份按钮事件
         private void btn_Backup_Click(object sender, EventArgs e)
         {
-
+            admin_Backups admin_Backups = new admin_Backups();//实例化数据备份窗体对象
+            admin_Backups.ShowDialog();//显示数据备份窗体
         }
 
         //数据恢复按钮事件
         private void btn_Recovery_Click(object sender, EventArgs e)
         {
-
+            admin_Recovery admin_Recovery = new admin_Recovery();//实例化数据恢复窗体对象
+            admin_Recovery.ShowDialog();//显示数据恢复窗体
         }
 
         //操作记录按钮事件

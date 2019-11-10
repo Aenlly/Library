@@ -71,9 +71,5 @@ namespace Library.user
                 }
             }
         }
-
-        private void user_PwdEdit_Load(object sender, EventArgs e)
-        {
-        }
     }
 }

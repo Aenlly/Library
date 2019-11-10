@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\admin_Backups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_Backups.Designer.cs">
+      <DependentUpon>admin_Backups.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin\admin_BookAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +96,11 @@
     <Compile Include="admin\admin_FeedBackPage.Designer.cs">
       <DependentUpon>admin_FeedBackPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin\admin_home.cs">
+    <Compile Include="admin\admin_Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="admin\admin_home.Designer.cs">
-      <DependentUpon>admin_home.cs</DependentUpon>
+    <Compile Include="admin\admin_Home.Designer.cs">
+      <DependentUpon>admin_Home.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\admin_loginPage.cs">
       <SubType>Form</SubType>
@@ -113,6 +119,12 @@
     </Compile>
     <Compile Include="admin\admin_OverduePage.Designer.cs">
       <DependentUpon>admin_OverduePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_Recovery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_Recovery.Designer.cs">
+      <DependentUpon>admin_Recovery.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\admin_ReturnPage.cs">
       <SubType>Form</SubType>
@@ -209,6 +221,9 @@
     <Compile Include="utils\DButil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="admin\admin_Backups.resx">
+      <DependentUpon>admin_Backups.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_BookAdd.resx">
       <DependentUpon>admin_BookAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,8 +239,8 @@
     <EmbeddedResource Include="admin\admin_FeedBackPage.resx">
       <DependentUpon>admin_FeedBackPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\admin_home.resx">
-      <DependentUpon>admin_home.cs</DependentUpon>
+    <EmbeddedResource Include="admin\admin_Home.resx">
+      <DependentUpon>admin_Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_loginPage.resx">
       <DependentUpon>admin_loginPage.cs</DependentUpon>
@@ -235,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_OverduePage.resx">
       <DependentUpon>admin_OverduePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_Recovery.resx">
+      <DependentUpon>admin_Recovery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_ReturnPage.resx">
       <DependentUpon>admin_ReturnPage.cs</DependentUpon>

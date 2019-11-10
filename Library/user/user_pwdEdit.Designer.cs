@@ -70,9 +70,9 @@
             // btn_pwd
             // 
             this.btn_pwd.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_pwd.Location = new System.Drawing.Point(53, 93);
+            this.btn_pwd.Location = new System.Drawing.Point(59, 98);
             this.btn_pwd.Name = "btn_pwd";
-            this.btn_pwd.Size = new System.Drawing.Size(152, 38);
+            this.btn_pwd.Size = new System.Drawing.Size(141, 34);
             this.btn_pwd.TabIndex = 4;
             this.btn_pwd.Text = "确定修改";
             this.btn_pwd.UseVisualStyleBackColor = true;
@@ -93,7 +93,6 @@
             this.MinimizeBox = false;
             this.Name = "user_PwdEdit";
             this.Text = "修改密码";
-            this.Load += new System.EventHandler(this.user_PwdEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

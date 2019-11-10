@@ -33,6 +33,7 @@
             this.text_name = new System.Windows.Forms.TextBox();
             this.btn_NetStep = new System.Windows.Forms.Button();
             this.text_card = new System.Windows.Forms.TextBox();
+            this.btn_Login = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -62,11 +63,11 @@
             // 
             // btn_NetStep
             // 
-            this.btn_NetStep.Location = new System.Drawing.Point(44, 120);
+            this.btn_NetStep.Location = new System.Drawing.Point(30, 119);
             this.btn_NetStep.Name = "btn_NetStep";
-            this.btn_NetStep.Size = new System.Drawing.Size(224, 38);
+            this.btn_NetStep.Size = new System.Drawing.Size(99, 37);
             this.btn_NetStep.TabIndex = 12;
-            this.btn_NetStep.Text = "下一步";
+            this.btn_NetStep.Text = "重置密码";
             this.btn_NetStep.UseVisualStyleBackColor = true;
             this.btn_NetStep.Click += new System.EventHandler(this.btn_NetStep_Click);
             // 
@@ -77,19 +78,32 @@
             this.text_card.Size = new System.Drawing.Size(158, 23);
             this.text_card.TabIndex = 13;
             // 
+            // btn_Login
+            // 
+            this.btn_Login.Location = new System.Drawing.Point(169, 119);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(99, 37);
+            this.btn_Login.TabIndex = 14;
+            this.btn_Login.Text = "返回登录";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
+            // 
             // user_ChangePwd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 193);
+            this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.text_card);
             this.Controls.Add(this.btn_NetStep);
             this.Controls.Add(this.text_name);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "user_ChangePwd";
             this.Text = "找回密码";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_ChangePwd_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,5 +115,6 @@
         private System.Windows.Forms.TextBox text_name;
         private System.Windows.Forms.Button btn_NetStep;
         private System.Windows.Forms.TextBox text_card;
+        private System.Windows.Forms.Button btn_Login;
     }
 }

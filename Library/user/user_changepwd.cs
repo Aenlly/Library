@@ -16,6 +16,9 @@ namespace Library.user
             InitializeComponent();
         }
 
+        private bool OkClick = false;//定义给bool值，进行判断是否当即了返回按钮
+
+        //重置密码的按钮事件
         private void btn_NetStep_Click(object sender, EventArgs e)
         {
             SqlDbHelper sqlDbHelper = new SqlDbHelper();
@@ -56,7 +59,32 @@ namespace Library.user
                     text_name.Focus();//获得账号输入焦点
                 }
             }
-            
+        }
+
+        //返回登录按钮的事件
+        private void btn_Login_Click(object sender, EventArgs e)
+        {
+            OkClick = true;//判断是否单击了该按钮
+            this.Close();
+            Login login = new Login();//实例化Login登录窗体对象
+            login.Show();//显示登录窗体
+            login.Activate();//给予焦点
+        }
+
+        //按×之后的关闭事件
+        private void user_ChangePwd_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //单击了返回登录按钮
+            if (OkClick == true){  }
+            //单击了确认按钮
+            else if (DialogResult.OK == MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+            {
+                System.Environment.Exit(0);  //结束全进程
+            }
+            else
+            {
+                e.Cancel = true;//当前窗体不关闭
+            }
         }
     }
 }
