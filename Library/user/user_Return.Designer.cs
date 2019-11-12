@@ -30,8 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_Return));
-            this.dGv = new System.Windows.Forms.DataGridView();
+            this.Dgv_return = new System.Windows.Forms.DataGridView();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_renewday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -48,45 +60,108 @@
             this.tsbtn_book = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_return = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
-            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_admin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_renewday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dGv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_return)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dGv
+            // Dgv_return
             // 
+            this.Dgv_return.AllowUserToAddRows = false;
+            this.Dgv_return.AllowUserToDeleteRows = false;
+            this.Dgv_return.AllowUserToResizeColumns = false;
+            this.Dgv_return.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dGv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_return.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.Dgv_return.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_return.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.Dgv_return.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_return.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Cl_id,
             this.Cl_name,
-            this.Cl_admin,
+            this.Cl_type,
             this.Cl_borrow,
             this.Cl_return,
             this.Cl_day,
             this.Cl_renew,
             this.Cl_renewday,
             this.Cl_eme});
-            this.dGv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dGv.Location = new System.Drawing.Point(0, 32);
-            this.dGv.Name = "dGv";
-            this.dGv.RowTemplate.Height = 23;
-            this.dGv.Size = new System.Drawing.Size(894, 491);
-            this.dGv.TabIndex = 0;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Dgv_return.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Dgv_return.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_return.Location = new System.Drawing.Point(0, 32);
+            this.Dgv_return.Name = "Dgv_return";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_return.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.Dgv_return.RowTemplate.Height = 23;
+            this.Dgv_return.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dgv_return.Size = new System.Drawing.Size(995, 491);
+            this.Dgv_return.TabIndex = 0;
+            // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "借书编号";
+            this.Cl_id.Name = "Cl_id";
+            // 
+            // Cl_name
+            // 
+            this.Cl_name.HeaderText = "图书名称";
+            this.Cl_name.Name = "Cl_name";
+            // 
+            // Cl_type
+            // 
+            this.Cl_type.HeaderText = "图书类别";
+            this.Cl_type.Name = "Cl_type";
+            this.Cl_type.Width = 150;
+            // 
+            // Cl_borrow
+            // 
+            this.Cl_borrow.HeaderText = "借书日期";
+            this.Cl_borrow.Name = "Cl_borrow";
+            // 
+            // Cl_return
+            // 
+            this.Cl_return.HeaderText = "还书日期";
+            this.Cl_return.Name = "Cl_return";
+            // 
+            // Cl_day
+            // 
+            this.Cl_day.HeaderText = "所借天数";
+            this.Cl_day.Name = "Cl_day";
+            // 
+            // Cl_renew
+            // 
+            this.Cl_renew.HeaderText = "是否续借";
+            this.Cl_renew.Name = "Cl_renew";
+            // 
+            // Cl_renewday
+            // 
+            this.Cl_renewday.HeaderText = "续借天数";
+            this.Cl_renewday.Name = "Cl_renewday";
+            // 
+            // Cl_eme
+            // 
+            this.Cl_eme.HeaderText = "还书成功";
+            this.Cl_eme.Name = "Cl_eme";
             // 
             // bindingNavigator1
             // 
@@ -117,7 +192,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(894, 32);
+            this.bindingNavigator1.Size = new System.Drawing.Size(995, 32);
             this.bindingNavigator1.TabIndex = 5;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -200,6 +275,7 @@
             this.tscmb_type.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.tscmb_type.Name = "tscmb_type";
             this.tscmb_type.Size = new System.Drawing.Size(75, 32);
+            this.tscmb_type.DropDownClosed += new System.EventHandler(this.tscmb_type_DropDownClosed);
             // 
             // toolStripLabel2
             // 
@@ -221,6 +297,7 @@
             this.tsbtn_return.Name = "tsbtn_return";
             this.tsbtn_return.Size = new System.Drawing.Size(54, 29);
             this.tsbtn_return.Text = "查询";
+            this.tsbtn_return.Click += new System.EventHandler(this.tsbtn_return_Click);
             // 
             // tsbtn_whole
             // 
@@ -230,61 +307,21 @@
             this.tsbtn_whole.Name = "tsbtn_whole";
             this.tsbtn_whole.Size = new System.Drawing.Size(92, 29);
             this.tsbtn_whole.Text = "显示全部";
-            // 
-            // Cl_name
-            // 
-            this.Cl_name.HeaderText = "图书名称";
-            this.Cl_name.Name = "Cl_name";
-            // 
-            // Cl_admin
-            // 
-            this.Cl_admin.HeaderText = "操作员编号";
-            this.Cl_admin.Name = "Cl_admin";
-            this.Cl_admin.Width = 150;
-            // 
-            // Cl_borrow
-            // 
-            this.Cl_borrow.HeaderText = "借书日期";
-            this.Cl_borrow.Name = "Cl_borrow";
-            // 
-            // Cl_return
-            // 
-            this.Cl_return.HeaderText = "还书日期";
-            this.Cl_return.Name = "Cl_return";
-            // 
-            // Cl_day
-            // 
-            this.Cl_day.HeaderText = "所借天数";
-            this.Cl_day.Name = "Cl_day";
-            // 
-            // Cl_renew
-            // 
-            this.Cl_renew.HeaderText = "是否续借";
-            this.Cl_renew.Name = "Cl_renew";
-            // 
-            // Cl_renewday
-            // 
-            this.Cl_renewday.HeaderText = "续借天数";
-            this.Cl_renewday.Name = "Cl_renewday";
-            // 
-            // Cl_eme
-            // 
-            this.Cl_eme.HeaderText = "还书成功";
-            this.Cl_eme.Name = "Cl_eme";
+            this.tsbtn_whole.Click += new System.EventHandler(this.tsbtn_whole_Click);
             // 
             // user_Return
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 523);
-            this.Controls.Add(this.dGv);
+            this.ClientSize = new System.Drawing.Size(995, 523);
+            this.Controls.Add(this.Dgv_return);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "user_Return";
             this.Text = "还书记录";
             this.Load += new System.EventHandler(this.user_Return_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dGv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_return)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -295,7 +332,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dGv;
+        private System.Windows.Forms.DataGridView Dgv_return;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -312,8 +349,9 @@
         private System.Windows.Forms.ToolStripTextBox tsbtn_book;
         private System.Windows.Forms.ToolStripButton tsbtn_return;
         private System.Windows.Forms.ToolStripButton tsbtn_whole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_admin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_borrow;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_return;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_day;

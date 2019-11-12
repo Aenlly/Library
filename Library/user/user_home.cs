@@ -63,7 +63,7 @@ namespace Library.user
         //还书按钮事件
         private void btn_return_Click(object sender, EventArgs e)
         {
-            user_SeeBookPage user_book = new user_SeeBookPage();//实例化还书记录窗体对象
+            user_Return user_book = new user_Return();//实例化还书记录窗体对象
             user_book.ShowDialog();//显示的还书记录窗体设置为活动窗体
         }
 

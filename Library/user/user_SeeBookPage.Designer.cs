@@ -35,16 +35,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_SeeBookPage));
-            this.dGv = new System.Windows.Forms.DataGridView();
+            this.Dgv_SeeBook = new System.Windows.Forms.DataGridView();
             this.b_isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.t_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_press = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BindSoure = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -66,22 +65,21 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tstext_bookname = new System.Windows.Forms.ToolStripTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dGv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindSoure)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_SeeBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).BeginInit();
             this.BindNavig.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dGv
+            // Dgv_SeeBook
             // 
-            this.dGv.AllowUserToAddRows = false;
-            this.dGv.AllowUserToDeleteRows = false;
-            this.dGv.AllowUserToOrderColumns = true;
-            this.dGv.AllowUserToResizeColumns = false;
-            this.dGv.AllowUserToResizeRows = false;
+            this.Dgv_SeeBook.AllowUserToAddRows = false;
+            this.Dgv_SeeBook.AllowUserToDeleteRows = false;
+            this.Dgv_SeeBook.AllowUserToOrderColumns = true;
+            this.Dgv_SeeBook.AllowUserToResizeColumns = false;
+            this.Dgv_SeeBook.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.Dgv_SeeBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -89,12 +87,12 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dGv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_SeeBook.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.Dgv_SeeBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_SeeBook.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.b_isbn,
             this.b_name,
-            this.t_type,
+            this.t_name,
             this.b_author,
             this.b_press,
             this.b_time,
@@ -107,11 +105,11 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGv.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dGv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dGv.Location = new System.Drawing.Point(0, 28);
-            this.dGv.Name = "dGv";
-            this.dGv.ReadOnly = true;
+            this.Dgv_SeeBook.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Dgv_SeeBook.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_SeeBook.Location = new System.Drawing.Point(0, 28);
+            this.Dgv_SeeBook.Name = "Dgv_SeeBook";
+            this.Dgv_SeeBook.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -119,14 +117,14 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGv.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.Dgv_SeeBook.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dGv.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dGv.RowTemplate.Height = 23;
-            this.dGv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGv.Size = new System.Drawing.Size(944, 509);
-            this.dGv.TabIndex = 0;
-            this.dGv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGv_CellClick_1);
+            this.Dgv_SeeBook.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.Dgv_SeeBook.RowTemplate.Height = 23;
+            this.Dgv_SeeBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dgv_SeeBook.Size = new System.Drawing.Size(944, 509);
+            this.Dgv_SeeBook.TabIndex = 0;
+            this.Dgv_SeeBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGv_CellClick_1);
             // 
             // b_isbn
             // 
@@ -142,11 +140,11 @@
             this.b_name.ReadOnly = true;
             this.b_name.Width = 150;
             // 
-            // t_type
+            // t_name
             // 
-            this.t_type.HeaderText = "图书类别";
-            this.t_type.Name = "t_type";
-            this.t_type.ReadOnly = true;
+            this.t_name.HeaderText = "图书类别";
+            this.t_name.Name = "t_name";
+            this.t_name.ReadOnly = true;
             // 
             // b_author
             // 
@@ -259,7 +257,7 @@
             this.tscmb_type.Name = "tscmb_type";
             this.tscmb_type.Size = new System.Drawing.Size(75, 28);
             this.tscmb_type.Tag = "选择类别";
-            this.tscmb_type.SelectedIndexChanged += new System.EventHandler(this.tscmb_type_SelectedIndexChanged);
+            this.tscmb_type.DropDownClosed += new System.EventHandler(this.tscmb_type_DropDownClosed);
             // 
             // toolStripLabel1
             // 
@@ -308,7 +306,6 @@
             // BindNavig
             // 
             this.BindNavig.AddNewItem = null;
-            this.BindNavig.BindingSource = this.BindSoure;
             this.BindNavig.CountItem = this.bindingNavigatorCountItem;
             this.BindNavig.DeleteItem = null;
             this.BindNavig.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -334,7 +331,7 @@
             this.tstext_bookname,
             this.tsbtn_borrow});
             this.BindNavig.Location = new System.Drawing.Point(0, 0);
-            this.BindNavig.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.BindNavig.MoveFirstItem = this.bindingNavigatorMoveLastItem;
             this.BindNavig.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.BindNavig.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.BindNavig.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
@@ -373,7 +370,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 537);
-            this.Controls.Add(this.dGv);
+            this.Controls.Add(this.Dgv_SeeBook);
             this.Controls.Add(this.BindNavig);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MaximizeBox = false;
@@ -381,8 +378,7 @@
             this.Name = "user_SeeBookPage";
             this.Text = "查询图书";
             this.Load += new System.EventHandler(this.user_SeeBookPage_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dGv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindSoure)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_SeeBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).EndInit();
             this.BindNavig.ResumeLayout(false);
             this.BindNavig.PerformLayout();
@@ -393,8 +389,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dGv;
-        private System.Windows.Forms.BindingSource BindSoure;
+        private System.Windows.Forms.DataGridView Dgv_SeeBook;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
@@ -414,15 +409,15 @@
         private System.Windows.Forms.BindingNavigator BindNavig;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripTextBox tstext_bookname;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_isbn;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn t_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn t_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_author;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_press;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_price;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_stocks;
-        private System.Windows.Forms.ToolStripTextBox tstext_bookname;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }
