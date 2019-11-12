@@ -64,7 +64,8 @@
             this.BindNavig = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tslbl_book = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.tstext_bookname = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dGv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindSoure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).BeginInit();
@@ -110,7 +111,7 @@
             this.dGv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dGv.Location = new System.Drawing.Point(0, 28);
             this.dGv.Name = "dGv";
-            this.dGv.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dGv.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -123,7 +124,7 @@
             this.dGv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dGv.RowTemplate.Height = 23;
             this.dGv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGv.Size = new System.Drawing.Size(1036, 509);
+            this.dGv.Size = new System.Drawing.Size(944, 509);
             this.dGv.TabIndex = 0;
             this.dGv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGv_CellClick_1);
             // 
@@ -131,42 +132,51 @@
             // 
             this.b_isbn.HeaderText = "ISBN编号";
             this.b_isbn.Name = "b_isbn";
+            this.b_isbn.ReadOnly = true;
+            this.b_isbn.Width = 150;
             // 
             // b_name
             // 
             this.b_name.HeaderText = "图书名称";
             this.b_name.Name = "b_name";
-            this.b_name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.b_name.ReadOnly = true;
+            this.b_name.Width = 150;
             // 
             // t_type
             // 
             this.t_type.HeaderText = "图书类别";
             this.t_type.Name = "t_type";
+            this.t_type.ReadOnly = true;
             // 
             // b_author
             // 
             this.b_author.HeaderText = "作者";
             this.b_author.Name = "b_author";
+            this.b_author.ReadOnly = true;
             // 
             // b_press
             // 
             this.b_press.HeaderText = "出版社";
             this.b_press.Name = "b_press";
+            this.b_press.ReadOnly = true;
             // 
             // b_time
             // 
-            this.b_time.HeaderText = "出版日期";
+            this.b_time.HeaderText = "出版年份";
             this.b_time.Name = "b_time";
+            this.b_time.ReadOnly = true;
             // 
             // b_price
             // 
             this.b_price.HeaderText = "价格";
             this.b_price.Name = "b_price";
+            this.b_price.ReadOnly = true;
             // 
             // b_stocks
             // 
             this.b_stocks.HeaderText = "是否可借";
             this.b_stocks.Name = "b_stocks";
+            this.b_stocks.ReadOnly = true;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -238,8 +248,8 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(90, 25);
-            this.toolStripLabel2.Text = "查询类别：";
+            this.toolStripLabel2.Size = new System.Drawing.Size(46, 25);
+            this.toolStripLabel2.Text = "类别:";
             // 
             // tscmb_type
             // 
@@ -292,7 +302,7 @@
             this.tsbtn_borrow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_borrow.Name = "tsbtn_borrow";
             this.tsbtn_borrow.Size = new System.Drawing.Size(78, 25);
-            this.tsbtn_borrow.Text = "进行借书";
+            this.tsbtn_borrow.Text = "点击借书";
             this.tsbtn_borrow.Click += new System.EventHandler(this.tsbtn_borrow_Click);
             // 
             // BindNavig
@@ -320,7 +330,8 @@
             this.tsbtn_select,
             this.tsbtn_whole,
             this.toolStripSeparator2,
-            this.tslbl_book,
+            this.toolStripLabel3,
+            this.tstext_bookname,
             this.tsbtn_borrow});
             this.BindNavig.Location = new System.Drawing.Point(0, 0);
             this.BindNavig.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
@@ -329,7 +340,7 @@
             this.BindNavig.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.BindNavig.Name = "BindNavig";
             this.BindNavig.PositionItem = this.bindingNavigatorPositionItem;
-            this.BindNavig.Size = new System.Drawing.Size(1036, 28);
+            this.BindNavig.Size = new System.Drawing.Size(944, 28);
             this.BindNavig.TabIndex = 8;
             this.BindNavig.Text = "bindingNavigator1";
             // 
@@ -343,16 +354,25 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
-            // tslbl_book
+            // toolStripLabel3
             // 
-            this.tslbl_book.Name = "tslbl_book";
-            this.tslbl_book.Size = new System.Drawing.Size(0, 25);
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(78, 25);
+            this.toolStripLabel3.Text = "当前选中:";
+            // 
+            // tstext_bookname
+            // 
+            this.tstext_bookname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstext_bookname.Enabled = false;
+            this.tstext_bookname.Name = "tstext_bookname";
+            this.tstext_bookname.Size = new System.Drawing.Size(100, 28);
+            this.tstext_bookname.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // user_SeeBookPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 537);
+            this.ClientSize = new System.Drawing.Size(944, 537);
             this.Controls.Add(this.dGv);
             this.Controls.Add(this.BindNavig);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -394,7 +414,6 @@
         private System.Windows.Forms.BindingNavigator BindNavig;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripLabel tslbl_book;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_isbn;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn t_type;
@@ -403,5 +422,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn b_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_price;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_stocks;
+        private System.Windows.Forms.ToolStripTextBox tstext_bookname;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }
