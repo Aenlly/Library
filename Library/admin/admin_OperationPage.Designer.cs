@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmb_time = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
+            this.mcd_time = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,13 +45,16 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "选择日期：";
             // 
-            // comboBox1
+            // cmb_time
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(97, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 22);
-            this.comboBox1.TabIndex = 4;
+            this.cmb_time.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_time.FormattingEnabled = true;
+            this.cmb_time.Location = new System.Drawing.Point(97, 14);
+            this.cmb_time.MaxDropDownItems = 1;
+            this.cmb_time.Name = "cmb_time";
+            this.cmb_time.Size = new System.Drawing.Size(111, 22);
+            this.cmb_time.TabIndex = 4;
+            this.cmb_time.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cmb_time_MouseDown);
             // 
             // dataGridView1
             // 
@@ -71,15 +75,24 @@
             this.button2.Text = "显示";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // mcd_time
+            // 
+            this.mcd_time.Location = new System.Drawing.Point(97, 36);
+            this.mcd_time.Name = "mcd_time";
+            this.mcd_time.TabIndex = 5;
+            this.mcd_time.Visible = false;
+            this.mcd_time.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcd_time_DateChanged);
+            // 
             // admin_OperationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 525);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.mcd_time);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.cmb_time);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
             this.Name = "admin_OperationPage";
             this.Text = "操作记录";
@@ -92,8 +105,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmb_time;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.MonthCalendar mcd_time;
     }
 }

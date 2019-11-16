@@ -15,5 +15,17 @@ namespace Library.admin
         {
             InitializeComponent();
         }
+
+        private void mcd_time_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            cmb_time.Text = mcd_time.SelectionStart.ToShortDateString();
+
+            mcd_time.Hide();
+        }
+
+        private void cmb_time_MouseDown(object sender, MouseEventArgs e)
+        {
+            mcd_time.Show();
+        }
     }
 }

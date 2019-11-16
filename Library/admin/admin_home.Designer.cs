@@ -33,12 +33,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_FeedBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_Return = new System.Windows.Forms.Button();
             this.btn_UserPage = new System.Windows.Forms.Button();
             this.btn_Recovery = new System.Windows.Forms.Button();
             this.btn_Operation = new System.Windows.Forms.Button();
             this.btn_Backup = new System.Windows.Forms.Button();
             this.btn_Login = new System.Windows.Forms.Button();
-            this.btn_Return = new System.Windows.Forms.Button();
             this.btn_Borrow = new System.Windows.Forms.Button();
             this.btn_Overdue = new System.Windows.Forms.Button();
             this.btn_SingOut = new System.Windows.Forms.Button();
@@ -108,6 +108,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
+            // btn_Return
+            // 
+            this.btn_Return.Location = new System.Drawing.Point(39, 149);
+            this.btn_Return.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.btn_Return.Name = "btn_Return";
+            this.btn_Return.Size = new System.Drawing.Size(75, 27);
+            this.btn_Return.TabIndex = 6;
+            this.btn_Return.Text = "还书记录";
+            this.btn_Return.UseVisualStyleBackColor = true;
+            this.btn_Return.Click += new System.EventHandler(this.btn_Return_Click);
+            // 
             // btn_UserPage
             // 
             this.btn_UserPage.Location = new System.Drawing.Point(39, 259);
@@ -162,17 +173,6 @@
             this.btn_Login.Text = "登录记录";
             this.btn_Login.UseVisualStyleBackColor = true;
             this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
-            // 
-            // btn_Return
-            // 
-            this.btn_Return.Location = new System.Drawing.Point(39, 149);
-            this.btn_Return.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.btn_Return.Name = "btn_Return";
-            this.btn_Return.Size = new System.Drawing.Size(75, 27);
-            this.btn_Return.TabIndex = 6;
-            this.btn_Return.Text = "还书记录";
-            this.btn_Return.UseVisualStyleBackColor = true;
-            this.btn_Return.Click += new System.EventHandler(this.btn_Return_Click);
             // 
             // btn_Borrow
             // 
