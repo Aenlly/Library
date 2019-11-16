@@ -33,7 +33,7 @@ namespace Library
 
 
         /// <summary>
-        /// 进行学生判断
+        /// 进行用户判断
         /// 利用查询语句查询账号和密码返回值来进行button按钮中的账号，密码核对
         /// </summary>
         /// <param name="user">传递账号参数</param>

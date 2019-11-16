@@ -31,12 +31,21 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_BorrowPage));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_emeover = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
@@ -52,15 +61,6 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_emeover = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -85,6 +85,51 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(972, 465);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "借书编号";
+            this.Cl_id.Name = "Cl_id";
+            // 
+            // Cl_name
+            // 
+            this.Cl_name.HeaderText = "图书名称";
+            this.Cl_name.Name = "Cl_name";
+            // 
+            // Cl_type
+            // 
+            this.Cl_type.HeaderText = "图书类别";
+            this.Cl_type.Name = "Cl_type";
+            // 
+            // Cl_borrow
+            // 
+            this.Cl_borrow.HeaderText = "借书日期";
+            this.Cl_borrow.Name = "Cl_borrow";
+            // 
+            // Cl_return
+            // 
+            this.Cl_return.HeaderText = "应还日期";
+            this.Cl_return.Name = "Cl_return";
+            // 
+            // Cl_day
+            // 
+            this.Cl_day.HeaderText = "所借天数";
+            this.Cl_day.Name = "Cl_day";
+            // 
+            // Cl_renew
+            // 
+            this.Cl_renew.HeaderText = "续借资格";
+            this.Cl_renew.Name = "Cl_renew";
+            // 
+            // Cl_eme
+            // 
+            this.Cl_eme.HeaderText = "是否还书";
+            this.Cl_eme.Name = "Cl_eme";
+            // 
+            // Cl_emeover
+            // 
+            this.Cl_emeover.HeaderText = "是否逾期";
+            this.Cl_emeover.Name = "Cl_emeover";
             // 
             // bindingNavigator1
             // 
@@ -122,6 +167,13 @@
             this.bindingNavigator1.TabIndex = 7;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
+            this.bindingNavigatorCountItem.Text = "/ {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "总项数";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -154,16 +206,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "当前位置";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
-            this.bindingNavigatorCountItem.Text = "/ {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "总项数";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorMoveNextItem
@@ -186,7 +231,7 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel1
@@ -272,51 +317,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(123, 23);
             this.textBox1.TabIndex = 9;
-            // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "借书编号";
-            this.Cl_id.Name = "Cl_id";
-            // 
-            // Cl_name
-            // 
-            this.Cl_name.HeaderText = "图书名称";
-            this.Cl_name.Name = "Cl_name";
-            // 
-            // Cl_type
-            // 
-            this.Cl_type.HeaderText = "图书类别";
-            this.Cl_type.Name = "Cl_type";
-            // 
-            // Cl_borrow
-            // 
-            this.Cl_borrow.HeaderText = "借书日期";
-            this.Cl_borrow.Name = "Cl_borrow";
-            // 
-            // Cl_return
-            // 
-            this.Cl_return.HeaderText = "应还日期";
-            this.Cl_return.Name = "Cl_return";
-            // 
-            // Cl_day
-            // 
-            this.Cl_day.HeaderText = "所借天数";
-            this.Cl_day.Name = "Cl_day";
-            // 
-            // Cl_renew
-            // 
-            this.Cl_renew.HeaderText = "续借资格";
-            this.Cl_renew.Name = "Cl_renew";
-            // 
-            // Cl_eme
-            // 
-            this.Cl_eme.HeaderText = "是否还书";
-            this.Cl_eme.Name = "Cl_eme";
-            // 
-            // Cl_emeover
-            // 
-            this.Cl_emeover.HeaderText = "是否逾期";
-            this.Cl_emeover.Name = "Cl_emeover";
             // 
             // user_BorrowPage
             // 

@@ -20,8 +20,8 @@ namespace Library.user
         SqlConnection con;//创建数据库连接对象
         SqlCommand cmd;//创建执行的sql语句对象
         SqlDataAdapter sda;//创建数据库适配器对象
-        DataSet ds;
-        DButil dButil = new DButil();
+        DataSet ds;//创建ds缓存
+        DButil dButil = new DButil();//实例化DButil工具类
         //填充表内容的databind方法
         public void databind(string sql,object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace Library.user
             cmd = new SqlCommand(sql, con);
             sda =new SqlDataAdapter(cmd);
             ds = new DataSet();
-            sda.Fill(ds, "Book");//把查询内容添加到ds中
+            sda.Fill(ds, "Book");//把查询内容添加到ds中，区别type类别换成
             Dgv_SeeBook.DataSource = ds.Tables["Book"];
             Dgv_SeeBook.Columns[0].DataPropertyName = ds.Tables["Book"].Columns[0].ColumnName;
             Dgv_SeeBook.Columns[1].DataPropertyName = ds.Tables["Book"].Columns[1].ColumnName;

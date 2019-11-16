@@ -43,7 +43,7 @@ namespace Library
                 //判断登录方式是否为用户
                 if (cmb_1.SelectedIndex == 0)
                 {
-                    String sql = "select u_password from [user] where u_id=" + name;
+                    String sql = "select u_password from [user] where u_id='" + name+"'";
                     int n = sqlDbHelper.Checkuser(sql, pwd);
                     if (n == 2)//账号密码正确
                     {
