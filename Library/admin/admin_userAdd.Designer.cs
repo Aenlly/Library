@@ -28,212 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.text_name = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmb_user = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.cmb_sex = new System.Windows.Forms.ComboBox();
+            this.mtext_card = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_add
             // 
-            this.button1.Location = new System.Drawing.Point(12, 360);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 25);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "添加用户";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_add.Location = new System.Drawing.Point(15, 185);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(85, 25);
+            this.btn_add.TabIndex = 37;
+            this.btn_add.Text = "添加用户";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // textBox9
+            // text_name
             // 
-            this.textBox9.Location = new System.Drawing.Point(119, 283);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(51, 23);
-            this.textBox9.TabIndex = 34;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(119, 206);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(151, 23);
-            this.textBox5.TabIndex = 30;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(119, 169);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(151, 23);
-            this.textBox4.TabIndex = 29;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(119, 94);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(68, 23);
-            this.textBox3.TabIndex = 28;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(119, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(107, 23);
-            this.textBox2.TabIndex = 27;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(119, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 23);
-            this.textBox1.TabIndex = 26;
+            this.text_name.Location = new System.Drawing.Point(116, 17);
+            this.text_name.Name = "text_name";
+            this.text_name.Size = new System.Drawing.Size(107, 23);
+            this.text_name.TabIndex = 27;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(15, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(85, 316);
+            this.panel1.Size = new System.Drawing.Size(85, 148);
             this.panel1.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "学号：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 14);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "姓名：";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 274);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 14);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "可借数量：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 14);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "性别：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 14);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "学院：";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 197);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 14);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "班级：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 234);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 14);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "用户组：";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(119, 249);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(87, 22);
-            this.comboBox1.TabIndex = 38;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 122);
+            this.label7.Location = new System.Drawing.Point(3, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 14);
             this.label7.TabIndex = 9;
             this.label7.Text = "身份证：";
             // 
-            // textBox6
+            // label2
             // 
-            this.textBox6.Location = new System.Drawing.Point(119, 131);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(151, 23);
-            this.textBox6.TabIndex = 39;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 14);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "姓名：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 14);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "性别：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 113);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 14);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "用户组：";
+            // 
+            // cmb_user
+            // 
+            this.cmb_user.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_user.FormattingEnabled = true;
+            this.cmb_user.Location = new System.Drawing.Point(116, 123);
+            this.cmb_user.Name = "cmb_user";
+            this.cmb_user.Size = new System.Drawing.Size(87, 22);
+            this.cmb_user.TabIndex = 38;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(141, 360);
+            this.button2.Location = new System.Drawing.Point(138, 185);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 25);
             this.button2.TabIndex = 40;
             this.button2.Text = "导入用户";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // cmb_sex
+            // 
+            this.cmb_sex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_sex.FormattingEnabled = true;
+            this.cmb_sex.Location = new System.Drawing.Point(116, 52);
+            this.cmb_sex.Name = "cmb_sex";
+            this.cmb_sex.Size = new System.Drawing.Size(87, 22);
+            this.cmb_sex.TabIndex = 41;
+            // 
+            // mtext_card
+            // 
+            this.mtext_card.Location = new System.Drawing.Point(116, 85);
+            this.mtext_card.Mask = "000000-00000000-000A";
+            this.mtext_card.Name = "mtext_card";
+            this.mtext_card.Size = new System.Drawing.Size(151, 23);
+            this.mtext_card.TabIndex = 42;
+            // 
             // admin_userAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 468);
+            this.ClientSize = new System.Drawing.Size(283, 242);
+            this.Controls.Add(this.mtext_card);
+            this.Controls.Add(this.cmb_sex);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cmb_user);
+            this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.text_name);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "admin_userAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "admin_userAdd";
+            this.Text = "添加用户";
+            this.Load += new System.EventHandler(this.admin_userAdd_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -243,24 +169,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btn_add;
+        private System.Windows.Forms.TextBox text_name;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox cmb_user;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox cmb_sex;
+        private System.Windows.Forms.MaskedTextBox mtext_card;
     }
 }

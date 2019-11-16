@@ -34,14 +34,11 @@ namespace Library.user
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中
             Dgv_return.DataSource = ds.Tables[0];//导出到dataGridView1中显示并用下列代码对于列名     
-            Dgv_return.Columns[0].DataPropertyName = ds.Tables[0].Columns[0].ColumnName;
-            Dgv_return.Columns[1].DataPropertyName = ds.Tables[0].Columns[1].ColumnName;
-            Dgv_return.Columns[2].DataPropertyName = ds.Tables[0].Columns[2].ColumnName;
-            Dgv_return.Columns[3].DataPropertyName = ds.Tables[0].Columns[3].ColumnName;
-            Dgv_return.Columns[4].DataPropertyName = ds.Tables[0].Columns[4].ColumnName;
-            Dgv_return.Columns[5].DataPropertyName = ds.Tables[0].Columns[5].ColumnName;
-            Dgv_return.Columns[6].DataPropertyName = ds.Tables[0].Columns[6].ColumnName;
-            Dgv_return.Columns[7].DataPropertyName = ds.Tables[0].Columns[7].ColumnName;
+            for(int i = 0; i < 8; i++)
+            {
+                Dgv_return.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
+            }
+
             con.Close();
         }
 
@@ -66,7 +63,7 @@ namespace Library.user
         private void user_Return_Load(object sender, EventArgs e)
         {
             //查询全部的sql语句
-            string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='"+Log.log.name+"'";
+            string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='"+Log.log.name+"'";
             databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
             BookType();//填充到类型下拉列表中
         }
@@ -77,7 +74,7 @@ namespace Library.user
             if ("".Equals(tsbtn_book.Text.Trim()))
             {
                 //为空时显示全部
-                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "'";
+                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "'";
                 databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
             }
             else
@@ -86,13 +83,13 @@ namespace Library.user
                 if (tscmb_type.SelectedIndex != 0)//判断是否选中了全部类别
                 {
                     //否则查询输入的内容
-                    string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name like '%" + tsbtn_book.Text.Trim() + "%'";
+                    string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name like '%" + tsbtn_book.Text.Trim() + "%'";
                     databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
                 }
                 else
                 {
                     //否则查询输入的内容
-                    string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name like '%" + tsbtn_book.Text.Trim() + "%' and [type].t_name='"+tscmb_type.Text+"'";
+                    string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name like '%" + tsbtn_book.Text.Trim() + "%' and [type].t_name='"+tscmb_type.Text+"'";
                     databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
                 }
             }
@@ -104,13 +101,13 @@ namespace Library.user
             if (tscmb_type.SelectedIndex != 0)//判断是否选中了全部类别
             {
                 //查询sql语句
-                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name='" + tsbtn_book.Text.Trim() + "'";
+                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name='" + tsbtn_book.Text.Trim() + "'";
                 databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
             }
             else
             {
                 //查询类别的sql语句
-                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [type].t_name='" + tscmb_type.Text.Trim() + "'";
+                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [type].t_name='" + tscmb_type.Text.Trim() + "'";
                 databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
             }
         }
@@ -119,7 +116,7 @@ namespace Library.user
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
             //查询sql语句
-            string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.a_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name='" + tsbtn_book.Text.Trim() + "'";
+            string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.name + "' and [books].b_name='" + tsbtn_book.Text.Trim() + "'";
             databind(sql, sender, e);//传递sql语句过去，并填充数据到表格中
         }
     }

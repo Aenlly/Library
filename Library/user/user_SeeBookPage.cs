@@ -31,15 +31,14 @@ namespace Library.user
             sda =new SqlDataAdapter(cmd);
             ds = new DataSet();
             sda.Fill(ds, "Book");//把查询内容添加到ds中，区别type类别换成
-            Dgv_SeeBook.DataSource = ds.Tables["Book"];
-            Dgv_SeeBook.Columns[0].DataPropertyName = ds.Tables["Book"].Columns[0].ColumnName;
-            Dgv_SeeBook.Columns[1].DataPropertyName = ds.Tables["Book"].Columns[1].ColumnName;
-            Dgv_SeeBook.Columns[2].DataPropertyName = ds.Tables["Book"].Columns[2].ColumnName;
-            Dgv_SeeBook.Columns[3].DataPropertyName = ds.Tables["Book"].Columns[3].ColumnName;
-            Dgv_SeeBook.Columns[4].DataPropertyName = ds.Tables["Book"].Columns[4].ColumnName;
-            Dgv_SeeBook.Columns[5].DataPropertyName = ds.Tables["Book"].Columns[5].ColumnName;
-            Dgv_SeeBook.Columns[6].DataPropertyName = ds.Tables["Book"].Columns[6].ColumnName;
-            Dgv_SeeBook.Columns[7].DataPropertyName = ds.Tables["Book"].Columns[7].ColumnName;
+            bindingSource1.DataSource = ds.Tables["Book"];
+            BindNavig.BindingSource = bindingSource1;
+            Dgv_SeeBook.DataSource = bindingSource1;
+            for (int i = 0; i < 8; i++)
+            {
+                Dgv_SeeBook.Columns[i].DataPropertyName = ds.Tables["Book"].Columns[i].ColumnName;
+            }
+            
             con.Close();
         }
 

@@ -35,15 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_Return));
             this.Dgv_return = new System.Windows.Forms.DataGridView();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_renewday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -60,6 +51,15 @@
             this.tsbtn_book = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_return = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_renewday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_return)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -114,54 +114,8 @@
             this.Dgv_return.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Dgv_return.RowTemplate.Height = 23;
             this.Dgv_return.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_return.Size = new System.Drawing.Size(995, 491);
+            this.Dgv_return.Size = new System.Drawing.Size(964, 491);
             this.Dgv_return.TabIndex = 0;
-            // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "借书编号";
-            this.Cl_id.Name = "Cl_id";
-            // 
-            // Cl_name
-            // 
-            this.Cl_name.HeaderText = "图书名称";
-            this.Cl_name.Name = "Cl_name";
-            // 
-            // Cl_type
-            // 
-            this.Cl_type.HeaderText = "图书类别";
-            this.Cl_type.Name = "Cl_type";
-            this.Cl_type.Width = 150;
-            // 
-            // Cl_borrow
-            // 
-            this.Cl_borrow.HeaderText = "借书日期";
-            this.Cl_borrow.Name = "Cl_borrow";
-            // 
-            // Cl_return
-            // 
-            this.Cl_return.HeaderText = "还书日期";
-            this.Cl_return.Name = "Cl_return";
-            // 
-            // Cl_day
-            // 
-            this.Cl_day.HeaderText = "所借天数";
-            this.Cl_day.Name = "Cl_day";
-            // 
-            // Cl_renew
-            // 
-            this.Cl_renew.HeaderText = "是否续借";
-            this.Cl_renew.Name = "Cl_renew";
-            // 
-            // Cl_renewday
-            // 
-            this.Cl_renewday.HeaderText = "续借天数";
-            this.Cl_renewday.Name = "Cl_renewday";
-            // 
-            // Cl_eme
-            // 
-            this.Cl_eme.HeaderText = "还书成功";
-            this.Cl_eme.Name = "Cl_eme";
             // 
             // bindingNavigator1
             // 
@@ -192,7 +146,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(995, 32);
+            this.bindingNavigator1.Size = new System.Drawing.Size(964, 32);
             this.bindingNavigator1.TabIndex = 5;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -309,11 +263,56 @@
             this.tsbtn_whole.Text = "显示全部";
             this.tsbtn_whole.Click += new System.EventHandler(this.tsbtn_whole_Click);
             // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "借书编号";
+            this.Cl_id.Name = "Cl_id";
+            // 
+            // Cl_name
+            // 
+            this.Cl_name.HeaderText = "图书名称";
+            this.Cl_name.Name = "Cl_name";
+            // 
+            // Cl_type
+            // 
+            this.Cl_type.HeaderText = "图书类别";
+            this.Cl_type.Name = "Cl_type";
+            // 
+            // Cl_borrow
+            // 
+            this.Cl_borrow.HeaderText = "借书日期";
+            this.Cl_borrow.Name = "Cl_borrow";
+            // 
+            // Cl_return
+            // 
+            this.Cl_return.HeaderText = "还书日期";
+            this.Cl_return.Name = "Cl_return";
+            // 
+            // Cl_day
+            // 
+            this.Cl_day.HeaderText = "所借天数";
+            this.Cl_day.Name = "Cl_day";
+            // 
+            // Cl_renew
+            // 
+            this.Cl_renew.HeaderText = "是否续借";
+            this.Cl_renew.Name = "Cl_renew";
+            // 
+            // Cl_renewday
+            // 
+            this.Cl_renewday.HeaderText = "续借天数";
+            this.Cl_renewday.Name = "Cl_renewday";
+            // 
+            // Cl_eme
+            // 
+            this.Cl_eme.HeaderText = "还书成功";
+            this.Cl_eme.Name = "Cl_eme";
+            // 
             // user_Return
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 523);
+            this.ClientSize = new System.Drawing.Size(964, 523);
             this.Controls.Add(this.Dgv_return);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

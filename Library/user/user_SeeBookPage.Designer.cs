@@ -65,9 +65,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tstext_bookname = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_SeeBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).BeginInit();
             this.BindNavig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // Dgv_SeeBook
@@ -382,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).EndInit();
             this.BindNavig.ResumeLayout(false);
             this.BindNavig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,5 +422,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn b_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_price;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_stocks;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
