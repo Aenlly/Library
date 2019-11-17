@@ -33,7 +33,9 @@ namespace Library.user
             sda = new SqlDataAdapter(cmd);
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中
-            Dgv_return.DataSource = ds.Tables[0];//导出到dataGridView1中显示并用下列代码对于列名     
+            bindingSource1.DataSource= ds.Tables[0];//封装数据
+             bindingNavigator1.BindingSource = bindingSource1;//获得数据
+            Dgv_return.DataSource = bindingSource1;//导出到dataGridView1中显示并用下列代码对于列名 
             for(int i = 0; i < 8; i++)
             {
                 Dgv_return.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;

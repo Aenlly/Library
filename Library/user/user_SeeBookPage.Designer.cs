@@ -29,21 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_SeeBookPage));
             this.Dgv_SeeBook = new System.Windows.Forms.DataGridView();
-            this.b_isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.t_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_press = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -59,13 +51,19 @@
             this.tstext_book = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_select = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
-            this.tsbtn_borrow = new System.Windows.Forms.ToolStripButton();
             this.BindNavig = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.tstext_bookname = new System.Windows.Forms.ToolStripTextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.b_isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_press = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_borrow = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_SeeBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).BeginInit();
             this.BindNavig.SuspendLayout();
@@ -79,17 +77,17 @@
             this.Dgv_SeeBook.AllowUserToOrderColumns = true;
             this.Dgv_SeeBook.AllowUserToResizeColumns = false;
             this.Dgv_SeeBook.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_SeeBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_SeeBook.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_SeeBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_SeeBook.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.Dgv_SeeBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_SeeBook.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.b_isbn,
@@ -99,84 +97,36 @@
             this.b_press,
             this.b_time,
             this.b_price,
-            this.b_stocks});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Dgv_SeeBook.DefaultCellStyle = dataGridViewCellStyle8;
+            this.b_stocks,
+            this.Cl_borrow});
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Dgv_SeeBook.DefaultCellStyle = dataGridViewCellStyle13;
             this.Dgv_SeeBook.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_SeeBook.Location = new System.Drawing.Point(0, 28);
+            this.Dgv_SeeBook.MultiSelect = false;
             this.Dgv_SeeBook.Name = "Dgv_SeeBook";
             this.Dgv_SeeBook.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_SeeBook.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Dgv_SeeBook.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_SeeBook.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_SeeBook.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.Dgv_SeeBook.RowTemplate.Height = 23;
             this.Dgv_SeeBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_SeeBook.Size = new System.Drawing.Size(944, 509);
+            this.Dgv_SeeBook.Size = new System.Drawing.Size(1067, 509);
             this.Dgv_SeeBook.TabIndex = 0;
             this.Dgv_SeeBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGv_CellClick_1);
-            // 
-            // b_isbn
-            // 
-            this.b_isbn.HeaderText = "ISBN编号";
-            this.b_isbn.Name = "b_isbn";
-            this.b_isbn.ReadOnly = true;
-            this.b_isbn.Width = 150;
-            // 
-            // b_name
-            // 
-            this.b_name.HeaderText = "图书名称";
-            this.b_name.Name = "b_name";
-            this.b_name.ReadOnly = true;
-            this.b_name.Width = 150;
-            // 
-            // t_name
-            // 
-            this.t_name.HeaderText = "图书类别";
-            this.t_name.Name = "t_name";
-            this.t_name.ReadOnly = true;
-            // 
-            // b_author
-            // 
-            this.b_author.HeaderText = "作者";
-            this.b_author.Name = "b_author";
-            this.b_author.ReadOnly = true;
-            // 
-            // b_press
-            // 
-            this.b_press.HeaderText = "出版社";
-            this.b_press.Name = "b_press";
-            this.b_press.ReadOnly = true;
-            // 
-            // b_time
-            // 
-            this.b_time.HeaderText = "出版年份";
-            this.b_time.Name = "b_time";
-            this.b_time.ReadOnly = true;
-            // 
-            // b_price
-            // 
-            this.b_price.HeaderText = "价格";
-            this.b_price.Name = "b_price";
-            this.b_price.ReadOnly = true;
-            // 
-            // b_stocks
-            // 
-            this.b_stocks.HeaderText = "是否可借";
-            this.b_stocks.Name = "b_stocks";
-            this.b_stocks.ReadOnly = true;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -295,16 +245,6 @@
             this.tsbtn_whole.Text = "显示全部";
             this.tsbtn_whole.Click += new System.EventHandler(this.tsbtn_whole_Click);
             // 
-            // tsbtn_borrow
-            // 
-            this.tsbtn_borrow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbtn_borrow.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_borrow.Image")));
-            this.tsbtn_borrow.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtn_borrow.Name = "tsbtn_borrow";
-            this.tsbtn_borrow.Size = new System.Drawing.Size(78, 25);
-            this.tsbtn_borrow.Text = "点击借书";
-            this.tsbtn_borrow.Click += new System.EventHandler(this.tsbtn_borrow_Click);
-            // 
             // BindNavig
             // 
             this.BindNavig.AddNewItem = null;
@@ -328,10 +268,7 @@
             this.tstext_book,
             this.tsbtn_select,
             this.tsbtn_whole,
-            this.toolStripSeparator2,
-            this.toolStripLabel3,
-            this.tstext_bookname,
-            this.tsbtn_borrow});
+            this.toolStripSeparator2});
             this.BindNavig.Location = new System.Drawing.Point(0, 0);
             this.BindNavig.MoveFirstItem = this.bindingNavigatorMoveLastItem;
             this.BindNavig.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -339,7 +276,7 @@
             this.BindNavig.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.BindNavig.Name = "BindNavig";
             this.BindNavig.PositionItem = this.bindingNavigatorPositionItem;
-            this.BindNavig.Size = new System.Drawing.Size(944, 28);
+            this.BindNavig.Size = new System.Drawing.Size(1067, 28);
             this.BindNavig.TabIndex = 8;
             this.BindNavig.Text = "bindingNavigator1";
             // 
@@ -353,31 +290,76 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
-            // toolStripLabel3
+            // b_isbn
             // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(78, 25);
-            this.toolStripLabel3.Text = "当前选中:";
+            this.b_isbn.HeaderText = "ISBN编号";
+            this.b_isbn.Name = "b_isbn";
+            this.b_isbn.ReadOnly = true;
+            this.b_isbn.Width = 150;
             // 
-            // tstext_bookname
+            // b_name
             // 
-            this.tstext_bookname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tstext_bookname.Enabled = false;
-            this.tstext_bookname.Name = "tstext_bookname";
-            this.tstext_bookname.Size = new System.Drawing.Size(100, 28);
-            this.tstext_bookname.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.b_name.HeaderText = "图书名称";
+            this.b_name.Name = "b_name";
+            this.b_name.ReadOnly = true;
+            this.b_name.Width = 150;
+            // 
+            // t_name
+            // 
+            this.t_name.HeaderText = "图书类别";
+            this.t_name.Name = "t_name";
+            this.t_name.ReadOnly = true;
+            // 
+            // b_author
+            // 
+            this.b_author.HeaderText = "作者";
+            this.b_author.Name = "b_author";
+            this.b_author.ReadOnly = true;
+            // 
+            // b_press
+            // 
+            this.b_press.HeaderText = "出版社";
+            this.b_press.Name = "b_press";
+            this.b_press.ReadOnly = true;
+            // 
+            // b_time
+            // 
+            this.b_time.HeaderText = "出版年份";
+            this.b_time.Name = "b_time";
+            this.b_time.ReadOnly = true;
+            // 
+            // b_price
+            // 
+            this.b_price.HeaderText = "价格";
+            this.b_price.Name = "b_price";
+            this.b_price.ReadOnly = true;
+            // 
+            // b_stocks
+            // 
+            this.b_stocks.HeaderText = "是否可借";
+            this.b_stocks.Name = "b_stocks";
+            this.b_stocks.ReadOnly = true;
+            // 
+            // Cl_borrow
+            // 
+            this.Cl_borrow.HeaderText = "操作";
+            this.Cl_borrow.Name = "Cl_borrow";
+            this.Cl_borrow.ReadOnly = true;
+            this.Cl_borrow.Text = "借书";
+            this.Cl_borrow.UseColumnTextForButtonValue = true;
             // 
             // user_SeeBookPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 537);
+            this.ClientSize = new System.Drawing.Size(1067, 537);
             this.Controls.Add(this.Dgv_SeeBook);
             this.Controls.Add(this.BindNavig);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "user_SeeBookPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "查询图书";
             this.Load += new System.EventHandler(this.user_SeeBookPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_SeeBook)).EndInit();
@@ -408,12 +390,10 @@
         private System.Windows.Forms.ToolStripTextBox tstext_book;
         private System.Windows.Forms.ToolStripButton tsbtn_select;
         private System.Windows.Forms.ToolStripButton tsbtn_whole;
-        private System.Windows.Forms.ToolStripButton tsbtn_borrow;
         private System.Windows.Forms.BindingNavigator BindNavig;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripTextBox tstext_bookname;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_isbn;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn t_name;
@@ -422,6 +402,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn b_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_price;
         private System.Windows.Forms.DataGridViewTextBoxColumn b_stocks;
-        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_borrow;
     }
 }
