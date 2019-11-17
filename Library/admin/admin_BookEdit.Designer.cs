@@ -28,136 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_edit = new System.Windows.Forms.Button();
+            this.text_press = new System.Windows.Forms.TextBox();
+            this.text_author = new System.Windows.Forms.TextBox();
+            this.text_book = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_ret = new System.Windows.Forms.Button();
+            this.mtext_year = new System.Windows.Forms.MaskedTextBox();
+            this.cmb_type = new System.Windows.Forms.ComboBox();
+            this.mtext_stocks = new System.Windows.Forms.MaskedTextBox();
+            this.mtext_isbn = new System.Windows.Forms.MaskedTextBox();
+            this.text_price = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_edit
             // 
-            this.button1.Location = new System.Drawing.Point(24, 435);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 32);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "确认修改";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_edit.Location = new System.Drawing.Point(25, 355);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(87, 32);
+            this.btn_edit.TabIndex = 34;
+            this.btn_edit.Text = "确认修改";
+            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
-            // textBox10
+            // text_press
             // 
-            this.textBox10.Location = new System.Drawing.Point(130, 372);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(137, 23);
-            this.textBox10.TabIndex = 33;
+            this.text_press.Location = new System.Drawing.Point(130, 177);
+            this.text_press.Name = "text_press";
+            this.text_press.Size = new System.Drawing.Size(137, 23);
+            this.text_press.TabIndex = 28;
             // 
-            // textBox9
+            // text_author
             // 
-            this.textBox9.Location = new System.Drawing.Point(130, 333);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(137, 23);
-            this.textBox9.TabIndex = 32;
+            this.text_author.Location = new System.Drawing.Point(130, 138);
+            this.text_author.Name = "text_author";
+            this.text_author.Size = new System.Drawing.Size(137, 23);
+            this.text_author.TabIndex = 27;
             // 
-            // textBox8
+            // text_book
             // 
-            this.textBox8.Location = new System.Drawing.Point(130, 294);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(137, 23);
-            this.textBox8.TabIndex = 31;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(130, 255);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(137, 23);
-            this.textBox7.TabIndex = 30;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(130, 216);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(137, 23);
-            this.textBox6.TabIndex = 29;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(130, 177);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(137, 23);
-            this.textBox5.TabIndex = 28;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(130, 138);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(137, 23);
-            this.textBox4.TabIndex = 27;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(130, 99);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(137, 23);
-            this.textBox3.TabIndex = 26;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(130, 60);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(137, 23);
-            this.textBox2.TabIndex = 25;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(130, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 23);
-            this.textBox1.TabIndex = 24;
+            this.text_book.Location = new System.Drawing.Point(130, 21);
+            this.text_book.Name = "text_book";
+            this.text_book.Size = new System.Drawing.Size(137, 23);
+            this.text_book.TabIndex = 24;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(12, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(99, 382);
+            this.panel1.Size = new System.Drawing.Size(99, 305);
             this.panel1.TabIndex = 23;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(38, 358);
+            this.label10.Location = new System.Drawing.Point(38, 275);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 14);
             this.label10.TabIndex = 9;
-            this.label10.Text = "数量：";
+            this.label10.Text = "库存：";
             // 
             // label1
             // 
@@ -167,15 +113,6 @@
             this.label1.Size = new System.Drawing.Size(77, 14);
             this.label1.TabIndex = 0;
             this.label1.Text = "图书名称：";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 319);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 14);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "备注：";
             // 
             // label2
             // 
@@ -189,7 +126,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 280);
+            this.label8.Location = new System.Drawing.Point(10, 242);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 14);
             this.label8.TabIndex = 7;
@@ -202,16 +139,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 14);
             this.label3.TabIndex = 2;
-            this.label3.Text = "图书类型：";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 241);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 14);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "图书简介：";
+            this.label3.Text = "图书类别：";
             // 
             // label4
             // 
@@ -229,7 +157,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 14);
             this.label6.TabIndex = 5;
-            this.label6.Text = "出版日期：";
+            this.label6.Text = "出版年份：";
             // 
             // label5
             // 
@@ -240,36 +168,87 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "出版社：";
             // 
-            // button2
+            // btn_ret
             // 
-            this.button2.Location = new System.Drawing.Point(152, 435);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 32);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "返回退出";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_ret.Location = new System.Drawing.Point(150, 355);
+            this.btn_ret.Name = "btn_ret";
+            this.btn_ret.Size = new System.Drawing.Size(87, 32);
+            this.btn_ret.TabIndex = 35;
+            this.btn_ret.Text = "返回退出";
+            this.btn_ret.UseVisualStyleBackColor = true;
+            this.btn_ret.Click += new System.EventHandler(this.btn_ret_Click);
+            // 
+            // mtext_year
+            // 
+            this.mtext_year.Font = new System.Drawing.Font("宋体", 12F);
+            this.mtext_year.Location = new System.Drawing.Point(130, 213);
+            this.mtext_year.Mask = "9999";
+            this.mtext_year.Name = "mtext_year";
+            this.mtext_year.Size = new System.Drawing.Size(46, 26);
+            this.mtext_year.TabIndex = 36;
+            this.mtext_year.ValidatingType = typeof(int);
+            // 
+            // cmb_type
+            // 
+            this.cmb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_type.FormattingEnabled = true;
+            this.cmb_type.Location = new System.Drawing.Point(130, 102);
+            this.cmb_type.Name = "cmb_type";
+            this.cmb_type.Size = new System.Drawing.Size(88, 22);
+            this.cmb_type.TabIndex = 37;
+            // 
+            // mtext_stocks
+            // 
+            this.mtext_stocks.Font = new System.Drawing.Font("宋体", 12F);
+            this.mtext_stocks.Location = new System.Drawing.Point(130, 289);
+            this.mtext_stocks.Mask = "99999";
+            this.mtext_stocks.Name = "mtext_stocks";
+            this.mtext_stocks.Size = new System.Drawing.Size(66, 26);
+            this.mtext_stocks.TabIndex = 39;
+            this.mtext_stocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtext_stocks.ValidatingType = typeof(int);
+            // 
+            // mtext_isbn
+            // 
+            this.mtext_isbn.Font = new System.Drawing.Font("宋体", 12F);
+            this.mtext_isbn.Location = new System.Drawing.Point(130, 61);
+            this.mtext_isbn.Mask = "0000000000";
+            this.mtext_isbn.Name = "mtext_isbn";
+            this.mtext_isbn.Size = new System.Drawing.Size(107, 26);
+            this.mtext_isbn.TabIndex = 40;
+            this.mtext_isbn.ValidatingType = typeof(int);
+            // 
+            // text_price
+            // 
+            this.text_price.Location = new System.Drawing.Point(130, 254);
+            this.text_price.MaxLength = 16;
+            this.text_price.Name = "text_price";
+            this.text_price.Size = new System.Drawing.Size(100, 23);
+            this.text_price.TabIndex = 41;
+            this.text_price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_price_KeyPress);
             // 
             // admin_BookEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 521);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(294, 406);
+            this.Controls.Add(this.text_price);
+            this.Controls.Add(this.mtext_isbn);
+            this.Controls.Add(this.mtext_stocks);
+            this.Controls.Add(this.cmb_type);
+            this.Controls.Add(this.mtext_year);
+            this.Controls.Add(this.btn_ret);
+            this.Controls.Add(this.btn_edit);
+            this.Controls.Add(this.text_press);
+            this.Controls.Add(this.text_author);
+            this.Controls.Add(this.text_book);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "admin_BookEdit";
-            this.Text = "admin_BookEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "图书修改";
+            this.Load += new System.EventHandler(this.admin_BookEdit_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -279,28 +258,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btn_edit;
+        private System.Windows.Forms.TextBox text_press;
+        private System.Windows.Forms.TextBox text_author;
+        private System.Windows.Forms.TextBox text_book;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_ret;
+        private System.Windows.Forms.MaskedTextBox mtext_year;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmb_type;
+        private System.Windows.Forms.MaskedTextBox mtext_stocks;
+        private System.Windows.Forms.MaskedTextBox mtext_isbn;
+        private System.Windows.Forms.TextBox text_price;
     }
 }

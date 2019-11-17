@@ -93,39 +93,42 @@ namespace Library.admin
         //单击表格时的操作判断
         private void Dgv_user_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //判断是否点击了编辑按钮
-            if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_edit")
+            if (e.RowIndex >= 0)//判断是否点击了表的内容而不是列标签
             {
-                admin_userEdit admin_UserEdit = new admin_userEdit();//实例化编辑界面
-                Log.log.user_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//把当前列的id传递到log类中
-                admin_UserEdit.ShowDialog();//显示编辑界面
-                //查询全部的sql语句,实现刷新
-                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
-                databind(sql);//传递sql然后查询填充
-            }
-            //单击了Schumacher按钮
-            if(Dgv_user.Columns[e.ColumnIndex].Name == "Cl_delete")
-            {
-                //弹窗提示
-                DialogResult dialog=MessageBox.Show("确认删除用户" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString()+"?  删除后不可还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (dialog == DialogResult.OK)//点击了确定，执行删除语句
+                //判断是否点击了编辑按钮
+                if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_edit")
                 {
-                    string sql = "delete from [user] where u_id='" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString() + "'";
-                    con = dButil.SqlOpen();
-                    cmd = new SqlCommand(sql, con);//执行删除语句
-                    int n = cmd.ExecuteNonQuery();//返回执行影响的行数，判断是否删除了内容
-                    con.Close();
-                    if (n > 0)//大于0删除了内容
+                    admin_userEdit admin_UserEdit = new admin_userEdit();//实例化编辑界面
+                    Log.log.user_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//把当前列的id传递到log类中
+                    admin_UserEdit.ShowDialog();//显示编辑界面
+                                                //查询全部的sql语句,实现刷新
+                    string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+                    databind(sql);//传递sql然后查询填充
+                }
+                //单击了Schumacher按钮
+                if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_delete")
+                {
+                    //弹窗提示
+                    DialogResult dialog = MessageBox.Show("确认删除用户" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString() + "?  删除后不可还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (dialog == DialogResult.OK)//点击了确定，执行删除语句
                     {
-                        //成功提示
-                        MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string sql = "delete from [user] where u_id='" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString() + "'";
+                        con = dButil.SqlOpen();
+                        cmd = new SqlCommand(sql, con);//执行删除语句
+                        int n = cmd.ExecuteNonQuery();//返回执行影响的行数，判断是否删除了内容
+                        con.Close();
+                        if (n > 0)//大于0删除了内容
+                        {
+                            //成功提示
+                            MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        //查询全部的sql语句,实现刷新
-                        sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
-                        databind(sql);//传递sql然后查询填充
+                            //查询全部的sql语句,实现刷新
+                            sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+                            databind(sql);//传递sql然后查询填充
+                        }
+                        //失败提示
+                        else MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    //失败提示
-                    else MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
