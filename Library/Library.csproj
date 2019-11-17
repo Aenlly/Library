@@ -126,11 +126,11 @@
     <Compile Include="admin\admin_OverduePage.Designer.cs">
       <DependentUpon>admin_OverduePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin\admin_Recovery.cs">
+    <Compile Include="admin\admin_FeedBack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="admin\admin_Recovery.Designer.cs">
-      <DependentUpon>admin_Recovery.cs</DependentUpon>
+    <Compile Include="admin\admin_FeedBack.Designer.cs">
+      <DependentUpon>admin_FeedBack.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\admin_ReturnPage.cs">
       <SubType>Form</SubType>
@@ -260,8 +260,8 @@
     <EmbeddedResource Include="admin\admin_OverduePage.resx">
       <DependentUpon>admin_OverduePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\admin_Recovery.resx">
-      <DependentUpon>admin_Recovery.cs</DependentUpon>
+    <EmbeddedResource Include="admin\admin_FeedBack.resx">
+      <DependentUpon>admin_FeedBack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_ReturnPage.resx">
       <DependentUpon>admin_ReturnPage.cs</DependentUpon>

@@ -111,6 +111,7 @@
             this.Dgv_adminBook.DefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_adminBook.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_adminBook.Location = new System.Drawing.Point(0, 27);
+            this.Dgv_adminBook.MultiSelect = false;
             this.Dgv_adminBook.Name = "Dgv_adminBook";
             this.Dgv_adminBook.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;

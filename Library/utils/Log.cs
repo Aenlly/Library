@@ -26,6 +26,9 @@ namespace Library
             public static string b_time;//admin_bookpage界面传递的出版时间
             public static string b_price;//admin_bookpage界面传递的价格
             public static string b_stocks;//admin_bookpage界面传递的库存
+
+            public static string f_id;//admin_feedbackpage界面传递的反馈编号
+            public static string f_btn;//admin_feddbackpage界面中点击的查看还是回复
         }
     }
 }

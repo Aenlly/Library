@@ -35,10 +35,11 @@ namespace Library.admin
             sda = new SqlDataAdapter(cmd);
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中
-            Dgv_login.DataSource = ds.Tables[0];//导出到dataGridView1中显示并用下列代码对于列名     
-            Dgv_login.Columns[0].DataPropertyName = ds.Tables[0].Columns[0].ColumnName;
-            Dgv_login.Columns[1].DataPropertyName = ds.Tables[0].Columns[1].ColumnName;
-            Dgv_login.Columns[2].DataPropertyName = ds.Tables[0].Columns[2].ColumnName;
+            Dgv_login.DataSource = ds.Tables[0];//导出到dataGridView1中显示并用下列代码对于列名
+            for (int i = 0; i < 3; i++)
+            {
+                Dgv_login.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
+            }
             con.Close();//关闭数据库
         }
 

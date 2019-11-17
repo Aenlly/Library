@@ -94,7 +94,7 @@
             this.btn_FeedBack.Name = "btn_FeedBack";
             this.btn_FeedBack.Size = new System.Drawing.Size(75, 27);
             this.btn_FeedBack.TabIndex = 14;
-            this.btn_FeedBack.Text = "反馈记录";
+            this.btn_FeedBack.Text = "反馈管理";
             this.btn_FeedBack.UseVisualStyleBackColor = true;
             this.btn_FeedBack.Click += new System.EventHandler(this.btn_FeedBack_Click);
             // 
