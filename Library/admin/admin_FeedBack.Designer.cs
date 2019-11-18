@@ -43,6 +43,7 @@
             this.text_id = new System.Windows.Forms.TextBox();
             this.text_solve = new System.Windows.Forms.TextBox();
             this.btn_ok = new System.Windows.Forms.Button();
+            this.btn_no = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -187,11 +188,24 @@
             this.btn_ok.UseVisualStyleBackColor = true;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
+            // btn_no
+            // 
+            this.btn_no.Font = new System.Drawing.Font("宋体", 14F);
+            this.btn_no.Location = new System.Drawing.Point(275, 554);
+            this.btn_no.Name = "btn_no";
+            this.btn_no.Size = new System.Drawing.Size(119, 36);
+            this.btn_no.TabIndex = 14;
+            this.btn_no.Text = "返回";
+            this.btn_no.UseVisualStyleBackColor = true;
+            this.btn_no.Visible = false;
+            this.btn_no.Click += new System.EventHandler(this.btn_no_Click);
+            // 
             // admin_FeedBack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 602);
+            this.Controls.Add(this.btn_no);
             this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.text_solve);
             this.Controls.Add(this.text_id);
@@ -234,5 +248,6 @@
         private System.Windows.Forms.TextBox text_id;
         private System.Windows.Forms.TextBox text_solve;
         private System.Windows.Forms.Button btn_ok;
+        private System.Windows.Forms.Button btn_no;
     }
 }

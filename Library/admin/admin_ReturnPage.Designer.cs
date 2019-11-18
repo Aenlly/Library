@@ -107,6 +107,7 @@
             this.Dgv_return.DefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv_return.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_return.Location = new System.Drawing.Point(0, 32);
+            this.Dgv_return.MultiSelect = false;
             this.Dgv_return.Name = "Dgv_return";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;

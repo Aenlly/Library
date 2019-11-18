@@ -181,7 +181,7 @@
             this.btn_Borrow.Name = "btn_Borrow";
             this.btn_Borrow.Size = new System.Drawing.Size(75, 27);
             this.btn_Borrow.TabIndex = 5;
-            this.btn_Borrow.Text = "借书记录";
+            this.btn_Borrow.Text = "借书管理";
             this.btn_Borrow.UseVisualStyleBackColor = true;
             this.btn_Borrow.Click += new System.EventHandler(this.btn_Borrow_Click);
             // 

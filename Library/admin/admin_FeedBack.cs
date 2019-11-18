@@ -44,6 +44,7 @@ namespace Library.admin
                 rtb_rcd.ReadOnly = false;
                 rtb_rcd.Multiline = false;
                 rtb_rcd.Multiline = true;
+                btn_no.Visible = true;
                 btn_ok.Text = "确认回复";
             }
             else
@@ -62,19 +63,35 @@ namespace Library.admin
             }
             else
             {
-                string sql = "update feedback set f_asrcontent='" + rtb_rcd.Text.Trim() + "',f_asrtime='" + DateTime.Now.ToString() + "' where f_id='" + Log.log.f_id + "'";
-                con = dButil.SqlOpen();
-                cmd = new SqlCommand(sql, con);
-                int n=cmd.ExecuteNonQuery();
-                if (n > 0)
+                if (rtb_rcd.Text.Trim() == "")
                 {
-                    DialogResult dialog=MessageBox.Show("回复成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("请填写回复内容！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    DialogResult dialog= MessageBox.Show("确认回复该内容？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (DialogResult.OK == dialog)
                     {
-                        this.Close();
+                        string sql = "update feedback set f_asrcontent='" + rtb_rcd.Text.Trim() + "',f_asrtime='" + DateTime.Now.ToString() + "' where f_id='" + Log.log.f_id + "'";
+                        con = dButil.SqlOpen();
+                        cmd = new SqlCommand(sql, con);
+                        int n = cmd.ExecuteNonQuery();
+                        if (n > 0)
+                        {
+                            dialog = MessageBox.Show("回复成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (DialogResult.OK == dialog)
+                            {
+                                this.Close();
+                            }
+                        }
                     }
                 }
             }
+        }
+
+        private void btn_no_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
