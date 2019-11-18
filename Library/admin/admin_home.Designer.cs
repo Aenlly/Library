@@ -192,7 +192,7 @@
             this.btn_Overdue.Name = "btn_Overdue";
             this.btn_Overdue.Size = new System.Drawing.Size(75, 27);
             this.btn_Overdue.TabIndex = 4;
-            this.btn_Overdue.Text = "逾期记录";
+            this.btn_Overdue.Text = "逾期管理";
             this.btn_Overdue.UseVisualStyleBackColor = true;
             this.btn_Overdue.Click += new System.EventHandler(this.btn_Overdue_Click);
             // 
