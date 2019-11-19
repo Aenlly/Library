@@ -53,18 +53,25 @@ namespace Library.user
             user_book.ShowDialog();//显示的查询图书窗体设置为活动窗体
         }
 
-        //借书按钮事件
+        //借书记录按钮事件
         private void btn_borrow_Click(object sender, EventArgs e)
         {
             user_BorrowPage user_Borrow = new user_BorrowPage();//实例化借书记录窗体对象
             user_Borrow.ShowDialog();//显示的借书记录窗体设置为活动窗体
         }
 
-        //还书按钮事件
+        //还书记录按钮事件
         private void btn_return_Click(object sender, EventArgs e)
         {
             user_Return user_book = new user_Return();//实例化还书记录窗体对象
             user_book.ShowDialog();//显示的还书记录窗体设置为活动窗体
+        }
+
+        //逾期记录按钮事件
+        private void btn_overdue_Click(object sender, EventArgs e)
+        {
+            user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录窗体对象
+            user_Overdue.ShowDialog();//显示的逾期记录窗体设置为活动窗体
         }
 
         //基本信息按钮事件

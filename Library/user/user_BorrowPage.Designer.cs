@@ -29,17 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_BorrowPage));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_emeover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dgv_borrow = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -51,85 +45,66 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tstext_book = new System.Windows.Forms.ToolStripTextBox();
+            this.tsbtn_select = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_emeover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_Renewal = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_operation = new System.Windows.Forms.DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_borrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // Dgv_borrow
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dgv_borrow.AllowUserToAddRows = false;
+            this.Dgv_borrow.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_borrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Dgv_borrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_borrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
             this.Cl_name,
-            this.Cl_type,
             this.Cl_borrow,
             this.Cl_return,
             this.Cl_day,
             this.Cl_renew,
-            this.Cl_eme,
-            this.Cl_emeover});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 60);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(972, 465);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "借书编号";
-            this.Cl_id.Name = "Cl_id";
-            // 
-            // Cl_name
-            // 
-            this.Cl_name.HeaderText = "图书名称";
-            this.Cl_name.Name = "Cl_name";
-            // 
-            // Cl_type
-            // 
-            this.Cl_type.HeaderText = "图书类别";
-            this.Cl_type.Name = "Cl_type";
-            // 
-            // Cl_borrow
-            // 
-            this.Cl_borrow.HeaderText = "借书日期";
-            this.Cl_borrow.Name = "Cl_borrow";
-            // 
-            // Cl_return
-            // 
-            this.Cl_return.HeaderText = "应还日期";
-            this.Cl_return.Name = "Cl_return";
-            // 
-            // Cl_day
-            // 
-            this.Cl_day.HeaderText = "所借天数";
-            this.Cl_day.Name = "Cl_day";
-            // 
-            // Cl_renew
-            // 
-            this.Cl_renew.HeaderText = "续借资格";
-            this.Cl_renew.Name = "Cl_renew";
-            // 
-            // Cl_eme
-            // 
-            this.Cl_eme.HeaderText = "是否还书";
-            this.Cl_eme.Name = "Cl_eme";
-            // 
-            // Cl_emeover
-            // 
-            this.Cl_emeover.HeaderText = "是否逾期";
-            this.Cl_emeover.Name = "Cl_emeover";
+            this.Cl_emeover,
+            this.Cl_Renewal,
+            this.Cl_operation});
+            this.Dgv_borrow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_borrow.Location = new System.Drawing.Point(0, 28);
+            this.Dgv_borrow.Name = "Dgv_borrow";
+            this.Dgv_borrow.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_borrow.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_borrow.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.Dgv_borrow.RowTemplate.Height = 23;
+            this.Dgv_borrow.Size = new System.Drawing.Size(866, 497);
+            this.Dgv_borrow.TabIndex = 0;
+            this.Dgv_borrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_borrow_CellClick);
             // 
             // bindingNavigator1
             // 
@@ -148,14 +123,9 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.toolStripLabel1,
-            this.toolStripTextBox1,
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripSeparator1,
-            this.toolStripLabel2,
-            this.toolStripTextBox2,
-            this.toolStripButton3,
-            this.toolStripButton4});
+            this.tstext_book,
+            this.tsbtn_select,
+            this.tsbtn_whole});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -163,7 +133,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(972, 28);
+            this.bindingNavigator1.Size = new System.Drawing.Size(866, 28);
             this.bindingNavigator1.TabIndex = 7;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -240,100 +210,118 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(90, 25);
             this.toolStripLabel1.Text = "图书名称：";
             // 
-            // toolStripTextBox1
+            // tstext_book
             // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 28);
+            this.tstext_book.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstext_book.Name = "tstext_book";
+            this.tstext_book.Size = new System.Drawing.Size(100, 28);
             // 
-            // toolStripButton1
+            // tsbtn_select
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(78, 25);
-            this.toolStripButton1.Text = "点击查询";
+            this.tsbtn_select.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_select.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_select.Image")));
+            this.tsbtn_select.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_select.Name = "tsbtn_select";
+            this.tsbtn_select.Size = new System.Drawing.Size(78, 25);
+            this.tsbtn_select.Text = "点击查询";
+            this.tsbtn_select.Click += new System.EventHandler(this.tsbtn_select_Click);
             // 
-            // toolStripButton2
+            // tsbtn_whole
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(78, 25);
-            this.toolStripButton2.Text = "显示全部";
+            this.tsbtn_whole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_whole.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_whole.Image")));
+            this.tsbtn_whole.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_whole.Name = "tsbtn_whole";
+            this.tsbtn_whole.Size = new System.Drawing.Size(78, 25);
+            this.tsbtn_whole.Text = "显示全部";
+            this.tsbtn_whole.Click += new System.EventHandler(this.tsbtn_whole_Click);
             // 
-            // toolStripSeparator1
+            // Cl_id
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            this.Cl_id.HeaderText = "借书编号";
+            this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
             // 
-            // toolStripLabel2
+            // Cl_name
             // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(78, 25);
-            this.toolStripLabel2.Text = "当前所选:";
+            this.Cl_name.HeaderText = "图书名称";
+            this.Cl_name.Name = "Cl_name";
+            this.Cl_name.ReadOnly = true;
             // 
-            // toolStripTextBox2
+            // Cl_borrow
             // 
-            this.toolStripTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
-            this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.ReadOnly = true;
-            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 28);
-            this.toolStripTextBox2.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Cl_borrow.HeaderText = "借书日期";
+            this.Cl_borrow.Name = "Cl_borrow";
+            this.Cl_borrow.ReadOnly = true;
             // 
-            // toolStripButton3
+            // Cl_return
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(78, 25);
-            this.toolStripButton3.Text = "进行还书";
+            this.Cl_return.HeaderText = "应还日期";
+            this.Cl_return.Name = "Cl_return";
+            this.Cl_return.ReadOnly = true;
             // 
-            // toolStripButton4
+            // Cl_day
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(78, 25);
-            this.toolStripButton4.Text = "续借该书";
+            this.Cl_day.HeaderText = "所借天数";
+            this.Cl_day.Name = "Cl_day";
+            this.Cl_day.ReadOnly = true;
             // 
-            // label1
+            // Cl_renew
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 11F);
-            this.label1.Location = new System.Drawing.Point(7, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "当前所选：";
+            this.Cl_renew.HeaderText = "续借资格";
+            this.Cl_renew.Name = "Cl_renew";
+            this.Cl_renew.ReadOnly = true;
+            this.Cl_renew.Width = 90;
             // 
-            // textBox1
+            // Cl_emeover
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(123, 23);
-            this.textBox1.TabIndex = 9;
+            this.Cl_emeover.HeaderText = "是否逾期";
+            this.Cl_emeover.Name = "Cl_emeover";
+            this.Cl_emeover.ReadOnly = true;
+            this.Cl_emeover.Width = 90;
+            // 
+            // Cl_Renewal
+            // 
+            this.Cl_Renewal.HeaderText = "操作";
+            this.Cl_Renewal.Name = "Cl_Renewal";
+            this.Cl_Renewal.ReadOnly = true;
+            this.Cl_Renewal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Cl_Renewal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Cl_Renewal.Text = "续借";
+            this.Cl_Renewal.UseColumnTextForButtonValue = true;
+            this.Cl_Renewal.Width = 60;
+            // 
+            // Cl_operation
+            // 
+            this.Cl_operation.HeaderText = "操作";
+            this.Cl_operation.Name = "Cl_operation";
+            this.Cl_operation.ReadOnly = true;
+            this.Cl_operation.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Cl_operation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Cl_operation.Text = "还书";
+            this.Cl_operation.UseColumnTextForButtonValue = true;
+            this.Cl_operation.Width = 60;
             // 
             // user_BorrowPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 525);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(866, 525);
+            this.Controls.Add(this.Dgv_borrow);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "user_BorrowPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "借书记录";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.user_BorrowPage_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_borrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,7 +329,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Dgv_borrow;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -353,24 +341,18 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripTextBox tstext_book;
+        private System.Windows.Forms.ToolStripButton tsbtn_select;
+        private System.Windows.Forms.ToolStripButton tsbtn_whole;
+        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_borrow;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_return;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_day;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_renew;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_eme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_emeover;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_Renewal;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_operation;
     }
 }

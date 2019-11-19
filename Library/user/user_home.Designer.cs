@@ -38,7 +38,7 @@
             this.btn_PwdEdit = new System.Windows.Forms.Button();
             this.btn_Signout = new System.Windows.Forms.Button();
             this.btn_Basic = new System.Windows.Forms.Button();
-            this.btn_ = new System.Windows.Forms.Button();
+            this.btn_overdue = new System.Windows.Forms.Button();
             this.btn_return = new System.Windows.Forms.Button();
             this.btn_borrow = new System.Windows.Forms.Button();
             this.btn_book = new System.Windows.Forms.Button();
@@ -83,7 +83,7 @@
             this.panel2.Controls.Add(this.btn_PwdEdit);
             this.panel2.Controls.Add(this.btn_Signout);
             this.panel2.Controls.Add(this.btn_Basic);
-            this.panel2.Controls.Add(this.btn_);
+            this.panel2.Controls.Add(this.btn_overdue);
             this.panel2.Controls.Add(this.btn_return);
             this.panel2.Controls.Add(this.btn_borrow);
             this.panel2.Controls.Add(this.btn_book);
@@ -153,14 +153,15 @@
             this.btn_Basic.UseVisualStyleBackColor = true;
             this.btn_Basic.Click += new System.EventHandler(this.btn_Basic_Click);
             // 
-            // btn_
+            // btn_overdue
             // 
-            this.btn_.Location = new System.Drawing.Point(30, 130);
-            this.btn_.Name = "btn_";
-            this.btn_.Size = new System.Drawing.Size(75, 23);
-            this.btn_.TabIndex = 3;
-            this.btn_.Text = "逾期记录";
-            this.btn_.UseVisualStyleBackColor = true;
+            this.btn_overdue.Location = new System.Drawing.Point(30, 130);
+            this.btn_overdue.Name = "btn_overdue";
+            this.btn_overdue.Size = new System.Drawing.Size(75, 23);
+            this.btn_overdue.TabIndex = 3;
+            this.btn_overdue.Text = "逾期记录";
+            this.btn_overdue.UseVisualStyleBackColor = true;
+            this.btn_overdue.Click += new System.EventHandler(this.btn_overdue_Click);
             // 
             // btn_return
             // 
@@ -231,7 +232,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btn_Signout;
         private System.Windows.Forms.Button btn_Basic;
-        private System.Windows.Forms.Button btn_;
+        private System.Windows.Forms.Button btn_overdue;
         private System.Windows.Forms.Button btn_return;
         private System.Windows.Forms.Button btn_borrow;
         private System.Windows.Forms.Button btn_book;

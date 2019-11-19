@@ -27,7 +27,7 @@ namespace Library
             String pwd = text_pwd.Text.Trim();
 
 
-            SqlDbHelper sqlDbHelper = new SqlDbHelper();
+            SqlDbHelper sqlDbHelper = new SqlDbHelper();//实例化SqlDbHelper类
 
             if (text_name.Text.Equals(""))
             {
@@ -72,7 +72,7 @@ namespace Library
                 else if (cmb_1.SelectedIndex == 1)
                 {
                     string sql = "select a_password from [admin] where a_name='" + name + "'";//执行管理员查询语句
-                    int n = sqlDbHelper.Checkadmin(sql, pwd);
+                    int n = sqlDbHelper.Checkadmin(sql, pwd);//传递sql语句与用户输入的密码
                     if (n == 2)//账号密码正确
                     {
                         Log.log.u_id = text_name.Text.Trim();

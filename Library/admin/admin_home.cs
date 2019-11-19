@@ -16,7 +16,7 @@ namespace Library.admin
             InitializeComponent();
         }
 
-
+        private bool OkClick = false;//定义给bool值，进行判断是否点击了返回按钮
 
         //图书管理按钮事件
         private void btn_Book_Click(object sender, EventArgs e)
@@ -25,7 +25,7 @@ namespace Library.admin
             admin_Book.ShowDialog();//显示图书管理窗体
         }
 
-        //结束记录按钮事件
+        //借书记录按钮事件
         private void btn_Borrow_Click(object sender, EventArgs e)
         {
             admin_BorrowPage admin_Borrow = new admin_BorrowPage();//实例化借书记录窗体对象
@@ -90,16 +90,23 @@ namespace Library.admin
         //退出登录按钮事件
         private void btn_SingOut_Click(object sender, EventArgs e)
         {
-            Login login = new Login();//实例化登录窗体对象
-            login.Show();//显示登录窗体
-            this.Close();//关闭当前窗体
+            //重复确认
+            if (DialogResult.OK == MessageBox.Show("确认退出登录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+            {
+                Login login = new Login();//实例化登录窗体对象
+                login.Show();//显示登录窗体
+                OkClick = true;//点击了退出登录按钮
+                this.Close();//关闭该窗体
+            }
         }
 
         //点击关闭时的执行代码判断
         private void admin_Home_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //弹窗询问
-            if (DialogResult.OK == MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+            //单击了返回登录按钮，不结束进程
+            if (OkClick == true) { }
+            //没有单击返回按的弹窗询问，借书全部进程
+            else if (DialogResult.OK == MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
             {
                 Application.ExitThread();//强制中止调用线程上的所有消息
                 // System.Environment.Exit(0);  //结束全进程,会产生创建窗口句柄时出错

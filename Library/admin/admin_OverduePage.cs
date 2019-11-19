@@ -47,12 +47,12 @@ namespace Library.admin
         private void admin_OverduePage_Load(object sender, EventArgs e)
         {
             //加载该窗体时执行sql更新语句方法，实时更新逾期天数
-            string sql_ovup = "update borrow set bo_dayover=(bo_dayover= datediff(day,bo_return,getdate()) where bo_emeover=2";
+            string sql_ovup = "update borrow set bo_dayover=datediff(day,bo_return,getdate()) where bo_emeover=1 or bo_emeover=4";
             con = dButil.SqlOpen();//打开数据库
             cmd = new SqlCommand(sql_ovup, con);//执行语句
             con.Close();//关闭数据库
             //执行查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -61,15 +61,20 @@ namespace Library.admin
         {
             if (e.RowIndex > 0)
             {
-                //判断单击了操作列的按钮
+                //判断单击了操作审核通过的按钮
                 if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examine")
                 {
                     //获得状态一栏的值
-                    string bo_pay = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_Pay"].Value.ToString();
-                    if (bo_pay == "未缴费")//判断是未缴费用户
+                    string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();
+                    if (bo_state == "未缴费")//判断是未缴费用户
                     {
                         //提示
                         MessageBox.Show("用户未缴费！无法进行通过审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    if (bo_state == "已缴费")
+                    {
+                        //提示
+                        MessageBox.Show("用户已缴费无需再次通过审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -95,7 +100,7 @@ namespace Library.admin
                                 //成功提示
                                 MessageBox.Show("用户：" + u_name + "的缴费审核通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //执行查询语句刷新
-                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
                                 databind(sql);//传递语句填充到表格中
                             }
                             else
@@ -103,6 +108,51 @@ namespace Library.admin
                                 //失败提示
                                 MessageBox.Show("通过失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                        }
+                    }
+                }
+                if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examineNo")
+                {
+                    //获得状态一栏的值
+                    string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();
+                    if (bo_state == "已缴费")
+                    {
+                        //提示
+                        MessageBox.Show("用户已缴费无法执行该操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        //弹窗询问，并获取返回值
+                        DialogResult dialog = MessageBox.Show("确认不通过该用户的逾期缴费审核？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (DialogResult.OK == dialog)//判断是否点击了确认按钮
+                        {
+                            //获取借书编号
+                            string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                            //获取借书人
+                            string u_name = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString();
+                            //创建sql更新语句
+                            string sql = "update borrow set bo_emeover=4 where bo_id=" + bo_id + "";
+                            //打开数据库
+                            con = dButil.SqlOpen();
+                            //执行sql语句
+                            cmd = new SqlCommand(sql, con);
+                            //获取受影响的行数
+                            int n = cmd.ExecuteNonQuery();
+                            //判断是否成功
+                            if (n > 0)
+                            {
+                                //成功提示
+                                MessageBox.Show("用户：" + u_name + "的缴费审核已不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //执行查询语句刷新
+                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                databind(sql);//传递语句填充到表格中
+                            }
+                            else
+                            {
+                                //失败提示
+                                MessageBox.Show("操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
                         }
                     }
                 }
@@ -115,13 +165,13 @@ namespace Library.admin
             if (tstext_name.Text.Trim() == "")
             {
                 //执行全部查询语句
-                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
                 databind(sql);//传递语句填充到表格中
             }
             else
             {
                 //执行查询借书人语句
-                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0 and b_name like '%" + tstext_name.Text.Trim() + "%'";
+                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0 and b_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递语句填充到表格中
             }
         }
@@ -130,7 +180,7 @@ namespace Library.admin
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
             //执行全部查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -138,7 +188,7 @@ namespace Library.admin
         private void tsbtn_no_Click(object sender, EventArgs e)
         {
             //执行未缴费用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover==1";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover==1";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -146,7 +196,7 @@ namespace Library.admin
         private void tsbtn_examine_Click(object sender, EventArgs e)
         {
             //执行待审核用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover==2";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover==2";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -154,7 +204,7 @@ namespace Library.admin
         private void tsbtn_yes_Click(object sender, EventArgs e)
         {
             //执行已缴费用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' else '已缴费' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover==3";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover==3";
             databind(sql);//传递语句填充到表格中
         }
     }

@@ -110,7 +110,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Dgv_adminBook.DefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_adminBook.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Dgv_adminBook.Location = new System.Drawing.Point(0, 27);
+            this.Dgv_adminBook.Location = new System.Drawing.Point(0, 28);
             this.Dgv_adminBook.MultiSelect = false;
             this.Dgv_adminBook.Name = "Dgv_adminBook";
             this.Dgv_adminBook.ReadOnly = true;
@@ -126,7 +126,7 @@
             this.Dgv_adminBook.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.Dgv_adminBook.RowTemplate.Height = 23;
             this.Dgv_adminBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_adminBook.Size = new System.Drawing.Size(1159, 498);
+            this.Dgv_adminBook.Size = new System.Drawing.Size(1159, 497);
             this.Dgv_adminBook.TabIndex = 1;
             this.Dgv_adminBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_adminBook_CellClick);
             // 
@@ -208,7 +208,7 @@
             this.bindNavig.AddNewItem = null;
             this.bindNavig.CountItem = this.bindingNavigatorCountItem;
             this.bindNavig.DeleteItem = null;
-            this.bindNavig.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
+            this.bindNavig.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.bindNavig.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -233,14 +233,14 @@
             this.bindNavig.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindNavig.Name = "bindNavig";
             this.bindNavig.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindNavig.Size = new System.Drawing.Size(1159, 27);
+            this.bindNavig.Size = new System.Drawing.Size(1159, 28);
             this.bindNavig.TabIndex = 2;
             this.bindNavig.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(37, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
             this.bindingNavigatorCountItem.Text = "/ {0}";
             this.bindingNavigatorCountItem.ToolTipText = "总项数";
             // 
@@ -250,7 +250,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMoveFirstItem.Text = "移到第一条记录";
             // 
             // bindingNavigatorMovePreviousItem
@@ -259,13 +259,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMovePreviousItem.Text = "移到上一条记录";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -279,7 +279,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -287,7 +287,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMoveNextItem.Text = "移到下一条记录";
             // 
             // bindingNavigatorMoveLastItem
@@ -296,25 +296,25 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMoveLastItem.Text = "移到最后一条记录";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(79, 24);
+            this.toolStripLabel1.Size = new System.Drawing.Size(90, 25);
             this.toolStripLabel1.Text = "查询书名：";
             // 
             // tstext_book
             // 
             this.tstext_book.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tstext_book.Name = "tstext_book";
-            this.tstext_book.Size = new System.Drawing.Size(121, 27);
+            this.tstext_book.Size = new System.Drawing.Size(121, 28);
             // 
             // tsbtn_select
             // 
@@ -322,7 +322,7 @@
             this.tsbtn_select.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_select.Image")));
             this.tsbtn_select.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_select.Name = "tsbtn_select";
-            this.tsbtn_select.Size = new System.Drawing.Size(41, 24);
+            this.tsbtn_select.Size = new System.Drawing.Size(46, 25);
             this.tsbtn_select.Text = "查询";
             this.tsbtn_select.Click += new System.EventHandler(this.tsbtn_select_Click);
             // 
@@ -332,14 +332,14 @@
             this.tsbtn_whole.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_whole.Image")));
             this.tsbtn_whole.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_whole.Name = "tsbtn_whole";
-            this.tsbtn_whole.Size = new System.Drawing.Size(69, 24);
+            this.tsbtn_whole.Size = new System.Drawing.Size(78, 25);
             this.tsbtn_whole.Text = "显示全部";
             this.tsbtn_whole.Click += new System.EventHandler(this.tsbtn_whole_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // tsbtn_bookadd
             // 
@@ -347,7 +347,7 @@
             this.tsbtn_bookadd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_bookadd.Image")));
             this.tsbtn_bookadd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_bookadd.Name = "tsbtn_bookadd";
-            this.tsbtn_bookadd.Size = new System.Drawing.Size(69, 24);
+            this.tsbtn_bookadd.Size = new System.Drawing.Size(78, 25);
             this.tsbtn_bookadd.Text = "添加图书";
             this.tsbtn_bookadd.Click += new System.EventHandler(this.tsbtn_bookadd_Click);
             // 
@@ -357,7 +357,7 @@
             this.tsbtn_type.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_type.Image")));
             this.tsbtn_type.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_type.Name = "tsbtn_type";
-            this.tsbtn_type.Size = new System.Drawing.Size(83, 24);
+            this.tsbtn_type.Size = new System.Drawing.Size(94, 25);
             this.tsbtn_type.Text = "添加新类别";
             this.tsbtn_type.Click += new System.EventHandler(this.tsbtn_type_Click);
             // 

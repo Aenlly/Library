@@ -16,7 +16,7 @@ namespace Library.user
             InitializeComponent();
         }
 
-        private bool OkClick = false;//定义给bool值，进行判断是否当即了返回按钮
+        private bool OkClick = false;//定义给bool值，进行判断是否点击了返回按钮
 
         //重置密码的按钮事件
         private void btn_NetStep_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace Library.user
         //返回登录按钮的事件
         private void btn_Login_Click(object sender, EventArgs e)
         {
-            OkClick = true;//判断是否单击了该按钮
+            OkClick = true;//点击单击了该按钮
             Login login = new Login();//实例化Login登录窗体对象
             login.Show();//显示登录窗体
             login.Activate();//给予焦点

@@ -29,28 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_OverduePage));
             this.Dgv_overdue = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tstext_name = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_select = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtn_no = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_examine = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_yes = new System.Windows.Forms.ToolStripButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_book = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,9 +59,9 @@
             this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_dayover = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_money = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_Pay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_examine = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tsbtn_examine = new System.Windows.Forms.ToolStripButton();
+            this.Cl_examineNo = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_overdue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -73,14 +74,14 @@
             this.Dgv_overdue.AllowUserToDeleteRows = false;
             this.Dgv_overdue.AllowUserToResizeColumns = false;
             this.Dgv_overdue.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_overdue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_overdue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Dgv_overdue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_overdue.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
@@ -90,24 +91,25 @@
             this.Cl_return,
             this.Cl_dayover,
             this.Cl_money,
-            this.Cl_Pay,
-            this.Cl_examine});
+            this.Cl_state,
+            this.Cl_examine,
+            this.Cl_examineNo});
             this.Dgv_overdue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_overdue.Location = new System.Drawing.Point(0, 28);
             this.Dgv_overdue.MultiSelect = false;
             this.Dgv_overdue.Name = "Dgv_overdue";
             this.Dgv_overdue.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_overdue.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_overdue.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Dgv_overdue.RowTemplate.Height = 23;
             this.Dgv_overdue.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_overdue.Size = new System.Drawing.Size(963, 497);
+            this.Dgv_overdue.Size = new System.Drawing.Size(1066, 497);
             this.Dgv_overdue.TabIndex = 0;
             this.Dgv_overdue.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_overdue_CellClick);
             // 
@@ -142,9 +144,16 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(963, 28);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1066, 28);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
+            this.bindingNavigatorCountItem.Text = "/ {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "总项数";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -178,16 +187,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "当前位置";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
-            this.bindingNavigatorCountItem.Text = "/ {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "总项数";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorMoveNextItem
@@ -210,7 +212,7 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel1
@@ -259,6 +261,16 @@
             this.tsbtn_no.Size = new System.Drawing.Size(126, 25);
             this.tsbtn_no.Text = "显示未缴费用户";
             this.tsbtn_no.Click += new System.EventHandler(this.tsbtn_no_Click);
+            // 
+            // tsbtn_examine
+            // 
+            this.tsbtn_examine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_examine.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_examine.Image")));
+            this.tsbtn_examine.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_examine.Name = "tsbtn_examine";
+            this.tsbtn_examine.Size = new System.Drawing.Size(126, 25);
+            this.tsbtn_examine.Text = "显示待审核用户";
+            this.tsbtn_examine.Click += new System.EventHandler(this.tsbtn_examine_Click);
             // 
             // tsbtn_yes
             // 
@@ -312,11 +324,11 @@
             this.Cl_money.Name = "Cl_money";
             this.Cl_money.ReadOnly = true;
             // 
-            // Cl_Pay
+            // Cl_state
             // 
-            this.Cl_Pay.HeaderText = "逾期状态";
-            this.Cl_Pay.Name = "Cl_Pay";
-            this.Cl_Pay.ReadOnly = true;
+            this.Cl_state.HeaderText = "逾期状态";
+            this.Cl_state.Name = "Cl_state";
+            this.Cl_state.ReadOnly = true;
             // 
             // Cl_examine
             // 
@@ -325,24 +337,24 @@
             this.Cl_examine.ReadOnly = true;
             this.Cl_examine.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Cl_examine.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Cl_examine.Text = "通过审核";
+            this.Cl_examine.Text = "审核通过";
             this.Cl_examine.UseColumnTextForButtonValue = true;
             // 
-            // tsbtn_examine
+            // Cl_examineNo
             // 
-            this.tsbtn_examine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbtn_examine.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_examine.Image")));
-            this.tsbtn_examine.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtn_examine.Name = "tsbtn_examine";
-            this.tsbtn_examine.Size = new System.Drawing.Size(126, 25);
-            this.tsbtn_examine.Text = "显示待审核用户";
-            this.tsbtn_examine.Click += new System.EventHandler(this.tsbtn_examine_Click);
+            this.Cl_examineNo.HeaderText = "操作";
+            this.Cl_examineNo.Name = "Cl_examineNo";
+            this.Cl_examineNo.ReadOnly = true;
+            this.Cl_examineNo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Cl_examineNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Cl_examineNo.Text = "审核不通过";
+            this.Cl_examineNo.UseColumnTextForButtonValue = true;
             // 
             // admin_OverduePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 525);
+            this.ClientSize = new System.Drawing.Size(1066, 525);
             this.Controls.Add(this.Dgv_overdue);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -382,6 +394,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbtn_no;
         private System.Windows.Forms.ToolStripButton tsbtn_yes;
+        private System.Windows.Forms.ToolStripButton tsbtn_examine;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_book;
@@ -389,8 +402,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_return;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_dayover;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_money;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_Pay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_state;
         private System.Windows.Forms.DataGridViewButtonColumn Cl_examine;
-        private System.Windows.Forms.ToolStripButton tsbtn_examine;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_examineNo;
     }
 }
