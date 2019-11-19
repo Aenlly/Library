@@ -32,26 +32,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.text_id = new System.Windows.Forms.TextBox();
+            this.text_name = new System.Windows.Forms.TextBox();
+            this.text_college = new System.Windows.Forms.TextBox();
+            this.text_tel = new System.Windows.Forms.TextBox();
+            this.text_number = new System.Windows.Forms.TextBox();
+            this.text_book = new System.Windows.Forms.TextBox();
+            this.text_overdue = new System.Windows.Forms.TextBox();
+            this.btn_edit = new System.Windows.Forms.Button();
+            this.text_position = new System.Windows.Forms.TextBox();
+            this.btn_no = new System.Windows.Forms.Button();
+            this.rbtn_male = new System.Windows.Forms.RadioButton();
+            this.rbtn_female = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,15 +89,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "学院：";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 156);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 14);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "班级：";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -109,28 +98,10 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "用户组：";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 267);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 14);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "失效日期：";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 230);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 14);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "注册日期：";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 304);
+            this.label9.Location = new System.Drawing.Point(3, 224);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 14);
             this.label9.TabIndex = 8;
@@ -139,7 +110,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 341);
+            this.label11.Location = new System.Drawing.Point(3, 261);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 14);
             this.label11.TabIndex = 10;
@@ -148,7 +119,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 378);
+            this.label10.Location = new System.Drawing.Point(3, 298);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 14);
             this.label10.TabIndex = 11;
@@ -162,124 +133,163 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(89, 406);
+            this.panel1.Size = new System.Drawing.Size(89, 332);
             this.panel1.TabIndex = 12;
             // 
-            // textBox1
+            // label5
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 23);
-            this.textBox1.TabIndex = 13;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 14);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "手机号：";
             // 
-            // textBox2
+            // text_id
             // 
-            this.textBox2.Location = new System.Drawing.Point(119, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(107, 23);
-            this.textBox2.TabIndex = 14;
+            this.text_id.Enabled = false;
+            this.text_id.Location = new System.Drawing.Point(119, 14);
+            this.text_id.Name = "text_id";
+            this.text_id.Size = new System.Drawing.Size(151, 23);
+            this.text_id.TabIndex = 13;
+            this.text_id.TabStop = false;
             // 
-            // textBox3
+            // text_name
             // 
-            this.textBox3.Location = new System.Drawing.Point(119, 94);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(68, 23);
-            this.textBox3.TabIndex = 15;
+            this.text_name.Enabled = false;
+            this.text_name.Location = new System.Drawing.Point(119, 54);
+            this.text_name.Name = "text_name";
+            this.text_name.Size = new System.Drawing.Size(107, 23);
+            this.text_name.TabIndex = 14;
+            this.text_name.TabStop = false;
             // 
-            // textBox4
+            // text_college
             // 
-            this.textBox4.Location = new System.Drawing.Point(119, 125);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(151, 23);
-            this.textBox4.TabIndex = 16;
+            this.text_college.Enabled = false;
+            this.text_college.Location = new System.Drawing.Point(119, 125);
+            this.text_college.Name = "text_college";
+            this.text_college.Size = new System.Drawing.Size(151, 23);
+            this.text_college.TabIndex = 16;
             // 
-            // textBox5
+            // text_tel
             // 
-            this.textBox5.Location = new System.Drawing.Point(119, 162);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(151, 23);
-            this.textBox5.TabIndex = 17;
+            this.text_tel.Enabled = false;
+            this.text_tel.Location = new System.Drawing.Point(119, 162);
+            this.text_tel.MaxLength = 11;
+            this.text_tel.Name = "text_tel";
+            this.text_tel.Size = new System.Drawing.Size(151, 23);
+            this.text_tel.TabIndex = 17;
+            this.text_tel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_tel_KeyPress);
             // 
-            // textBox6
+            // text_number
             // 
-            this.textBox6.Location = new System.Drawing.Point(119, 199);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(68, 23);
-            this.textBox6.TabIndex = 18;
+            this.text_number.Enabled = false;
+            this.text_number.Location = new System.Drawing.Point(119, 234);
+            this.text_number.Name = "text_number";
+            this.text_number.Size = new System.Drawing.Size(51, 23);
+            this.text_number.TabIndex = 21;
+            this.text_number.TabStop = false;
             // 
-            // textBox7
+            // text_book
             // 
-            this.textBox7.Location = new System.Drawing.Point(119, 236);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(151, 23);
-            this.textBox7.TabIndex = 19;
+            this.text_book.Enabled = false;
+            this.text_book.Location = new System.Drawing.Point(119, 271);
+            this.text_book.Name = "text_book";
+            this.text_book.Size = new System.Drawing.Size(98, 23);
+            this.text_book.TabIndex = 22;
+            this.text_book.TabStop = false;
             // 
-            // textBox8
+            // text_overdue
             // 
-            this.textBox8.Location = new System.Drawing.Point(119, 279);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(151, 23);
-            this.textBox8.TabIndex = 20;
+            this.text_overdue.Enabled = false;
+            this.text_overdue.Location = new System.Drawing.Point(119, 307);
+            this.text_overdue.Name = "text_overdue";
+            this.text_overdue.Size = new System.Drawing.Size(98, 23);
+            this.text_overdue.TabIndex = 23;
+            this.text_overdue.TabStop = false;
             // 
-            // textBox9
+            // btn_edit
             // 
-            this.textBox9.Location = new System.Drawing.Point(119, 316);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(51, 23);
-            this.textBox9.TabIndex = 21;
+            this.btn_edit.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_edit.Location = new System.Drawing.Point(18, 383);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(102, 32);
+            this.btn_edit.TabIndex = 24;
+            this.btn_edit.Text = "修改信息";
+            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
-            // textBox10
+            // text_position
             // 
-            this.textBox10.Location = new System.Drawing.Point(119, 353);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(51, 23);
-            this.textBox10.TabIndex = 22;
+            this.text_position.Enabled = false;
+            this.text_position.Location = new System.Drawing.Point(119, 199);
+            this.text_position.Name = "text_position";
+            this.text_position.Size = new System.Drawing.Size(68, 23);
+            this.text_position.TabIndex = 18;
+            this.text_position.TabStop = false;
             // 
-            // textBox11
+            // btn_no
             // 
-            this.textBox11.Location = new System.Drawing.Point(119, 387);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(51, 23);
-            this.textBox11.TabIndex = 23;
+            this.btn_no.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_no.Location = new System.Drawing.Point(143, 383);
+            this.btn_no.Name = "btn_no";
+            this.btn_no.Size = new System.Drawing.Size(102, 32);
+            this.btn_no.TabIndex = 26;
+            this.btn_no.Text = "返回";
+            this.btn_no.UseVisualStyleBackColor = true;
+            this.btn_no.Click += new System.EventHandler(this.btn_no_Click);
             // 
-            // button1
+            // rbtn_male
             // 
-            this.button1.Location = new System.Drawing.Point(39, 447);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 42);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "修改信息";
-            this.button1.UseVisualStyleBackColor = true;
+            this.rbtn_male.AutoSize = true;
+            this.rbtn_male.Enabled = false;
+            this.rbtn_male.Location = new System.Drawing.Point(119, 94);
+            this.rbtn_male.Name = "rbtn_male";
+            this.rbtn_male.Size = new System.Drawing.Size(39, 18);
+            this.rbtn_male.TabIndex = 27;
+            this.rbtn_male.Text = "男";
+            this.rbtn_male.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_female
+            // 
+            this.rbtn_female.AutoSize = true;
+            this.rbtn_female.Enabled = false;
+            this.rbtn_female.Location = new System.Drawing.Point(178, 94);
+            this.rbtn_female.Name = "rbtn_female";
+            this.rbtn_female.Size = new System.Drawing.Size(39, 18);
+            this.rbtn_female.TabIndex = 28;
+            this.rbtn_female.Text = "女";
+            this.rbtn_female.UseVisualStyleBackColor = true;
             // 
             // user_Basic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 511);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(283, 442);
+            this.Controls.Add(this.rbtn_female);
+            this.Controls.Add(this.rbtn_male);
+            this.Controls.Add(this.btn_no);
+            this.Controls.Add(this.btn_edit);
+            this.Controls.Add(this.text_overdue);
+            this.Controls.Add(this.text_book);
+            this.Controls.Add(this.text_number);
+            this.Controls.Add(this.text_position);
+            this.Controls.Add(this.text_tel);
+            this.Controls.Add(this.text_college);
+            this.Controls.Add(this.text_name);
+            this.Controls.Add(this.text_id);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "user_Basic";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "基本信息";
+            this.Load += new System.EventHandler(this.user_Basic_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -293,25 +303,23 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox text_id;
+        private System.Windows.Forms.TextBox text_name;
+        private System.Windows.Forms.TextBox text_college;
+        private System.Windows.Forms.TextBox text_tel;
+        private System.Windows.Forms.TextBox text_number;
+        private System.Windows.Forms.TextBox text_book;
+        private System.Windows.Forms.TextBox text_overdue;
+        private System.Windows.Forms.Button btn_edit;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox text_position;
+        private System.Windows.Forms.Button btn_no;
+        private System.Windows.Forms.RadioButton rbtn_male;
+        private System.Windows.Forms.RadioButton rbtn_female;
     }
 }

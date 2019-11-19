@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.text_title = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.text_conent = new System.Windows.Forms.TextBox();
+            this.btn_ok = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.text_id = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -46,13 +46,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "反馈标题：";
             // 
-            // textBox1
+            // text_title
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 112);
-            this.textBox1.MaxLength = 10;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 23);
-            this.textBox1.TabIndex = 1;
+            this.text_title.Location = new System.Drawing.Point(105, 112);
+            this.text_title.MaxLength = 10;
+            this.text_title.Name = "text_title";
+            this.text_title.Size = new System.Drawing.Size(175, 23);
+            this.text_title.TabIndex = 1;
             // 
             // label2
             // 
@@ -63,23 +63,26 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "反馈内容：";
             // 
-            // textBox2
+            // text_conent
             // 
-            this.textBox2.Location = new System.Drawing.Point(105, 172);
-            this.textBox2.MaxLength = 100;
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 148);
-            this.textBox2.TabIndex = 3;
+            this.text_conent.Font = new System.Drawing.Font("宋体", 12F);
+            this.text_conent.Location = new System.Drawing.Point(105, 172);
+            this.text_conent.MaxLength = 100;
+            this.text_conent.Multiline = true;
+            this.text_conent.Name = "text_conent";
+            this.text_conent.Size = new System.Drawing.Size(175, 195);
+            this.text_conent.TabIndex = 3;
             // 
-            // button1
+            // btn_ok
             // 
-            this.button1.Location = new System.Drawing.Point(46, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 45);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "提交问题";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_ok.Font = new System.Drawing.Font("宋体", 14F);
+            this.btn_ok.Location = new System.Drawing.Point(84, 418);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(125, 39);
+            this.btn_ok.TabIndex = 4;
+            this.btn_ok.Text = "提交反馈";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
             // label3
             // 
@@ -90,29 +93,34 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "用户ID：";
             // 
-            // textBox3
+            // text_id
             // 
-            this.textBox3.Location = new System.Drawing.Point(105, 36);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(104, 23);
-            this.textBox3.TabIndex = 6;
+            this.text_id.Enabled = false;
+            this.text_id.Location = new System.Drawing.Point(105, 36);
+            this.text_id.Name = "text_id";
+            this.text_id.ReadOnly = true;
+            this.text_id.Size = new System.Drawing.Size(104, 23);
+            this.text_id.TabIndex = 6;
+            this.text_id.TabStop = false;
             // 
             // user_Feedback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 442);
-            this.Controls.Add(this.textBox3);
+            this.ClientSize = new System.Drawing.Size(305, 487);
+            this.Controls.Add(this.text_id);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.btn_ok);
+            this.Controls.Add(this.text_conent);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.text_title);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "user_Feedback";
-            this.Text = "user_Feedback";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "提交反馈问题";
+            this.Load += new System.EventHandler(this.user_Feedback_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,11 +129,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox text_title;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox text_conent;
+        private System.Windows.Forms.Button btn_ok;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox text_id;
     }
 }

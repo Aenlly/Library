@@ -19,7 +19,7 @@ namespace Library.user
         private void btn_pwd_Click(object sender, EventArgs e)
         {
             SqlDbHelper sqlDbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-            String user_id = Log.log.name;//获取登录的账户id
+            String user_id = Log.log.u_id;//获取登录的账户id
             Console.WriteLine(user_id);
             String user_pwd = text_pwd.Text.Trim();//获取登录的密码
             String user_pwds = text_pwds.Text.Trim();//获取重复输入密码

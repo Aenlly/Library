@@ -15,6 +15,9 @@ namespace Library.admin
         {
             InitializeComponent();
         }
+
+
+
         //图书管理按钮事件
         private void btn_Book_Click(object sender, EventArgs e)
         {
@@ -90,6 +93,21 @@ namespace Library.admin
             Login login = new Login();//实例化登录窗体对象
             login.Show();//显示登录窗体
             this.Close();//关闭当前窗体
+        }
+
+        //点击关闭时的执行代码判断
+        private void admin_Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //弹窗询问
+            if (DialogResult.OK == MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+            {
+                Application.ExitThread();//强制中止调用线程上的所有消息
+                // System.Environment.Exit(0);  //结束全进程,会产生创建窗口句柄时出错
+            }
+            else
+            {
+                e.Cancel = true;//当前窗体不关闭
+            }
         }
     }
 }

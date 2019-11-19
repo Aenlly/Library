@@ -44,6 +44,7 @@ namespace Library.admin
             con.Close();//关闭数据库
         }
 
+        //加载窗体
         private void admin_FeedBackPage_Load(object sender, EventArgs e)
         {
             mcd_time.Hide();//隐藏日历控件
@@ -51,6 +52,7 @@ namespace Library.admin
             databind(sql);//传递sql
         }
 
+        //文本框获取事件
         private void tstext_time_Click(object sender, EventArgs e)
         {
             //判断是第几次单击选择日期按钮，为0则显示日历控件，为1则隐藏日历控件
@@ -65,6 +67,7 @@ namespace Library.admin
             count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
         }
 
+        //获得日历中的值传递到文本框中
         private void mcd_time_DateChanged(object sender, DateRangeEventArgs e)
         {
             tstext_time.Text = mcd_time.SelectionStart.ToShortDateString();//获取日历控件中的值传递到按钮上显示
@@ -72,21 +75,21 @@ namespace Library.admin
             count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
         }
 
-        //显示未解决按钮事件
+        //显示未回复按钮事件
         private void tsbtn_no_Click(object sender, EventArgs e)
         {
             //查询未解决的反馈sql语句
-            string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_solve='未解决'";
+            string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_solve='未回复'";
             databind(sql);//传递sql
             mcd_time.Hide();//隐藏日历控件
             count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
         }
 
-        //显示解决按钮事件
+        //显示已回复按钮事件
         private void tsbtn_yes_Click(object sender, EventArgs e)
         {
             //查询未解决的反馈sql语句
-            string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_solve='解决'";
+            string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_solve='已回复'";
             databind(sql);//传递sql
             mcd_time.Hide();//隐藏日历控件
             count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
@@ -102,6 +105,7 @@ namespace Library.admin
             count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
         }
 
+        //单击表格内容时的事件
         private void Dgv_fbk_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //判断是否点在了内容行上，而不是表头
@@ -140,6 +144,7 @@ namespace Library.admin
             }
         }
 
+        //查询按钮单击事件
         private void tsbtn_select_Click(object sender, EventArgs e)
         {
             //查询时间的反馈记录sql语句

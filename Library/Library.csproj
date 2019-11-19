@@ -156,6 +156,12 @@
     <Compile Include="admin\admin_userPage.Designer.cs">
       <DependentUpon>admin_userPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="user\user_FeedbackSee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\user_FeedbackSee.Designer.cs">
+      <DependentUpon>user_FeedbackSee.cs</DependentUpon>
+    </Compile>
     <Compile Include="utils\Log.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -316,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="user\user_SeeBookPage.resx">
       <DependentUpon>user_SeeBookPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\user_FeedbackSee.resx">
+      <DependentUpon>user_FeedbackSee.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DB\图书管理系统数据库.xlsx" />

@@ -20,6 +20,7 @@ namespace Library
         }
         DButil dButil = new DButil();
 
+        //登录按钮的单击事件
         private void btn_dl_Click(object sender, EventArgs e)
         {
             String name = text_name.Text.Trim();
@@ -47,7 +48,7 @@ namespace Library
                     int n = sqlDbHelper.Checkuser(sql, pwd);
                     if (n == 2)//账号密码正确
                     {
-                        Log.log.name = text_name.Text.Trim();
+                        Log.log.u_id = text_name.Text.Trim();
                         Log.log.pwd = text_pwd.Text.Trim();
                         user.user_Home user_Home = new user.user_Home();//用户窗体实例化
                         user_Home.Show();// 显示窗体
@@ -74,7 +75,7 @@ namespace Library
                     int n = sqlDbHelper.Checkadmin(sql, pwd);
                     if (n == 2)//账号密码正确
                     {
-                        Log.log.name = text_name.Text.Trim();
+                        Log.log.u_id = text_name.Text.Trim();
                         Log.log.pwd = text_pwd.Text.Trim();
                         admin.admin_Home admin_Home = new admin.admin_Home();//管理员窗体实例化
                         admin_Home.Show();//转到管理员的界面
@@ -111,6 +112,7 @@ namespace Library
             this.Hide();//登录窗体隐藏
         }
 
+        //窗体加载
         private void Login_Load(object sender, EventArgs e)
         {
             cmb_1.Items.Add("用户");//添加用户选项
@@ -118,11 +120,14 @@ namespace Library
             cmb_1.SelectedIndex = 0;//使用户为默认选项
         }
 
+        //点击关闭时的执行代码判断
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //弹窗询问
             if (DialogResult.OK==MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) )
             {
-                System.Environment.Exit(0);  //结束全进程
+                Application.ExitThread();//强制中止调用线程上的所有消息
+                // System.Environment.Exit(0);  //结束全进程,会产生创建窗口句柄时出错
             }
             else
             {

@@ -16,7 +16,7 @@ namespace Library.user
             InitializeComponent();
         }
 
-        private bool OkClick = false;
+        private bool OkClick = false;//定义个关闭的
 
         //单击了修改密码按钮
         private void btn_PwdEdit_Click(object sender, EventArgs e)
@@ -74,6 +74,13 @@ namespace Library.user
             user_Basic.ShowDialog();//显示用户基本信息窗体设置为活动窗体
         }
 
+        //反馈记录按钮事件
+        private void btn_fbr_Click(object sender, EventArgs e)
+        {
+            user_FeedbackRecord user_FeedbackRecord = new user_FeedbackRecord();//实例化用户反馈记录体对象
+            user_FeedbackRecord.ShowDialog();//显示反馈记录窗体设置为活动窗体
+        }
+
         //关闭事件
         private void user_Home_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -82,7 +89,8 @@ namespace Library.user
             //单击了确认按钮
             else if (DialogResult.OK == MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
             {
-                System.Environment.Exit(0);  //结束全进程
+                Application.ExitThread();//强制中止调用线程上的所有消息
+                // System.Environment.Exit(0);  //结束全进程,会产生创建窗口句柄时出错
             }
             else
             {

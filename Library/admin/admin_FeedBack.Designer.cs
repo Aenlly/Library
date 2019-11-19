@@ -105,9 +105,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(22, 499);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 14);
+            this.label7.Size = new System.Drawing.Size(91, 14);
             this.label7.TabIndex = 6;
-            this.label7.Text = "是否解决：";
+            this.label7.Text = "是否已回复：";
             // 
             // rtb_rcd
             // 
@@ -137,7 +137,7 @@
             this.text_title.Location = new System.Drawing.Point(105, 154);
             this.text_title.Name = "text_title";
             this.text_title.ReadOnly = true;
-            this.text_title.Size = new System.Drawing.Size(148, 23);
+            this.text_title.Size = new System.Drawing.Size(257, 23);
             this.text_title.TabIndex = 9;
             this.text_title.TabStop = false;
             // 
@@ -173,7 +173,7 @@
             this.text_solve.Location = new System.Drawing.Point(105, 496);
             this.text_solve.Name = "text_solve";
             this.text_solve.ReadOnly = true;
-            this.text_solve.Size = new System.Drawing.Size(148, 23);
+            this.text_solve.Size = new System.Drawing.Size(93, 23);
             this.text_solve.TabIndex = 13;
             this.text_solve.TabStop = false;
             // 

@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btn_fbr = new System.Windows.Forms.Button();
             this.btn_about = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_PwdEdit = new System.Windows.Forms.Button();
@@ -77,7 +77,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button9);
+            this.panel2.Controls.Add(this.btn_fbr);
             this.panel2.Controls.Add(this.btn_about);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btn_PwdEdit);
@@ -93,14 +93,15 @@
             this.panel2.Size = new System.Drawing.Size(134, 428);
             this.panel2.TabIndex = 2;
             // 
-            // button9
+            // btn_fbr
             // 
-            this.button9.Location = new System.Drawing.Point(30, 244);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "反馈问题";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btn_fbr.Location = new System.Drawing.Point(30, 244);
+            this.btn_fbr.Name = "btn_fbr";
+            this.btn_fbr.Size = new System.Drawing.Size(75, 23);
+            this.btn_fbr.TabIndex = 8;
+            this.btn_fbr.Text = "反馈记录";
+            this.btn_fbr.UseVisualStyleBackColor = true;
+            this.btn_fbr.Click += new System.EventHandler(this.btn_fbr_Click);
             // 
             // btn_about
             // 
@@ -209,7 +210,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "user_Home";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图书馆";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_Home_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -235,7 +238,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btn_PwdEdit;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btn_fbr;
         private System.Windows.Forms.Button btn_about;
         private System.Windows.Forms.Label label2;
     }

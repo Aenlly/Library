@@ -21,38 +21,44 @@ namespace Library.user
         //重置密码的按钮事件
         private void btn_NetStep_Click(object sender, EventArgs e)
         {
-            SqlDbHelper sqlDbHelper = new SqlDbHelper();
-            String name_id = text_name.Text.Trim();
-            String name_card = text_card.Text.Trim();
+            SqlDbHelper sqlDbHelper = new SqlDbHelper();//类的实例创建
+            String name_id = text_name.Text.Trim();//获得学号
+            String name_card = text_card.Text.Trim();//获得身份证
 
+            //判断
             if (name_id == "" || name_card == "")
             {
+                //错误提示
                 MessageBox.Show("请输入账号、身份证", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                //sql查询语句
                 String sql = "select u_card from [user] where u_id=" + name_id;
-                int n = sqlDbHelper.Checkcard(sql, name_card);
+                int n = sqlDbHelper.Checkcard(sql, name_card);//传递参数进行判断
                 if (n==2)
                 {
                     String card = name_card.Substring(name_card.Length-6);//取得身份证后六位
+                    //弹窗提示
                     DialogResult dialog= MessageBox.Show("密码重置成功，为身份证后六位", "提示", MessageBoxButtons.OK, MessageBoxIcon.None);
                     if (dialog == DialogResult.OK)//判断是否点击了确认按钮
                     {
-                        Login login = new Login();
-                        login.Show();
+                        Login login = new Login();//实例化登录窗体
+                        login.Show();//显示登录窗体
                         this.Close();//当前窗体关闭
                     }
                     
                 }
                 else if(n==1)
                 {
+                    //身份证错误提示
                     MessageBox.Show("身份证错误", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     text_card.Text = "";//清空身份证
                     text_card.Focus();//获得身份证输入焦点
                 }
                 else
                 {
+                    //账号不存在提示
                     MessageBox.Show("账号不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     text_name.Text = "";//清空账号
                     text_card.Text = "";//清空身份证
@@ -65,10 +71,10 @@ namespace Library.user
         private void btn_Login_Click(object sender, EventArgs e)
         {
             OkClick = true;//判断是否单击了该按钮
-            this.Close();
             Login login = new Login();//实例化Login登录窗体对象
             login.Show();//显示登录窗体
             login.Activate();//给予焦点
+            this.Close();//当前窗体关闭
         }
 
         //按×之后的关闭事件
@@ -79,7 +85,8 @@ namespace Library.user
             //单击了确认按钮
             else if (DialogResult.OK == MessageBox.Show("确认退出？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
             {
-                System.Environment.Exit(0);  //结束全进程
+                Application.ExitThread();//强制中止调用线程上的所有消息
+                // System.Environment.Exit(0);  //结束全进程,会产生创建窗口句柄时出错
             }
             else
             {

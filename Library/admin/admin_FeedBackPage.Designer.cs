@@ -34,31 +34,31 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_FeedBackPage));
             this.Dgv_fbk = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tstext_time = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_select = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_no = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_yes = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.mcd_time = new System.Windows.Forms.MonthCalendar();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_smntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_asrtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_solve = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_see = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Cl_Reply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_see = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_solve = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_asrtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_smntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_fbk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -90,7 +90,7 @@
             this.Cl_see,
             this.Cl_Reply});
             this.Dgv_fbk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Dgv_fbk.Location = new System.Drawing.Point(0, 25);
+            this.Dgv_fbk.Location = new System.Drawing.Point(0, 28);
             this.Dgv_fbk.MultiSelect = false;
             this.Dgv_fbk.Name = "Dgv_fbk";
             this.Dgv_fbk.ReadOnly = true;
@@ -104,7 +104,7 @@
             this.Dgv_fbk.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Dgv_fbk.RowTemplate.Height = 23;
             this.Dgv_fbk.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_fbk.Size = new System.Drawing.Size(865, 500);
+            this.Dgv_fbk.Size = new System.Drawing.Size(865, 497);
             this.Dgv_fbk.TabIndex = 0;
             this.Dgv_fbk.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_fbk_CellClick);
             // 
@@ -113,6 +113,7 @@
             this.bindingNavigator1.AddNewItem = null;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = null;
+            this.bindingNavigator1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -136,9 +137,16 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(865, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(865, 28);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
+            this.bindingNavigatorCountItem.Text = "/ {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "总项数";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -146,7 +154,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMoveFirstItem.Text = "移到第一条记录";
             // 
             // bindingNavigatorMovePreviousItem
@@ -155,13 +163,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMovePreviousItem.Text = "移到上一条记录";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -172,17 +180,10 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "当前位置";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(32, 22);
-            this.bindingNavigatorCountItem.Text = "/ {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "总项数";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -190,7 +191,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMoveNextItem.Text = "移到下一条记录";
             // 
             // bindingNavigatorMoveLastItem
@@ -199,18 +200,18 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 25);
             this.bindingNavigatorMoveLastItem.Text = "移到最后一条记录";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(92, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(122, 25);
             this.toolStripLabel1.Text = "提交时间查询：";
             // 
             // tstext_time
@@ -218,7 +219,7 @@
             this.tstext_time.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tstext_time.Name = "tstext_time";
             this.tstext_time.ReadOnly = true;
-            this.tstext_time.Size = new System.Drawing.Size(100, 25);
+            this.tstext_time.Size = new System.Drawing.Size(100, 28);
             this.tstext_time.Click += new System.EventHandler(this.tstext_time_Click);
             // 
             // tsbtn_select
@@ -227,7 +228,7 @@
             this.tsbtn_select.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_select.Image")));
             this.tsbtn_select.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_select.Name = "tsbtn_select";
-            this.tsbtn_select.Size = new System.Drawing.Size(36, 22);
+            this.tsbtn_select.Size = new System.Drawing.Size(46, 25);
             this.tsbtn_select.Text = "查询";
             this.tsbtn_select.Click += new System.EventHandler(this.tsbtn_select_Click);
             // 
@@ -237,8 +238,9 @@
             this.tsbtn_no.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_no.Image")));
             this.tsbtn_no.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_no.Name = "tsbtn_no";
-            this.tsbtn_no.Size = new System.Drawing.Size(72, 22);
+            this.tsbtn_no.Size = new System.Drawing.Size(94, 25);
             this.tsbtn_no.Text = "显示未解决";
+            this.tsbtn_no.ToolTipText = "显示未回复";
             this.tsbtn_no.Click += new System.EventHandler(this.tsbtn_no_Click);
             // 
             // tsbtn_yes
@@ -247,8 +249,9 @@
             this.tsbtn_yes.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_yes.Image")));
             this.tsbtn_yes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_yes.Name = "tsbtn_yes";
-            this.tsbtn_yes.Size = new System.Drawing.Size(72, 22);
+            this.tsbtn_yes.Size = new System.Drawing.Size(94, 25);
             this.tsbtn_yes.Text = "显示已解决";
+            this.tsbtn_yes.ToolTipText = "显示已回复";
             this.tsbtn_yes.Click += new System.EventHandler(this.tsbtn_yes_Click);
             // 
             // tsbtn_whole
@@ -257,7 +260,7 @@
             this.tsbtn_whole.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_whole.Image")));
             this.tsbtn_whole.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_whole.Name = "tsbtn_whole";
-            this.tsbtn_whole.Size = new System.Drawing.Size(60, 22);
+            this.tsbtn_whole.Size = new System.Drawing.Size(78, 25);
             this.tsbtn_whole.Text = "显示全部";
             this.tsbtn_whole.Click += new System.EventHandler(this.tsbtn_whole_Click);
             // 
@@ -269,41 +272,13 @@
             this.mcd_time.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcd_time_DateChanged);
             this.mcd_time.MouseLeave += new System.EventHandler(this.mcd_time_MouseLeave);
             // 
-            // Cl_id
+            // Cl_Reply
             // 
-            this.Cl_id.HeaderText = "反馈编号";
-            this.Cl_id.Name = "Cl_id";
-            this.Cl_id.ReadOnly = true;
-            // 
-            // Cl_uid
-            // 
-            this.Cl_uid.HeaderText = "用户ID";
-            this.Cl_uid.Name = "Cl_uid";
-            this.Cl_uid.ReadOnly = true;
-            // 
-            // Cl_title
-            // 
-            this.Cl_title.HeaderText = "反馈标题";
-            this.Cl_title.Name = "Cl_title";
-            this.Cl_title.ReadOnly = true;
-            // 
-            // Cl_smntime
-            // 
-            this.Cl_smntime.HeaderText = "提交时间";
-            this.Cl_smntime.Name = "Cl_smntime";
-            this.Cl_smntime.ReadOnly = true;
-            // 
-            // Cl_asrtime
-            // 
-            this.Cl_asrtime.HeaderText = "回复时间";
-            this.Cl_asrtime.Name = "Cl_asrtime";
-            this.Cl_asrtime.ReadOnly = true;
-            // 
-            // Cl_solve
-            // 
-            this.Cl_solve.HeaderText = "是否解决";
-            this.Cl_solve.Name = "Cl_solve";
-            this.Cl_solve.ReadOnly = true;
+            this.Cl_Reply.HeaderText = "操作";
+            this.Cl_Reply.Name = "Cl_Reply";
+            this.Cl_Reply.ReadOnly = true;
+            this.Cl_Reply.Text = "回复";
+            this.Cl_Reply.UseColumnTextForButtonValue = true;
             // 
             // Cl_see
             // 
@@ -313,13 +288,41 @@
             this.Cl_see.Text = "查看";
             this.Cl_see.UseColumnTextForButtonValue = true;
             // 
-            // Cl_Reply
+            // Cl_solve
             // 
-            this.Cl_Reply.HeaderText = "操作";
-            this.Cl_Reply.Name = "Cl_Reply";
-            this.Cl_Reply.ReadOnly = true;
-            this.Cl_Reply.Text = "回复";
-            this.Cl_Reply.UseColumnTextForButtonValue = true;
+            this.Cl_solve.HeaderText = "是否已回复";
+            this.Cl_solve.Name = "Cl_solve";
+            this.Cl_solve.ReadOnly = true;
+            // 
+            // Cl_asrtime
+            // 
+            this.Cl_asrtime.HeaderText = "回复时间";
+            this.Cl_asrtime.Name = "Cl_asrtime";
+            this.Cl_asrtime.ReadOnly = true;
+            // 
+            // Cl_smntime
+            // 
+            this.Cl_smntime.HeaderText = "提交时间";
+            this.Cl_smntime.Name = "Cl_smntime";
+            this.Cl_smntime.ReadOnly = true;
+            // 
+            // Cl_title
+            // 
+            this.Cl_title.HeaderText = "反馈标题";
+            this.Cl_title.Name = "Cl_title";
+            this.Cl_title.ReadOnly = true;
+            // 
+            // Cl_uid
+            // 
+            this.Cl_uid.HeaderText = "用户ID";
+            this.Cl_uid.Name = "Cl_uid";
+            this.Cl_uid.ReadOnly = true;
+            // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "反馈编号";
+            this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
             // 
             // admin_FeedBackPage
             // 

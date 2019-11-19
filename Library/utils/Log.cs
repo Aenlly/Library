@@ -11,12 +11,12 @@ namespace Library
     {
         public class log{
 
-            public static string name;//登录传递的账号
+            public static string u_id;//登录传递的账号,即学号
             public static string pwd;//登录传递的密码
 
+            public static string user_fid;//user_feedbackRecord界面传递的反馈编号
 
             public static string user_id;//admin_userpage界面传递过来的学号
-
 
             public static string b_name;//admin_bookpage界面传递的书名
             public static string b_isbn;//admin_bookpage界面传递的isbn编号
