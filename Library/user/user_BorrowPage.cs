@@ -36,7 +36,7 @@ namespace Library.user
             bindingSource1.DataSource = ds.Tables[0];//封装数据
             bindingNavigator1.BindingSource = bindingSource1;//获得数据
             Dgv_borrow.DataSource = bindingSource1;//导出到dataGridView1中显示并用下列代码对于列名 
-            for (int i = 0; i < 7; i++)//循环添加
+            for (int i = 0; i < 8; i++)//循环添加
             {
                 Dgv_borrow.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
             }
@@ -47,8 +47,14 @@ namespace Library.user
         //窗体加载
         private void user_BorrowPage_Load(object sender, EventArgs e)
         {
+            //每次执行时，更新下数据
+            string sql = "update borrow set bo_eme=1 where bo_rtnatl is NULL and dateiff(day,bo_rtnatl,getdate())>0 and u_id='"+Log.log.u_id+"'";
+            con = dButil.SqlOpen();//打开数据库
+            cmd = new SqlCommand(sql, con);//执行sql语句
+            con.Close();//关闭数据库
+
             //查询表内列名中的值的sql语句
-            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+            sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句
         }
 
@@ -58,13 +64,13 @@ namespace Library.user
             if (tstext_book.Text.Trim() == "")//为空查询全部
             {
                 //查询全部
-                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
                 databind(sql);//传递sql语句
             }
             else
             {
                 //查询模糊图书名查询
-                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "' and b_name like '%" + tstext_book.Text.Trim() +"%'";
+                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "' and b_name like '%" + tstext_book.Text.Trim() +"%'";
                 databind(sql);//传递sql语句
             }
         }
@@ -73,7 +79,15 @@ namespace Library.user
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
             //查询全部
-            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+            databind(sql);//传递sql语句
+        }
+
+        //显示还书失败记录按钮事件
+        private void tsbtn_borrowNo_Click(object sender, EventArgs e)
+        {
+            //查询全部
+            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=3 and u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句
         }
 
@@ -98,7 +112,7 @@ namespace Library.user
                                 user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
                                 user_Overdue.ShowDialog();//以对话模式显示
                                 //查询全部，这里等于返回该界面刷新
-                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
                         }
@@ -116,7 +130,7 @@ namespace Library.user
                                 MessageBox.Show("续借成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 //查询全部，这里等于刷新
-                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
                             else
@@ -142,7 +156,21 @@ namespace Library.user
                                 user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
                                 user_Overdue.ShowDialog();//以对话模式显示
                                 //查询全部，这里等于返回该界面刷新
-                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+                                databind(sql);//传递sql语句
+                            }
+                        }
+                        else if (bo_emeover == "还书失败")
+                        {
+                            //错误提示
+                            dialog = MessageBox.Show("所还图书未通过审核，是否再次申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            if (DialogResult.OK == dialog)
+                            {
+                                //点击确认按钮跳转到逾期记录
+                                user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
+                                user_Overdue.ShowDialog();//以对话模式显示
+                                //查询全部，这里等于返回该界面刷新
+                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
                         }
@@ -160,7 +188,7 @@ namespace Library.user
                                 MessageBox.Show("还书成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 //查询全部，这里等于刷新
-                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
+                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_dayover=case bo_dayover when 0 then '未逾期' else '已逾期' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme=0 and u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
                             else

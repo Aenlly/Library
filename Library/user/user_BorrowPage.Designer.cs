@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_BorrowPage));
             this.Dgv_borrow = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -56,8 +56,11 @@
             this.Cl_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_emeover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_Renewal = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Cl_operation = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tsbtn_borrowNo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_borrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -68,14 +71,14 @@
             // 
             this.Dgv_borrow.AllowUserToAddRows = false;
             this.Dgv_borrow.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_borrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_borrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Dgv_borrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_borrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
@@ -85,24 +88,25 @@
             this.Cl_day,
             this.Cl_renew,
             this.Cl_emeover,
+            this.Cl_eme,
             this.Cl_Renewal,
             this.Cl_operation});
             this.Dgv_borrow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_borrow.Location = new System.Drawing.Point(0, 28);
             this.Dgv_borrow.Name = "Dgv_borrow";
             this.Dgv_borrow.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_borrow.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Dgv_borrow.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_borrow.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_borrow.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.Dgv_borrow.RowTemplate.Height = 23;
-            this.Dgv_borrow.Size = new System.Drawing.Size(866, 497);
+            this.Dgv_borrow.Size = new System.Drawing.Size(969, 497);
             this.Dgv_borrow.TabIndex = 0;
             this.Dgv_borrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_borrow_CellClick);
             // 
@@ -125,7 +129,9 @@
             this.toolStripLabel1,
             this.tstext_book,
             this.tsbtn_select,
-            this.tsbtn_whole});
+            this.tsbtn_whole,
+            this.toolStripSeparator1,
+            this.tsbtn_borrowNo});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -133,7 +139,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(866, 28);
+            this.bindingNavigator1.Size = new System.Drawing.Size(969, 28);
             this.bindingNavigator1.TabIndex = 7;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -280,6 +286,12 @@
             this.Cl_emeover.ReadOnly = true;
             this.Cl_emeover.Width = 90;
             // 
+            // Cl_eme
+            // 
+            this.Cl_eme.HeaderText = "借书状态";
+            this.Cl_eme.Name = "Cl_eme";
+            this.Cl_eme.ReadOnly = true;
+            // 
             // Cl_Renewal
             // 
             this.Cl_Renewal.HeaderText = "操作";
@@ -302,11 +314,26 @@
             this.Cl_operation.UseColumnTextForButtonValue = true;
             this.Cl_operation.Width = 60;
             // 
+            // tsbtn_borrowNo
+            // 
+            this.tsbtn_borrowNo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_borrowNo.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_borrowNo.Image")));
+            this.tsbtn_borrowNo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_borrowNo.Name = "tsbtn_borrowNo";
+            this.tsbtn_borrowNo.Size = new System.Drawing.Size(142, 25);
+            this.tsbtn_borrowNo.Text = "显示还书失败记录";
+            this.tsbtn_borrowNo.Click += new System.EventHandler(this.tsbtn_borrowNo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
             // user_BorrowPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 525);
+            this.ClientSize = new System.Drawing.Size(969, 525);
             this.Controls.Add(this.Dgv_borrow);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -352,7 +379,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_day;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_renew;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_emeover;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_eme;
         private System.Windows.Forms.DataGridViewButtonColumn Cl_Renewal;
         private System.Windows.Forms.DataGridViewButtonColumn Cl_operation;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsbtn_borrowNo;
     }
 }

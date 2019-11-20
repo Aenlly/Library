@@ -45,8 +45,8 @@ namespace Library.user
 
         private void user_OverduePage_Load(object sender, EventArgs e)
         {
-            //加载该窗体时执行sql更新语句方法，实时更新逾期天数
-            string sql_ovup = "update borrow set bo_dayover=datediff(day,bo_return,getdate()) where bo_emeover=1 or bo_emeover=4";
+            //加载该窗体时执行sql更新语句方法，实时更新逾期天数，要求：必须是未还书或者是还书失败，以及已逾期或逾期审核不通过的用户
+            string sql_ovup = "update borrow set bo_dayover=datediff(day,bo_return,getdate()) where bo_emeover=1 or bo_emeover=4 and bo_eme=0 or bo_eme=3";
             con = dButil.SqlOpen();//打开数据库
             cmd = new SqlCommand(sql_ovup, con);//执行语句
             con.Close();//关闭数据库
@@ -67,7 +67,7 @@ namespace Library.user
             else
             {
                 //执行图书名称模糊查询
-                string sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id + "' and b_name like '%"+tstext_name.Text.Trim()"%'";
+                string sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id + "' and b_name like '%"+tstext_name.Text.Trim()+"%'";
                 databind(sql);//传递语句填充到表格中
             }
         }
@@ -101,7 +101,7 @@ namespace Library.user
                     else
                     {
                         //获得弹窗按钮返回值
-                        DialogResult dialog = MessageBox.Show("确认提交逾期审核？如未交逾期金额则会不通过", "提示", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        DialogResult dialog = MessageBox.Show("确认提交逾期审核？如未交逾期金额则会不通过", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (DialogResult.OK == dialog)//按下确认按钮
                         {
                             //sql更新语句
@@ -115,7 +115,7 @@ namespace Library.user
                                 //成功提示
                                 MessageBox.Show("提交审核成功！等待管理员审核中", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //执行查询全部语句，这里用做刷新
-                                sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id + "'";
+                                sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递语句填充到表格中
                             }
                             else

@@ -35,16 +35,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tstext_name = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_select = new System.Windows.Forms.ToolStripButton();
@@ -52,6 +51,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtn_nortn = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_eme = new System.Windows.Forms.ToolStripButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Dgv_borrow = new System.Windows.Forms.DataGridView();
             this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +62,7 @@
             this.Cl_renew = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_eme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_btnrtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_btnNo = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -98,9 +99,16 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(968, 28);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1072, 28);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
+            this.bindingNavigatorCountItem.Text = "/ {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "总项数";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -134,16 +142,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "当前位置";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 25);
-            this.bindingNavigatorCountItem.Text = "/ {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "总项数";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // bindingNavigatorMoveNextItem
@@ -166,7 +167,7 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel1
@@ -252,7 +253,8 @@
             this.Cl_day,
             this.Cl_renew,
             this.Cl_eme,
-            this.Cl_btnrtn});
+            this.Cl_btnrtn,
+            this.Cl_btnNo});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -276,7 +278,7 @@
             this.Dgv_borrow.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Dgv_borrow.RowTemplate.Height = 23;
             this.Dgv_borrow.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_borrow.Size = new System.Drawing.Size(968, 497);
+            this.Dgv_borrow.Size = new System.Drawing.Size(1072, 497);
             this.Dgv_borrow.TabIndex = 7;
             this.Dgv_borrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_borrow_CellClick);
             // 
@@ -336,11 +338,21 @@
             this.Cl_btnrtn.Text = "通过申请";
             this.Cl_btnrtn.UseColumnTextForButtonValue = true;
             // 
+            // Cl_btnNo
+            // 
+            this.Cl_btnNo.HeaderText = "操作";
+            this.Cl_btnNo.Name = "Cl_btnNo";
+            this.Cl_btnNo.ReadOnly = true;
+            this.Cl_btnNo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Cl_btnNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Cl_btnNo.Text = "不通过";
+            this.Cl_btnNo.UseColumnTextForButtonValue = true;
+            // 
             // admin_BorrowPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 525);
+            this.ClientSize = new System.Drawing.Size(1072, 525);
             this.Controls.Add(this.Dgv_borrow);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -387,5 +399,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_renew;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_eme;
         private System.Windows.Forms.DataGridViewButtonColumn Cl_btnrtn;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_btnNo;
     }
 }

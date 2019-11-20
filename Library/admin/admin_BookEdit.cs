@@ -97,25 +97,54 @@ namespace Library.admin
                     DialogResult dialog = MessageBox.Show("确认修改为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + mtext_isbn.Text + "\n图书类别：" + cmb_type.Text + "\n作者：" + mtext_isbn.Text + "\n出版社：" + mtext_isbn.Text + "\n出版年份：" + mtext_isbn.Text + "\n价格：" + mtext_isbn.Text + "\n库存：" + mtext_isbn.Text, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (DialogResult.OK == dialog)
                     {
-                        //更新语句，先更新book表中的isbn再更新books表
-                        string sql = "update [book] set b_name='" + text_book.Text.Trim() + "',b_isbn='" + mtext_isbn.Text.Trim() + "',b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
-                        string sql_book = "update [books] set b_name='" + text_book.Text.Trim() + "',b_isbn='" + mtext_isbn.Text.Trim() + "',b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + mtext_year.Text.Trim() + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
-                        con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//执行语句
-                        int n = cmd.ExecuteNonQuery();//返回影响行
-                        if (n > 0) //判断是否执行成功
+                        //判断数量与之前想比是增加了还是减少了
+                        int m = Convert.ToInt32(mtext_stocks.Text.Trim()) - Convert.ToInt32(Log.log.b_stocks);
+                        if (m > 0)
                         {
-                            cmd = new SqlCommand(sql_book, con);//执行语句
-                            n = cmd.ExecuteNonQuery();//返回影响行
-                            if (n > 0)//判断是否执行成功
+                            //插入语句
+                            string sql_books = "insert into books vaules ('" + mtext_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "',(select t_id from [type] where t_name='" + cmb_type.Text + "'),'" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + mtext_year.Text.Trim() + "','" + text_price.Text.Trim() + "',1)";
+                            int n = 0;//定义个局部变量用于判断是否成功执行sql语句
+                            con = dButil.SqlOpen();//打开数据库
+                            for (int i = 0; i < m; i++)
                             {
-                                //成功提示
-                                DialogResult result=MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                if (DialogResult.OK == result)
+                                cmd = new SqlCommand(sql_books, con);
+                                n = n + cmd.ExecuteNonQuery();
+                            }
+                            con.Close();
+                            if (n ==m)
+                            {
+                                //更新语句，先更新book表中的isbn再更新books表
+                                string sql = "update [book] set b_name='" + text_book.Text.Trim() + "',b_isbn='" + mtext_isbn.Text.Trim() + "',b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
+                                string sql_book = "update [books] set b_name='" + text_book.Text.Trim() + "',b_isbn='" + mtext_isbn.Text.Trim() + "',b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + mtext_year.Text.Trim() + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//执行语句
+                                n = cmd.ExecuteNonQuery();//返回影响行
+                                if (n >0) //判断是否执行成功
                                 {
-                                    //
-                                    btn_ret_Click(sender,e);
+                                    cmd = new SqlCommand(sql_book, con);//执行语句
+                                    n = cmd.ExecuteNonQuery();//返回影响行
+                                    if (n > 0)//判断是否执行成功
+                                    {
+                                        //成功提示
+                                        DialogResult result = MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        if (DialogResult.OK == result)
+                                        {
+                                            //
+                                            btn_ret_Click(sender, e);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //失败提示
+                                        MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                con.Close();
                             }
                             else
                             {
@@ -125,10 +154,54 @@ namespace Library.admin
                         }
                         else
                         {
-                            //失败提示
-                            MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        con.Close();
+                            m = -m;//转为正数
+                            string sql_books = "delete books top "+m+" where b_name='"+bookname+"' and b_lend!=0";
+                            int n = 0;//定义个局部变量用于判断是否成功执行sql语句
+                            con = dButil.SqlOpen();//打开数据库
+                            cmd = new SqlCommand(sql_books, con);
+                            n = cmd.ExecuteNonQuery();
+                            con.Close();
+                            if (n ==m)
+                            {
+                                //更新语句，先更新book表中的isbn再更新books表
+                                string sql = "update [book] set b_name='" + text_book.Text.Trim() + "',b_isbn='" + mtext_isbn.Text.Trim() + "',b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
+                                string sql_book = "update [books] set b_name='" + text_book.Text.Trim() + "',b_isbn='" + mtext_isbn.Text.Trim() + "',b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + mtext_year.Text.Trim() + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//执行语句
+                                n = cmd.ExecuteNonQuery();//返回影响行
+                                if (n > 0) //判断是否执行成功
+                                {
+                                    cmd = new SqlCommand(sql_book, con);//执行语句
+                                    n = cmd.ExecuteNonQuery();//返回影响行
+                                    if (n > 0)//判断是否执行成功
+                                    {
+                                        //成功提示
+                                        DialogResult result = MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        if (DialogResult.OK == result)
+                                        {
+                                            //
+                                            btn_ret_Click(sender, e);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //失败提示
+                                        MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                con.Close();
+                            }
+                            else
+                            {
+                                //失败提示
+                                MessageBox.Show("修改失败！可能存在用户正在借用该书", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }               
                     }
                 }
             }

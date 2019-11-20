@@ -46,8 +46,13 @@ namespace Library.admin
         //窗体加载
         private void admin_BorrowPage_Load(object sender, EventArgs e)
         {
+            //每次执行时，更新下数据
+            string sql = "update borrow set bo_eme=1 where bo_rtnatl is NULL and dateiff(day,bo_rtnatl,getdate())>0";
+            con = dButil.SqlOpen();//打开数据库
+            cmd = new SqlCommand(sql, con);//执行sql语句
+            con.Close();//关闭数据库
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme<2";
+            sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
             databind(sql);//传递sql语句进行查询
         }
 
@@ -69,7 +74,13 @@ namespace Library.admin
                     {
                         //未申请提示
                         MessageBox.Show("该用户未申请还书！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }else
+                    }
+                    else if (b_eme == "未通过")
+                    {
+                        //未申请提示
+                        MessageBox.Show("该用户未通过还书审核！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
                     {
                         //提示，并获取单击的返回值
                         DialogResult dialog=MessageBox.Show("确认通过用户："+ u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -87,13 +98,55 @@ namespace Library.admin
                                 //成功提示
                                 MessageBox.Show("已通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //查询全部内容的语句，该处用于刷新表
-                                sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme<2";
+                                sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
                                 databind(sql);//传递sql语句进行查询
                             }
                             else
                             {
                                 //失败提示
                                 MessageBox.Show("通过申请操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_btnNo")
+                {
+                    //判断是否申请了
+                    if (b_eme == "未申请")
+                    {
+                        //未申请提示
+                        MessageBox.Show("该用户未申请还书！无法进行不通过审核操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (b_eme == "未通过")
+                    {
+                        //未申请提示
+                        MessageBox.Show("该用户已未通过还书审核！无法再次进行不通过审核操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        //提示，并获取单击的返回值
+                        DialogResult dialog = MessageBox.Show("确认不通过用户：" + u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        //判断单击了确认按钮
+                        if (DialogResult.OK == dialog)
+                        {
+                            //sql语句，更新为还书成功，并添加还书时间
+                            string sql = "update borrow set bo_eme=3 where bo_id='" + bo_id + "'";
+                            con = dButil.SqlOpen();//打开数据库
+                            cmd = new SqlCommand(sql, con);//执行sql语句
+                            int n = cmd.ExecuteNonQuery();//返回影响行数，并赋值给n用作判断
+                            con.Close();//关闭数据库
+                            if (n > 0)//判断是否执行成功并修改
+                            {
+                                //成功提示
+                                MessageBox.Show("已不通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //查询全部内容的语句，该处用于刷新表
+                                sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+                                databind(sql);//传递sql语句进行查询
+                            }
+                            else
+                            {
+                                //失败提示
+                                MessageBox.Show("不通过申请操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -108,13 +161,13 @@ namespace Library.admin
             if (tstext_name.Text.Trim() == "")
             {
                 //查询全部内容的语句
-                string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme<2";
+                string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
                 databind(sql);//传递sql语句进行查询
             }
             else
             {
                 //查询指定借书人的内容的语句，模糊查询
-                string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme<2 and [user].u_name like '%" + tstext_name.Text.Trim() + "%'";
+                string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2 and [user].u_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递sql语句进行查询
             }
         }
@@ -123,7 +176,7 @@ namespace Library.admin
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme<2";
+            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
             databind(sql);//传递sql语句进行查询
         }
 
@@ -131,7 +184,7 @@ namespace Library.admin
         private void tsbtn_nortn_Click(object sender, EventArgs e)
         {
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=0";
+            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=0";
             databind(sql);//传递sql语句进行查询
         }
 
@@ -139,7 +192,7 @@ namespace Library.admin
         private void tsbtn_eme_Click(object sender, EventArgs e)
         {
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=1";
+            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=1";
             databind(sql);//传递sql语句进行查询
         }
     }
