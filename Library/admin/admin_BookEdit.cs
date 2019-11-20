@@ -97,7 +97,7 @@ namespace Library.admin
                     DialogResult dialog = MessageBox.Show("确认修改为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + mtext_isbn.Text + "\n图书类别：" + cmb_type.Text + "\n作者：" + mtext_isbn.Text + "\n出版社：" + mtext_isbn.Text + "\n出版年份：" + mtext_isbn.Text + "\n价格：" + mtext_isbn.Text + "\n库存：" + mtext_isbn.Text, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (DialogResult.OK == dialog)
                     {
-                        //判断数量与之前想比是增加了还是减少了
+                        //判断数量与之前相比是增加了还是减少了
                         int m = Convert.ToInt32(mtext_stocks.Text.Trim()) - Convert.ToInt32(Log.log.b_stocks);
                         if (m > 0)
                         {

@@ -75,6 +75,14 @@ namespace Library
                     int n = sqlDbHelper.Checkadmin(sql, pwd);//传递sql语句与用户输入的密码
                     if (n == 2)//账号密码正确
                     {
+                        //创建查询管理员id的sql语句
+                        sql = "select a_id from admin where a_name='" + name + "' and a_password='" + pwd + "'";
+                        DButil dButil = new DButil();//实例化连接数据库类
+                        SqlConnection con = dButil.SqlOpen();//打开数据库
+                        SqlCommand cmd = new SqlCommand(sql, con);//执行查询sql代码
+                        Log.log.a_id = Convert.ToInt16(cmd.ExecuteScalar());//赋值管理员编号
+                        con.Close();//关闭数据库
+
                         Log.log.u_id = text_name.Text.Trim();
                         Log.log.pwd = text_pwd.Text.Trim();
                         admin.admin_Home admin_Home = new admin.admin_Home();//管理员窗体实例化

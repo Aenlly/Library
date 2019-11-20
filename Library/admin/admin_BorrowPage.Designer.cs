@@ -54,7 +54,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Dgv_borrow = new System.Windows.Forms.DataGridView();
             this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_u_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_borrow = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cl_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -246,7 +246,7 @@
             this.Dgv_borrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_borrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
-            this.Cl_uid,
+            this.Cl_u_name,
             this.Cl_name,
             this.Cl_borrow,
             this.Cl_return,
@@ -288,11 +288,11 @@
             this.Cl_id.Name = "Cl_id";
             this.Cl_id.ReadOnly = true;
             // 
-            // Cl_uid
+            // Cl_u_name
             // 
-            this.Cl_uid.HeaderText = "借书人";
-            this.Cl_uid.Name = "Cl_uid";
-            this.Cl_uid.ReadOnly = true;
+            this.Cl_u_name.HeaderText = "借书人";
+            this.Cl_u_name.Name = "Cl_u_name";
+            this.Cl_u_name.ReadOnly = true;
             // 
             // Cl_name
             // 
@@ -391,7 +391,7 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.DataGridView Dgv_borrow;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_uid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_u_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_borrow;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_return;

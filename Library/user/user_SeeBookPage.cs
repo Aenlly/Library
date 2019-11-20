@@ -42,30 +42,11 @@ namespace Library.user
             con.Close();//关闭数据库
         }
 
-        /// <summary>
-        /// 绑定ToolStripComboBox 的操作
-        /// </summary>
-        /// <param name="sqltype">数据库语句</param>
-        /// <param name="type">表名</param>
-        /// <param name="t_name">字段名</param>
-        public void BookType()
-        {
-            con = dButil.SqlOpen();
-            //初始化，comboBox1绑定客户表
-            string sqltype = "select t_name from [type]";//查询有多少类别
-            sda = new SqlDataAdapter(sqltype, con);
-            ds = new DataSet();
-            sda.Fill(ds, "type");//添加到ds缓存中
-            tscmb_type.ComboBox.DataSource = ds.Tables["type"].DefaultView;//取出数据源填充到列表中
-            tscmb_type.ComboBox.DisplayMember = "t_name";//列表中显示的值对应的字段名
-        }
-
         //加载窗体时的事件
         private void user_SeeBookPage_Load(object sender, EventArgs e)
         {
             string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
             databind(sql);//填充到表格控件中
-            BookType();//填充到类型下拉列表中
         }
 
 
@@ -79,20 +60,9 @@ namespace Library.user
             }
             else
             {
-                if (tscmb_type.SelectedIndex != 0)//判断是否选中了全部类别
-                {
-                    con = dButil.SqlOpen();//打开数据库
-                    //查询输入框中的值，以及按类别联合查找
-                    string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name='" + tstext_book.Text.Trim() + "' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
-                    databind(sql);
-                }
-                else
-                {
-                    con = dButil.SqlOpen();//打开数据库
-                    //查询输入框中的值，以及按类别联合查找
-                    string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name='" + tstext_book.Text.Trim() + "' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name like '%" + tstext_book.Text.Trim() + "%' and t_name='" + tscmb_type.Text + "'";
-                    databind(sql);
-                }
+                //查询输入框中的值，以及按类别联合查找
+                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name='" + tstext_book.Text.Trim() + "' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
+                databind(sql);
             }
         }
 
@@ -116,43 +86,108 @@ namespace Library.user
             if (e.RowIndex >= 0)
             {
                 string b_name = Dgv_SeeBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString(); //获取图书名称的值
+                string b_isbn = Dgv_SeeBook.Rows[e.RowIndex].Cells["b_isbn"].Value.ToString(); //获取图书的ISBN值
                 //判断是否点击了借书按钮
                 if (Dgv_SeeBook.Columns[e.ColumnIndex].Name == "Cl_borrow")
                 {
-                    //打开数据库
-                    con = dButil.SqlOpen();
-                    //sql查询语句
-                    string sql = "select [borrow].b_id from [borrow],[books] where [borrow].b_id=[books].b_id and bo_eme=0 and [books].b_name='" + b_name + "'";
-                    cmd = new SqlCommand(sql, con);//执行查询语句
-                    string b_id = cmd.ExecuteScalar().ToString();
-                    con.Close();//关闭数据库
-                    if ("".Equals(b_id))//返回cmd查询的第一行第一列是否有值，进行对比
+                    if (tscmb_day.Text == "")
                     {
-                        //写弹出借书窗体的事件
+                        //错误提示
+                        MessageBox.Show("请选择所借天数！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else
-                    {
-                        //提示已经借过一本书了
-                        MessageBox.Show("你已经借了一本相同的书了！\n请先还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else {
+                        //打开数据库
+                        con = dButil.SqlOpen();
+                        //sql查询语句
+                        string sql = "select [borrow].b_id from [borrow],[books] where [borrow].b_id=[books].b_id and bo_eme!=2 and [books].b_name='" + b_name + "'";
+                        cmd = new SqlCommand(sql, con);//执行查询语句
+                        string b_id =Convert.ToString(cmd.ExecuteScalar());
+                        con.Close();//关闭数据库
+                        if ("".Equals(b_id))//返回cmd查询的第一行第一列是否有值，进行对比
+                        {
+                            int u_number = Log.log.user_number;
+                            if (u_number == 0)
+                            {
+                                //错误提示
+                                MessageBox.Show("您的可借图书数量为0，无法进行借书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                DialogResult dialog = MessageBox.Show("确认借用图书：" + b_name + "？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                                if (DialogResult.OK == dialog)
+                                {
+                                    int n = 0;
+                                    //更新第一条数据，并且返回更新的b_id
+                                    sql = "update top(1) books set  b_lend=0 output inserted.b_id where  b_name='" + b_name + "' and b_lend=1";//只更新一条
+                                    con = dButil.SqlOpen();//打开数据库
+                                    cmd = new SqlCommand(sql, con);//执行sql语句
+                                    string return_b_id = cmd.ExecuteScalar().ToString();//返回更新的b_id，用做插入信息的数据
+                                    con.Close();//关闭数据库
+
+                                    if (tscmb_day.SelectedIndex == 0)//选中7天
+                                    {
+                                        string sql_borrow = "insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('" + return_b_id + "','" + b_isbn + "','" + Log.log.u_id + "','" + DateTime.Now.ToString("d") + "','" + DateTime.Now.AddDays(7).ToString("d") + "','" + 7 + "')";
+                                        con = dButil.SqlOpen();//打开数据库
+                                        cmd = new SqlCommand(sql_borrow, con);//执行sql语句
+                                        n = cmd.ExecuteNonQuery();//返回受影响的行，用做判断成功
+
+                                        //更新可借数量
+                                        string sql_number = "update [user] set u_number=(u_number-1) where u_id='" + Log.log.u_id + "'";
+                                        cmd = new SqlCommand(sql_number, con);//执行更新可借数量语句
+                                        con.Close();//关闭数据库
+
+                                    }
+                                    else if (tscmb_day.SelectedIndex == 1)//选中15天
+                                    {
+                                        string sql_borrow = "insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('" + return_b_id + "','" + b_isbn + "','" + Log.log.u_id + "','" + DateTime.Now.ToString("d") + "','" + DateTime.Now.AddDays(15).ToString("d") + "','" + 15 + "')";
+                                        con = dButil.SqlOpen();//打开数据库
+                                        cmd = new SqlCommand(sql_borrow, con);//执行sql语句
+                                        n = cmd.ExecuteNonQuery();//返回受影响的行，用做判断成功
+
+                                        //更新可借数量
+                                        string sql_number = "update [user] set u_number=(u_number-1) where u_id='" + Log.log.u_id + "'";
+                                        cmd = new SqlCommand(sql_number, con);//执行更新可借数量语句
+                                        con.Close();//关闭数据库
+                                    }
+                                    else//否则选中30天
+                                    {
+                                        string sql_borrow = "insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('" + return_b_id + "','" + b_isbn + "','" + Log.log.u_id + "','" + DateTime.Now.ToString("d") + "','" + DateTime.Now.AddDays(30).ToString("d") + "','" + 30 + "')";
+                                        con = dButil.SqlOpen();//打开数据库
+                                        cmd = new SqlCommand(sql_borrow, con);//执行sql语句
+                                        n = cmd.ExecuteNonQuery();//返回受影响的行，用做判断成功
+
+                                        //更新可借数量
+                                        string sql_number = "update [user] set u_number=(u_number-1) where u_id='" + Log.log.u_id + "'";
+                                        cmd = new SqlCommand(sql_number, con);//执行更新可借数量语句
+                                        con.Close();//关闭数据库
+                                    }
+
+                                    if (n > 0)
+                                    {
+                                        //成功提示
+                                        MessageBox.Show("借书成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                        Log.log.user_number = Log.log.user_number - 1;//更新log类中的可借数量
+
+                                        // 查询列表内容，这里等于刷新
+                                        sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+                                        databind(sql);//填充到表格控件中
+                                    }
+                                    else
+                                    {
+                                        //错误提示
+                                        MessageBox.Show("借书失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //提示已经借过一本书了
+                            MessageBox.Show("你已经借了一本相同的书了！\n请先还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
-            }
-        }
-
-        //查询类别下拉列表框内容改变时
-        private void tscmb_type_DropDownClosed(object sender, EventArgs e)
-        {
-            if (tscmb_type.SelectedIndex != 0)//判断是否选中了全部类别
-            {
-                //查询全部
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
-                databind(sql);//填充到表格控件中
-            }
-            else
-            {
-                //查询单独一个类型
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and t_name like '%" + tscmb_type.Text + "%' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and t_name like '%" + tscmb_type.Text + "%'";
-                databind(sql);//填充到表格控件中
             }
         }
     }

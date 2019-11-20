@@ -216,6 +216,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图书馆";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_Home_FormClosing);
+            this.Load += new System.EventHandler(this.user_Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

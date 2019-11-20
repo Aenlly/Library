@@ -14,6 +14,9 @@ namespace Library
             public static string u_id;//登录传递的账号,即学号
             public static string pwd;//登录传递的密码
 
+            public static int a_id;//登录传递的管理员编号
+
+            public static int user_number;//在登录后的user_home界面中查询可借图书数量
             public static string user_fid;//user_feedbackRecord界面传递的反馈编号
 
             public static string user_id;//admin_userpage界面传递过来的学号

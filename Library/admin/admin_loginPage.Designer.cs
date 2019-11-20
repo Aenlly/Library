@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.Dgv_login = new System.Windows.Forms.DataGridView();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_select = new System.Windows.Forms.Button();
             this.btn_whole = new System.Windows.Forms.Button();
             this.btn_start = new System.Windows.Forms.Button();
@@ -44,6 +41,9 @@
             this.btn_end = new System.Windows.Forms.Button();
             this.mcd_start = new System.Windows.Forms.MonthCalendar();
             this.mcd_end = new System.Windows.Forms.MonthCalendar();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_login)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,14 +61,14 @@
             // 
             this.Dgv_login.AllowUserToAddRows = false;
             this.Dgv_login.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_login.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_login.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Dgv_login.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_login.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
@@ -78,34 +78,12 @@
             this.Dgv_login.Location = new System.Drawing.Point(0, 103);
             this.Dgv_login.Name = "Dgv_login";
             this.Dgv_login.ReadOnly = true;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Dgv_login.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_login.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.Dgv_login.RowTemplate.Height = 23;
             this.Dgv_login.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Dgv_login.Size = new System.Drawing.Size(349, 422);
             this.Dgv_login.TabIndex = 1;
-            // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "记录编号";
-            this.Cl_id.Name = "Cl_id";
-            this.Cl_id.ReadOnly = true;
-            // 
-            // Cl_uid
-            // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Cl_uid.DefaultCellStyle = dataGridViewCellStyle14;
-            this.Cl_uid.HeaderText = "学号/工号";
-            this.Cl_uid.Name = "Cl_uid";
-            this.Cl_uid.ReadOnly = true;
-            // 
-            // Cl_time
-            // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Cl_time.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Cl_time.HeaderText = "登录时间";
-            this.Cl_time.Name = "Cl_time";
-            this.Cl_time.ReadOnly = true;
             // 
             // btn_select
             // 
@@ -177,6 +155,28 @@
             this.mcd_end.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcd_end_DateChanged);
             this.mcd_end.MouseLeave += new System.EventHandler(this.mcd_end_MouseLeave);
             // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "记录编号";
+            this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
+            // 
+            // Cl_uid
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Cl_uid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Cl_uid.HeaderText = "用户编号";
+            this.Cl_uid.Name = "Cl_uid";
+            this.Cl_uid.ReadOnly = true;
+            // 
+            // Cl_time
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Cl_time.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cl_time.HeaderText = "登录时间";
+            this.Cl_time.Name = "Cl_time";
+            this.Cl_time.ReadOnly = true;
+            // 
             // admin_loginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -189,8 +189,8 @@
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.btn_whole);
             this.Controls.Add(this.btn_select);
-            this.Controls.Add(this.Dgv_login);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.Dgv_login);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "admin_loginPage";
@@ -209,13 +209,13 @@
         private System.Windows.Forms.DataGridView Dgv_login;
         private System.Windows.Forms.Button btn_select;
         private System.Windows.Forms.Button btn_whole;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_uid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_time;
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_end;
         private System.Windows.Forms.MonthCalendar mcd_start;
         private System.Windows.Forms.MonthCalendar mcd_end;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_uid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_time;
     }
 }

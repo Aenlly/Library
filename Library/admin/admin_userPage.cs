@@ -36,7 +36,7 @@ namespace Library.admin
             bindingSource1.DataSource = ds.Tables[0];
             bindingNavigator1.BindingSource = bindingSource1;//连接数据源
             Dgv_user.DataSource = bindingSource1;//导出到dataGridView1中显示并用下列代码对于列名  
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Dgv_user.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
             }
@@ -50,7 +50,7 @@ namespace Library.admin
             tscmb_type.Items.Add("身份证");//添加身份证
             tscmb_type.SelectedIndex = 0;//默认为学号查询
             //查询全部的sql语句
-            string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+            string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user]";
             databind(sql);//传递sql然后查询填充
         }
 
@@ -58,7 +58,7 @@ namespace Library.admin
         private void ts_whole_Click(object sender, EventArgs e)
         {
             //查询全部的sql语句
-            string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+            string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user]";
             databind(sql);//传递sql然后查询填充
         }
 
@@ -67,25 +67,25 @@ namespace Library.admin
             //判断前面的查询类别选择，分别执行不同的查询语句
             if (tscmb_type.Text == "学号")
             {
-                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user] where u_id like '%" + tstext.Text.Trim() + "%'";
+                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user] where u_id like '%" + tstext.Text.Trim() + "%'";
                 databind(sql);
             }
             else if (tscmb_type.Text == "姓名")
             {
-                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user] where u_name like '%" + tstext.Text.Trim() + "%'";
+                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user] where u_name like '%" + tstext.Text.Trim() + "%'";
                 databind(sql);
 
             }
             else if(tscmb_type.Text=="身份证")
             {
-                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user] where u_card like '%" + tstext.Text.Trim() + "%'";
+                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user] where u_card like '%" + tstext.Text.Trim() + "%'";
                 databind(sql);
             }
             //文本框内容为空则显示全部
             if(tstext.Text=="")
             {
                 //查询全部的sql语句
-                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+                string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user]";
                 databind(sql);//传递sql然后查询填充
             }
         }
@@ -102,7 +102,7 @@ namespace Library.admin
                     Log.log.user_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//把当前列的id传递到log类中
                     admin_UserEdit.ShowDialog();//显示编辑界面
                                                 //查询全部的sql语句,实现刷新
-                    string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+                    string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user]";
                     databind(sql);//传递sql然后查询填充
                 }
                 //单击了Schumacher按钮
@@ -123,7 +123,7 @@ namespace Library.admin
                             MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             //查询全部的sql语句,实现刷新
-                            sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+                            sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user]";
                             databind(sql);//传递sql然后查询填充
                         }
                         //失败提示
@@ -139,7 +139,7 @@ namespace Library.admin
             admin_userAdd userAdd = new admin_userAdd();
             userAdd.ShowDialog();
             //查询全部的sql语句,实现刷新
-            string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book,u_overdue from [user]";
+            string sql = "select u_id,u_name,u_sex,u_card,u_college,u_tel,u_position,u_book from [user]";
             databind(sql);//传递sql然后查询填充
         }
     }

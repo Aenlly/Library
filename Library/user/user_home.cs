@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Library.utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -103,6 +105,21 @@ namespace Library.user
             {
                 e.Cancel = true;//当前窗体不关闭
             }
+        }
+
+        private void user_Home_Load(object sender, EventArgs e)
+        {
+            string sql = "select u_number from [user] where u_id='" + Log.log.u_id + "'";//sql查询可借数量语句
+            DButil dButil = new DButil();//实例化DButil工具类
+            SqlConnection con = dButil.SqlOpen();//打开数据库
+            SqlCommand cmd = new SqlCommand(sql, con);//执行sql查询
+            Log.log.user_number = Convert.ToInt16(cmd.ExecuteScalar());//获得可借图书数量，并储存在log类中调用
+
+            //插入登陆信息
+            sql = "insert login values (null," + Log.log.u_id + ",null,getdate())";
+            cmd = new SqlCommand(sql, con);//执行
+            con.Close();//关闭数据库
+
         }
     }
 }

@@ -35,7 +35,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.text_id = new System.Windows.Forms.TextBox();
@@ -44,7 +43,6 @@
             this.text_tel = new System.Windows.Forms.TextBox();
             this.text_number = new System.Windows.Forms.TextBox();
             this.text_book = new System.Windows.Forms.TextBox();
-            this.text_overdue = new System.Windows.Forms.TextBox();
             this.btn_edit = new System.Windows.Forms.Button();
             this.text_position = new System.Windows.Forms.TextBox();
             this.btn_no = new System.Windows.Forms.Button();
@@ -116,18 +114,8 @@
             this.label11.TabIndex = 10;
             this.label11.Text = "累计借书：";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 298);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 14);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "逾期次数：";
-            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label2);
@@ -138,7 +126,7 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(89, 332);
+            this.panel1.Size = new System.Drawing.Size(87, 298);
             this.panel1.TabIndex = 12;
             // 
             // label5
@@ -204,19 +192,10 @@
             this.text_book.TabIndex = 22;
             this.text_book.TabStop = false;
             // 
-            // text_overdue
-            // 
-            this.text_overdue.Enabled = false;
-            this.text_overdue.Location = new System.Drawing.Point(119, 307);
-            this.text_overdue.Name = "text_overdue";
-            this.text_overdue.Size = new System.Drawing.Size(98, 23);
-            this.text_overdue.TabIndex = 23;
-            this.text_overdue.TabStop = false;
-            // 
             // btn_edit
             // 
             this.btn_edit.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_edit.Location = new System.Drawing.Point(18, 383);
+            this.btn_edit.Location = new System.Drawing.Point(18, 338);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(102, 32);
             this.btn_edit.TabIndex = 24;
@@ -236,7 +215,7 @@
             // btn_no
             // 
             this.btn_no.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_no.Location = new System.Drawing.Point(143, 383);
+            this.btn_no.Location = new System.Drawing.Point(143, 338);
             this.btn_no.Name = "btn_no";
             this.btn_no.Size = new System.Drawing.Size(102, 32);
             this.btn_no.TabIndex = 26;
@@ -270,12 +249,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 442);
+            this.ClientSize = new System.Drawing.Size(280, 396);
             this.Controls.Add(this.rbtn_female);
             this.Controls.Add(this.rbtn_male);
             this.Controls.Add(this.btn_no);
             this.Controls.Add(this.btn_edit);
-            this.Controls.Add(this.text_overdue);
             this.Controls.Add(this.text_book);
             this.Controls.Add(this.text_number);
             this.Controls.Add(this.text_position);
@@ -306,7 +284,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox text_id;
         private System.Windows.Forms.TextBox text_name;
@@ -314,7 +291,6 @@
         private System.Windows.Forms.TextBox text_tel;
         private System.Windows.Forms.TextBox text_number;
         private System.Windows.Forms.TextBox text_book;
-        private System.Windows.Forms.TextBox text_overdue;
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox text_position;

@@ -56,7 +56,6 @@ namespace Library.user
             text_position.Text = reader["u_position"].ToString();//获取用户所在用户组
             text_number.Text = reader["u_number"].ToString();//获取用户可借数量
             text_book.Text = reader["u_book"].ToString();//获取用户总借书数量
-            text_overdue.Text = reader["u_overdue"].ToString();//获取用户逾期次数
             con.Close();
         }
 

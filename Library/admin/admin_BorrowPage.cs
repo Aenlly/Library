@@ -63,7 +63,7 @@ namespace Library.admin
                 //获取还书状态的值
                 string b_eme = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_eme"].Value.ToString();
                 //获取借书人的值
-                string u_name = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_uid"].Value.ToString();
+                string u_name = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_u_name"].Value.ToString();
                 //获得借书编号
                 string bo_id = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
                 //判断是否点击了还书按钮
@@ -80,7 +80,7 @@ namespace Library.admin
                         //未申请提示
                         MessageBox.Show("该用户未通过还书审核！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    else
+                    else//通过
                     {
                         //提示，并获取单击的返回值
                         DialogResult dialog=MessageBox.Show("确认通过用户："+ u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -92,6 +92,11 @@ namespace Library.admin
                             con = dButil.SqlOpen();//打开数据库
                             cmd = new SqlCommand(sql, con);//执行sql语句
                             int n = cmd.ExecuteNonQuery();//返回影响行数，并赋值给n用作判断
+
+                            //更新该用户的可借数量,总借书数量
+                            string sql_number = "update [user] set u_number=(u_number+1) u_book=u_book=1 where u_id=(select u_id from borrow where bo_id='" + bo_id + "'";
+                            cmd = new SqlCommand(sql_number, con);//执行更新数量语句
+
                             con.Close();//关闭数据库
                             if (n > 0)//判断是否执行成功并修改
                             {

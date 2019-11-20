@@ -135,6 +135,9 @@ namespace Library.user
                         {
                             //成功提示
                             MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //重新加载，刷新
+                            sql = "select f_id,u_id,f_title,f_smntime,f_asrtime,f_solve from feedback where u_id='" + Log.log.u_id + "'";
+                            databind(sql);//传递sql语句
                         }
                         else
                         {

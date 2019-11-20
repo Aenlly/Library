@@ -70,7 +70,7 @@ namespace Library.admin
                 else
                 {
                     //添加用户的sql语句
-                    string sql = "insert into [user] (,u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "''" + card + "','" + cmb_user.Text + "','5')";
+                    string sql = "insert into [user] (,u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "''" + card + "','" + cmb_user.Text + "','8')";
                     con = dButil.SqlOpen();
                     cmd = new SqlCommand(sql, con);
                     int n = cmd.ExecuteNonQuery();
