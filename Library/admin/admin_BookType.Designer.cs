@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.text_type = new System.Windows.Forms.TextBox();
             this.btn_type = new System.Windows.Forms.Button();
+            this.btn_no = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +52,7 @@
             // 
             // btn_type
             // 
-            this.btn_type.Location = new System.Drawing.Point(65, 51);
+            this.btn_type.Location = new System.Drawing.Point(16, 51);
             this.btn_type.Name = "btn_type";
             this.btn_type.Size = new System.Drawing.Size(76, 29);
             this.btn_type.TabIndex = 2;
@@ -59,17 +60,31 @@
             this.btn_type.UseVisualStyleBackColor = true;
             this.btn_type.Click += new System.EventHandler(this.btn_type_Click);
             // 
+            // btn_no
+            // 
+            this.btn_no.Location = new System.Drawing.Point(118, 51);
+            this.btn_no.Name = "btn_no";
+            this.btn_no.Size = new System.Drawing.Size(81, 29);
+            this.btn_no.TabIndex = 3;
+            this.btn_no.Text = "取消";
+            this.btn_no.UseVisualStyleBackColor = true;
+            this.btn_no.Click += new System.EventHandler(this.btn_no_Click);
+            // 
             // admin_BookType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(224, 92);
+            this.Controls.Add(this.btn_no);
             this.Controls.Add(this.btn_type);
             this.Controls.Add(this.text_type);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_BookType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "添加新类别";
@@ -83,5 +98,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox text_type;
         private System.Windows.Forms.Button btn_type;
+        private System.Windows.Forms.Button btn_no;
     }
 }

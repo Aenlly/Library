@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_BorrowPage));
             this.Dgv_borrow = new System.Windows.Forms.DataGridView();
             this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,9 +61,9 @@
             this.tsbtn_select = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ts_borrow = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_borrowNo = new System.Windows.Forms.ToolStripButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ts_borrow = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_borrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -73,13 +75,15 @@
             this.Dgv_borrow.AllowUserToAddRows = false;
             this.Dgv_borrow.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_borrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Dgv_borrow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_borrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Dgv_borrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_borrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
@@ -92,23 +96,32 @@
             this.Cl_eme,
             this.Cl_Renewal,
             this.Cl_operation});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Dgv_borrow.DefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv_borrow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_borrow.Location = new System.Drawing.Point(0, 28);
             this.Dgv_borrow.Name = "Dgv_borrow";
             this.Dgv_borrow.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_borrow.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Dgv_borrow.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_borrow.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_borrow.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_borrow.RowTemplate.Height = 23;
+            this.Dgv_borrow.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Dgv_borrow.Size = new System.Drawing.Size(969, 497);
-            this.Dgv_borrow.TabIndex = 0;
+            this.Dgv_borrow.TabIndex = 1;
             this.Dgv_borrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_borrow_CellClick);
             // 
             // Cl_id
@@ -214,7 +227,7 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
             this.bindingNavigator1.Size = new System.Drawing.Size(969, 28);
-            this.bindingNavigator1.TabIndex = 7;
+            this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
@@ -321,16 +334,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
-            // tsbtn_borrowNo
-            // 
-            this.tsbtn_borrowNo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbtn_borrowNo.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_borrowNo.Image")));
-            this.tsbtn_borrowNo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtn_borrowNo.Name = "tsbtn_borrowNo";
-            this.tsbtn_borrowNo.Size = new System.Drawing.Size(174, 25);
-            this.tsbtn_borrowNo.Text = "显示失败或待审核记录";
-            this.tsbtn_borrowNo.Click += new System.EventHandler(this.tsbtn_borrowNo_Click);
-            // 
             // ts_borrow
             // 
             this.ts_borrow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -341,10 +344,21 @@
             this.ts_borrow.Text = "显示当前所借记录";
             this.ts_borrow.Click += new System.EventHandler(this.ts_borrow_Click);
             // 
+            // tsbtn_borrowNo
+            // 
+            this.tsbtn_borrowNo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_borrowNo.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_borrowNo.Image")));
+            this.tsbtn_borrowNo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_borrowNo.Name = "tsbtn_borrowNo";
+            this.tsbtn_borrowNo.Size = new System.Drawing.Size(174, 25);
+            this.tsbtn_borrowNo.Text = "显示失败或待审核记录";
+            this.tsbtn_borrowNo.Click += new System.EventHandler(this.tsbtn_borrowNo_Click);
+            // 
             // user_BorrowPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(969, 525);
             this.Controls.Add(this.Dgv_borrow);
             this.Controls.Add(this.bindingNavigator1);

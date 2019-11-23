@@ -180,7 +180,7 @@
             // btn_ok
             // 
             this.btn_ok.Font = new System.Drawing.Font("宋体", 14F);
-            this.btn_ok.Location = new System.Drawing.Point(105, 554);
+            this.btn_ok.Location = new System.Drawing.Point(71, 554);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.Size = new System.Drawing.Size(127, 36);
             this.btn_ok.TabIndex = 1;
@@ -191,10 +191,10 @@
             // btn_no
             // 
             this.btn_no.Font = new System.Drawing.Font("宋体", 14F);
-            this.btn_no.Location = new System.Drawing.Point(275, 554);
+            this.btn_no.Location = new System.Drawing.Point(241, 554);
             this.btn_no.Name = "btn_no";
             this.btn_no.Size = new System.Drawing.Size(119, 36);
-            this.btn_no.TabIndex = 14;
+            this.btn_no.TabIndex = 2;
             this.btn_no.Text = "返回";
             this.btn_no.UseVisualStyleBackColor = true;
             this.btn_no.Visible = false;
@@ -204,6 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(430, 602);
             this.Controls.Add(this.btn_no);
             this.Controls.Add(this.btn_ok);
@@ -222,8 +223,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_FeedBack";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "反馈详细信息";
             this.Load += new System.EventHandler(this.admin_FeedBack_Load);
             this.ResumeLayout(false);

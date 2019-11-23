@@ -43,7 +43,7 @@ namespace Library.user
                         bool f_ed;
                         string sqlpwd_ed = "update [user] set u_password ='" + text_pwd.Text.Trim() + "' where u_id='" + user_id + "'";//修改密码的sql语句
                         f_ed = sqlDbHelper.EditPwd(sqlpwd_ed);//传递sql语句进行判断是否修改了
-                        if (f_ed == false)
+                        if (f_ed == true)
                         {
                             Log.log.pwd = user_pwd;
                             MessageBox.Show(this, "密码修改成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.None);//弹窗提示

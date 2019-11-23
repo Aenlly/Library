@@ -52,7 +52,7 @@
             this.btn_edit.Location = new System.Drawing.Point(95, 308);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(104, 34);
-            this.btn_edit.TabIndex = 37;
+            this.btn_edit.TabIndex = 7;
             this.btn_edit.Text = "确认修改";
             this.btn_edit.UseVisualStyleBackColor = true;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
@@ -62,14 +62,14 @@
             this.text_college.Location = new System.Drawing.Point(131, 205);
             this.text_college.Name = "text_college";
             this.text_college.Size = new System.Drawing.Size(151, 23);
-            this.text_college.TabIndex = 32;
+            this.text_college.TabIndex = 5;
             // 
             // text_name
             // 
             this.text_name.Location = new System.Drawing.Point(131, 51);
             this.text_name.Name = "text_name";
             this.text_name.Size = new System.Drawing.Size(107, 23);
-            this.text_name.TabIndex = 27;
+            this.text_name.TabIndex = 1;
             // 
             // text_id
             // 
@@ -77,7 +77,7 @@
             this.text_id.Name = "text_id";
             this.text_id.ReadOnly = true;
             this.text_id.Size = new System.Drawing.Size(151, 23);
-            this.text_id.TabIndex = 26;
+            this.text_id.TabIndex = 0;
             // 
             // cmb_position
             // 
@@ -86,7 +86,7 @@
             this.cmb_position.Location = new System.Drawing.Point(131, 248);
             this.cmb_position.Name = "cmb_position";
             this.cmb_position.Size = new System.Drawing.Size(68, 22);
-            this.cmb_position.TabIndex = 38;
+            this.cmb_position.TabIndex = 6;
             // 
             // label7
             // 
@@ -147,9 +147,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 14);
+            this.label1.Size = new System.Drawing.Size(84, 14);
             this.label1.TabIndex = 0;
-            this.label1.Text = "学号：";
+            this.label1.Text = "学号/工号：";
             // 
             // panel1
             // 
@@ -162,7 +162,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(24, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(89, 273);
+            this.panel1.Size = new System.Drawing.Size(101, 273);
             this.panel1.TabIndex = 25;
             // 
             // cmb_sex
@@ -173,7 +173,7 @@
             this.cmb_sex.Location = new System.Drawing.Point(131, 94);
             this.cmb_sex.Name = "cmb_sex";
             this.cmb_sex.Size = new System.Drawing.Size(68, 22);
-            this.cmb_sex.TabIndex = 39;
+            this.cmb_sex.TabIndex = 2;
             // 
             // mtext_card
             // 
@@ -181,7 +181,7 @@
             this.mtext_card.Mask = "000000-00000000-000A";
             this.mtext_card.Name = "mtext_card";
             this.mtext_card.Size = new System.Drawing.Size(151, 23);
-            this.mtext_card.TabIndex = 40;
+            this.mtext_card.TabIndex = 4;
             // 
             // mtext_tel
             // 
@@ -189,12 +189,13 @@
             this.mtext_tel.Mask = "000-0000-0000";
             this.mtext_tel.Name = "mtext_tel";
             this.mtext_tel.Size = new System.Drawing.Size(107, 23);
-            this.mtext_tel.TabIndex = 41;
+            this.mtext_tel.TabIndex = 3;
             // 
             // admin_userEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(303, 357);
             this.Controls.Add(this.mtext_tel);
             this.Controls.Add(this.mtext_card);

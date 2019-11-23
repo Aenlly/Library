@@ -90,6 +90,9 @@ namespace Library.admin
             //判断是否选择了日期
             if (!"点击选择".Equals(btn_end.Text) && !"点击选择".Equals(btn_start.Text))
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询开始时间为:"+ btn_start.Text + "结束时间为:"+ btn_end.Text+"的登录记录");//插入操作记录
+
                 //选择了日期就传递日期的值，然后整合sql语句
                 string sql = "select * from [login] where l_time>'" + btn_start.Text + "' and l_time<'" + btn_end.Text + "'";
                 databind(sql);//传递sql语句过去然后填充到表格中
@@ -104,6 +107,8 @@ namespace Library.admin
         //查询全部按钮，显示全部的登录记录
         private void btn_whole_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询全部的登录记录");//插入操作记录
             string sql = "select * from [login]";
             databind(sql);
         }

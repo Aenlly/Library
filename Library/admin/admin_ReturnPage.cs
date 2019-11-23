@@ -77,23 +77,39 @@ namespace Library.admin
         {
             if (tscmb_type.Text == "借书人")
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询借书人：" + tsbtn_book.Text.Trim() +"的记录");//插入操作记录
+
                 string sql= "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_name like '%" + tsbtn_book.Text.Trim()+"%'";
                 databind(sql);
             }
             else if (tscmb_type.Text == "借书时间")
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询借书时间为"+ tsbtn_book.Text.Trim() + "的记录");//插入操作记录
+
                 string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and bo_borrow = '" + tsbtn_book.Text.Trim() + "'";
                 databind(sql);
             }
             else if (tscmb_type.Text == "还书时间")
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询还书时间为" + tsbtn_book.Text.Trim() + "的记录");//插入操作记录
+
                 string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and bo_rtnatl = '" + tsbtn_book.Text.Trim() + "'";
                 databind(sql);
+            }
+            else
+            {
+                //提示警告
+                MessageBox.Show("请选择查询类别！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询全部数据记录");//插入操作记录
             //查询表格全部内容
             string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2";
             databind(sql);//传递sql语句

@@ -31,8 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_FeedBackPage));
             this.Dgv_fbk = new System.Windows.Forms.DataGridView();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_smntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_asrtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_solve = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_see = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_Reply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -51,14 +62,6 @@
             this.tsbtn_whole = new System.Windows.Forms.ToolStripButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.mcd_time = new System.Windows.Forms.MonthCalendar();
-            this.Cl_Reply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Cl_see = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Cl_solve = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_asrtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_smntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_fbk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -72,13 +75,15 @@
             this.Dgv_fbk.AllowUserToResizeColumns = false;
             this.Dgv_fbk.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_fbk.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Dgv_fbk.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_fbk.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Dgv_fbk.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_fbk.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
@@ -89,24 +94,86 @@
             this.Cl_solve,
             this.Cl_see,
             this.Cl_Reply});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Dgv_fbk.DefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv_fbk.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_fbk.Location = new System.Drawing.Point(0, 28);
             this.Dgv_fbk.MultiSelect = false;
             this.Dgv_fbk.Name = "Dgv_fbk";
             this.Dgv_fbk.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_fbk.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_fbk.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_fbk.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_fbk.RowTemplate.Height = 23;
             this.Dgv_fbk.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Dgv_fbk.Size = new System.Drawing.Size(865, 497);
-            this.Dgv_fbk.TabIndex = 0;
+            this.Dgv_fbk.TabIndex = 1;
             this.Dgv_fbk.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_fbk_CellClick);
+            // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "反馈编号";
+            this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
+            // 
+            // Cl_uid
+            // 
+            this.Cl_uid.HeaderText = "用户ID";
+            this.Cl_uid.Name = "Cl_uid";
+            this.Cl_uid.ReadOnly = true;
+            // 
+            // Cl_title
+            // 
+            this.Cl_title.HeaderText = "反馈标题";
+            this.Cl_title.Name = "Cl_title";
+            this.Cl_title.ReadOnly = true;
+            // 
+            // Cl_smntime
+            // 
+            this.Cl_smntime.HeaderText = "提交时间";
+            this.Cl_smntime.Name = "Cl_smntime";
+            this.Cl_smntime.ReadOnly = true;
+            // 
+            // Cl_asrtime
+            // 
+            this.Cl_asrtime.HeaderText = "回复时间";
+            this.Cl_asrtime.Name = "Cl_asrtime";
+            this.Cl_asrtime.ReadOnly = true;
+            // 
+            // Cl_solve
+            // 
+            this.Cl_solve.HeaderText = "是否已回复";
+            this.Cl_solve.Name = "Cl_solve";
+            this.Cl_solve.ReadOnly = true;
+            // 
+            // Cl_see
+            // 
+            this.Cl_see.HeaderText = "操作";
+            this.Cl_see.Name = "Cl_see";
+            this.Cl_see.ReadOnly = true;
+            this.Cl_see.Text = "查看";
+            this.Cl_see.UseColumnTextForButtonValue = true;
+            // 
+            // Cl_Reply
+            // 
+            this.Cl_Reply.HeaderText = "操作";
+            this.Cl_Reply.Name = "Cl_Reply";
+            this.Cl_Reply.ReadOnly = true;
+            this.Cl_Reply.Text = "回复";
+            this.Cl_Reply.UseColumnTextForButtonValue = true;
             // 
             // bindingNavigator1
             // 
@@ -138,7 +205,7 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
             this.bindingNavigator1.Size = new System.Drawing.Size(865, 28);
-            this.bindingNavigator1.TabIndex = 1;
+            this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
@@ -239,7 +306,7 @@
             this.tsbtn_no.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_no.Name = "tsbtn_no";
             this.tsbtn_no.Size = new System.Drawing.Size(94, 25);
-            this.tsbtn_no.Text = "显示未解决";
+            this.tsbtn_no.Text = "显示未回复";
             this.tsbtn_no.ToolTipText = "显示未回复";
             this.tsbtn_no.Click += new System.EventHandler(this.tsbtn_no_Click);
             // 
@@ -250,7 +317,7 @@
             this.tsbtn_yes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_yes.Name = "tsbtn_yes";
             this.tsbtn_yes.Size = new System.Drawing.Size(94, 25);
-            this.tsbtn_yes.Text = "显示已解决";
+            this.tsbtn_yes.Text = "显示已回复";
             this.tsbtn_yes.ToolTipText = "显示已回复";
             this.tsbtn_yes.Click += new System.EventHandler(this.tsbtn_yes_Click);
             // 
@@ -269,71 +336,25 @@
             this.mcd_time.Location = new System.Drawing.Point(295, 25);
             this.mcd_time.Name = "mcd_time";
             this.mcd_time.TabIndex = 2;
+            this.mcd_time.TabStop = false;
             this.mcd_time.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcd_time_DateChanged);
             this.mcd_time.MouseLeave += new System.EventHandler(this.mcd_time_MouseLeave);
-            // 
-            // Cl_Reply
-            // 
-            this.Cl_Reply.HeaderText = "操作";
-            this.Cl_Reply.Name = "Cl_Reply";
-            this.Cl_Reply.ReadOnly = true;
-            this.Cl_Reply.Text = "回复";
-            this.Cl_Reply.UseColumnTextForButtonValue = true;
-            // 
-            // Cl_see
-            // 
-            this.Cl_see.HeaderText = "操作";
-            this.Cl_see.Name = "Cl_see";
-            this.Cl_see.ReadOnly = true;
-            this.Cl_see.Text = "查看";
-            this.Cl_see.UseColumnTextForButtonValue = true;
-            // 
-            // Cl_solve
-            // 
-            this.Cl_solve.HeaderText = "是否已回复";
-            this.Cl_solve.Name = "Cl_solve";
-            this.Cl_solve.ReadOnly = true;
-            // 
-            // Cl_asrtime
-            // 
-            this.Cl_asrtime.HeaderText = "回复时间";
-            this.Cl_asrtime.Name = "Cl_asrtime";
-            this.Cl_asrtime.ReadOnly = true;
-            // 
-            // Cl_smntime
-            // 
-            this.Cl_smntime.HeaderText = "提交时间";
-            this.Cl_smntime.Name = "Cl_smntime";
-            this.Cl_smntime.ReadOnly = true;
-            // 
-            // Cl_title
-            // 
-            this.Cl_title.HeaderText = "反馈标题";
-            this.Cl_title.Name = "Cl_title";
-            this.Cl_title.ReadOnly = true;
-            // 
-            // Cl_uid
-            // 
-            this.Cl_uid.HeaderText = "用户ID";
-            this.Cl_uid.Name = "Cl_uid";
-            this.Cl_uid.ReadOnly = true;
-            // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "反馈编号";
-            this.Cl_id.Name = "Cl_id";
-            this.Cl_id.ReadOnly = true;
             // 
             // admin_FeedBackPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(865, 525);
             this.Controls.Add(this.mcd_time);
             this.Controls.Add(this.Dgv_fbk);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_FeedBackPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "反馈记录";
             this.Load += new System.EventHandler(this.admin_FeedBackPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_fbk)).EndInit();

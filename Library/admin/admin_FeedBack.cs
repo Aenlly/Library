@@ -82,6 +82,9 @@ namespace Library.admin
                         int n = cmd.ExecuteNonQuery();//返回受影响行数并赋值到int中用于判断
                         if (n > 0)//判断是否成功
                         {
+                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                            dbHelper.Operation("回复反馈编号为" + Log.log.f_id + "的反馈记录");//插入操作记录
+
                             //成功提示
                             dialog = MessageBox.Show("回复成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (DialogResult.OK == dialog)

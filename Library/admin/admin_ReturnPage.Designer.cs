@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_ReturnPage));
             this.Dgv_return = new System.Windows.Forms.DataGridView();
             this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,6 +110,7 @@
             this.Dgv_return.Location = new System.Drawing.Point(0, 32);
             this.Dgv_return.MultiSelect = false;
             this.Dgv_return.Name = "Dgv_return";
+            this.Dgv_return.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
@@ -117,61 +119,73 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Dgv_return.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_return.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_return.RowTemplate.Height = 23;
             this.Dgv_return.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Dgv_return.Size = new System.Drawing.Size(1120, 568);
-            this.Dgv_return.TabIndex = 6;
+            this.Dgv_return.TabIndex = 1;
             // 
             // Cl_id
             // 
             this.Cl_id.HeaderText = "借书编号";
             this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
             // 
             // Cl_uid
             // 
             this.Cl_uid.HeaderText = "借书人";
             this.Cl_uid.Name = "Cl_uid";
+            this.Cl_uid.ReadOnly = true;
             // 
             // Cl_name
             // 
             this.Cl_name.HeaderText = "图书名称";
             this.Cl_name.Name = "Cl_name";
+            this.Cl_name.ReadOnly = true;
             // 
             // Cl_type
             // 
             this.Cl_type.HeaderText = "图书类别";
             this.Cl_type.Name = "Cl_type";
+            this.Cl_type.ReadOnly = true;
             this.Cl_type.Width = 150;
             // 
             // Cl_borrow
             // 
             this.Cl_borrow.HeaderText = "借书日期";
             this.Cl_borrow.Name = "Cl_borrow";
+            this.Cl_borrow.ReadOnly = true;
             // 
             // Cl_return
             // 
             this.Cl_return.HeaderText = "还书日期";
             this.Cl_return.Name = "Cl_return";
+            this.Cl_return.ReadOnly = true;
             // 
             // Cl_day
             // 
             this.Cl_day.HeaderText = "所借天数";
             this.Cl_day.Name = "Cl_day";
+            this.Cl_day.ReadOnly = true;
             // 
             // Cl_renew
             // 
             this.Cl_renew.HeaderText = "是否续借";
             this.Cl_renew.Name = "Cl_renew";
+            this.Cl_renew.ReadOnly = true;
             // 
             // Cl_renewday
             // 
             this.Cl_renewday.HeaderText = "续借天数";
             this.Cl_renewday.Name = "Cl_renewday";
+            this.Cl_renewday.ReadOnly = true;
             // 
             // Cl_eme
             // 
             this.Cl_eme.HeaderText = "还书成功";
             this.Cl_eme.Name = "Cl_eme";
+            this.Cl_eme.ReadOnly = true;
             // 
             // bindingNavigator1
             // 
@@ -202,7 +216,7 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
             this.bindingNavigator1.Size = new System.Drawing.Size(1120, 32);
-            this.bindingNavigator1.TabIndex = 7;
+            this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
@@ -322,18 +336,24 @@
             this.mcd_time.Location = new System.Drawing.Point(476, 30);
             this.mcd_time.Name = "mcd_time";
             this.mcd_time.TabIndex = 8;
+            this.mcd_time.TabStop = false;
             this.mcd_time.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcd_time_DateChanged);
             // 
             // admin_ReturnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1120, 600);
             this.Controls.Add(this.mcd_time);
             this.Controls.Add(this.Dgv_return);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 12F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_ReturnPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "还书记录";
             this.Load += new System.EventHandler(this.admin_ReturnPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_return)).EndInit();

@@ -42,7 +42,7 @@ namespace Library
             else
             {
                 //判断登录方式是否为用户
-                if (cmb_1.SelectedIndex == 0)
+                if (cmb_type.SelectedIndex == 0)
                 {
                     String sql = "select u_password from [user] where u_id='" + name+"'";
                     int n = sqlDbHelper.Checkuser(sql, pwd);
@@ -50,7 +50,14 @@ namespace Library
                     {
                         Log.log.u_id = text_name.Text.Trim();
                         Log.log.pwd = text_pwd.Text.Trim();
-                        user.user_Home user_Home = new user.user_Home();//用户窗体实例化
+
+                        //插入登陆信息
+                        sql = "insert login(u_id,l_time) values (" + Log.log.u_id + ",null,getdate())";
+                        SqlConnection con = dButil.SqlOpen();//打开数据库
+                        SqlCommand cmd = new SqlCommand(sql, con);//执行插入登录信息
+                        con.Close();//关闭数据库
+
+                        user_Home user_Home = new user_Home();//用户窗体实例化
                         user_Home.Show();// 显示窗体
                         user_Home.Activate();//给予焦点
                         this.Visible = false;  // 当前窗体不可见
@@ -69,7 +76,7 @@ namespace Library
                 }
 
                 //判断登录方式是否为管理员
-                else if (cmb_1.SelectedIndex == 1)
+                else if (cmb_type.SelectedIndex == 1)
                 {
                     string sql = "select a_password from [admin] where a_name='" + name + "'";//执行管理员查询语句
                     int n = sqlDbHelper.Checkadmin(sql, pwd);//传递sql语句与用户输入的密码
@@ -123,9 +130,9 @@ namespace Library
         //窗体加载
         private void Login_Load(object sender, EventArgs e)
         {
-            cmb_1.Items.Add("用户");//添加用户选项
-            cmb_1.Items.Add("管理员");//添加管理员选项
-            cmb_1.SelectedIndex = 0;//使用户为默认选项
+            cmb_type.Items.Add("用户");//添加用户选项
+            cmb_type.Items.Add("管理员");//添加管理员选项
+            cmb_type.SelectedIndex = 0;//使用户为默认选项
         }
 
         //点击关闭时的执行代码判断
@@ -140,6 +147,31 @@ namespace Library
             else
             {
                 e.Cancel = true;//当前窗体不关闭
+            }
+        }
+
+        private void text_name_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cmb_type.Text == "用户")
+            {
+                if (e.KeyChar != '\b')//这是允许输入退格键  
+                {
+                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+            else { }
+        }
+
+        private void cmb_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_type.SelectedIndex == 0)
+            {
+                text_name.Text = "";
+                text_pwd.Text = "";
+                text_name.Focus();
             }
         }
     }

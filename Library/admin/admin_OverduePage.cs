@@ -52,7 +52,7 @@ namespace Library.admin
             cmd = new SqlCommand(sql_ovup, con);//执行语句
             con.Close();//关闭数据库
             //执行查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -103,10 +103,13 @@ namespace Library.admin
                             //判断是否成功
                             if (n > 0)
                             {
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation(u_name+"的缴费审核已通过");//插入操作记录
+
                                 //成功提示
                                 MessageBox.Show("用户：" + u_name + "的缴费审核通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //执行查询语句刷新
-                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
                                 databind(sql);//传递语句填充到表格中
                             }
                             else
@@ -152,10 +155,13 @@ namespace Library.admin
                             //判断是否成功
                             if (n > 0)
                             {
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation("不通过"+ u_name+ "的缴费审核");//插入操作记录
+
                                 //成功提示
                                 MessageBox.Show("用户：" + u_name + "的缴费审核已不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //执行查询语句刷新
-                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
                                 databind(sql);//传递语句填充到表格中
                             }
                             else
@@ -175,14 +181,20 @@ namespace Library.admin
         {
             if (tstext_name.Text.Trim() == "")
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询全部数据记录");//插入操作记录
+
                 //执行全部查询语句
-                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
                 databind(sql);//传递语句填充到表格中
             }
             else
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询借书人为："+ tstext_name.Text.Trim()+ "记录");//插入操作记录
+
                 //执行查询借书人语句
-                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0 and u_name like '%" + tstext_name.Text.Trim() + "%'";
+                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0 and u_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递语句填充到表格中
             }
         }
@@ -190,40 +202,55 @@ namespace Library.admin
         //显示全部按钮单击事件
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询全部数据记录");//插入操作记录
+
             //执行全部查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
             databind(sql);//传递语句填充到表格中
         }
 
         //显示未缴费用户按钮单击事件
         private void tsbtn_no_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询未缴费用户数据记录");//插入操作记录
+
             //执行未缴费用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=1";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=1";
             databind(sql);//传递语句填充到表格中
         }
 
         //显示待审核用户按钮的单击事件
         private void tsbtn_examine_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询待审核用户数据记录");//插入操作记录
+
             //执行待审核用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=2";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=2";
             databind(sql);//传递语句填充到表格中
         }
 
         //显示已缴费用户按钮的单击事件
         private void tsbtn_yes_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询已缴费用户数据记录");//插入操作记录
+
             //执行已缴费用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=3";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=3";
             databind(sql);//传递语句填充到表格中
         }
 
         //显示未通过用户按钮的单击事件
         private void tsbtn_nopass_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询未通过用户数据记录");//插入操作记录
+
             //执行未通过用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=4";
+            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=4";
             databind(sql);//传递语句填充到表格中
         }
     }

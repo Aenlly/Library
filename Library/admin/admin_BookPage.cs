@@ -46,7 +46,7 @@ namespace Library.admin
         //窗体加载事件
         private void admin_BookPage_Load(object sender, EventArgs e)
         {
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
             databind(sql);//传递sql然后查询填充
         }
 
@@ -62,19 +62,19 @@ namespace Library.admin
                     admin_BookEdit admin_BookEdit = new admin_BookEdit();//实例化编辑界面
 
                     //把选中列的各个值传递到log类中
-                    Log.log.b_isbn = Dgv_adminBook.Rows[e.RowIndex].Cells["b_isbn"].Value.ToString();
-                    Log.log.b_name = Dgv_adminBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString();
-                    Log.log.b_type = Dgv_adminBook.Rows[e.RowIndex].Cells["t_name"].Value.ToString();
-                    Log.log.b_author = Dgv_adminBook.Rows[e.RowIndex].Cells["b_author"].Value.ToString();
-                    Log.log.b_press = Dgv_adminBook.Rows[e.RowIndex].Cells["b_press"].Value.ToString();
-                    Log.log.b_time = Dgv_adminBook.Rows[e.RowIndex].Cells["b_time"].Value.ToString();
-                    Log.log.b_price = Dgv_adminBook.Rows[e.RowIndex].Cells["b_price"].Value.ToString();
-                    Log.log.b_stocks = Dgv_adminBook.Rows[e.RowIndex].Cells["b_stocks"].Value.ToString();
+                    Log.log.b_isbn = Dgv_adminBook.Rows[e.RowIndex].Cells["b_isbn"].Value.ToString();//传递isbn值
+                    Log.log.b_name = Dgv_adminBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString();//传递图书名
+                    Log.log.b_type = Dgv_adminBook.Rows[e.RowIndex].Cells["t_name"].Value.ToString();//传递图书类别
+                    Log.log.b_author = Dgv_adminBook.Rows[e.RowIndex].Cells["b_author"].Value.ToString();//传递作者
+                    Log.log.b_press = Dgv_adminBook.Rows[e.RowIndex].Cells["b_press"].Value.ToString();//传递出版社
+                    Log.log.b_time = Dgv_adminBook.Rows[e.RowIndex].Cells["b_time"].Value.ToString();//传递年份
+                    Log.log.b_price = Dgv_adminBook.Rows[e.RowIndex].Cells["b_price"].Value.ToString();//传递价格
+                    Log.log.b_stocks = Dgv_adminBook.Rows[e.RowIndex].Cells["b_stocks"].Value.ToString();//传递库存
 
 
                     admin_BookEdit.ShowDialog();//显示编辑界面
                                                 //查询全部的sql语句,实现刷新
-                    string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+                    string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
                     databind(sql);//传递sql然后查询填充
                 }
                 //单击了删除按钮
@@ -91,6 +91,9 @@ namespace Library.admin
                         int n = cmd.ExecuteNonQuery();
                         if (n == 0)
                         {
+                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                            dbHelper.Operation("删除图书名为：" + book_name + "未成功");//插入操作记录
+
                             MessageBox.Show("有用户未还书，无法删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
@@ -106,13 +109,17 @@ namespace Library.admin
                             con.Close();
                             if (n > 0)
                             {
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation("删除图书名为："+book_name+ "的图书表与ISBN表及借书表的记录");//插入操作记录
+
                                 MessageBox.Show("删除图书:" + book_name + "成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //查询全部的sql语句,实现刷新
-                                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+                                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
                                 databind(sql);//传递sql然后查询填充
                             }
                             else
                             {
+                                //失败提示
                                 MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
@@ -127,12 +134,18 @@ namespace Library.admin
             //判断是否输入了值，没有则查询全部
             if (tstext_book.Text.Trim() == "")
             {
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name like '%" + tstext_book.Text.Trim() + "%' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询全部图书记录");//插入操作记录
+
+                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and [book].b_name like '%" + tstext_book.Text.Trim() + "%' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
                 databind(sql);
             }
             else
             {
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询图书名为："+tstext_book.Text.Trim()+"的记录");//插入操作记录
+
+                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
                 databind(sql);//传递sql然后查询填充
             }
         }
@@ -140,6 +153,9 @@ namespace Library.admin
         //显示全部按钮事件
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询全部图书记录");//插入操作记录
+
             string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
             databind(sql);//传递sql然后查询填充
         }
@@ -149,15 +165,20 @@ namespace Library.admin
         {
             admin_BookAdd admin_BookAdd = new admin_BookAdd();//实例化admin_BookAdd窗体
             admin_BookAdd.ShowDialog();//以对话框模式显示
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
-            databind(sql);//传递sql然后查询填充
+            
         }
 
         //添加新类别按钮事件
         private void tsbtn_type_Click(object sender, EventArgs e)
         {
-            admin_BookType bookType = new admin_BookType();
-            bookType.ShowDialog();
+            admin_BookType bookType = new admin_BookType();//实例化admin_BookType窗体
+            bookType.ShowDialog();//以对话框模式显示
+        }
+
+        private void admin_BookPage_Activated(object sender, EventArgs e)
+        {
+            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+            databind(sql);//传递sql然后查询填充
         }
     }
 }

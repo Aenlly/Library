@@ -91,14 +91,14 @@
             this.panel2.Location = new System.Drawing.Point(0, 177);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(134, 428);
-            this.panel2.TabIndex = 2;
+            this.panel2.TabIndex = 0;
             // 
             // btn_fbr
             // 
             this.btn_fbr.Location = new System.Drawing.Point(30, 244);
             this.btn_fbr.Name = "btn_fbr";
             this.btn_fbr.Size = new System.Drawing.Size(75, 23);
-            this.btn_fbr.TabIndex = 8;
+            this.btn_fbr.TabIndex = 7;
             this.btn_fbr.Text = "反馈记录";
             this.btn_fbr.UseVisualStyleBackColor = true;
             this.btn_fbr.Click += new System.EventHandler(this.btn_fbr_Click);
@@ -108,7 +108,7 @@
             this.btn_about.Location = new System.Drawing.Point(30, 282);
             this.btn_about.Name = "btn_about";
             this.btn_about.Size = new System.Drawing.Size(75, 23);
-            this.btn_about.TabIndex = 7;
+            this.btn_about.TabIndex = 8;
             this.btn_about.Text = "关于系统";
             this.btn_about.UseVisualStyleBackColor = true;
             this.btn_about.Click += new System.EventHandler(this.btn_About_Click);
@@ -138,7 +138,7 @@
             this.btn_Signout.Location = new System.Drawing.Point(30, 320);
             this.btn_Signout.Name = "btn_Signout";
             this.btn_Signout.Size = new System.Drawing.Size(75, 23);
-            this.btn_Signout.TabIndex = 5;
+            this.btn_Signout.TabIndex = 9;
             this.btn_Signout.Text = "退出登录";
             this.btn_Signout.UseVisualStyleBackColor = true;
             this.btn_Signout.Click += new System.EventHandler(this.btn_Signout_Click);
@@ -148,7 +148,7 @@
             this.btn_Basic.Location = new System.Drawing.Point(30, 168);
             this.btn_Basic.Name = "btn_Basic";
             this.btn_Basic.Size = new System.Drawing.Size(75, 23);
-            this.btn_Basic.TabIndex = 4;
+            this.btn_Basic.TabIndex = 5;
             this.btn_Basic.Text = "基本信息";
             this.btn_Basic.UseVisualStyleBackColor = true;
             this.btn_Basic.Click += new System.EventHandler(this.btn_Basic_Click);
@@ -158,7 +158,7 @@
             this.btn_overdue.Location = new System.Drawing.Point(30, 130);
             this.btn_overdue.Name = "btn_overdue";
             this.btn_overdue.Size = new System.Drawing.Size(75, 23);
-            this.btn_overdue.TabIndex = 3;
+            this.btn_overdue.TabIndex = 4;
             this.btn_overdue.Text = "逾期记录";
             this.btn_overdue.UseVisualStyleBackColor = true;
             this.btn_overdue.Click += new System.EventHandler(this.btn_overdue_Click);
@@ -168,7 +168,7 @@
             this.btn_return.Location = new System.Drawing.Point(30, 92);
             this.btn_return.Name = "btn_return";
             this.btn_return.Size = new System.Drawing.Size(75, 23);
-            this.btn_return.TabIndex = 2;
+            this.btn_return.TabIndex = 3;
             this.btn_return.Text = "还书记录";
             this.btn_return.UseVisualStyleBackColor = true;
             this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
@@ -178,7 +178,7 @@
             this.btn_borrow.Location = new System.Drawing.Point(30, 54);
             this.btn_borrow.Name = "btn_borrow";
             this.btn_borrow.Size = new System.Drawing.Size(75, 23);
-            this.btn_borrow.TabIndex = 1;
+            this.btn_borrow.TabIndex = 2;
             this.btn_borrow.Text = "借书记录";
             this.btn_borrow.UseVisualStyleBackColor = true;
             this.btn_borrow.Click += new System.EventHandler(this.btn_borrow_Click);
@@ -188,7 +188,7 @@
             this.btn_book.Location = new System.Drawing.Point(30, 16);
             this.btn_book.Name = "btn_book";
             this.btn_book.Size = new System.Drawing.Size(75, 23);
-            this.btn_book.TabIndex = 0;
+            this.btn_book.TabIndex = 1;
             this.btn_book.Text = "查询图书";
             this.btn_book.UseVisualStyleBackColor = true;
             this.btn_book.Click += new System.EventHandler(this.btn_Book_Click);
@@ -205,6 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(968, 605);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -212,6 +213,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "user_Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图书馆";

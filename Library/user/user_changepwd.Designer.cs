@@ -59,14 +59,14 @@
             this.text_name.Location = new System.Drawing.Point(110, 38);
             this.text_name.Name = "text_name";
             this.text_name.Size = new System.Drawing.Size(158, 23);
-            this.text_name.TabIndex = 7;
+            this.text_name.TabIndex = 0;
             // 
             // btn_NetStep
             // 
             this.btn_NetStep.Location = new System.Drawing.Point(30, 119);
             this.btn_NetStep.Name = "btn_NetStep";
             this.btn_NetStep.Size = new System.Drawing.Size(99, 37);
-            this.btn_NetStep.TabIndex = 12;
+            this.btn_NetStep.TabIndex = 2;
             this.btn_NetStep.Text = "重置密码";
             this.btn_NetStep.UseVisualStyleBackColor = true;
             this.btn_NetStep.Click += new System.EventHandler(this.btn_NetStep_Click);
@@ -76,14 +76,14 @@
             this.text_card.Location = new System.Drawing.Point(110, 74);
             this.text_card.Name = "text_card";
             this.text_card.Size = new System.Drawing.Size(158, 23);
-            this.text_card.TabIndex = 13;
+            this.text_card.TabIndex = 1;
             // 
             // btn_Login
             // 
             this.btn_Login.Location = new System.Drawing.Point(169, 119);
             this.btn_Login.Name = "btn_Login";
             this.btn_Login.Size = new System.Drawing.Size(99, 37);
-            this.btn_Login.TabIndex = 14;
+            this.btn_Login.TabIndex = 3;
             this.btn_Login.Text = "返回登录";
             this.btn_Login.UseVisualStyleBackColor = true;
             this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
@@ -92,6 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(315, 193);
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.text_card);
@@ -102,6 +103,7 @@
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "user_ChangePwd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "找回密码";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_ChangePwd_FormClosing);
             this.ResumeLayout(false);

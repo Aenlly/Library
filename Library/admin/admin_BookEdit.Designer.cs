@@ -55,7 +55,7 @@
             this.btn_edit.Location = new System.Drawing.Point(25, 355);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(87, 32);
-            this.btn_edit.TabIndex = 34;
+            this.btn_edit.TabIndex = 6;
             this.btn_edit.Text = "确认修改";
             this.btn_edit.UseVisualStyleBackColor = true;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
@@ -65,21 +65,25 @@
             this.text_press.Location = new System.Drawing.Point(130, 177);
             this.text_press.Name = "text_press";
             this.text_press.Size = new System.Drawing.Size(137, 23);
-            this.text_press.TabIndex = 28;
+            this.text_press.TabIndex = 2;
             // 
             // text_author
             // 
             this.text_author.Location = new System.Drawing.Point(130, 138);
             this.text_author.Name = "text_author";
             this.text_author.Size = new System.Drawing.Size(137, 23);
-            this.text_author.TabIndex = 27;
+            this.text_author.TabIndex = 1;
             // 
             // text_book
             // 
+            this.text_book.Cursor = System.Windows.Forms.Cursors.Default;
+            this.text_book.Enabled = false;
             this.text_book.Location = new System.Drawing.Point(130, 21);
             this.text_book.Name = "text_book";
+            this.text_book.ReadOnly = true;
             this.text_book.Size = new System.Drawing.Size(137, 23);
             this.text_book.TabIndex = 24;
+            this.text_book.TabStop = false;
             // 
             // panel1
             // 
@@ -173,7 +177,7 @@
             this.btn_ret.Location = new System.Drawing.Point(150, 355);
             this.btn_ret.Name = "btn_ret";
             this.btn_ret.Size = new System.Drawing.Size(87, 32);
-            this.btn_ret.TabIndex = 35;
+            this.btn_ret.TabIndex = 7;
             this.btn_ret.Text = "返回退出";
             this.btn_ret.UseVisualStyleBackColor = true;
             this.btn_ret.Click += new System.EventHandler(this.btn_ret_Click);
@@ -185,7 +189,7 @@
             this.mtext_year.Mask = "9999";
             this.mtext_year.Name = "mtext_year";
             this.mtext_year.Size = new System.Drawing.Size(46, 26);
-            this.mtext_year.TabIndex = 36;
+            this.mtext_year.TabIndex = 3;
             this.mtext_year.ValidatingType = typeof(int);
             // 
             // cmb_type
@@ -195,7 +199,8 @@
             this.cmb_type.Location = new System.Drawing.Point(130, 102);
             this.cmb_type.Name = "cmb_type";
             this.cmb_type.Size = new System.Drawing.Size(88, 22);
-            this.cmb_type.TabIndex = 37;
+            this.cmb_type.TabIndex = 0;
+            this.cmb_type.Click += new System.EventHandler(this.cmb_type_Click);
             // 
             // mtext_stocks
             // 
@@ -204,18 +209,23 @@
             this.mtext_stocks.Mask = "99999";
             this.mtext_stocks.Name = "mtext_stocks";
             this.mtext_stocks.Size = new System.Drawing.Size(66, 26);
-            this.mtext_stocks.TabIndex = 39;
-            this.mtext_stocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtext_stocks.TabIndex = 5;
             this.mtext_stocks.ValidatingType = typeof(int);
             // 
             // mtext_isbn
             // 
+            this.mtext_isbn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.mtext_isbn.Enabled = false;
             this.mtext_isbn.Font = new System.Drawing.Font("宋体", 12F);
+            this.mtext_isbn.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.mtext_isbn.Location = new System.Drawing.Point(130, 61);
             this.mtext_isbn.Mask = "0000000000";
             this.mtext_isbn.Name = "mtext_isbn";
+            this.mtext_isbn.ReadOnly = true;
+            this.mtext_isbn.ShortcutsEnabled = false;
             this.mtext_isbn.Size = new System.Drawing.Size(107, 26);
             this.mtext_isbn.TabIndex = 40;
+            this.mtext_isbn.TabStop = false;
             this.mtext_isbn.ValidatingType = typeof(int);
             // 
             // text_price
@@ -224,13 +234,14 @@
             this.text_price.MaxLength = 16;
             this.text_price.Name = "text_price";
             this.text_price.Size = new System.Drawing.Size(100, 23);
-            this.text_price.TabIndex = 41;
+            this.text_price.TabIndex = 4;
             this.text_price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_price_KeyPress);
             // 
             // admin_BookEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(294, 406);
             this.Controls.Add(this.text_price);
             this.Controls.Add(this.mtext_isbn);
@@ -245,6 +256,8 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_BookEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "图书修改";

@@ -100,6 +100,9 @@ namespace Library.admin
                             con.Close();//关闭数据库
                             if (n > 0)//判断是否执行成功并修改
                             {
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation("通过用户：" + u_name + "的还书申请");//插入操作记录
+
                                 //成功提示
                                 MessageBox.Show("已通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //查询全部内容的语句，该处用于刷新表
@@ -142,6 +145,9 @@ namespace Library.admin
                             con.Close();//关闭数据库
                             if (n > 0)//判断是否执行成功并修改
                             {
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation("不通过用户："+u_name+"的还书申请");//插入操作记录
+
                                 //成功提示
                                 MessageBox.Show("已不通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //查询全部内容的语句，该处用于刷新表
@@ -165,12 +171,18 @@ namespace Library.admin
             //判断查询输入文本框内的值是否未空，为空则查询全部
             if (tstext_name.Text.Trim() == "")
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询全部的借书记录");//插入操作记录
+
                 //查询全部内容的语句
                 string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
                 databind(sql);//传递sql语句进行查询
             }
             else
             {
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询借书人为："+ tstext_name.Text.Trim()+ "的借书记录");//插入操作记录
+
                 //查询指定借书人的内容的语句，模糊查询
                 string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2 and [user].u_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递sql语句进行查询
@@ -180,6 +192,9 @@ namespace Library.admin
         //显示全部按钮的单击事件
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询全部的借书记录");//插入操作记录
+
             //查询全部内容的语句
             string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
             databind(sql);//传递sql语句进行查询
@@ -188,14 +203,20 @@ namespace Library.admin
         //显示未还书记录的按钮的单击事件
         private void tsbtn_nortn_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询未还书的借书记录");//插入操作记录
+
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=0";
+            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme in (0,3)";
             databind(sql);//传递sql语句进行查询
         }
 
         //显示待审核记录的按钮的单击事件
         private void tsbtn_eme_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询待审核的借书记录");//插入操作记录
+
             //查询全部内容的语句
             string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=1";
             databind(sql);//传递sql语句进行查询

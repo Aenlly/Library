@@ -49,14 +49,14 @@
             this.text_pwd.Location = new System.Drawing.Point(93, 22);
             this.text_pwd.Name = "text_pwd";
             this.text_pwd.Size = new System.Drawing.Size(149, 23);
-            this.text_pwd.TabIndex = 1;
+            this.text_pwd.TabIndex = 0;
             // 
             // text_pwds
             // 
             this.text_pwds.Location = new System.Drawing.Point(93, 57);
             this.text_pwds.Name = "text_pwds";
             this.text_pwds.Size = new System.Drawing.Size(149, 23);
-            this.text_pwds.TabIndex = 3;
+            this.text_pwds.TabIndex = 1;
             // 
             // label2
             // 
@@ -73,7 +73,7 @@
             this.btn_pwd.Location = new System.Drawing.Point(59, 98);
             this.btn_pwd.Name = "btn_pwd";
             this.btn_pwd.Size = new System.Drawing.Size(141, 34);
-            this.btn_pwd.TabIndex = 4;
+            this.btn_pwd.TabIndex = 2;
             this.btn_pwd.Text = "确定修改";
             this.btn_pwd.UseVisualStyleBackColor = true;
             this.btn_pwd.Click += new System.EventHandler(this.btn_pwd_Click);
@@ -82,6 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(272, 153);
             this.Controls.Add(this.btn_pwd);
             this.Controls.Add(this.text_pwds);

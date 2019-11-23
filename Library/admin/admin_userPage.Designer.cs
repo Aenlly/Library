@@ -32,8 +32,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_userPage));
             this.Dgv_user = new System.Windows.Forms.DataGridView();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_sex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_card = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_college = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_tel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_book = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -52,16 +64,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtn_add = new System.Windows.Forms.ToolStripButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_sex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_card = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_college = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_tel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_book = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Cl_edit = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_user)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -75,13 +77,15 @@
             this.Dgv_user.AllowUserToResizeColumns = false;
             this.Dgv_user.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_user.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Dgv_user.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_user.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Dgv_user.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_user.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
@@ -94,27 +98,109 @@
             this.Cl_book,
             this.Cl_delete,
             this.Cl_edit});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Dgv_user.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Dgv_user.DefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv_user.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_user.Location = new System.Drawing.Point(0, 28);
             this.Dgv_user.MultiSelect = false;
             this.Dgv_user.Name = "Dgv_user";
             this.Dgv_user.ReadOnly = true;
             this.Dgv_user.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Dgv_user.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_user.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dgv_user.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_user.RowTemplate.Height = 23;
             this.Dgv_user.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_user.Size = new System.Drawing.Size(1074, 497);
-            this.Dgv_user.TabIndex = 0;
+            this.Dgv_user.Size = new System.Drawing.Size(1010, 497);
+            this.Dgv_user.TabIndex = 1;
             this.Dgv_user.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_user_CellClick);
+            // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "学号";
+            this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
+            // 
+            // Cl_name
+            // 
+            this.Cl_name.HeaderText = "姓名";
+            this.Cl_name.Name = "Cl_name";
+            this.Cl_name.ReadOnly = true;
+            this.Cl_name.Width = 90;
+            // 
+            // Cl_sex
+            // 
+            this.Cl_sex.HeaderText = "性别";
+            this.Cl_sex.Name = "Cl_sex";
+            this.Cl_sex.ReadOnly = true;
+            this.Cl_sex.Width = 70;
+            // 
+            // Cl_card
+            // 
+            this.Cl_card.HeaderText = "身份证";
+            this.Cl_card.Name = "Cl_card";
+            this.Cl_card.ReadOnly = true;
+            this.Cl_card.Width = 140;
+            // 
+            // Cl_college
+            // 
+            this.Cl_college.HeaderText = "学院";
+            this.Cl_college.Name = "Cl_college";
+            this.Cl_college.ReadOnly = true;
+            // 
+            // Cl_tel
+            // 
+            this.Cl_tel.HeaderText = "联系电话";
+            this.Cl_tel.Name = "Cl_tel";
+            this.Cl_tel.ReadOnly = true;
+            this.Cl_tel.Width = 120;
+            // 
+            // Cl_position
+            // 
+            this.Cl_position.HeaderText = "用户组";
+            this.Cl_position.Name = "Cl_position";
+            this.Cl_position.ReadOnly = true;
+            this.Cl_position.Width = 80;
+            // 
+            // Cl_book
+            // 
+            this.Cl_book.HeaderText = "累计借书";
+            this.Cl_book.Name = "Cl_book";
+            this.Cl_book.ReadOnly = true;
+            this.Cl_book.Width = 90;
+            // 
+            // Cl_delete
+            // 
+            this.Cl_delete.HeaderText = "操作";
+            this.Cl_delete.Name = "Cl_delete";
+            this.Cl_delete.ReadOnly = true;
+            this.Cl_delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Cl_delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Cl_delete.Text = "删除";
+            this.Cl_delete.UseColumnTextForButtonValue = true;
+            this.Cl_delete.Width = 70;
+            // 
+            // Cl_edit
+            // 
+            this.Cl_edit.HeaderText = "操作";
+            this.Cl_edit.Name = "Cl_edit";
+            this.Cl_edit.ReadOnly = true;
+            this.Cl_edit.Text = "编辑";
+            this.Cl_edit.UseColumnTextForButtonValue = true;
+            this.Cl_edit.Width = 70;
             // 
             // bindingNavigator1
             // 
@@ -146,8 +232,8 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1074, 28);
-            this.bindingNavigator1.TabIndex = 9;
+            this.bindingNavigator1.Size = new System.Drawing.Size(1010, 28);
+            this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
@@ -272,89 +358,18 @@
             this.tsbtn_add.Text = "添加用户";
             this.tsbtn_add.Click += new System.EventHandler(this.tsbtn_add_Click);
             // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "学号";
-            this.Cl_id.Name = "Cl_id";
-            this.Cl_id.ReadOnly = true;
-            // 
-            // Cl_name
-            // 
-            this.Cl_name.HeaderText = "姓名";
-            this.Cl_name.Name = "Cl_name";
-            this.Cl_name.ReadOnly = true;
-            this.Cl_name.Width = 90;
-            // 
-            // Cl_sex
-            // 
-            this.Cl_sex.HeaderText = "性别";
-            this.Cl_sex.Name = "Cl_sex";
-            this.Cl_sex.ReadOnly = true;
-            this.Cl_sex.Width = 70;
-            // 
-            // Cl_card
-            // 
-            this.Cl_card.HeaderText = "身份证";
-            this.Cl_card.Name = "Cl_card";
-            this.Cl_card.ReadOnly = true;
-            this.Cl_card.Width = 140;
-            // 
-            // Cl_college
-            // 
-            this.Cl_college.HeaderText = "学院";
-            this.Cl_college.Name = "Cl_college";
-            this.Cl_college.ReadOnly = true;
-            // 
-            // Cl_tel
-            // 
-            this.Cl_tel.HeaderText = "联系电话";
-            this.Cl_tel.Name = "Cl_tel";
-            this.Cl_tel.ReadOnly = true;
-            this.Cl_tel.Width = 120;
-            // 
-            // Cl_position
-            // 
-            this.Cl_position.HeaderText = "用户组";
-            this.Cl_position.Name = "Cl_position";
-            this.Cl_position.ReadOnly = true;
-            this.Cl_position.Width = 80;
-            // 
-            // Cl_book
-            // 
-            this.Cl_book.HeaderText = "累计借书";
-            this.Cl_book.Name = "Cl_book";
-            this.Cl_book.ReadOnly = true;
-            this.Cl_book.Width = 90;
-            // 
-            // Cl_delete
-            // 
-            this.Cl_delete.HeaderText = "操作";
-            this.Cl_delete.Name = "Cl_delete";
-            this.Cl_delete.ReadOnly = true;
-            this.Cl_delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Cl_delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Cl_delete.Text = "删除";
-            this.Cl_delete.UseColumnTextForButtonValue = true;
-            this.Cl_delete.Width = 70;
-            // 
-            // Cl_edit
-            // 
-            this.Cl_edit.HeaderText = "操作";
-            this.Cl_edit.Name = "Cl_edit";
-            this.Cl_edit.ReadOnly = true;
-            this.Cl_edit.Text = "编辑";
-            this.Cl_edit.UseColumnTextForButtonValue = true;
-            this.Cl_edit.Width = 70;
-            // 
             // admin_userPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 525);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1010, 525);
             this.Controls.Add(this.Dgv_user);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_userPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "用户管理";

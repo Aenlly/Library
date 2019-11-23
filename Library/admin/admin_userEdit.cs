@@ -18,27 +18,28 @@ namespace Library.admin
             InitializeComponent();
         }
 
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataReader sdr;
-        DButil dButil = new DButil();
+        SqlConnection con;//创建数据库连接对象
+        SqlCommand cmd;//创建执行的sql语句对象
+        SqlDataReader sdr;//创建一个只读的结果集
+        DButil dButil = new DButil();//实例化DButil工具类
+
         private void admin_userEdit_Load(object sender, EventArgs e)
         {
             string user_id = Log.log.user_id;
             string sql = "select * from [user] where u_id='" + user_id.ToString() + "'";
-            con = dButil.SqlOpen();
+            con = dButil.SqlOpen();//打开数据库
             cmd = new SqlCommand(sql, con);
-            sdr = cmd.ExecuteReader();
-            sdr.Read();
-            text_id.Text = user_id;
+            sdr = cmd.ExecuteReader();//储存结果
+            sdr.Read();//检测是否有数据
+            text_id.Text = user_id;//学号/工号
             text_name.Text= sdr["u_name"].ToString();//在姓名文本框中显示查询到的姓名
             mtext_tel.Text = sdr["u_tel"].ToString();//在手机号文本框中显示查询到的手机号
             mtext_card.Text = sdr["u_card"].ToString();//在身份证文本框中显示查询到的身份证
             text_college.Text = sdr["u_college"].ToString();//在学院文本框中显示查询到的学院
 
-            cmb_sex.Items.Add(sdr["u_sex"].ToString());
-            cmb_sex.SelectedIndex = 0;
-            if (cmb_sex.Text == "男")
+            cmb_sex.Items.Add(sdr["u_sex"].ToString());//获得性别
+            cmb_sex.SelectedIndex = 0;//并选中性别
+            if (cmb_sex.Text == "男")//如果是男，下拉框就添加女，否则添加男
             {
                 cmb_sex.Items.Add("女");
             }
@@ -49,7 +50,7 @@ namespace Library.admin
 
             cmb_position.Items.Add(sdr["u_position"].ToString());
             cmb_position.SelectedIndex = 0;
-            if (cmb_position.Text == "学生")
+            if (cmb_position.Text == "学生")//如果是学生组，下拉框就添加老师组，否则添加学生组
             {
                 cmb_position.Items.Add("老师");
             }
@@ -57,7 +58,7 @@ namespace Library.admin
             {
                 cmb_position.Items.Add("学生");
             }
-            con.Close();
+            con.Close();//关闭数据库
         }
 
 
@@ -80,8 +81,12 @@ namespace Library.admin
                     con = dButil.SqlOpen();
                     cmd = new SqlCommand(sql, con);
                     int n = cmd.ExecuteNonQuery();//返回影响行数判断是否修改成功
+                    con.Close();//关闭数据库
                     if (n > 0)
                     {
+                        SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                        dbHelper.Operation("成功修改学号/工号为：" + text_id.Text.Trim()+"的用户");//插入操作记录
+
                         //修改成功进行提示
                         DialogResult dialog = MessageBox.Show("修改成功！点击确认返回用户管理界面", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (DialogResult.OK == dialog)
@@ -96,7 +101,6 @@ namespace Library.admin
                         //修改失败弹出提示
                         MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    con.Close();//关闭数据库
                 }
                 else
                 {

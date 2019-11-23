@@ -78,6 +78,9 @@ namespace Library.admin
         //显示未回复按钮事件
         private void tsbtn_no_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询未回复的反馈记录");//插入操作记录
+
             //查询未解决的反馈sql语句
             string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_solve='未回复'";
             databind(sql);//传递sql
@@ -88,6 +91,9 @@ namespace Library.admin
         //显示已回复按钮事件
         private void tsbtn_yes_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询已回复的反馈记录");//插入操作记录
+
             //查询未解决的反馈sql语句
             string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_solve='已回复'";
             databind(sql);//传递sql
@@ -98,6 +104,9 @@ namespace Library.admin
         //显示全部按钮单击事件
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
+            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+            dbHelper.Operation("查询全部的反馈记录");//插入操作记录
+
             //查询全部的反馈sql语句
             string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id";
             databind(sql);//传递sql
@@ -118,6 +127,9 @@ namespace Library.admin
                     Log.log.f_btn = "查看";//使f_btn值修改为查看
                     admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
                     admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
+
+                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                    dbHelper.Operation("查看反馈编号为" + Log.log.f_id + "的反馈记录");//插入操作记录
                 }
                 //单击了回复按钮
                 if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_Reply")
@@ -129,6 +141,9 @@ namespace Library.admin
                             Log.log.f_btn = "查看";//使f_btn值修改为查看
                             admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
                             admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
+
+                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                            dbHelper.Operation("查看反馈编号为"+ Log.log.f_id +"的反馈记录");//插入操作记录
                         }
                     }
                     else
@@ -147,11 +162,23 @@ namespace Library.admin
         //查询按钮单击事件
         private void tsbtn_select_Click(object sender, EventArgs e)
         {
-            //查询时间的反馈记录sql语句
-            string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_smntime='"+tstext_time.Text+"'";
-            databind(sql);//传递sql
-            mcd_time.Hide();//隐藏日历控件
-            count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
+            if (tstext_time.Text == "")//判断是否选择了查询时间
+            {
+                //进行警告
+                MessageBox.Show("请选择查询时间！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+
+                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                dbHelper.Operation("查询提交时间为："+ tstext_time .Text+ "的反馈记录");//插入操作记录
+
+                //查询时间的反馈记录sql语句
+                string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id and f_smntime='" + tstext_time.Text + "'";
+                databind(sql);//传递sql
+                mcd_time.Hide();//隐藏日历控件
+                count = 0;//隐藏后把判断单击几次的设置为0，防止要点击2次
+            }
         }
     }
 }

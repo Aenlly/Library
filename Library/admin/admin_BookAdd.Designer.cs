@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btn_add = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
             this.text_price = new System.Windows.Forms.TextBox();
             this.mtext_isbn = new System.Windows.Forms.MaskedTextBox();
             this.mtext_stocks = new System.Windows.Forms.MaskedTextBox();
@@ -53,22 +53,23 @@
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(18, 339);
+            this.btn_add.Location = new System.Drawing.Point(40, 341);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(94, 34);
-            this.btn_add.TabIndex = 21;
+            this.btn_add.TabIndex = 8;
             this.btn_add.Text = "立即添加";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // button2
+            // btn_close
             // 
-            this.button2.Location = new System.Drawing.Point(182, 341);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(134, 32);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "返回";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_close.Location = new System.Drawing.Point(182, 341);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(96, 32);
+            this.btn_close.TabIndex = 9;
+            this.btn_close.Text = "返回";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // text_price
             // 
@@ -76,7 +77,7 @@
             this.text_price.MaxLength = 16;
             this.text_price.Name = "text_price";
             this.text_price.Size = new System.Drawing.Size(100, 23);
-            this.text_price.TabIndex = 50;
+            this.text_price.TabIndex = 6;
             this.text_price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_price_KeyPress);
             // 
             // mtext_isbn
@@ -86,7 +87,7 @@
             this.mtext_isbn.Mask = "0000000000";
             this.mtext_isbn.Name = "mtext_isbn";
             this.mtext_isbn.Size = new System.Drawing.Size(107, 26);
-            this.mtext_isbn.TabIndex = 49;
+            this.mtext_isbn.TabIndex = 1;
             this.mtext_isbn.ValidatingType = typeof(int);
             // 
             // mtext_stocks
@@ -96,8 +97,7 @@
             this.mtext_stocks.Mask = "99999";
             this.mtext_stocks.Name = "mtext_stocks";
             this.mtext_stocks.Size = new System.Drawing.Size(66, 26);
-            this.mtext_stocks.TabIndex = 48;
-            this.mtext_stocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtext_stocks.TabIndex = 7;
             this.mtext_stocks.ValidatingType = typeof(int);
             // 
             // cmb_type
@@ -107,7 +107,7 @@
             this.cmb_type.Location = new System.Drawing.Point(131, 93);
             this.cmb_type.Name = "cmb_type";
             this.cmb_type.Size = new System.Drawing.Size(88, 22);
-            this.cmb_type.TabIndex = 47;
+            this.cmb_type.TabIndex = 2;
             // 
             // mtext_year
             // 
@@ -116,7 +116,7 @@
             this.mtext_year.Mask = "9999";
             this.mtext_year.Name = "mtext_year";
             this.mtext_year.Size = new System.Drawing.Size(46, 26);
-            this.mtext_year.TabIndex = 46;
+            this.mtext_year.TabIndex = 5;
             this.mtext_year.ValidatingType = typeof(int);
             // 
             // text_press
@@ -124,21 +124,21 @@
             this.text_press.Location = new System.Drawing.Point(131, 168);
             this.text_press.Name = "text_press";
             this.text_press.Size = new System.Drawing.Size(137, 23);
-            this.text_press.TabIndex = 45;
+            this.text_press.TabIndex = 4;
             // 
             // text_author
             // 
             this.text_author.Location = new System.Drawing.Point(131, 129);
             this.text_author.Name = "text_author";
             this.text_author.Size = new System.Drawing.Size(137, 23);
-            this.text_author.TabIndex = 44;
+            this.text_author.TabIndex = 3;
             // 
             // text_book
             // 
             this.text_book.Location = new System.Drawing.Point(131, 12);
             this.text_book.Name = "text_book";
             this.text_book.Size = new System.Drawing.Size(137, 23);
-            this.text_book.TabIndex = 43;
+            this.text_book.TabIndex = 0;
             // 
             // panel1
             // 
@@ -233,7 +233,7 @@
             this.lkl_type.Location = new System.Drawing.Point(236, 101);
             this.lkl_type.Name = "lkl_type";
             this.lkl_type.Size = new System.Drawing.Size(105, 14);
-            this.lkl_type.TabIndex = 51;
+            this.lkl_type.TabIndex = 10;
             this.lkl_type.TabStop = true;
             this.lkl_type.Text = "点击添加新类别";
             this.lkl_type.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lkl_type_LinkClicked);
@@ -242,6 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(353, 410);
             this.Controls.Add(this.lkl_type);
             this.Controls.Add(this.text_price);
@@ -253,11 +254,13 @@
             this.Controls.Add(this.text_author);
             this.Controls.Add(this.text_book);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_add);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_BookAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "添加图书";
@@ -271,7 +274,7 @@
 
         #endregion
         private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.TextBox text_price;
         private System.Windows.Forms.MaskedTextBox mtext_isbn;
         private System.Windows.Forms.MaskedTextBox mtext_stocks;

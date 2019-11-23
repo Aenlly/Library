@@ -55,8 +55,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tscmb_type = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tsbtn_book = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtn_return = new System.Windows.Forms.ToolStripButton();
@@ -107,6 +105,7 @@
             this.Dgv_return.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_return.Location = new System.Drawing.Point(0, 32);
             this.Dgv_return.Name = "Dgv_return";
+            this.Dgv_return.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -120,52 +119,61 @@
             this.Dgv_return.RowTemplate.Height = 23;
             this.Dgv_return.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Dgv_return.Size = new System.Drawing.Size(964, 491);
-            this.Dgv_return.TabIndex = 0;
+            this.Dgv_return.TabIndex = 1;
             // 
             // Cl_id
             // 
             this.Cl_id.HeaderText = "借书编号";
             this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
             // 
             // Cl_name
             // 
             this.Cl_name.HeaderText = "图书名称";
             this.Cl_name.Name = "Cl_name";
+            this.Cl_name.ReadOnly = true;
             // 
             // Cl_type
             // 
             this.Cl_type.HeaderText = "图书类别";
             this.Cl_type.Name = "Cl_type";
+            this.Cl_type.ReadOnly = true;
             // 
             // Cl_borrow
             // 
             this.Cl_borrow.HeaderText = "借书日期";
             this.Cl_borrow.Name = "Cl_borrow";
+            this.Cl_borrow.ReadOnly = true;
             // 
             // Cl_return
             // 
             this.Cl_return.HeaderText = "还书日期";
             this.Cl_return.Name = "Cl_return";
+            this.Cl_return.ReadOnly = true;
             // 
             // Cl_day
             // 
             this.Cl_day.HeaderText = "所借天数";
             this.Cl_day.Name = "Cl_day";
+            this.Cl_day.ReadOnly = true;
             // 
             // Cl_renew
             // 
             this.Cl_renew.HeaderText = "是否续借";
             this.Cl_renew.Name = "Cl_renew";
+            this.Cl_renew.ReadOnly = true;
             // 
             // Cl_renewday
             // 
             this.Cl_renewday.HeaderText = "续借天数";
             this.Cl_renewday.Name = "Cl_renewday";
+            this.Cl_renewday.ReadOnly = true;
             // 
             // Cl_eme
             // 
             this.Cl_eme.HeaderText = "还书成功";
             this.Cl_eme.Name = "Cl_eme";
+            this.Cl_eme.ReadOnly = true;
             // 
             // bindingNavigator1
             // 
@@ -183,8 +191,6 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
-            this.toolStripLabel1,
-            this.tscmb_type,
             this.toolStripLabel2,
             this.tsbtn_book,
             this.tsbtn_return,
@@ -197,7 +203,7 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
             this.bindingNavigator1.Size = new System.Drawing.Size(964, 32);
-            this.bindingNavigator1.TabIndex = 5;
+            this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
@@ -267,20 +273,6 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 32);
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(93, 29);
-            this.toolStripLabel1.Text = "图书类别:";
-            // 
-            // tscmb_type
-            // 
-            this.tscmb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tscmb_type.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.tscmb_type.Name = "tscmb_type";
-            this.tscmb_type.Size = new System.Drawing.Size(75, 32);
-            this.tscmb_type.DropDownClosed += new System.EventHandler(this.tscmb_type_DropDownClosed);
-            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
@@ -317,12 +309,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(964, 523);
             this.Controls.Add(this.Dgv_return);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "user_Return";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "还书记录";
             this.Load += new System.EventHandler(this.user_Return_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_return)).EndInit();
@@ -348,8 +342,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox tscmb_type;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox tsbtn_book;
         private System.Windows.Forms.ToolStripButton tsbtn_return;

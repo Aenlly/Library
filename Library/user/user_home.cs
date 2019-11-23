@@ -114,10 +114,6 @@ namespace Library.user
             SqlConnection con = dButil.SqlOpen();//打开数据库
             SqlCommand cmd = new SqlCommand(sql, con);//执行sql查询
             Log.log.user_number = Convert.ToInt16(cmd.ExecuteScalar());//获得可借图书数量，并储存在log类中调用
-
-            //插入登陆信息
-            sql = "insert login values (null," + Log.log.u_id + ",null,getdate())";
-            cmd = new SqlCommand(sql, con);//执行
             con.Close();//关闭数据库
 
         }

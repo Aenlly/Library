@@ -52,7 +52,7 @@
             this.text_title.MaxLength = 10;
             this.text_title.Name = "text_title";
             this.text_title.Size = new System.Drawing.Size(175, 23);
-            this.text_title.TabIndex = 1;
+            this.text_title.TabIndex = 0;
             // 
             // label2
             // 
@@ -71,7 +71,7 @@
             this.text_conent.Multiline = true;
             this.text_conent.Name = "text_conent";
             this.text_conent.Size = new System.Drawing.Size(175, 195);
-            this.text_conent.TabIndex = 3;
+            this.text_conent.TabIndex = 1;
             // 
             // btn_ok
             // 
@@ -79,7 +79,7 @@
             this.btn_ok.Location = new System.Drawing.Point(84, 418);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.Size = new System.Drawing.Size(125, 39);
-            this.btn_ok.TabIndex = 4;
+            this.btn_ok.TabIndex = 2;
             this.btn_ok.Text = "提交反馈";
             this.btn_ok.UseVisualStyleBackColor = true;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
@@ -107,6 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(305, 487);
             this.Controls.Add(this.text_id);
             this.Controls.Add(this.label3);

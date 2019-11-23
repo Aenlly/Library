@@ -144,7 +144,7 @@
             this.text_id.Location = new System.Drawing.Point(119, 14);
             this.text_id.Name = "text_id";
             this.text_id.Size = new System.Drawing.Size(151, 23);
-            this.text_id.TabIndex = 13;
+            this.text_id.TabIndex = 0;
             this.text_id.TabStop = false;
             // 
             // text_name
@@ -153,7 +153,7 @@
             this.text_name.Location = new System.Drawing.Point(119, 54);
             this.text_name.Name = "text_name";
             this.text_name.Size = new System.Drawing.Size(107, 23);
-            this.text_name.TabIndex = 14;
+            this.text_name.TabIndex = 1;
             this.text_name.TabStop = false;
             // 
             // text_college
@@ -162,7 +162,7 @@
             this.text_college.Location = new System.Drawing.Point(119, 125);
             this.text_college.Name = "text_college";
             this.text_college.Size = new System.Drawing.Size(151, 23);
-            this.text_college.TabIndex = 16;
+            this.text_college.TabIndex = 4;
             // 
             // text_tel
             // 
@@ -171,7 +171,7 @@
             this.text_tel.MaxLength = 11;
             this.text_tel.Name = "text_tel";
             this.text_tel.Size = new System.Drawing.Size(151, 23);
-            this.text_tel.TabIndex = 17;
+            this.text_tel.TabIndex = 5;
             this.text_tel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_tel_KeyPress);
             // 
             // text_number
@@ -180,7 +180,7 @@
             this.text_number.Location = new System.Drawing.Point(119, 234);
             this.text_number.Name = "text_number";
             this.text_number.Size = new System.Drawing.Size(51, 23);
-            this.text_number.TabIndex = 21;
+            this.text_number.TabIndex = 7;
             this.text_number.TabStop = false;
             // 
             // text_book
@@ -189,7 +189,7 @@
             this.text_book.Location = new System.Drawing.Point(119, 271);
             this.text_book.Name = "text_book";
             this.text_book.Size = new System.Drawing.Size(98, 23);
-            this.text_book.TabIndex = 22;
+            this.text_book.TabIndex = 8;
             this.text_book.TabStop = false;
             // 
             // btn_edit
@@ -198,7 +198,7 @@
             this.btn_edit.Location = new System.Drawing.Point(18, 338);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(102, 32);
-            this.btn_edit.TabIndex = 24;
+            this.btn_edit.TabIndex = 9;
             this.btn_edit.Text = "修改信息";
             this.btn_edit.UseVisualStyleBackColor = true;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
@@ -209,7 +209,7 @@
             this.text_position.Location = new System.Drawing.Point(119, 199);
             this.text_position.Name = "text_position";
             this.text_position.Size = new System.Drawing.Size(68, 23);
-            this.text_position.TabIndex = 18;
+            this.text_position.TabIndex = 6;
             this.text_position.TabStop = false;
             // 
             // btn_no
@@ -218,7 +218,7 @@
             this.btn_no.Location = new System.Drawing.Point(143, 338);
             this.btn_no.Name = "btn_no";
             this.btn_no.Size = new System.Drawing.Size(102, 32);
-            this.btn_no.TabIndex = 26;
+            this.btn_no.TabIndex = 10;
             this.btn_no.Text = "返回";
             this.btn_no.UseVisualStyleBackColor = true;
             this.btn_no.Click += new System.EventHandler(this.btn_no_Click);
@@ -230,7 +230,7 @@
             this.rbtn_male.Location = new System.Drawing.Point(119, 94);
             this.rbtn_male.Name = "rbtn_male";
             this.rbtn_male.Size = new System.Drawing.Size(39, 18);
-            this.rbtn_male.TabIndex = 27;
+            this.rbtn_male.TabIndex = 2;
             this.rbtn_male.Text = "男";
             this.rbtn_male.UseVisualStyleBackColor = true;
             // 
@@ -241,7 +241,7 @@
             this.rbtn_female.Location = new System.Drawing.Point(178, 94);
             this.rbtn_female.Name = "rbtn_female";
             this.rbtn_female.Size = new System.Drawing.Size(39, 18);
-            this.rbtn_female.TabIndex = 28;
+            this.rbtn_female.TabIndex = 3;
             this.rbtn_female.Text = "女";
             this.rbtn_female.UseVisualStyleBackColor = true;
             // 
@@ -249,6 +249,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(280, 396);
             this.Controls.Add(this.rbtn_female);
             this.Controls.Add(this.rbtn_male);

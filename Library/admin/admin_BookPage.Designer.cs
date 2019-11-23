@@ -234,7 +234,7 @@
             this.bindNavig.Name = "bindNavig";
             this.bindNavig.PositionItem = this.bindingNavigatorPositionItem;
             this.bindNavig.Size = new System.Drawing.Size(1159, 28);
-            this.bindNavig.TabIndex = 2;
+            this.bindNavig.TabIndex = 0;
             this.bindNavig.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
@@ -365,13 +365,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1159, 525);
             this.Controls.Add(this.Dgv_adminBook);
             this.Controls.Add(this.bindNavig);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "admin_BookPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "图书管理";
+            this.Activated += new System.EventHandler(this.admin_BookPage_Activated);
             this.Load += new System.EventHandler(this.admin_BookPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_adminBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindNavig)).EndInit();

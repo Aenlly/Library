@@ -85,7 +85,7 @@ namespace Library
             return 0;//0代表账号错误
         }
 
-        public int Checkcard(String sql,string card)
+        public int Checkcard(String sql, string card)
         {
             con = dButil.SqlOpen();
             SqlCommand command = new SqlCommand(sql, con);
@@ -100,6 +100,17 @@ namespace Library
                 return 1;//身份证错误
             }
             return 0;//账号不存在
+        }
+
+        //添加操作记录方法
+        public void Operation(string ort)
+        {
+            //添加sql语句
+            string sql = "insert operation(o_ort,o_time) values ('"+ort+"',getdate())";
+            con = dButil.SqlOpen();//打开数据库
+            SqlCommand cmd = new SqlCommand(sql, con);//执行sql语句
+            int n=cmd.ExecuteNonQuery();//返回是否成功
+            con.Close();//关闭数据库
         }
     }
 }

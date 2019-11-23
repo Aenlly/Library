@@ -36,7 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmb_user = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.cmb_sex = new System.Windows.Forms.ComboBox();
             this.mtext_card = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
@@ -44,10 +43,11 @@
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(15, 185);
+            this.btn_add.Font = new System.Drawing.Font("宋体", 12F);
+            this.btn_add.Location = new System.Drawing.Point(86, 186);
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(85, 25);
-            this.btn_add.TabIndex = 37;
+            this.btn_add.Size = new System.Drawing.Size(90, 33);
+            this.btn_add.TabIndex = 4;
             this.btn_add.Text = "添加用户";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
@@ -57,7 +57,7 @@
             this.text_name.Location = new System.Drawing.Point(116, 17);
             this.text_name.Name = "text_name";
             this.text_name.Size = new System.Drawing.Size(107, 23);
-            this.text_name.TabIndex = 27;
+            this.text_name.TabIndex = 0;
             // 
             // panel1
             // 
@@ -113,16 +113,7 @@
             this.cmb_user.Location = new System.Drawing.Point(116, 123);
             this.cmb_user.Name = "cmb_user";
             this.cmb_user.Size = new System.Drawing.Size(87, 22);
-            this.cmb_user.TabIndex = 38;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(138, 185);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 25);
-            this.button2.TabIndex = 40;
-            this.button2.Text = "导入用户";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cmb_user.TabIndex = 3;
             // 
             // cmb_sex
             // 
@@ -131,7 +122,7 @@
             this.cmb_sex.Location = new System.Drawing.Point(116, 52);
             this.cmb_sex.Name = "cmb_sex";
             this.cmb_sex.Size = new System.Drawing.Size(87, 22);
-            this.cmb_sex.TabIndex = 41;
+            this.cmb_sex.TabIndex = 1;
             // 
             // mtext_card
             // 
@@ -139,16 +130,16 @@
             this.mtext_card.Mask = "000000-00000000-000A";
             this.mtext_card.Name = "mtext_card";
             this.mtext_card.Size = new System.Drawing.Size(151, 23);
-            this.mtext_card.TabIndex = 42;
+            this.mtext_card.TabIndex = 2;
             // 
             // admin_userAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(283, 242);
             this.Controls.Add(this.mtext_card);
             this.Controls.Add(this.cmb_sex);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.cmb_user);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.text_name);
@@ -178,7 +169,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmb_user;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cmb_sex;
         private System.Windows.Forms.MaskedTextBox mtext_card;
     }

@@ -21,7 +21,7 @@ namespace Library.admin
         SqlConnection con;//创建数据库连接对象
         SqlCommand cmd;//创建执行的sql语句对象
         SqlDataAdapter sda;//创建数据库适配器对象
-        DButil dButil = new DButil();
+        DButil dButil = new DButil();//实例化DButil数据库打开类
 
         private void admin_userAdd_Load(object sender, EventArgs e)
         {
@@ -48,21 +48,29 @@ namespace Library.admin
                 {
                     //添加用户的sql语句
                     string sql = "insert into [user] (u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "','" + card + "','" + cmb_user.Text + "','5')";
-                    con = dButil.SqlOpen();
-                    cmd = new SqlCommand(sql, con);
-                    int n = cmd.ExecuteNonQuery();
+                    con = dButil.SqlOpen();//打开数据库
+                    cmd = new SqlCommand(sql, con);//执行sql语句
+                    int n = cmd.ExecuteNonQuery();//返回成功记录进行判断
+                    sql = "select u_id from [user] where u_card='" + card + "'";//查询账号
+                    cmd = new SqlCommand(sql, con);//执行sql语句
+                    int m = Convert.ToInt32(cmd.ExecuteScalar());//获得账号
+                    con.Close();//关闭数据量
                     if (n > 0)
                     {
-                        DialogResult dialog=MessageBox.Show("添加用户："+text_name.Text.Trim()+ "成功！密码为身份证后六位\n点击确认返回用户管理界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                        if (DialogResult.OK == dialog)
+                        SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                        dbHelper.Operation("成功添加用户：" + text_name.Text.Trim());//插入操作记录
+
+                        DialogResult dialog=MessageBox.Show("添加用户："+text_name.Text.Trim()+ "成功！\n账号为" + m + "\n密码为身份证后六位\n点击确认返回用户管理界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (DialogResult.OK == dialog)//确认判断
                         {
-                            this.Close();
+                            this.Close();//关闭窗体
                             admin_userPage admin_User = new admin_userPage();
-                            admin_User.Activate();
+                            admin_User.Activate();//给予焦点
                         }
                     }
                     else
                     {
+                        //失败提示
                         MessageBox.Show("添加失败，请检查资料！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     con.Close();//关闭数据库
@@ -70,17 +78,32 @@ namespace Library.admin
                 else
                 {
                     //添加用户的sql语句
-                    string sql = "insert into [user] (,u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "''" + card + "','" + cmb_user.Text + "','8')";
-                    con = dButil.SqlOpen();
-                    cmd = new SqlCommand(sql, con);
-                    int n = cmd.ExecuteNonQuery();
+                    string sql = "insert into [user] (u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "''" + card + "','" + cmb_user.Text + "','8')";
+                    con = dButil.SqlOpen();//打开数据库
+                    cmd = new SqlCommand(sql, con);//执行sql
+                    int n = cmd.ExecuteNonQuery();//返回成功记录进行判断
+                    sql = "select u_id from [user] wher u_card='" + card+"'";//查询账号
+                    cmd = new SqlCommand(sql, con);//执行sql
+                    int m=Convert.ToInt16(cmd.ExecuteScalar());//获得账号
+                    con.Close();//关闭数据库
                     if (n > 0)
                     {
-                        MessageBox.Show("添加用户：" + text_name.Text.Trim() + "成功！密码为身份证后六位", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                        dbHelper.Operation("成功添加用户：" + text_name.Text.Trim());//插入操作记录
+
+                        //成功提示
+                        DialogResult dialog=MessageBox.Show("添加用户：" + text_name.Text.Trim() + "成功！\n账号为"+m+ "\n密码为身份证后六位\n点击确认返回用户管理界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (DialogResult.OK == dialog)//确认判断
+                        {
+                            this.Close();//关闭窗体
+                            admin_userPage admin_User = new admin_userPage();
+                            admin_User.Activate();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("添加失败，请检查资料！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //失败提示
+                        MessageBox.Show("添加失败，请检查资料！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     con.Close();//关闭数据库
                 }

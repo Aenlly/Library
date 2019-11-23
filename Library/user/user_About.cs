@@ -15,5 +15,10 @@ namespace Library.user
         {
             InitializeComponent();
         }
+
+        private void btn_no_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
