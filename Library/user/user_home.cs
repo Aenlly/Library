@@ -86,7 +86,7 @@ namespace Library.user
         //反馈记录按钮事件
         private void btn_fbr_Click(object sender, EventArgs e)
         {
-            user_FeedbackRecord user_FeedbackRecord = new user_FeedbackRecord();//实例化用户反馈记录体对象
+            user_FeedbackPage user_FeedbackRecord = new user_FeedbackPage();//实例化用户反馈记录体对象
             user_FeedbackRecord.ShowDialog();//显示反馈记录窗体设置为活动窗体
         }
 
@@ -107,15 +107,24 @@ namespace Library.user
             }
         }
 
+        //加载事件
         private void user_Home_Load(object sender, EventArgs e)
         {
-            string sql = "select u_number from [user] where u_id='" + Log.log.u_id + "'";//sql查询可借数量语句
+            string sql = "select u_name,u_number from [user] where u_id='" + Log.log.u_id + "'";//sql查询可借数量语句
             DButil dButil = new DButil();//实例化DButil工具类
             SqlConnection con = dButil.SqlOpen();//打开数据库
             SqlCommand cmd = new SqlCommand(sql, con);//执行sql查询
-            Log.log.user_number = Convert.ToInt16(cmd.ExecuteScalar());//获得可借图书数量，并储存在log类中调用
+            SqlDataReader reader = cmd.ExecuteReader();//创建个只读结果集
+            reader.Read();
+            string user_name = reader["u_name"].ToString();//取出结果
+            Log.log.user_number = Convert.ToInt16(reader["u_number"]);//取出可借图书数量结果，并储存在log类中调用
             con.Close();//关闭数据库
+            lbl_username.Text = "欢迎您，尊敬的用户：" + user_name;
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lbl_time.Text = "当前时间为：" + DateTime.Now.ToString("F");
         }
     }
 }

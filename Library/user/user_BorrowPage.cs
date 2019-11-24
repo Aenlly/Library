@@ -112,12 +112,12 @@ namespace Library.user
                 {
                     if (bo_renew == "无")
                     {
-                        dialog = MessageBox.Show("抱歉，你该书的续借资格已经没有了", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        dialog = MessageBox.Show("抱歉，你该图书的续借资格已经没有了", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     }
                     else if (bo_emeover == "已逾期")
                     {
                         //错误提示
-                        dialog = MessageBox.Show("所续借书籍已经逾期，无法续借！\n点击确认跳转到逾期界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        dialog = MessageBox.Show("所续借图书已经逾期，无法续借！\n点击确认跳转到逾期界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         if (DialogResult.OK == dialog)
                         {
                             //点击确认按钮跳转到逾期记录
@@ -130,7 +130,7 @@ namespace Library.user
                     }
                     else if (bo_eme == "审核中")
                     {
-                        dialog = MessageBox.Show("所续借书籍正在审核中，无法续借", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        dialog = MessageBox.Show("所续借图书正在审核中，无法续借", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     }
                     else
                     {

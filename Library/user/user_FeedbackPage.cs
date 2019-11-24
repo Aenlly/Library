@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Library.user
 {
-    public partial class user_FeedbackRecord : Form
+    public partial class user_FeedbackPage : Form
     {
-        public user_FeedbackRecord()
+        public user_FeedbackPage()
         {
             InitializeComponent();
         }

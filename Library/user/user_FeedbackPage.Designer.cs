@@ -1,6 +1,6 @@
 ﻿namespace Library.user
 {
-    partial class user_FeedbackRecord
+    partial class user_FeedbackPage
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_FeedbackRecord));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(user_FeedbackPage));
             this.mcd_time = new System.Windows.Forms.MonthCalendar();
             this.Dgv_fbk = new System.Windows.Forms.DataGridView();
             this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();

@@ -10,7 +10,7 @@ namespace Library
     class SqlDbHelper
     {
         DButil dButil = new DButil();
-        SqlConnection con;
+        SqlConnection con;//创建数据库连接对象
 
         /// <summary>
         /// 修改密码事件
@@ -19,16 +19,16 @@ namespace Library
         /// <returns></returns>
         public bool EditPwd(String sql)
         {
-            con = dButil.SqlOpen();
-            int n;
-            SqlCommand command = new SqlCommand(sql, con);
-            n = command.ExecuteNonQuery();
-            con.Close();
-            if (n > 0)
+            con = dButil.SqlOpen();//打开数据库
+            int n;//定义个n判断
+            SqlCommand command = new SqlCommand(sql, con);//查询传递过来的sql语句
+            n = command.ExecuteNonQuery();//返回受影响的记录行
+            con.Close();//关闭数据库
+            if (n > 0)//判断是否存在受影响的行
             {
-                return true;
+                return true;//返回true为修改成功
             }
-            return false;
+            return false;//false为失败
         }
 
 
@@ -42,20 +42,24 @@ namespace Library
         public int Checkuser(String sql, string pwd)
         {
 
-            SqlConnection con = dButil.SqlOpen();//
+            con = dButil.SqlOpen();//打开数据库
             SqlCommand command = new SqlCommand(sql, con);//链接数据库进行执行
-            SqlDataReader reader = command.ExecuteReader();//
-            while (reader.Read())
+            SqlDataReader reader = command.ExecuteReader();//创建只读储存结果集
+            while (reader.Read())//判断是否存在内容
             {
                 if (reader["u_password"].Equals(pwd))//进行判断用户密码
                 {
-                    con.Close();
+                    con.Close();//关闭数据库
                     return 2;//2代表密码正确
                 }
-                return 1;//1代表密码错误
+                else
+                {
+                    con.Close();//关闭数据库
+                    return 1;//1代表密码错误
+                }
             }
-            reader.Close();
-            con.Close();
+            reader.Close();//关闭结果集
+            con.Close();//关闭数据库
             return 0;//0代表账号错误
         }
 
@@ -70,42 +74,51 @@ namespace Library
         {
             con = dButil.SqlOpen();
             SqlCommand command = new SqlCommand(sql, con);//链接数据库进行执行
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            SqlDataReader reader = command.ExecuteReader();//创建只读储存结果集
+            while (reader.Read())//判断是否存在内容
             {
                 if (reader["a_password"].Equals(pwd))//进行判断用户密码
                 {
-                    con.Close();
+                    con.Close();//关闭数据库
                     return 2; //2代表密码正确
                 }
-                return 1;//1代表密码错误
+                {
+                    con.Close();//关闭数据库
+                    return 1;//1代表密码错误
+                }
             }
-            reader.Close();
-            con.Close();
+            reader.Close();//关闭结果集
+            con.Close();//关闭数据库
             return 0;//0代表账号错误
         }
 
+        //创建身份证判断
         public int Checkcard(String sql, string card)
         {
-            con = dButil.SqlOpen();
-            SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            con = dButil.SqlOpen();//打开数据库
+            SqlCommand command = new SqlCommand(sql, con);//查询sql语句
+            SqlDataReader reader = command.ExecuteReader();//创建只读储存结果集
+            while (reader.Read())//判断是否存在内容
             {
-                if (reader["u_card"].Equals(card))
+                if (reader["u_card"].Equals(card))//进行传递的身份证与数据库内的身份证进行对比
                 {
-                    con.Close();
+                    con.Close();//关闭数据库
                     return 2;//身份证、账号正确
                 }
-                return 1;//身份证错误
+                else
+                {
+                    con.Close();//关闭数据库
+                    return 1;//身份证错误
+                }
             }
+            con.Close();//关闭数据库
             return 0;//账号不存在
         }
 
         //添加操作记录方法
         public void Operation(string ort)
         {
-            //添加sql语句
+            //添加操作记录的sql语句
             string sql = "insert operation(o_ort,o_time) values ('"+ort+"',getdate())";
             con = dButil.SqlOpen();//打开数据库
             SqlCommand cmd = new SqlCommand(sql, con);//执行sql语句

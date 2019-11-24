@@ -156,7 +156,7 @@ namespace Library.admin
             SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
             dbHelper.Operation("查询全部图书记录");//插入操作记录
 
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
             databind(sql);//传递sql然后查询填充
         }
 

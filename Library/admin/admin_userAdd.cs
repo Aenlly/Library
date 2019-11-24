@@ -20,7 +20,6 @@ namespace Library.admin
 
         SqlConnection con;//创建数据库连接对象
         SqlCommand cmd;//创建执行的sql语句对象
-        SqlDataAdapter sda;//创建数据库适配器对象
         DButil dButil = new DButil();//实例化DButil数据库打开类
 
         private void admin_userAdd_Load(object sender, EventArgs e)

@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_username = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_fbr = new System.Windows.Forms.Button();
             this.btn_about = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btn_PwdEdit = new System.Windows.Forms.Button();
             this.btn_Signout = new System.Windows.Forms.Button();
             this.btn_Basic = new System.Windows.Forms.Button();
@@ -43,6 +43,8 @@
             this.btn_borrow = new System.Windows.Forms.Button();
             this.btn_book = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl_time = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -51,35 +53,39 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::Library.Properties.Resources.Home_title;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(968, 143);
+            this.pictureBox1.Size = new System.Drawing.Size(968, 127);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lbl_time);
+            this.panel1.Controls.Add(this.lbl_username);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 143);
+            this.panel1.Location = new System.Drawing.Point(0, 127);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(968, 34);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // lbl_username
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(460, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Location = new System.Drawing.Point(12, 7);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(77, 14);
+            this.lbl_username.TabIndex = 0;
+            this.lbl_username.Text = "欢迎用户：";
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.btn_fbr);
             this.panel2.Controls.Add(this.btn_about);
-            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btn_PwdEdit);
             this.panel2.Controls.Add(this.btn_Signout);
             this.panel2.Controls.Add(this.btn_Basic);
@@ -88,9 +94,9 @@
             this.panel2.Controls.Add(this.btn_borrow);
             this.panel2.Controls.Add(this.btn_book);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 177);
+            this.panel2.Location = new System.Drawing.Point(0, 161);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(134, 428);
+            this.panel2.Size = new System.Drawing.Size(134, 382);
             this.panel2.TabIndex = 0;
             // 
             // btn_fbr
@@ -112,16 +118,6 @@
             this.btn_about.Text = "关于系统";
             this.btn_about.UseVisualStyleBackColor = true;
             this.btn_about.Click += new System.EventHandler(this.btn_About_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Location = new System.Drawing.Point(0, 414);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 14);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
             // 
             // btn_PwdEdit
             // 
@@ -189,24 +185,41 @@
             this.btn_book.Name = "btn_book";
             this.btn_book.Size = new System.Drawing.Size(75, 23);
             this.btn_book.TabIndex = 1;
-            this.btn_book.Text = "查询图书";
+            this.btn_book.Text = "图书信息";
             this.btn_book.UseVisualStyleBackColor = true;
             this.btn_book.Click += new System.EventHandler(this.btn_Book_Click);
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(134, 177);
+            this.panel3.Location = new System.Drawing.Point(134, 161);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(834, 428);
+            this.panel3.Size = new System.Drawing.Size(834, 382);
             this.panel3.TabIndex = 3;
+            // 
+            // lbl_time
+            // 
+            this.lbl_time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_time.AutoSize = true;
+            this.lbl_time.Location = new System.Drawing.Point(707, 9);
+            this.lbl_time.Name = "lbl_time";
+            this.lbl_time.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_time.Size = new System.Drawing.Size(91, 14);
+            this.lbl_time.TabIndex = 1;
+            this.lbl_time.Text = "当前时间为：";
+            this.lbl_time.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // user_Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(968, 605);
+            this.ClientSize = new System.Drawing.Size(968, 543);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -223,7 +236,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -241,9 +253,10 @@
         private System.Windows.Forms.Button btn_book;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btn_PwdEdit;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_username;
         private System.Windows.Forms.Button btn_fbr;
         private System.Windows.Forms.Button btn_about;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_time;
+        private System.Windows.Forms.Timer timer1;
     }
 }

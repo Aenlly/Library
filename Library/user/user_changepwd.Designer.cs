@@ -93,7 +93,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(315, 193);
+            this.ClientSize = new System.Drawing.Size(305, 193);
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.text_card);
             this.Controls.Add(this.btn_NetStep);

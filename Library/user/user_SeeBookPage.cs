@@ -45,7 +45,7 @@ namespace Library.user
         //加载窗体时的事件
         private void user_SeeBookPage_Load(object sender, EventArgs e)
         {
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
             databind(sql);//填充到表格控件中
         }
 
@@ -55,13 +55,13 @@ namespace Library.user
         {
             if ("".Equals(tstext_book.Text.Trim()))
             {
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
                 databind(sql);//填充到表格控件中
             }
             else
             {
                 //查询输入框中的值，以及按类别联合查找
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name='" + tstext_book.Text.Trim() + "' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
+                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id and [book].b_name like '%" + tstext_book.Text.Trim() + "%' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
                 databind(sql);
             }
         }
@@ -69,7 +69,7 @@ namespace Library.user
         //查询全部按钮
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
             databind(sql);//填充到表格控件中
         }
 
@@ -87,10 +87,16 @@ namespace Library.user
             {
                 string b_name = Dgv_SeeBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString(); //获取图书名称的值
                 string b_isbn = Dgv_SeeBook.Rows[e.RowIndex].Cells["b_isbn"].Value.ToString(); //获取图书的ISBN值
+                string b_stocks = Dgv_SeeBook.Rows[e.RowIndex].Cells["b_stocks"].Value.ToString(); //获取图书的ISBN值
                 //判断是否点击了借书按钮
                 if (Dgv_SeeBook.Columns[e.ColumnIndex].Name == "Cl_borrow")
                 {
-                    if (tscmb_day.Text == "")
+                    if (b_stocks == "不可借")
+                    {
+                        //错误提示
+                        MessageBox.Show("当前图书不可借！请选择其他图书", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (tscmb_day.Text == "")
                     {
                         //错误提示
                         MessageBox.Show("请选择所借天数！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -170,7 +176,7 @@ namespace Library.user
                                         Log.log.user_number = Log.log.user_number - 1;//更新log类中的可借数量
 
                                         // 查询列表内容，这里等于刷新
-                                        sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1 union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  and b_lend=1";
+                                        sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
                                         databind(sql);//填充到表格控件中
                                     }
                                     else

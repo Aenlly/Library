@@ -355,7 +355,7 @@
             this.MinimizeBox = false;
             this.Name = "user_SeeBookPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "查询图书";
+            this.Text = "图书信息";
             this.Load += new System.EventHandler(this.user_SeeBookPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_SeeBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindNavig)).EndInit();

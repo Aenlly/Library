@@ -132,6 +132,12 @@
     <Compile Include="admin\admin_FeedBack.Designer.cs">
       <DependentUpon>admin_FeedBack.cs</DependentUpon>
     </Compile>
+    <Compile Include="admin\admin_Recovery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_Recovery.Designer.cs">
+      <DependentUpon>admin_Recovery.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin\admin_ReturnPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,7 @@
     <Compile Include="admin\admin_userPage.Designer.cs">
       <DependentUpon>admin_userPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="user\user_FeedbackSee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,11 +207,11 @@
     <Compile Include="user\user_Feedback.Designer.cs">
       <DependentUpon>user_Feedback.cs</DependentUpon>
     </Compile>
-    <Compile Include="user\user_FeedbackRecord.cs">
+    <Compile Include="user\user_FeedbackPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="user\user_FeedbackRecord.Designer.cs">
-      <DependentUpon>user_FeedbackRecord.cs</DependentUpon>
+    <Compile Include="user\user_FeedbackPage.Designer.cs">
+      <DependentUpon>user_FeedbackPage.cs</DependentUpon>
     </Compile>
     <Compile Include="user\user_Home.cs">
       <SubType>Form</SubType>
@@ -275,6 +282,9 @@
     <EmbeddedResource Include="admin\admin_FeedBack.resx">
       <DependentUpon>admin_FeedBack.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_Recovery.resx">
+      <DependentUpon>admin_Recovery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_ReturnPage.resx">
       <DependentUpon>admin_ReturnPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +308,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="user\user_About.resx">
       <DependentUpon>user_About.cs</DependentUpon>
@@ -311,8 +322,8 @@
     <EmbeddedResource Include="user\user_Feedback.resx">
       <DependentUpon>user_Feedback.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user\user_FeedbackRecord.resx">
-      <DependentUpon>user_FeedbackRecord.cs</DependentUpon>
+    <EmbeddedResource Include="user\user_FeedbackPage.resx">
+      <DependentUpon>user_FeedbackPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="user\user_Home.resx">
       <DependentUpon>user_Home.cs</DependentUpon>
@@ -335,8 +346,8 @@
     <EmbeddedResource Include="user\user_FeedbackSee.resx">
       <DependentUpon>user_FeedbackSee.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
     <None Include="DB\图书管理系统数据库.xlsx" />
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -363,6 +374,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>LibraryMS.mdf</DependentUpon>
     </Content>
+    <Content Include="image\Home_title.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

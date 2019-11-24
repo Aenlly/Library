@@ -72,7 +72,7 @@ namespace Library.admin
         //数据恢复按钮事件
         private void btn_Recovery_Click(object sender, EventArgs e)
         {
-            admin_FeedBack admin_Recovery = new admin_FeedBack();//实例化数据恢复窗体对象
+            admin_Recovery admin_Recovery = new admin_Recovery();//实例化数据恢复窗体对象
             admin_Recovery.ShowDialog();//显示数据恢复窗体
         }
 
