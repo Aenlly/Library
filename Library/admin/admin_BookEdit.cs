@@ -52,8 +52,8 @@ namespace Library.admin
             cmb_type.DataSource = ds.Tables[0].DefaultView;//取出数据源填充到列表中
             cmb_type.DisplayMember = "t_name";//列表中显示的值对应的字段名
             string sql = "select t_id from [type] where t_name='" + Log.log.b_type + "'";
-            cmd = new SqlCommand(sql, con);//执行查询t_id语句
-            int t_id = Convert.ToInt16(cmd.ExecuteScalar());//返回t_id值，用于这边选中
+            cmd = new SqlCommand(sql, con);////储存需要执行的t_id语句
+            int t_id = Convert.ToInt16(cmd.ExecuteScalar());//返回t_id值，用于这边选中，执行t_id语句
             cmb_type.SelectedIndex = t_id;//设置索引为t_id
             con.Close();//关闭数据库
         }
@@ -70,7 +70,7 @@ namespace Library.admin
             {
                 if (e.KeyChar != '.')//允许使用.符合
                 {
-                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
                     {
                         e.Handled = true;
                     }
@@ -117,14 +117,14 @@ namespace Library.admin
                                 string sql = "update [book] set b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
                                 string sql_book = "update [books] set b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + year + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
                                 con = dButil.SqlOpen();//打开数据库
-                                cmd = new SqlCommand(sql, con);//执行语句
-                                n = cmd.ExecuteNonQuery();//返回影响行
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行
                                 con.Close();//关闭数据库
                                 if (n >0) //判断是否执行成功
                                 {
                                     con = dButil.SqlOpen();//打开数据库
-                                    cmd = new SqlCommand(sql_book, con);//执行语句
-                                    n = cmd.ExecuteNonQuery();//返回影响行
+                                    cmd = new SqlCommand(sql_book, con);//储存sql语句
+                                    n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行
                                     con.Close();//关闭数据库
                                     if (n > 0)//判断是否执行成功
                                     {
@@ -172,8 +172,8 @@ namespace Library.admin
                             //查询是否有存在m条未借出的数据
                             string sql = "select count(*) from books where b_name='" + bookname + "' and b_lend=1";
                             con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//执行sql语句
-                            int n = Convert.ToInt16(cmd.ExecuteScalar());//赋值进行对比
+                            cmd = new SqlCommand(sql, con);//储存sql语句
+                            int n = Convert.ToInt16(cmd.ExecuteScalar());//赋值进行对比，执行sql语句，返回第一行第一列的值
                             con.Close();//关闭数据库
                             if (n >=m)
                             {
@@ -181,23 +181,23 @@ namespace Library.admin
                                     sql = "update [book] set b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
                                     string sql_book = "update [books] set b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + year + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
                                     con = dButil.SqlOpen();//打开数据库
-                                    cmd = new SqlCommand(sql, con);//执行语句
-                                    n = cmd.ExecuteNonQuery();//返回影响行
+                                    cmd = new SqlCommand(sql, con);//储存语句
+                                    n = cmd.ExecuteNonQuery();//，执行语句返回影响行
                                     con.Close();//关闭数据库
                                     if (n > 0) //判断是否执行成功
                                     {
                                     string sql_books = "set rowcount " + m + " delete books where b_name='" + bookname + "' and b_lend=1";
                                     con = dButil.SqlOpen();//打开数据库
-                                    cmd = new SqlCommand(sql_books, con);
-                                    n = cmd.ExecuteNonQuery();
+                                    cmd = new SqlCommand(sql_books, con);//储存语句
+                                    n = cmd.ExecuteNonQuery();//执行
                                     con.Close();//关闭数据库
 
                                     if (n > 0)
                                     {
 
                                         con = dButil.SqlOpen();//打开数据库
-                                        cmd = new SqlCommand(sql_book, con);//执行语句
-                                        n = cmd.ExecuteNonQuery();//返回影响行
+                                        cmd = new SqlCommand(sql_book, con);//储存语句
+                                        n = cmd.ExecuteNonQuery();//执行语句，返回影响行
                                         con.Close();//关闭数据库
                                         if (n > 0)//判断是否执行成功
                                         {
@@ -265,6 +265,15 @@ namespace Library.admin
         private void cmb_type_Click(object sender, EventArgs e)
         {
             BookType();
+        }
+
+        //库存输入的判断
+        private void mtext_stocks_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (mtext_stocks.Text.Trim().Length > 0)//判断内容长度大于0
+            {
+                mtext_stocks.Text = string.Format("{0:#,#}", Convert.ToDouble(mtext_stocks.Text.Trim()));
+            }
         }
     }
 }

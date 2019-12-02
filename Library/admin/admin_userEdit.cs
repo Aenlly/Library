@@ -79,8 +79,8 @@ namespace Library.admin
                     //sql更新语句
                     string sql = "update [user] set u_name='" + text_name.Text.Trim() + "',u_sex='" + cmb_sex.Text + "',u_tel='" + str_tel + "',u_card='" + str_card + "',u_position='" + cmb_position.Text + "',u_college='" + text_college.Text.Trim() + "' where u_id='" + text_id.Text + "'";
                     con = dButil.SqlOpen();
-                    cmd = new SqlCommand(sql, con);
-                    int n = cmd.ExecuteNonQuery();//返回影响行数判断是否修改成功
+                    cmd = new SqlCommand(sql, con);//储存sql语句
+                    int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数判断是否修改成功
                     con.Close();//关闭数据库
                     if (n > 0)
                     {

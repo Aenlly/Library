@@ -48,12 +48,16 @@ namespace Library.user
                     //sql插入语句
                     string sql = "insert into feedback(u_id,f_title,f_content,f_smntime) values ('" + text_id.Text + "','" + text_title.Text.Trim() + "','" + text_conent.Text.Trim() + "',getdate())";
                     con = dButil.SqlOpen();//打开数据库
-                    cmd = new SqlCommand(sql, con);//执行sql语句
-                    int n = cmd.ExecuteNonQuery();//返回受影响的行数赋值到n中
+                    cmd = new SqlCommand(sql, con);//储存sql语句
+                    int n = cmd.ExecuteNonQuery();//执行sql语句,返回受影响的行数赋值到n中
                     if (n > 0)//判断n是否大于0，大于0则成功
                     {
                         //成功提交提示
-                        MessageBox.Show("提交反馈成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dialog=MessageBox.Show("提交反馈成功！点击确认按钮返回反馈记录窗口", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (dialog == DialogResult.OK)
+                        {
+                            Close();//关闭当前窗体
+                        }
                     }
                     else
                     {

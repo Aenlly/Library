@@ -36,7 +36,7 @@ namespace Library.admin
         private void btn_add_Click(object sender, EventArgs e)
         {
             //判断输入文本是否为空
-            if (text_name.Text == "" || mtext_card.Text.Trim().Length<18) { MessageBox.Show("请填写添加用户信息！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            if (text_name.Text == "" || mtext_card.Text.Trim().Length<18) { MessageBox.Show("请填写添加正确信息！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             else
             {
                 string[] card_temp = mtext_card.Text.Split('-');//去掉-符号
@@ -48,11 +48,11 @@ namespace Library.admin
                     //添加用户的sql语句
                     string sql = "insert into [user] (u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "','" + card + "','" + cmb_user.Text + "','5')";
                     con = dButil.SqlOpen();//打开数据库
-                    cmd = new SqlCommand(sql, con);//执行sql语句
-                    int n = cmd.ExecuteNonQuery();//返回成功记录进行判断
+                    cmd = new SqlCommand(sql, con);//储存sql语句
+                    int n = cmd.ExecuteNonQuery();//执行语句，返回成功记录进行判断
                     sql = "select u_id from [user] where u_card='" + card + "'";//查询账号
-                    cmd = new SqlCommand(sql, con);//执行sql语句
-                    int m = Convert.ToInt32(cmd.ExecuteScalar());//获得账号
+                    cmd = new SqlCommand(sql, con);//储存sql语句
+                    int m = Convert.ToInt32(cmd.ExecuteScalar());//执行sql语句，获得账号
                     con.Close();//关闭数据量
                     if (n > 0)
                     {
@@ -79,11 +79,11 @@ namespace Library.admin
                     //添加用户的sql语句
                     string sql = "insert into [user] (u_password,u_name,u_sex,u_card,u_position,u_number) values ('" + pwd + "','" + text_name.Text.Trim() + "','" + cmb_sex.Text + "''" + card + "','" + cmb_user.Text + "','8')";
                     con = dButil.SqlOpen();//打开数据库
-                    cmd = new SqlCommand(sql, con);//执行sql
-                    int n = cmd.ExecuteNonQuery();//返回成功记录进行判断
+                    cmd = new SqlCommand(sql, con);//储存sql语句
+                    int n = cmd.ExecuteNonQuery();//执行sql语句,返回成功记录进行判断
                     sql = "select u_id from [user] wher u_card='" + card+"'";//查询账号
-                    cmd = new SqlCommand(sql, con);//执行sql
-                    int m=Convert.ToInt16(cmd.ExecuteScalar());//获得账号
+                    cmd = new SqlCommand(sql, con);//储存sql语句
+                    int m=Convert.ToInt16(cmd.ExecuteScalar());//执行sql语句，获得账号
                     con.Close();//关闭数据库
                     if (n > 0)
                     {

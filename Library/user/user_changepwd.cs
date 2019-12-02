@@ -22,14 +22,19 @@ namespace Library.user
         private void btn_NetStep_Click(object sender, EventArgs e)
         {
             SqlDbHelper sqlDbHelper = new SqlDbHelper();//类的实例创建
-            String name_id = text_name.Text.Trim();//获得学号
-            String name_card = text_card.Text.Trim();//获得身份证
+            string name_id = text_name.Text.Trim();//获得学号
+            string name_card = text_card.Text.Trim();//获得身份证
 
             //判断
             if (name_id == "" || name_card == "")
             {
                 //错误提示
                 MessageBox.Show("请输入账号、身份证", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (name_card.Length < 18)//判断身份证是否有18位
+            {
+                //错误提示
+                MessageBox.Show("身份证号码未达到18位", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -91,6 +96,28 @@ namespace Library.user
             else
             {
                 e.Cancel = true;//当前窗体不关闭
+            }
+        }
+
+        private void text_name_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void text_card_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
             }
         }
     }

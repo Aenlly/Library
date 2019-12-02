@@ -83,8 +83,8 @@ namespace Library.user
                         //执行选中男的sql语句
                         string sql = "update [user] set u_sex='男',u_college='" + text_college.Text.Trim() + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
                         con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//执行sql语句
-                        int n = cmd.ExecuteNonQuery();//获得受影响的行数
+                        cmd = new SqlCommand(sql, con);//储存sql语句
+                        int n = cmd.ExecuteNonQuery();//执行sql语句，获得受影响的行数
                         con.Close();//关闭数据库
                         if (n > 0)//判断是否执行成功
                         {
@@ -167,7 +167,7 @@ namespace Library.user
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
                 {
                     e.Handled = true;
                 }

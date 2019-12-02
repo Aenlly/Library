@@ -19,10 +19,10 @@ namespace Library.user
         private void btn_pwd_Click(object sender, EventArgs e)
         {
             SqlDbHelper sqlDbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-            String user_id = Log.log.u_id;//获取登录的账户id
+            string user_id = Log.log.u_id;//获取登录的账户id
             Console.WriteLine(user_id);
-            String user_pwd = text_pwd.Text.Trim();//获取登录的密码
-            String user_pwds = text_pwds.Text.Trim();//获取重复输入密码
+            string user_pwd = text_pwd.Text.Trim();//获取登录的密码
+            string user_pwds = text_pwds.Text.Trim();//获取重复输入密码
 
             if (user_pwd == "")
             {
@@ -69,6 +69,17 @@ namespace Library.user
                     text_pwds.Focus();//取得确认密码框的输入焦点
                     text_pwds.SelectAll();//选中确认密码框的全部内容
                 }
+            }
+        }
+
+        private void text_pwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //能输入字母，数字，退格键
+            if ((e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z') || (e.KeyChar >= 'a' && e.KeyChar <= 'z') || ((Keys)(e.KeyChar) == Keys.Back))
+            { e.Handled = false; }//能输入
+            else
+            {
+                e.Handled = true;//不能输入
             }
         }
     }

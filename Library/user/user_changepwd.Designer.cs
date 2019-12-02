@@ -57,9 +57,11 @@
             // text_name
             // 
             this.text_name.Location = new System.Drawing.Point(110, 38);
+            this.text_name.MaxLength = 10;
             this.text_name.Name = "text_name";
             this.text_name.Size = new System.Drawing.Size(158, 23);
             this.text_name.TabIndex = 0;
+            this.text_name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_name_KeyPress);
             // 
             // btn_NetStep
             // 
@@ -74,9 +76,11 @@
             // text_card
             // 
             this.text_card.Location = new System.Drawing.Point(110, 74);
+            this.text_card.MaxLength = 18;
             this.text_card.Name = "text_card";
             this.text_card.Size = new System.Drawing.Size(158, 23);
             this.text_card.TabIndex = 1;
+            this.text_card.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_card_KeyPress);
             // 
             // btn_Login
             // 

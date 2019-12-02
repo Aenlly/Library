@@ -29,7 +29,7 @@ namespace Library.user
         {
             Dgv_return.AutoGenerateColumns = false;//不自动生成列，从数据库可能取得很多列，使其不显示在DataGridView中
             con = dButil.SqlOpen();
-            cmd = new SqlCommand(sql, con);//执行sql语句
+            cmd = new SqlCommand(sql, con);//储存sql语句
             sda = new SqlDataAdapter(cmd);//创建sql适配器
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中

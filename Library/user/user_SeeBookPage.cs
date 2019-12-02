@@ -27,7 +27,7 @@ namespace Library.user
         {
             Dgv_SeeBook.AutoGenerateColumns = false;//不自动生成列，从数据库可能取得很多列，使其不显示在DataGridView中
             con = dButil.SqlOpen();
-            cmd = new SqlCommand(sql, con);
+            cmd = new SqlCommand(sql, con);//储存sql语句
             sda = new SqlDataAdapter(cmd);
             ds = new DataSet();
             sda.Fill(ds, "Book");//把查询内容添加到ds中，区别type类别换成
@@ -73,12 +73,6 @@ namespace Library.user
             databind(sql);//填充到表格控件中
         }
 
-        //借书按钮
-        private void tsbtn_borrow_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //获取图书名称的值
         private void dGv_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -105,9 +99,9 @@ namespace Library.user
                         //打开数据库
                         con = dButil.SqlOpen();
                         //sql查询语句
-                        string sql = "select [borrow].b_id from [borrow],[books] where [borrow].b_id=[books].b_id and bo_eme!=2 and [books].b_name='" + b_name + "'";
-                        cmd = new SqlCommand(sql, con);//执行查询语句
-                        string b_id =Convert.ToString(cmd.ExecuteScalar());
+                        string sql = "select [borrow].b_id from [borrow],[books],[user] where [borrow].u_id=[user].u_id and [borrow].b_id=[books].b_id and bo_eme!=2 and [books].b_name='" + b_name + "' and [borrow].u_id='"+Log.log.u_id+"'";
+                        cmd = new SqlCommand(sql, con);//储存需要执行的语句
+                        string b_id =Convert.ToString(cmd.ExecuteScalar());//执行，并返回第一行第一列内容
                         con.Close();//关闭数据库
                         if ("".Equals(b_id))//返回cmd查询的第一行第一列是否有值，进行对比
                         {
@@ -126,20 +120,26 @@ namespace Library.user
                                     //更新第一条数据，并且返回更新的b_id
                                     sql = "update top(1) books set  b_lend=0 output inserted.b_id where  b_name='" + b_name + "' and b_lend=1";//只更新一条
                                     con = dButil.SqlOpen();//打开数据库
-                                    cmd = new SqlCommand(sql, con);//执行sql语句
-                                    string return_b_id = cmd.ExecuteScalar().ToString();//返回更新的b_id，用做插入信息的数据
+                                    cmd = new SqlCommand(sql, con);//储存需要执行的语句
+                                    string return_b_id = cmd.ExecuteScalar().ToString();//执行语句，返回更新的b_id，用做插入信息的数据
                                     con.Close();//关闭数据库
 
                                     if (tscmb_day.SelectedIndex == 0)//选中7天
                                     {
                                         string sql_borrow = "insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('" + return_b_id + "','" + b_isbn + "','" + Log.log.u_id + "','" + DateTime.Now.ToString("d") + "','" + DateTime.Now.AddDays(7).ToString("d") + "','" + 7 + "')";
                                         con = dButil.SqlOpen();//打开数据库
-                                        cmd = new SqlCommand(sql_borrow, con);//执行sql语句
-                                        n = cmd.ExecuteNonQuery();//返回受影响的行，用做判断成功
+                                        cmd = new SqlCommand(sql_borrow, con);//储存需要执行的语句
+                                        n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行，用做判断成功
 
                                         //更新可借数量
                                         string sql_number = "update [user] set u_number=(u_number-1) where u_id='" + Log.log.u_id + "'";
-                                        cmd = new SqlCommand(sql_number, con);//执行更新可借数量语句
+                                        cmd = new SqlCommand(sql_number, con);//储存需要执行的语句
+                                        cmd.ExecuteNonQuery();//执行更新可借数量语句
+
+                                        //更新图书库存
+                                        string sql_b_stocks = "update [book] set b_stocks=(b_stocks-1) where b_isbn='" + b_isbn + "'";
+                                        cmd = new SqlCommand(sql_b_stocks, con);//储存需要执行的语句
+                                        cmd.ExecuteNonQuery();//执行更新可借数量语句
                                         con.Close();//关闭数据库
 
                                     }
@@ -147,12 +147,18 @@ namespace Library.user
                                     {
                                         string sql_borrow = "insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('" + return_b_id + "','" + b_isbn + "','" + Log.log.u_id + "','" + DateTime.Now.ToString("d") + "','" + DateTime.Now.AddDays(15).ToString("d") + "','" + 15 + "')";
                                         con = dButil.SqlOpen();//打开数据库
-                                        cmd = new SqlCommand(sql_borrow, con);//执行sql语句
-                                        n = cmd.ExecuteNonQuery();//返回受影响的行，用做判断成功
+                                        cmd = new SqlCommand(sql_borrow, con);//储存需要执行的语句
+                                        n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行，用做判断成功
 
                                         //更新可借数量
                                         string sql_number = "update [user] set u_number=(u_number-1) where u_id='" + Log.log.u_id + "'";
-                                        cmd = new SqlCommand(sql_number, con);//执行更新可借数量语句
+                                        cmd = new SqlCommand(sql_number, con);//储存需要执行的语句
+                                        cmd.ExecuteNonQuery();//执行更新可借数量语句
+
+                                        //更新图书库存
+                                        string sql_b_stocks = "update [book] set b_stocks=(b_stocks-1) where b_isbn='" + b_isbn + "'";
+                                        cmd = new SqlCommand(sql_b_stocks, con);//储存需要执行的语句
+                                        cmd.ExecuteNonQuery();//执行更新可借数量语句
                                         con.Close();//关闭数据库
                                     }
                                     else//否则选中30天
@@ -164,7 +170,13 @@ namespace Library.user
 
                                         //更新可借数量
                                         string sql_number = "update [user] set u_number=(u_number-1) where u_id='" + Log.log.u_id + "'";
-                                        cmd = new SqlCommand(sql_number, con);//执行更新可借数量语句
+                                        cmd = new SqlCommand(sql_number, con);//储存需要执行的语句
+                                        cmd.ExecuteNonQuery();//执行更新可借数量语句
+
+                                        //更新图书库存
+                                        string sql_b_stocks = "update [book] set b_stocks=(b_stocks-1) where b_isbn='" + b_isbn + "'";
+                                        cmd = new SqlCommand(sql_b_stocks, con);//储存需要执行的语句
+                                        cmd.ExecuteNonQuery();//执行更新可借数量语句
                                         con.Close();//关闭数据库
                                     }
 

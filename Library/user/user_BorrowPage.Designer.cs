@@ -351,7 +351,7 @@
             this.tsbtn_borrowNo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_borrowNo.Name = "tsbtn_borrowNo";
             this.tsbtn_borrowNo.Size = new System.Drawing.Size(174, 25);
-            this.tsbtn_borrowNo.Text = "显示失败或待审核记录";
+            this.tsbtn_borrowNo.Text = "显示失败或审核中记录";
             this.tsbtn_borrowNo.Click += new System.EventHandler(this.tsbtn_borrowNo_Click);
             // 
             // user_BorrowPage

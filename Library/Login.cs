@@ -23,8 +23,8 @@ namespace Library
         //登录按钮的单击事件
         private void btn_dl_Click(object sender, EventArgs e)
         {
-            String name = text_name.Text.Trim();
-            String pwd = text_pwd.Text.Trim();
+            string name = text_name.Text.Trim();
+            string pwd = text_pwd.Text.Trim();
 
 
             SqlDbHelper sqlDbHelper = new SqlDbHelper();//实例化SqlDbHelper类
@@ -44,18 +44,19 @@ namespace Library
                 //判断登录方式是否为用户
                 if (cmb_type.SelectedIndex == 0)
                 {
-                    String sql = "select u_password from [user] where u_id='" + name+"'";
+                    string sql = "select u_password from [user] where u_id='" + name+"'";
                     int n = sqlDbHelper.Checkuser(sql, pwd);
                     if (n == 2)//账号密码正确
                     {
-                        Log.log.u_id = text_name.Text.Trim();
-                        Log.log.pwd = text_pwd.Text.Trim();
-
                         //插入登陆信息
-                        sql = "insert login(u_id,l_time) values (" + Log.log.u_id + ",null,getdate())";
-                        SqlConnection con = dButil.SqlOpen();//打开数据库
-                        SqlCommand cmd = new SqlCommand(sql, con);//执行插入登录信息
+                        sql = "insert into login values (" + text_name.Text.Trim() + ",getdate())";
+                        SqlConnection con= dButil.SqlOpen();//打开//储存需要执行的sql语句数据库
+                        SqlCommand cmd = new SqlCommand(sql, con);//储存sql语句
+                        cmd.ExecuteNonQuery();//执行sql语句
                         con.Close();//关闭数据库
+
+                        Log.log.u_id = text_name.Text.Trim();//储存id
+                        Log.log.pwd = text_pwd.Text.Trim();//储存密码              
 
                         user_Home user_Home = new user_Home();//用户窗体实例化
                         user_Home.Show();// 显示窗体
@@ -86,8 +87,8 @@ namespace Library
                         sql = "select a_id from admin where a_name='" + name + "' and a_password='" + pwd + "'";
                         DButil dButil = new DButil();//实例化连接数据库类
                         SqlConnection con = dButil.SqlOpen();//打开数据库
-                        SqlCommand cmd = new SqlCommand(sql, con);//执行查询sql代码
-                        Log.log.a_id = Convert.ToInt16(cmd.ExecuteScalar());//赋值管理员编号
+                        SqlCommand cmd = new SqlCommand(sql, con);//储存需要执行的sql语句
+                        Log.log.a_id = Convert.ToInt16(cmd.ExecuteScalar());//赋值管理员编号，执行sql语句
                         con.Close();//关闭数据库
 
                         Log.log.u_id = text_name.Text.Trim();
@@ -156,7 +157,7 @@ namespace Library
             {
                 if (e.KeyChar != '\b')//这是允许输入退格键  
                 {
-                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
                     {
                         e.Handled = true;
                     }
@@ -165,9 +166,10 @@ namespace Library
             else { }
         }
 
+        //下拉索引修改
         private void cmb_type_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmb_type.SelectedIndex == 0)
+            if (cmb_type.SelectedIndex == 0)//如果索引修改为0，则输入框内容全部清空
             {
                 text_name.Text = "";
                 text_pwd.Text = "";

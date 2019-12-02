@@ -47,14 +47,18 @@
             // text_pwd
             // 
             this.text_pwd.Location = new System.Drawing.Point(93, 22);
+            this.text_pwd.MaxLength = 16;
             this.text_pwd.Name = "text_pwd";
             this.text_pwd.Size = new System.Drawing.Size(149, 23);
             this.text_pwd.TabIndex = 0;
+            this.text_pwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_pwd_KeyPress);
             // 
             // text_pwds
             // 
             this.text_pwds.Location = new System.Drawing.Point(93, 57);
+            this.text_pwds.MaxLength = 16;
             this.text_pwds.Name = "text_pwds";
+            this.text_pwds.PasswordChar = '*';
             this.text_pwds.Size = new System.Drawing.Size(149, 23);
             this.text_pwds.TabIndex = 1;
             // 

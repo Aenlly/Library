@@ -129,8 +129,8 @@ namespace Library.user
                     {
                         string sql = "delete feedback where f_id='" + f_id + "'";//创建sql删除语句
                         con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//执行sql语句
-                        int n = cmd.ExecuteNonQuery();//获得执行sql语句受影响的行数赋值到n中
+                        cmd = new SqlCommand(sql, con);//储存sql语句
+                        int n = cmd.ExecuteNonQuery();//执行sql语句，获得执行sql语句受影响的行数赋值到n中
                         if (n > 0)//判断是否成功
                         {
                             //成功提示

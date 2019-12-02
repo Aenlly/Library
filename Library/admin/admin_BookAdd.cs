@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Library.admin
@@ -44,8 +45,8 @@ namespace Library.admin
             cmb_type.DataSource = ds.Tables[0].DefaultView;//取出数据源填充到列表中
             cmb_type.DisplayMember = "t_name";//列表中显示的值对应的字段名
             string sql = "select t_id from [type] where t_name='" + cmb_type.Text + "'";//差类别第一个的列的id
-            cmd = new SqlCommand(sql, con);//执行查询t_id语句
-            int t_id = Convert.ToInt16(cmd.ExecuteScalar());//返回t_id值，用于这边选中
+            cmd = new SqlCommand(sql, con);////储存需要执行的t_id语句
+            int t_id = Convert.ToInt16(cmd.ExecuteScalar());//返回t_id值，用于这边选中，执行t_id语句
             cmb_type.SelectedIndex = t_id;//设置索引为t_id
             con.Close();//关闭数据库
         }
@@ -57,13 +58,14 @@ namespace Library.admin
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void text_price_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        {            
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
                 if (e.KeyChar != '.')//允许使用.符合
                 {
-                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
-                    {
+                    
+                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                    {                        
                         e.Handled = true;
                     }
                 }
@@ -81,10 +83,9 @@ namespace Library.admin
             else
             {
                 //价格文本框必须显示2位小数点
-                this.text_price.Text = string.Format("{0:#,##0.00}", Convert.ToDouble(text_price.Text));
+                text_price.Text = string.Format("{0:#,##0.00}", Convert.ToDouble(text_price.Text));
 
                 int index = cmb_type.SelectedIndex;//获得类别的索引值
-
                 int year = Convert.ToInt16(mtext_year.Text);//年份转换，并与当前年份对比
                 int stocks = Convert.ToInt16(mtext_stocks.Text.Trim());//获得添加的库存量
                 if (mtext_year.Text.Trim().Length < 4 || year > DateTime.Now.Year)
@@ -99,10 +100,10 @@ namespace Library.admin
                     con = dButil.SqlOpen();//打开数据库
                     int n = 0;//定义一个整型，用来判断是否修改数据库
 
-                    cmd = new SqlCommand(sql_isbn, con);//查询isbn值
-                    string b_name = Convert.ToString(cmd.ExecuteScalar());//获得isbn值
-                    cmd = new SqlCommand(sql_bookname, con);//查询图书名
-                    string b_isbn = Convert.ToString(cmd.ExecuteScalar());//获得第一列第一行的值即图书名
+                    cmd = new SqlCommand(sql_isbn, con);//储存语句，查询isbn值
+                    string b_name = Convert.ToString(cmd.ExecuteScalar());//查询isbn值，获得isbn值
+                    cmd = new SqlCommand(sql_bookname, con);
+                    string b_isbn = Convert.ToString(cmd.ExecuteScalar());//查询图书名，获得第一列第一行的值即图书名
                     con.Close();//关闭数据库
                     //判断，数据库有没有该isbn值就直接循环
                     if (b_name != "" || b_isbn != "")
@@ -126,8 +127,8 @@ namespace Library.admin
                                 //查询books表
                                 string sql_book = "select * from books where b_name='" + b_name + "'";
                                 con = dButil.SqlOpen();//打开数据库
-                                cmd = new SqlCommand(sql_book, con);//执行sql语句
-                                SqlDataReader reader = cmd.ExecuteReader();//获得各列的值
+                                cmd = new SqlCommand(sql_book, con);//储存sql语句
+                                SqlDataReader reader = cmd.ExecuteReader();//获得各列的值，执行语句
                                 reader.Read();
                                 string isbn = reader["b_isbn"].ToString();//获得isbn值
                                 string name= reader["b_name"].ToString();//获得图书名称
@@ -144,8 +145,8 @@ namespace Library.admin
                                 for (int i = 0; i < stocks; i++)
                                 {
                                     string sql_inserb = "insert into books values ('" + b_isbn + "','" + name + "','" +id + "','" + author + "','" + press + "','" + time + "','" + price + "','1')";
-                                    cmd = new SqlCommand(sql_inserb, con);//执行插入语句
-                                    n = n + cmd.ExecuteNonQuery();//每次循环n加一
+                                    cmd = new SqlCommand(sql_inserb, con);//储存插入语句
+                                    n = n + cmd.ExecuteNonQuery();//储存执行sql语句，每次循环n加一
                                 }
                                 con.Close();
 
@@ -153,8 +154,8 @@ namespace Library.admin
                                 {
                                     con = dButil.SqlOpen();//打开数据库
                                     string sql = "update book set b_stocks=(select count(*) from books where b_lend=1 and b_name='" + name + "') where b_isbn='" + b_isbn + "'";
-                                    cmd = new SqlCommand(sql, con);
-                                    n=cmd.ExecuteNonQuery();
+                                    cmd = new SqlCommand(sql, con);//储存插入语句
+                                    n =cmd.ExecuteNonQuery();//储存执行sql语句，返回影响行
                                     con.Close();
                                     if (n > 0)
                                     {
@@ -182,15 +183,15 @@ namespace Library.admin
                     else
                     {
                         //显示对话框并获得单击返回值
-                        dialog = MessageBox.Show("确认添加为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + mtext_isbn.Text + "\n图书类别：" + index + "\n作者：" + text_author.Text.Trim() + "\n出版社：" + text_press.Text.Trim() + "\n出版年份：" + year + "\n价格：" + mtext_stocks.Text.Trim() + "\n库存：" + stocks, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        dialog = MessageBox.Show("确认添加为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + mtext_isbn.Text + "\n图书类别：" + index + "\n作者：" + text_author.Text.Trim() + "\n出版社：" + text_press.Text.Trim() + "\n出版年份：" + year + "\n价格：" + text_price.Text.Trim() + "\n库存：" + stocks, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                         //二次确认
                         if (DialogResult.OK == dialog)
                         {
                             string sql_b = "insert into book values('" + mtext_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + mtext_stocks.Text.Trim() + "')";
                             con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql_b, con);//执行sql语句
-                            n = cmd.ExecuteNonQuery();//返回影响行
+                            cmd = new SqlCommand(sql_b, con);//储存sql语句
+                            n = cmd.ExecuteNonQuery();//执行语句，返回影响行
                             con.Close();//关闭数据库
                             if (n > 0)
                             {
@@ -241,11 +242,21 @@ namespace Library.admin
             BookType();
         }
 
+        //关闭窗体
         private void btn_close_Click(object sender, EventArgs e)
         {
             Close();
             admin_BookPage admin_BookPage = new admin_BookPage();
             admin_BookPage.Activate();
+        }
+
+        //库存数量输入判断
+        private void mtext_stocks_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (mtext_stocks.Text.Trim().Length > 0)
+            {
+                mtext_stocks.Text = string.Format("{0:#,#}", Convert.ToDouble(mtext_stocks.Text.Trim()));
+            }
         }
     }
 }

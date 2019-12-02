@@ -60,6 +60,7 @@
             // text_college
             // 
             this.text_college.Location = new System.Drawing.Point(131, 205);
+            this.text_college.MaxLength = 20;
             this.text_college.Name = "text_college";
             this.text_college.Size = new System.Drawing.Size(151, 23);
             this.text_college.TabIndex = 5;
@@ -67,6 +68,7 @@
             // text_name
             // 
             this.text_name.Location = new System.Drawing.Point(131, 51);
+            this.text_name.MaxLength = 10;
             this.text_name.Name = "text_name";
             this.text_name.Size = new System.Drawing.Size(107, 23);
             this.text_name.TabIndex = 1;

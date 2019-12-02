@@ -98,7 +98,7 @@ namespace Library.admin
                 Login login = new Login();//实例化登录窗体对象
                 login.Show();//显示登录窗体
                 OkClick = true;//点击了退出登录按钮
-                this.Close();//关闭该窗体
+                Close();//关闭该窗体
             }
         }
 

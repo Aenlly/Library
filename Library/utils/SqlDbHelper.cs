@@ -21,8 +21,8 @@ namespace Library
         {
             con = dButil.SqlOpen();//打开数据库
             int n;//定义个n判断
-            SqlCommand command = new SqlCommand(sql, con);//查询传递过来的sql语句
-            n = command.ExecuteNonQuery();//返回受影响的记录行
+            SqlCommand command = new SqlCommand(sql, con);////储存传递过来的sql语句
+            n = command.ExecuteNonQuery();//执行sql语句，返回受影响的记录行
             con.Close();//关闭数据库
             if (n > 0)//判断是否存在受影响的行
             {
@@ -43,8 +43,8 @@ namespace Library
         {
 
             con = dButil.SqlOpen();//打开数据库
-            SqlCommand command = new SqlCommand(sql, con);//链接数据库进行执行
-            SqlDataReader reader = command.ExecuteReader();//创建只读储存结果集
+            SqlCommand command = new SqlCommand(sql, con);//链接数据库储存语句
+            SqlDataReader reader = command.ExecuteReader();//执行语句，创建只读储存结果集
             while (reader.Read())//判断是否存在内容
             {
                 if (reader["u_password"].Equals(pwd))//进行判断用户密码
@@ -73,8 +73,8 @@ namespace Library
         public int Checkadmin(String sql, string pwd)
         {
             con = dButil.SqlOpen();
-            SqlCommand command = new SqlCommand(sql, con);//链接数据库进行执行
-            SqlDataReader reader = command.ExecuteReader();//创建只读储存结果集
+            SqlCommand command = new SqlCommand(sql, con);//链接数据库，同时储存语句
+            SqlDataReader reader = command.ExecuteReader();//执行语句，创建只读储存结果集
             while (reader.Read())//判断是否存在内容
             {
                 if (reader["a_password"].Equals(pwd))//进行判断用户密码
@@ -96,8 +96,8 @@ namespace Library
         public int Checkcard(String sql, string card)
         {
             con = dButil.SqlOpen();//打开数据库
-            SqlCommand command = new SqlCommand(sql, con);//查询sql语句
-            SqlDataReader reader = command.ExecuteReader();//创建只读储存结果集
+            SqlCommand command = new SqlCommand(sql, con);//储存sql语句
+            SqlDataReader reader = command.ExecuteReader();//查询sql语句，创建只读储存结果集
             while (reader.Read())//判断是否存在内容
             {
                 if (reader["u_card"].Equals(card))//进行传递的身份证与数据库内的身份证进行对比
@@ -121,8 +121,8 @@ namespace Library
             //添加操作记录的sql语句
             string sql = "insert operation(o_ort,o_time) values ('"+ort+"',getdate())";
             con = dButil.SqlOpen();//打开数据库
-            SqlCommand cmd = new SqlCommand(sql, con);//执行sql语句
-            int n=cmd.ExecuteNonQuery();//返回是否成功
+            SqlCommand cmd = new SqlCommand(sql, con);//储存sql语句
+            int n=cmd.ExecuteNonQuery();//查询sql语句，返回是否成功
             con.Close();//关闭数据库
         }
     }

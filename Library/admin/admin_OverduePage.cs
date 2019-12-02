@@ -29,8 +29,8 @@ namespace Library.admin
         {
             Dgv_overdue.AutoGenerateColumns = false;//不自动生成列，从数据库可能取得很多列，使其不显示在DataGridView中
             con = dButil.SqlOpen();
-            cmd = new SqlCommand(sql, con);//执行sql语句
-            sda = new SqlDataAdapter(cmd);//创建适配器实例
+            cmd = new SqlCommand(sql, con);//储存需要执行的语句
+            sda = new SqlDataAdapter(cmd);//创建适配器实例，并执行查询
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中
             bindingSource1.DataSource = ds.Tables[0];//获取数据源到bindingSource1中
@@ -49,9 +49,11 @@ namespace Library.admin
             //加载该窗体时执行sql更新语句方法，实时更新逾期天数,要求：必须是未还书或者是还书失败，以及已逾期或逾期审核不通过的用户
             string sql_ovup = "update borrow set bo_dayover=datediff(day,bo_return,getdate()) where bo_emeover=1 or bo_emeover=4  and bo_eme=0 or bo_eme=3";
             con = dButil.SqlOpen();//打开数据库
-            cmd = new SqlCommand(sql_ovup, con);//执行语句
+            cmd = new SqlCommand(sql_ovup, con);//储存需要执行的sql语句
+            cmd.ExecuteNonQuery();//执行语句
             con.Close();//关闭数据库
-            //执行查询语句
+
+            //查询语句
             string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
             databind(sql);//传递语句填充到表格中
         }
@@ -96,9 +98,9 @@ namespace Library.admin
                             string sql = "update borrow set bo_emeover=3 where bo_id=" + bo_id + "";
                             //打开数据库
                             con = dButil.SqlOpen();
-                            //执行sql语句
+                            //储存需要执行的语句
                             cmd = new SqlCommand(sql, con);
-                            //获取受影响的行数
+                            //获取受影响的行数，执行sql语句
                             int n = cmd.ExecuteNonQuery();
                             //判断是否成功
                             if (n > 0)
@@ -148,9 +150,9 @@ namespace Library.admin
                             string sql = "update borrow set bo_emeover=4 where bo_id=" + bo_id + "";
                             //打开数据库
                             con = dButil.SqlOpen();
-                            //执行sql语句
+                            //储存sql语句
                             cmd = new SqlCommand(sql, con);
-                            //获取受影响的行数
+                            //执行sql语句，获取受影响的行数
                             int n = cmd.ExecuteNonQuery();
                             //判断是否成功
                             if (n > 0)

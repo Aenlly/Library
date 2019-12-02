@@ -211,6 +211,7 @@
             this.mtext_stocks.Size = new System.Drawing.Size(66, 26);
             this.mtext_stocks.TabIndex = 5;
             this.mtext_stocks.ValidatingType = typeof(int);
+            this.mtext_stocks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtext_stocks_KeyPress);
             // 
             // mtext_isbn
             // 

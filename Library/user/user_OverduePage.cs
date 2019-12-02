@@ -28,8 +28,8 @@ namespace Library.user
         {
             Dgv_overdue.AutoGenerateColumns = false;//不自动生成列，从数据库可能取得很多列，使其不显示在DataGridView中
             con = dButil.SqlOpen();//打开数据库
-            cmd = new SqlCommand(sql, con);//执行sql语句
-            sda = new SqlDataAdapter(cmd);//创建适配器
+            cmd = new SqlCommand(sql, con);//储存sql语句
+            sda = new SqlDataAdapter(cmd);//创建适配器，并执行
             ds = new DataSet();
             sda.Fill(ds);//把查询内容添加到ds中
             bindingSource1.DataSource = ds.Tables[0];//获得数据
@@ -48,7 +48,8 @@ namespace Library.user
             //加载该窗体时执行sql更新语句方法，实时更新逾期天数，要求：必须是未还书或者是还书失败，以及已逾期或逾期审核不通过的用户
             string sql_ovup = "update borrow set bo_dayover=datediff(day,bo_return,getdate()) where bo_emeover=1 or bo_emeover=4 and bo_eme=0 or bo_eme=3";
             con = dButil.SqlOpen();//打开数据库
-            cmd = new SqlCommand(sql_ovup, con);//执行语句
+            cmd = new SqlCommand(sql_ovup, con);//储存sql语句
+            cmd.ExecuteNonQuery();//执行sql语句
             con.Close();//关闭数据库
             //执行查询全部语句
             string sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id+"'";
@@ -107,8 +108,8 @@ namespace Library.user
                             //sql更新语句
                             string sql = "update borrow set bo_emeover=2 where bo_id='" + bo_id + "'";
                             con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//执行sql语句
-                            int n = cmd.ExecuteNonQuery();//赋值受影响的行数到n上
+                            cmd = new SqlCommand(sql, con);//储存sql语句
+                            int n = cmd.ExecuteNonQuery();//执行sql语句，赋值受影响的行数到n上
                             con.Close();//关闭数据库
                             if (n > 0)
                             {

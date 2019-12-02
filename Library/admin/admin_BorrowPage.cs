@@ -29,7 +29,7 @@ namespace Library.admin
         {
             Dgv_borrow.AutoGenerateColumns = false;//不自动生成列，从数据库可能取得很多列，使其不显示在DataGridView中
             con = dButil.SqlOpen();
-            cmd = new SqlCommand(sql, con);//执行sql语句
+            cmd = new SqlCommand(sql, con);//储存sql语句
             sda = new SqlDataAdapter(cmd);//创建适配器实例
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中
@@ -47,9 +47,10 @@ namespace Library.admin
         private void admin_BorrowPage_Load(object sender, EventArgs e)
         {
             //每次执行时，更新下数据
-            string sql = "update borrow set bo_eme=1 where bo_rtnatl is NULL and dateiff(day,bo_rtnatl,getdate())>0";
+            string sql = "update borrow set bo_eme=1 where bo_rtnatl is NULL and datediff(day,bo_rtnatl,getdate())>0";
             con = dButil.SqlOpen();//打开数据库
-            cmd = new SqlCommand(sql, con);//执行sql语句
+            cmd = new SqlCommand(sql, con);//储存sql语句
+            cmd.ExecuteNonQuery();//执行sql语句
             con.Close();//关闭数据库
             //查询全部内容的语句
             sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
@@ -87,16 +88,27 @@ namespace Library.admin
                         //判断单击了确认按钮
                         if (DialogResult.OK == dialog)
                         {
-                            //sql语句，更新为还书成功，并添加还书时间
-                            string sql = "update borrow set bo_eme=2,bo_rtnatl='" + DateTime.Now.ToString() + "' where bo_id='" + bo_id + "'";
+
+                            //更新图书表中的一条数据，使数量变成+1
+                            string sql = "update top(1) books set  b_lend=1 output inserted.b_id where  b_name='" + Dgv_borrow.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString() + "' and b_lend=0";//只更新一条
                             con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//执行sql语句
-                            int n = cmd.ExecuteNonQuery();//返回影响行数，并赋值给n用作判断
+                            cmd = new SqlCommand(sql, con);//储存需要执行的语句
+                            cmd.ExecuteNonQuery();//执行sql语句，返回影响行数
+
+                            //sql语句，更新为还书成功，并添加还书时间
+                            sql = "update borrow set bo_eme=2,bo_rtnatl='" + DateTime.Now.ToString() + "' where bo_id='" + bo_id + "'";
+                            cmd = new SqlCommand(sql, con);//储存sql语句
+                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
 
                             //更新该用户的可借数量,总借书数量
-                            string sql_number = "update [user] set u_number=(u_number+1) u_book=u_book=1 where u_id=(select u_id from borrow where bo_id='" + bo_id + "'";
-                            cmd = new SqlCommand(sql_number, con);//执行更新数量语句
+                            string sql_number = "update [user] set u_number=(u_number+1),u_book=(u_book+1) where u_id=(select u_id from borrow where bo_id='" + bo_id + "')";
+                            cmd = new SqlCommand(sql_number, con);//储存sql语句
+                            cmd.ExecuteNonQuery();//执行更新数量语句
 
+                            //isbn表中的数量储存
+                            string sql_b_stocks = "update [book] set b_stocks=(b_stocks+1) where b_isbn=(select b_isbn from borrow where bo_id='" + bo_id + "')";
+                            cmd = new SqlCommand(sql_b_stocks, con);//储存sql语句
+                            cmd.ExecuteNonQuery();//执行更新数量语句
                             con.Close();//关闭数据库
                             if (n > 0)//判断是否执行成功并修改
                             {
@@ -117,6 +129,7 @@ namespace Library.admin
                         }
                     }
                 }
+                //点击了不通过按钮
                 if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_btnNo")
                 {
                     //判断是否申请了
@@ -137,11 +150,11 @@ namespace Library.admin
                         //判断单击了确认按钮
                         if (DialogResult.OK == dialog)
                         {
-                            //sql语句，更新为还书成功，并添加还书时间
+                            //sql语句，更新为还书失败，并添加还书时间
                             string sql = "update borrow set bo_eme=3 where bo_id='" + bo_id + "'";
                             con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//执行sql语句
-                            int n = cmd.ExecuteNonQuery();//返回影响行数，并赋值给n用作判断
+                            cmd = new SqlCommand(sql, con);//储存sql语句
+                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
                             con.Close();//关闭数据库
                             if (n > 0)//判断是否执行成功并修改
                             {

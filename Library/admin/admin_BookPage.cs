@@ -102,10 +102,10 @@ namespace Library.admin
                             string strb_del = "delete from [books] where b_name='" + book_name + "'";
                             string strbs_del = "delete from [book] where b_name='" + book_name + "'";
                             con = dButil.SqlOpen();
-                            cmd = new SqlCommand(strbor_del, con);//先删除借书表中的记录
-                            cmd = new SqlCommand(strb_del, con);//再删除图书表中的记录
-                            cmd = new SqlCommand(strbs_del, con);//最后删除isbn表中的记录
-                            n = cmd.ExecuteNonQuery();
+                            cmd = new SqlCommand(strbor_del, con);//储存删除借书表中的记录语句
+                            cmd = new SqlCommand(strb_del, con);//再储存删除图书表中的记录语句
+                            cmd = new SqlCommand(strbs_del, con);//最后储存删除isbn表中的记录语句
+                            n = cmd.ExecuteNonQuery();//执行
                             con.Close();
                             if (n > 0)
                             {
@@ -163,9 +163,29 @@ namespace Library.admin
         //添加图书按钮事件
         private void tsbtn_bookadd_Click(object sender, EventArgs e)
         {
-            admin_BookAdd admin_BookAdd = new admin_BookAdd();//实例化admin_BookAdd窗体
-            admin_BookAdd.ShowDialog();//以对话框模式显示
-            
+            string sql = "select t_id from type";//查询语句
+            con = dButil.SqlOpen();//打开数据库
+            cmd = new SqlCommand(sql, con);//储存语句
+            string id = Convert.ToString(cmd.ExecuteScalar());//执行sql语句，获得返回值进行判断
+            con.Close();//关闭数据库
+            if (id.Equals(""))//如果为空跳转到添加图书类别界面
+            {
+                DialogResult dialog = MessageBox.Show("数据库中无图书类别请先添加图书类别，点击确认跳转！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dialog == DialogResult.OK)
+                {
+                    admin_BookType admin_BookType = new admin_BookType();//实例化admin_BookType窗体
+                    admin_BookType.ShowDialog();//以对话框模式显示
+                }
+            }
+            else//否则显示添加图书界面
+            {
+                admin_BookAdd admin_BookAdd = new admin_BookAdd();//实例化admin_BookAdd窗体
+                admin_BookAdd.ShowDialog();//以对话框模式显示
+
+                //关闭添加图书窗体后，刷新界面数据
+                sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+                databind(sql);//传递sql然后查询填充
+            }
         }
 
         //添加新类别按钮事件

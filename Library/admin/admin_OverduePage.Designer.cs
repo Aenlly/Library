@@ -351,7 +351,7 @@
             this.tsbtn_examine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_examine.Name = "tsbtn_examine";
             this.tsbtn_examine.Size = new System.Drawing.Size(126, 25);
-            this.tsbtn_examine.Text = "显示审核中用户";
+            this.tsbtn_examine.Text = "显示待审核用户";
             this.tsbtn_examine.Click += new System.EventHandler(this.tsbtn_examine_Click);
             // 
             // tsbtn_yes
