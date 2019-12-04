@@ -20,6 +20,7 @@ namespace Library
             public static string user_fid;//user_feedbackRecord界面传递的反馈编号
 
             public static string user_id;//admin_userpage界面传递过来的学号
+            public static bool user_college;//admin界面传递一个数来判断是添加学院还是类别
 
             public static string b_name;//admin_bookpage界面传递的书名
             public static string b_isbn;//admin_bookpage界面传递的isbn编号

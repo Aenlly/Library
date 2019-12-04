@@ -34,7 +34,7 @@ namespace Library.admin
             ds = new DataSet();//ds初始化
             sda.Fill(ds);//把查询内容添加到ds中
             Dgv_ort.DataSource = ds.Tables[0];//导出到dataGridView1中显示并用下列代码对于列名   
-            for(int i = 0; i < 3; i++)
+            for(int i = 0; i < 4; i++)
             {
                 Dgv_ort.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
             }          

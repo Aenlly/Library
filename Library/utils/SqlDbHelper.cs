@@ -119,7 +119,7 @@ namespace Library
         public void Operation(string ort)
         {
             //添加操作记录的sql语句
-            string sql = "insert operation(o_ort,o_time) values ('"+ort+"',getdate())";
+            string sql = "insert operation(a_id,o_ort,o_time) values ('"+Log.log.a_id+"','"+ort+"',getdate())";
             con = dButil.SqlOpen();//打开数据库
             SqlCommand cmd = new SqlCommand(sql, con);//储存sql语句
             int n=cmd.ExecuteNonQuery();//查询sql语句，返回是否成功

@@ -35,9 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.Dgv_ort = new System.Windows.Forms.DataGridView();
-            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_ort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_time = new System.Windows.Forms.Button();
             this.mcd_time = new System.Windows.Forms.MonthCalendar();
             this.btn_select = new System.Windows.Forms.Button();
@@ -45,6 +42,10 @@
             this.mcd_end = new System.Windows.Forms.MonthCalendar();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_end = new System.Windows.Forms.Button();
+            this.Cl_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_aid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_ort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_ort)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@
             this.Dgv_ort.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_ort.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cl_id,
+            this.Cl_aid,
             this.Cl_ort,
             this.Cl_time});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -100,28 +102,8 @@
             this.Dgv_ort.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_ort.RowTemplate.Height = 23;
             this.Dgv_ort.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_ort.Size = new System.Drawing.Size(727, 497);
+            this.Dgv_ort.Size = new System.Drawing.Size(855, 497);
             this.Dgv_ort.TabIndex = 3;
-            // 
-            // Cl_id
-            // 
-            this.Cl_id.HeaderText = "操作编号";
-            this.Cl_id.Name = "Cl_id";
-            this.Cl_id.ReadOnly = true;
-            // 
-            // Cl_ort
-            // 
-            this.Cl_ort.HeaderText = "执行操作";
-            this.Cl_ort.Name = "Cl_ort";
-            this.Cl_ort.ReadOnly = true;
-            this.Cl_ort.Width = 400;
-            // 
-            // Cl_time
-            // 
-            this.Cl_time.HeaderText = "操作时间";
-            this.Cl_time.Name = "Cl_time";
-            this.Cl_time.ReadOnly = true;
-            this.Cl_time.Width = 150;
             // 
             // btn_time
             // 
@@ -136,7 +118,7 @@
             // 
             // mcd_time
             // 
-            this.mcd_time.Location = new System.Drawing.Point(113, 42);
+            this.mcd_time.Location = new System.Drawing.Point(113, 48);
             this.mcd_time.Margin = new System.Windows.Forms.Padding(10);
             this.mcd_time.Name = "mcd_time";
             this.mcd_time.TabIndex = 7;
@@ -166,7 +148,7 @@
             // 
             // mcd_end
             // 
-            this.mcd_end.Location = new System.Drawing.Point(336, 42);
+            this.mcd_end.Location = new System.Drawing.Point(336, 47);
             this.mcd_end.Margin = new System.Windows.Forms.Padding(10);
             this.mcd_end.Name = "mcd_end";
             this.mcd_end.TabIndex = 10;
@@ -193,12 +175,39 @@
             this.btn_end.UseVisualStyleBackColor = true;
             this.btn_end.Click += new System.EventHandler(this.btn_end_Click);
             // 
+            // Cl_id
+            // 
+            this.Cl_id.HeaderText = "操作编号";
+            this.Cl_id.Name = "Cl_id";
+            this.Cl_id.ReadOnly = true;
+            // 
+            // Cl_aid
+            // 
+            this.Cl_aid.HeaderText = "管理员编号";
+            this.Cl_aid.Name = "Cl_aid";
+            this.Cl_aid.ReadOnly = true;
+            this.Cl_aid.Width = 120;
+            // 
+            // Cl_ort
+            // 
+            this.Cl_ort.HeaderText = "执行操作";
+            this.Cl_ort.Name = "Cl_ort";
+            this.Cl_ort.ReadOnly = true;
+            this.Cl_ort.Width = 400;
+            // 
+            // Cl_time
+            // 
+            this.Cl_time.HeaderText = "操作时间";
+            this.Cl_time.Name = "Cl_time";
+            this.Cl_time.ReadOnly = true;
+            this.Cl_time.Width = 150;
+            // 
             // admin_OperationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(727, 562);
+            this.ClientSize = new System.Drawing.Size(855, 562);
             this.Controls.Add(this.mcd_end);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_end);
@@ -227,11 +236,12 @@
         private System.Windows.Forms.MonthCalendar mcd_time;
         private System.Windows.Forms.Button btn_select;
         private System.Windows.Forms.Button btn_whole;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_ort;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_time;
         private System.Windows.Forms.MonthCalendar mcd_end;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_end;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_aid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_ort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cl_time;
     }
 }

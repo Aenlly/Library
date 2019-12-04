@@ -173,7 +173,7 @@ namespace Library.admin
                 DialogResult dialog = MessageBox.Show("数据库中无图书类别请先添加图书类别，点击确认跳转！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dialog == DialogResult.OK)
                 {
-                    admin_BookType admin_BookType = new admin_BookType();//实例化admin_BookType窗体
+                    admin_Type admin_BookType = new admin_Type();//实例化admin_BookType窗体
                     admin_BookType.ShowDialog();//以对话框模式显示
                 }
             }
@@ -191,8 +191,16 @@ namespace Library.admin
         //添加新类别按钮事件
         private void tsbtn_type_Click(object sender, EventArgs e)
         {
-            admin_BookType bookType = new admin_BookType();//实例化admin_BookType窗体
-            bookType.ShowDialog();//以对话框模式显示
+            Log.log.user_college = false;//说明是图书窗体单击的
+            admin_Type admin_Type = new admin_Type();//实例化admin_Type窗体
+            admin_Type.ShowDialog();//以对话框模式显示
+        }
+
+        private void tsbtn_del_Click(object sender, EventArgs e)
+        {
+            Log.log.user_college = false;//说明是类别窗体单击的
+            admin_TypeEdit admin_TypeEdit = new admin_TypeEdit();//实例化admin_TypeEdit窗体
+            admin_TypeEdit.ShowDialog();//以对话框模式显示
         }
 
         private void admin_BookPage_Activated(object sender, EventArgs e)

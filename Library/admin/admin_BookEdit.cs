@@ -78,6 +78,7 @@ namespace Library.admin
             }
         }
 
+        //确认修改按钮
         private void btn_edit_Click(object sender, EventArgs e)
         {
             if (text_book.Text.Trim() == "" || text_author.Text.Trim() == "" || text_press.Text.Trim() == "" || text_price.Text.Trim() == "" || mtext_isbn.Text.Trim() == "" || mtext_stocks.Text.Trim() == "" || mtext_year.Text.Trim() == "" || cmb_type.Text == "")

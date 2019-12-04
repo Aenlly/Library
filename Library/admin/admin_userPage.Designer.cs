@@ -63,6 +63,8 @@
             this.ts_whole = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtn_add = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_college = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_edit = new System.Windows.Forms.ToolStripButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_user)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -124,7 +126,7 @@
             this.Dgv_user.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Dgv_user.RowTemplate.Height = 23;
             this.Dgv_user.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_user.Size = new System.Drawing.Size(1010, 497);
+            this.Dgv_user.Size = new System.Drawing.Size(1050, 497);
             this.Dgv_user.TabIndex = 1;
             this.Dgv_user.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_user_CellClick);
             // 
@@ -160,6 +162,7 @@
             this.Cl_college.HeaderText = "学院";
             this.Cl_college.Name = "Cl_college";
             this.Cl_college.ReadOnly = true;
+            this.Cl_college.Width = 150;
             // 
             // Cl_tel
             // 
@@ -224,7 +227,9 @@
             this.tsbtn_select,
             this.ts_whole,
             this.toolStripSeparator1,
-            this.tsbtn_add});
+            this.tsbtn_add,
+            this.tbtn_college,
+            this.tsbtn_edit});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -232,7 +237,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1010, 28);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1050, 28);
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -358,12 +363,32 @@
             this.tsbtn_add.Text = "添加用户";
             this.tsbtn_add.Click += new System.EventHandler(this.tsbtn_add_Click);
             // 
+            // tbtn_college
+            // 
+            this.tbtn_college.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tbtn_college.Image = ((System.Drawing.Image)(resources.GetObject("tbtn_college.Image")));
+            this.tbtn_college.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_college.Name = "tbtn_college";
+            this.tbtn_college.Size = new System.Drawing.Size(69, 25);
+            this.tbtn_college.Text = "添加学院";
+            this.tbtn_college.Click += new System.EventHandler(this.tbtn_college_Click);
+            // 
+            // tsbtn_edit
+            // 
+            this.tsbtn_edit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_edit.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_edit.Image")));
+            this.tsbtn_edit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_edit.Name = "tsbtn_edit";
+            this.tsbtn_edit.Size = new System.Drawing.Size(69, 25);
+            this.tsbtn_edit.Text = "更改学院";
+            this.tsbtn_edit.Click += new System.EventHandler(this.tsbtn_del_Click);
+            // 
             // admin_userPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1010, 525);
+            this.ClientSize = new System.Drawing.Size(1050, 525);
             this.Controls.Add(this.Dgv_user);
             this.Controls.Add(this.bindingNavigator1);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -415,5 +440,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cl_book;
         private System.Windows.Forms.DataGridViewButtonColumn Cl_delete;
         private System.Windows.Forms.DataGridViewButtonColumn Cl_edit;
+        private System.Windows.Forms.ToolStripButton tbtn_college;
+        private System.Windows.Forms.ToolStripButton tsbtn_edit;
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btn_edit = new System.Windows.Forms.Button();
-            this.text_college = new System.Windows.Forms.TextBox();
             this.text_name = new System.Windows.Forms.TextBox();
             this.text_id = new System.Windows.Forms.TextBox();
             this.cmb_position = new System.Windows.Forms.ComboBox();
@@ -44,6 +43,7 @@
             this.cmb_sex = new System.Windows.Forms.ComboBox();
             this.mtext_card = new System.Windows.Forms.MaskedTextBox();
             this.mtext_tel = new System.Windows.Forms.MaskedTextBox();
+            this.cmb_college = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,14 +56,6 @@
             this.btn_edit.Text = "确认修改";
             this.btn_edit.UseVisualStyleBackColor = true;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
-            // 
-            // text_college
-            // 
-            this.text_college.Location = new System.Drawing.Point(131, 205);
-            this.text_college.MaxLength = 20;
-            this.text_college.Name = "text_college";
-            this.text_college.Size = new System.Drawing.Size(151, 23);
-            this.text_college.TabIndex = 5;
             // 
             // text_name
             // 
@@ -193,18 +185,27 @@
             this.mtext_tel.Size = new System.Drawing.Size(107, 23);
             this.mtext_tel.TabIndex = 3;
             // 
+            // cmb_college
+            // 
+            this.cmb_college.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_college.FormattingEnabled = true;
+            this.cmb_college.Location = new System.Drawing.Point(131, 208);
+            this.cmb_college.Name = "cmb_college";
+            this.cmb_college.Size = new System.Drawing.Size(151, 22);
+            this.cmb_college.TabIndex = 26;
+            // 
             // admin_userEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(303, 357);
+            this.Controls.Add(this.cmb_college);
             this.Controls.Add(this.mtext_tel);
             this.Controls.Add(this.mtext_card);
             this.Controls.Add(this.cmb_sex);
             this.Controls.Add(this.cmb_position);
             this.Controls.Add(this.btn_edit);
-            this.Controls.Add(this.text_college);
             this.Controls.Add(this.text_name);
             this.Controls.Add(this.text_id);
             this.Controls.Add(this.panel1);
@@ -226,7 +227,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_edit;
-        private System.Windows.Forms.TextBox text_college;
         private System.Windows.Forms.TextBox text_name;
         private System.Windows.Forms.TextBox text_id;
         private System.Windows.Forms.ComboBox cmb_position;
@@ -241,5 +241,6 @@
         private System.Windows.Forms.ComboBox cmb_sex;
         private System.Windows.Forms.MaskedTextBox mtext_card;
         private System.Windows.Forms.MaskedTextBox mtext_tel;
+        private System.Windows.Forms.ComboBox cmb_college;
     }
 }

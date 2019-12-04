@@ -39,7 +39,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.text_id = new System.Windows.Forms.TextBox();
             this.text_name = new System.Windows.Forms.TextBox();
-            this.text_college = new System.Windows.Forms.TextBox();
             this.text_tel = new System.Windows.Forms.TextBox();
             this.text_number = new System.Windows.Forms.TextBox();
             this.text_book = new System.Windows.Forms.TextBox();
@@ -48,6 +47,7 @@
             this.btn_no = new System.Windows.Forms.Button();
             this.rbtn_male = new System.Windows.Forms.RadioButton();
             this.rbtn_female = new System.Windows.Forms.RadioButton();
+            this.cmb_college = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,14 +156,6 @@
             this.text_name.TabIndex = 1;
             this.text_name.TabStop = false;
             // 
-            // text_college
-            // 
-            this.text_college.Enabled = false;
-            this.text_college.Location = new System.Drawing.Point(119, 125);
-            this.text_college.Name = "text_college";
-            this.text_college.Size = new System.Drawing.Size(151, 23);
-            this.text_college.TabIndex = 4;
-            // 
             // text_tel
             // 
             this.text_tel.Enabled = false;
@@ -245,12 +237,23 @@
             this.rbtn_female.Text = "女";
             this.rbtn_female.UseVisualStyleBackColor = true;
             // 
+            // cmb_college
+            // 
+            this.cmb_college.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_college.Enabled = false;
+            this.cmb_college.FormattingEnabled = true;
+            this.cmb_college.Location = new System.Drawing.Point(117, 128);
+            this.cmb_college.Name = "cmb_college";
+            this.cmb_college.Size = new System.Drawing.Size(151, 22);
+            this.cmb_college.TabIndex = 13;
+            // 
             // user_Basic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(280, 396);
+            this.Controls.Add(this.cmb_college);
             this.Controls.Add(this.rbtn_female);
             this.Controls.Add(this.rbtn_male);
             this.Controls.Add(this.btn_no);
@@ -259,7 +262,6 @@
             this.Controls.Add(this.text_number);
             this.Controls.Add(this.text_position);
             this.Controls.Add(this.text_tel);
-            this.Controls.Add(this.text_college);
             this.Controls.Add(this.text_name);
             this.Controls.Add(this.text_id);
             this.Controls.Add(this.panel1);
@@ -288,7 +290,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox text_id;
         private System.Windows.Forms.TextBox text_name;
-        private System.Windows.Forms.TextBox text_college;
         private System.Windows.Forms.TextBox text_tel;
         private System.Windows.Forms.TextBox text_number;
         private System.Windows.Forms.TextBox text_book;
@@ -298,5 +299,6 @@
         private System.Windows.Forms.Button btn_no;
         private System.Windows.Forms.RadioButton rbtn_male;
         private System.Windows.Forms.RadioButton rbtn_female;
+        private System.Windows.Forms.ComboBox cmb_college;
     }
 }

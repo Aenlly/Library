@@ -22,14 +22,14 @@ namespace Library.user
         SqlCommand cmd;//创建执行的sql语句对象
         DButil dButil = new DButil();//实例化DButil工具类
         public string sex;//性别
-        public string college;//学院
+        public int college;//学院
         public string tel;//手机号
         public string u_id;//学号
 
         private void user_Basic_Load(object sender, EventArgs e)
         {
             u_id = Log.log.u_id;//获得登录账号
-            string sql = "select * from [user] where u_id='"+u_id+"'";//利用学号查询学生详细信息
+            string sql = "select * from [user],[college] where [user].c_id=[college].c_id and u_id='"+u_id+"'";//利用学号查询学生详细信息
             con = dButil.SqlOpen();
             cmd = new SqlCommand(sql, con);//执行sql语句
             SqlDataReader reader = cmd.ExecuteReader();
@@ -47,8 +47,8 @@ namespace Library.user
                 rbtn_female.Checked = true;//选中女
             }
 
-            college = reader["u_college"].ToString();//获取用户学院，储存在字符串中
-            text_college.Text = college;//显示在文本框中
+            College();//下拉框加载学院
+            college = cmb_college.SelectedIndex;//获得初始选中的学院索引值
 
             tel= reader["u_tel"].ToString();//获取用户手机号，储存在字符串中
             text_tel.Text = tel;//显示在文本框中
@@ -57,7 +57,32 @@ namespace Library.user
             text_number.Text = reader["u_number"].ToString();//获取用户可借数量
             text_book.Text = reader["u_book"].ToString();//获取用户总借书数量
             con.Close();
+
         }
+
+        /// <summary>
+        /// 绑定下拉列表，添加数据库中的学院
+        /// </summary>
+        /// <param name="sql_col">数据库语句命名</param>
+        /// <param name="college">表名</param>
+        /// <param name="c_college">学院</param>
+        public void College()
+        {
+            con = dButil.SqlOpen();
+            //初始化，comboBox1绑定客户表
+            string sql_col = "select c_college from [college]";//查询有多少学院
+            SqlDataAdapter sda = new SqlDataAdapter(sql_col, con);//创建sql适配器
+            DataSet ds = new DataSet();//创建ds缓存
+            sda.Fill(ds);//添加到ds缓存中
+            cmb_college.DataSource = ds.Tables[0].DefaultView;//取出数据源填充到列表中
+            cmb_college.DisplayMember = "c_college";//列表中显示的值对应的字段名
+            string sql = "select c_id from [user] where u_id='" + Log.log.u_id + "'";
+            cmd = new SqlCommand(sql, con);////储存需要执行的c_id语句
+            int t_id = Convert.ToInt16(cmd.ExecuteScalar());//返回c_id值，用于这边选中，执行c_id语句
+            cmb_college.SelectedIndex = t_id;//设置索引为t_id
+            con.Close();//关闭数据库
+        }
+
 
         //点击了修改信息按钮
         private void btn_edit_Click(object sender, EventArgs e)
@@ -66,14 +91,14 @@ namespace Library.user
             {
                 rbtn_male.Enabled = true;//启用男单选按钮
                 rbtn_female.Enabled = true;//启用女单选按钮
-                text_college.Enabled = true;//设置学院可编辑
+                cmb_college.Enabled = true;//设置学院可编辑
                 text_tel.Enabled = true;//设置手机号可编辑
                 btn_edit.Text = "确认修改";
             }
             else
             {
                 //满足学院为空、手机号为空、手机号小于11位，进行提示
-                if (text_college.Text.Trim() == "" || text_tel.Text.Trim() == "" || text_tel.Text.Length < 11)
+                if (text_tel.Text.Trim() == "" || text_tel.Text.Length < 11)
                 {
                     MessageBox.Show("内容不能为空，手机号不能小于11位！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }else
@@ -81,7 +106,7 @@ namespace Library.user
                     if (rbtn_male.Checked == true)
                     {
                         //执行选中男的sql语句
-                        string sql = "update [user] set u_sex='男',u_college='" + text_college.Text.Trim() + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
+                        string sql = "update [user] set u_sex='男',c_id='" + cmb_college.SelectedIndex + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
                         con = dButil.SqlOpen();//打开数据库
                         cmd = new SqlCommand(sql, con);//储存sql语句
                         int n = cmd.ExecuteNonQuery();//执行sql语句，获得受影响的行数
@@ -93,7 +118,7 @@ namespace Library.user
 
                             rbtn_male.Enabled = false;//启用男单选按钮
                             rbtn_female.Enabled = false;//启用女单选按钮
-                            text_college.Enabled = false;//设置学院可编辑
+                            cmb_college.Enabled = false;//设置学院可编辑
                             text_tel.Enabled = false;//设置手机号可编辑
                             btn_edit.Text = "修改信息";
                         }
@@ -106,7 +131,7 @@ namespace Library.user
                     else
                     {
                         //执行选中女的sql语句
-                        string sql = "update [user] set u_sex='女',u_college='" + text_college.Text.Trim() + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
+                        string sql = "update [user] set u_sex='女',c_id='" + cmb_college.SelectedIndex + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
                         con = dButil.SqlOpen();//打开数据库
                         cmd = new SqlCommand(sql, con);//执行sql语句
                         int n = cmd.ExecuteNonQuery();//获得受影响的行数
@@ -118,7 +143,7 @@ namespace Library.user
 
                             rbtn_male.Enabled = false;//启用男单选按钮
                             rbtn_female.Enabled = false;//启用女单选按钮
-                            text_college.Enabled = false;//设置学院可编辑
+                            cmb_college.Enabled = false;//设置学院可编辑
                             text_tel.Enabled = false;//设置手机号可编辑
                             btn_edit.Text = "修改信息";
                         }
@@ -150,13 +175,13 @@ namespace Library.user
                     rbtn_female.Checked = true;//选中女
                 }
 
-                text_college.Text = college;//取出储存在字符串中的值显示在文本框中，相当于还原
+                cmb_college.SelectedIndex = college;//获得未修改的索引值
 
                 text_tel.Text = tel;//取出储存在字符串中的值显示在文本框中
 
                 rbtn_male.Enabled = false;//不启用男单选按钮
                 rbtn_female.Enabled = false;//不启用女单选按钮
-                text_college.Enabled = false;//设置学不可编辑
+                cmb_college.Enabled = false;//设置学不可编辑
                 text_tel.Enabled = false;//设置手机号不可编辑
                 btn_edit.Text = "修改信息";//使修改按钮的文本设置成修改信息
             }

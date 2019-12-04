@@ -84,11 +84,11 @@
     <Compile Include="admin\admin_BookPage.Designer.cs">
       <DependentUpon>admin_BookPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin\admin_BookType.cs">
+    <Compile Include="admin\admin_Type.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="admin\admin_BookType.Designer.cs">
-      <DependentUpon>admin_BookType.cs</DependentUpon>
+    <Compile Include="admin\admin_Type.Designer.cs">
+      <DependentUpon>admin_Type.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\admin_BorrowPage.cs">
       <SubType>Form</SubType>
@@ -143,6 +143,12 @@
     </Compile>
     <Compile Include="admin\admin_ReturnPage.Designer.cs">
       <DependentUpon>admin_ReturnPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_TypeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin_TypeEdit.Designer.cs">
+      <DependentUpon>admin_TypeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\admin_userAdd.cs">
       <SubType>Form</SubType>
@@ -258,8 +264,8 @@
     <EmbeddedResource Include="admin\admin_BookPage.resx">
       <DependentUpon>admin_BookPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\admin_BookType.resx">
-      <DependentUpon>admin_BookType.cs</DependentUpon>
+    <EmbeddedResource Include="admin\admin_Type.resx">
+      <DependentUpon>admin_Type.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_BorrowPage.resx">
       <DependentUpon>admin_BorrowPage.cs</DependentUpon>
@@ -287,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_ReturnPage.resx">
       <DependentUpon>admin_ReturnPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\admin_TypeEdit.resx">
+      <DependentUpon>admin_TypeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\admin_userAdd.resx">
       <DependentUpon>admin_userAdd.cs</DependentUpon>

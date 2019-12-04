@@ -65,6 +65,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtn_bookadd = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_type = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_edit = new System.Windows.Forms.ToolStripButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_adminBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindNavig)).BeginInit();
@@ -225,7 +226,8 @@
             this.tsbtn_whole,
             this.toolStripSeparator1,
             this.tsbtn_bookadd,
-            this.tsbtn_type});
+            this.tsbtn_type,
+            this.tsbtn_edit});
             this.bindNavig.Location = new System.Drawing.Point(0, 0);
             this.bindNavig.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindNavig.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -361,6 +363,16 @@
             this.tsbtn_type.Text = "添加新类别";
             this.tsbtn_type.Click += new System.EventHandler(this.tsbtn_type_Click);
             // 
+            // tsbtn_edit
+            // 
+            this.tsbtn_edit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtn_edit.Image = ((System.Drawing.Image)(resources.GetObject("tsbtn_edit.Image")));
+            this.tsbtn_edit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_edit.Name = "tsbtn_edit";
+            this.tsbtn_edit.Size = new System.Drawing.Size(78, 25);
+            this.tsbtn_edit.Text = "更改类别";
+            this.tsbtn_edit.Click += new System.EventHandler(this.tsbtn_del_Click);
+            // 
             // admin_BookPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -419,5 +431,6 @@
         private System.Windows.Forms.ToolStripButton tsbtn_bookadd;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ToolStripButton tsbtn_type;
+        private System.Windows.Forms.ToolStripButton tsbtn_edit;
     }
 }

@@ -95,8 +95,8 @@ namespace Library.admin
                             cmd = new SqlCommand(sql, con);//储存需要执行的语句
                             cmd.ExecuteNonQuery();//执行sql语句，返回影响行数
 
-                            //sql语句，更新为还书成功，并添加还书时间
-                            sql = "update borrow set bo_eme=2,bo_rtnatl='" + DateTime.Now.ToString() + "' where bo_id='" + bo_id + "'";
+                            //sql语句，更新为还书成功，并添加还书时间,添加管理员id
+                            sql = "update borrow set bo_eme=2,bo_rtnatl='" + DateTime.Now.ToString() + "',a_id='"+Log.log.a_id+"' where bo_id='" + bo_id + "'";
                             cmd = new SqlCommand(sql, con);//储存sql语句
                             int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
 
@@ -150,8 +150,8 @@ namespace Library.admin
                         //判断单击了确认按钮
                         if (DialogResult.OK == dialog)
                         {
-                            //sql语句，更新为还书失败，并添加还书时间
-                            string sql = "update borrow set bo_eme=3 where bo_id='" + bo_id + "'";
+                            //sql语句，更新为还书失败，并添加还书时间和管理员id
+                            string sql = "update borrow set bo_eme=3,a_id='"+Log.log.a_id+"' where bo_id='" + bo_id + "'";
                             con = dButil.SqlOpen();//打开数据库
                             cmd = new SqlCommand(sql, con);//储存sql语句
                             int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断

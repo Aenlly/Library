@@ -237,7 +237,8 @@ namespace Library.admin
         //添加新类别的按钮
         private void lkl_type_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            admin_BookType bookType = new admin_BookType();
+            Log.log.user_college = false;
+            admin_Type bookType = new admin_Type();
             bookType.ShowDialog();
             BookType();
         }
