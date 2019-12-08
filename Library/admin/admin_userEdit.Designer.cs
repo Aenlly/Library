@@ -44,12 +44,13 @@
             this.mtext_card = new System.Windows.Forms.MaskedTextBox();
             this.mtext_tel = new System.Windows.Forms.MaskedTextBox();
             this.cmb_college = new System.Windows.Forms.ComboBox();
+            this.btn_close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_edit
             // 
-            this.btn_edit.Location = new System.Drawing.Point(95, 308);
+            this.btn_edit.Location = new System.Drawing.Point(24, 311);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(104, 34);
             this.btn_edit.TabIndex = 7;
@@ -192,7 +193,17 @@
             this.cmb_college.Location = new System.Drawing.Point(131, 208);
             this.cmb_college.Name = "cmb_college";
             this.cmb_college.Size = new System.Drawing.Size(151, 22);
-            this.cmb_college.TabIndex = 26;
+            this.cmb_college.TabIndex = 5;
+            // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(178, 311);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(104, 34);
+            this.btn_close.TabIndex = 8;
+            this.btn_close.Text = "返回退出";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // admin_userEdit
             // 
@@ -200,6 +211,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(303, 357);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.cmb_college);
             this.Controls.Add(this.mtext_tel);
             this.Controls.Add(this.mtext_card);
@@ -242,5 +254,6 @@
         private System.Windows.Forms.MaskedTextBox mtext_card;
         private System.Windows.Forms.MaskedTextBox mtext_tel;
         private System.Windows.Forms.ComboBox cmb_college;
+        private System.Windows.Forms.Button btn_close;
     }
 }

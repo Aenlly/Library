@@ -1,6 +1,8 @@
+CAEATE DATABASE [[LibraryMS]]
+GO
 USE [LibraryMS]
 GO
-/****** Object:  Table [dbo].[admin]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[admin]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15,13 +17,13 @@ CREATE TABLE [dbo].[admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[book]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[book]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[book](
-	[b_isbn] [nvarchar](10) NOT NULL,
+	[b_isbn] [nvarchar](20) NOT NULL,
 	[b_name] [nvarchar](50) NOT NULL,
 	[b_stocks] [int] NOT NULL,
  CONSTRAINT [PK_book] PRIMARY KEY CLUSTERED 
@@ -30,13 +32,13 @@ CREATE TABLE [dbo].[book](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[books]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[books]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[books](
-	[b_id] [int] IDENTITY(1,1) NOT NULL,
+	[b_id] [int] IDENTITY(0,1) NOT NULL,
 	[b_isbn] [nvarchar](10) NOT NULL,
 	[b_name] [nvarchar](50) NOT NULL,
 	[t_id] [int] NOT NULL,
@@ -51,16 +53,16 @@ CREATE TABLE [dbo].[books](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[borrow]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[borrow]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[borrow](
-	[bo_id] [int] IDENTITY(1,1) NOT NULL,
+	[bo_id] [int] IDENTITY(0,1) NOT NULL,
 	[a_id] [int] NULL,
 	[b_id] [int] NOT NULL,
-	[b_isbn] [nvarchar](10) NOT NULL,
+	[b_isbn] [nvarchar](20) NOT NULL,
 	[u_id] [int] NOT NULL,
 	[bo_borrow] [date] NOT NULL,
 	[bo_return] [date] NOT NULL,
@@ -77,7 +79,7 @@ CREATE TABLE [dbo].[borrow](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[college]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[college]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -91,13 +93,13 @@ CREATE TABLE [dbo].[college](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[feedback]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[feedback]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[feedback](
-	[f_id] [int] IDENTITY(1,1) NOT NULL,
+	[f_id] [int] IDENTITY(0,1) NOT NULL,
 	[u_id] [int] NOT NULL,
 	[f_title] [nvarchar](10) NOT NULL,
 	[f_content] [nvarchar](100) NOT NULL,
@@ -111,7 +113,7 @@ CREATE TABLE [dbo].[feedback](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[login]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[login]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -126,7 +128,7 @@ CREATE TABLE [dbo].[login](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[operation]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[operation]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,7 +144,7 @@ CREATE TABLE [dbo].[operation](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[type]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[type]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -156,7 +158,7 @@ CREATE TABLE [dbo].[type](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[user]    Script Date: 2019/12/4 17:19:17 ******/
+/****** Object:  Table [dbo].[user]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +169,7 @@ CREATE TABLE [dbo].[user](
 	[u_name] [nvarchar](10) NOT NULL,
 	[u_sex] [nvarchar](1) NOT NULL,
 	[u_card] [nvarchar](18) NOT NULL,
-	[c_id] [int] NULL,
+	[c_id] [int] NOT NULL,
 	[u_tel] [nvarchar](11) NULL,
 	[u_position] [nvarchar](2) NOT NULL,
 	[u_number] [int] NOT NULL,
@@ -229,7 +231,7 @@ REFERENCES [dbo].[user] ([u_id])
 GO
 ALTER TABLE [dbo].[login] CHECK CONSTRAINT [FK_login_user_id]
 GO
-ALTER TABLE [dbo].[operation]  WITH CHECK ADD  CONSTRAINT [FK_operation_admin] FOREIGN KEY([o_id])
+ALTER TABLE [dbo].[operation]  WITH CHECK ADD  CONSTRAINT [FK_operation_admin] FOREIGN KEY([a_id])
 REFERENCES [dbo].[admin] ([a_id])
 GO
 ALTER TABLE [dbo].[operation] CHECK CONSTRAINT [FK_operation_admin]
@@ -383,3 +385,115 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'累计借书' , @l
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'学院外键表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'CONSTRAINT',@level2name=N'FK_user_college_id'
 GO
+
+insert into admin(a_name,a_password) values ('admin','admin')--管理员
+
+insert into [type] (t_name) values ('玄幻') --类别表
+insert into [type] (t_name) values ('科幻') 
+insert into [type] (t_name) values ('悬疑') 
+insert into [type] (t_name) values ('侦探') 
+insert into [type] (t_name) values ('恐怖') 
+insert into [type] (t_name) values ('经典') 
+insert into [type] (t_name) values ('诗歌') 
+insert into [type] (t_name) values ('散文') 
+insert into [type] (t_name) values ('言情') 
+insert into [type] (t_name) values ('哲学') 
+
+insert into [book] values ('9787556246366','终极斗罗9','4') --图书表
+insert into [book] values ('9787536692930','三体','5') 
+insert into [book] values ('9787544266222','放学后','4') 
+insert into [book] values ('9787532174072','清明上河图密码6：醒世大结局','3') 
+insert into [book] values ('9787540446765','十宗罪1','2') 
+insert into [book] values ('9787550255791','三国演义','5') 
+insert into [book] values ('9787514612479','志摩的诗','2') 
+insert into [book] values ('9787563383870','我执','4')
+insert into [book] values ('9787559437778','一半星光一半蓝','6') 
+insert into [book] values ('9787506365437','活着','7') 
+
+insert into [books] values ('9787556246366','终极斗罗9','0','唐家三少','湖南少年儿童出版社','2019','32.00','1') 
+insert into [books] values ('9787556246366','终极斗罗9','0','唐家三少','湖南少年儿童出版社','2019','32.00','1') 
+insert into [books] values ('9787556246366','终极斗罗9','0','唐家三少','湖南少年儿童出版社','2019','32.00','1') 
+insert into [books] values ('9787556246366','终极斗罗9','0','唐家三少','湖南少年儿童出版社','2019','32.00','1') 
+
+insert into [books] values ('9787536692930','三体','1','刘慈欣','重庆出版集团图书发行有限公司','2008','23.00','0') 
+insert into [books] values ('9787536692930','三体','1','刘慈欣','重庆出版集团图书发行有限公司','2008','23.00','1') 
+insert into [books] values ('9787536692930','三体','1','刘慈欣','重庆出版集团图书发行有限公司','2008','23.00','1') 
+insert into [books] values ('9787536692930','三体','1','刘慈欣','重庆出版集团图书发行有限公司','2008','23.00','1') 
+insert into [books] values ('9787536692930','三体','1','刘慈欣','重庆出版集团图书发行有限公司','2008','23.00','1') 
+insert into [books] values ('9787536692930','三体','1','刘慈欣','重庆出版集团图书发行有限公司','2008','23.00','1') 
+
+insert into [books] values ('9787544266222','放学后','2','东野圭吾','南海出版公司','2013','28.00','0') 
+insert into [books] values ('9787544266222','放学后','2','东野圭吾','南海出版公司','2013','28.00','1') 
+insert into [books] values ('9787544266222','放学后','2','东野圭吾','南海出版公司','2013','28.00','1') 
+insert into [books] values ('9787544266222','放学后','2','东野圭吾','南海出版公司','2013','28.00','1') 
+insert into [books] values ('9787544266222','放学后','2','东野圭吾','南海出版公司','2013','28.00','1') 
+
+insert into [books] values ('9787532174072','清明上河图密码6：醒世大结局','3','冶文彪','上海文艺出版社','2019','69.90','0') 
+insert into [books] values ('9787532174072','清明上河图密码6：醒世大结局','3','冶文彪','上海文艺出版社','2019','69.90','1') 
+insert into [books] values ('9787532174072','清明上河图密码6：醒世大结局','3','冶文彪','上海文艺出版社','2019','69.90','1') 
+insert into [books] values ('9787532174072','清明上河图密码6：醒世大结局','3','冶文彪','上海文艺出版社','2019','69.90','1') 
+
+insert into [books] values ('9787540446765','十宗罪1','4','蜘蛛','湖南文艺出版社','2015','35.00','0') 
+insert into [books] values ('9787540446765','十宗罪1','4','蜘蛛','湖南文艺出版社','2015','35.00','1') 
+insert into [books] values ('9787540446765','十宗罪1','4','蜘蛛','湖南文艺出版社','2015','35.00','1') 
+
+insert into [books] values ('9787550255791','三国演义','5','罗贯中','北京联合出版公司','2015','55.00','1')
+insert into [books] values ('9787550255791','三国演义','5','罗贯中','北京联合出版公司','2015','55.00','1') 
+insert into [books] values ('9787550255791','三国演义','5','罗贯中','北京联合出版公司','2015','55.00','1') 
+insert into [books] values ('9787550255791','三国演义','5','罗贯中','北京联合出版公司','2015','55.00','1') 
+insert into [books] values ('9787550255791','三国演义','5','罗贯中','北京联合出版公司','2015','55.00','1')  
+
+insert into [books] values ('9787514612479','志摩的诗','6','徐志摩','中国画报出版社','2016','24.00','1') 
+insert into [books] values ('9787514612479','志摩的诗','6','徐志摩','中国画报出版社','2016','24.00','1') 
+
+insert into [books] values ('9787563383870','我执','7','梁文道','广西师范大学出版社','2010','35.00','1')
+insert into [books] values ('9787563383870','我执','7','梁文道','广西师范大学出版社','2010','35.00','1')
+insert into [books] values ('9787563383870','我执','7','梁文道','广西师范大学出版社','2010','35.00','1')
+insert into [books] values ('9787563383870','我执','7','梁文道','广西师范大学出版社','2010','35.00','1')
+
+insert into [books] values ('9787559437778','一半星光一半蓝','8','微酸袅袅','江苏凤凰文艺出版社','2019','39.80','1') 
+insert into [books] values ('9787559437778','一半星光一半蓝','8','微酸袅袅','江苏凤凰文艺出版社','2019','39.80','1')
+insert into [books] values ('9787559437778','一半星光一半蓝','8','微酸袅袅','江苏凤凰文艺出版社','2019','39.80','1')
+insert into [books] values ('9787559437778','一半星光一半蓝','8','微酸袅袅','江苏凤凰文艺出版社','2019','39.80','1')
+insert into [books] values ('9787559437778','一半星光一半蓝','8','微酸袅袅','江苏凤凰文艺出版社','2019','39.80','1')
+insert into [books] values ('9787559437778','一半星光一半蓝','8','微酸袅袅','江苏凤凰文艺出版社','2019','39.80','1')
+
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1') 
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1') 
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1') 
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1') 
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1') 
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1') 
+insert into [books] values ('9787506365437','活着','9','余华','作家出版社','2012','20.00','1')
+
+insert into [college](c_college) values ('会计学院') --学院
+insert into [college](c_college) values ('汽车学院') 
+insert into [college](c_college) values ('护理学院') 
+insert into [college](c_college) values ('经济管理学院') 
+insert into [college](c_college) values ('文化传播学院') 
+insert into [college](c_college) values ('艺术设计学院') 
+insert into [college](c_college) values ('医药技术学院') 
+insert into [college](c_college) values ('机电工程学院') 
+insert into [college](c_college) values ('土木工程学院') 
+insert into [college](c_college) values ('电子信息工程学院') 
+
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number,u_book) values ('020611','李磊','男','120107198507020611','0','老师','8','1')--用户表
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('138487','伏佳','女','350105199506138487','1','学生','5')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('112745','郎岩','女','235407195106112745','2','老师','8')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('121617','司空坚','男','235402199407121617','3','学生','5')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('202551','狄彪树','男','610729197408202551','4','老师','8')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('278829','常善勤','女','130821199103278829','5','学生','5')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('083264','孔姬宜','女','441623198701083264','6','老师','8')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('025899','古蕊会','男','610724199403025899','7','学生','5')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('049323','齐江娜','女','510682195211049323','8','老师','8')
+insert into [user] (u_password,u_name,u_sex,u_card,c_id,u_position,u_number) values ('27967X','柳博文','女','22240219990527967X','9','学生','5')
+
+--反馈表
+insert into [feedback] (u_id,f_title,f_content,f_asrcontent,f_smntime,f_asrtime,f_solve) values ('100000','为什么界面这么差','为什么这个界面做的这么简陋','因为个人的能力有限，我们尽可能优化','2019-12-1','2019-12-2','已回复')
+insert into [feedback] (u_id,f_title,f_content,f_smntime,f_solve) values ('100000','图书太少','能不能图书更多点','2019-12-8','未回复')
+
+insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('4','9787536692930','100000','2019-11-5','2019-11-20','15')--逾期
+insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('4','9787540446765','100000','2019-11-10','2019-11-17','7')--逾期
+insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_rtnatl,bo_day,bo_eme) values ('1','0','9787556246366','100000','2019-12-5','2019-12-12','2019-12-9','7','2')--还书成功
+insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day,bo_eme) values ('1','10','9787544266222','100000','2019-12-5','2020-1-5','30','3')--还书失败
+insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day,bo_renewday,bo_renew) values ('1','15','9787532174072','100000','2019-12-8','2019-12-22','7','7','1')--审核中

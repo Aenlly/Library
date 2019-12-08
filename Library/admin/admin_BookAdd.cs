@@ -64,7 +64,7 @@ namespace Library.admin
                 if (e.KeyChar != '.')//允许使用.符合
                 {
                     
-                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                    if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                     {                        
                         e.Handled = true;
                     }
@@ -76,7 +76,7 @@ namespace Library.admin
         private void btn_add_Click(object sender, EventArgs e)
         {
             DialogResult dialog;//创建对话按钮返回值
-            if (text_book.Text.Trim() == "" || text_author.Text.Trim() == "" || text_press.Text.Trim() == "" || text_price.Text.Trim() == "" || mtext_isbn.Text.Trim() == "" || mtext_stocks.Text.Trim() == "" || mtext_year.Text.Trim() == "" || cmb_type.Text == "")
+            if (text_book.Text.Trim() == "" || text_author.Text.Trim() == "" || text_press.Text.Trim() == "" || text_price.Text.Trim() == "" || text_isbn.Text.Trim() == "" || text_stocks.Text.Trim() == "" || text_year.Text.Trim() == "" || cmb_type.Text == "")
             {
                 MessageBox.Show("内容不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -86,16 +86,16 @@ namespace Library.admin
                 text_price.Text = string.Format("{0:#,##0.00}", Convert.ToDouble(text_price.Text));
 
                 int index = cmb_type.SelectedIndex;//获得类别的索引值
-                int year = Convert.ToInt16(mtext_year.Text);//年份转换，并与当前年份对比
-                int stocks = Convert.ToInt16(mtext_stocks.Text.Trim());//获得添加的库存量
-                if (mtext_year.Text.Trim().Length < 4 || year > DateTime.Now.Year)
+                int year = Convert.ToInt16(text_year.Text);//年份转换，并与当前年份对比
+                int stocks = Convert.ToInt16(text_stocks.Text.Trim());//获得添加的库存量
+                if (text_year.Text.Trim().Length < 4 || year > DateTime.Now.Year)
                 {
                     MessageBox.Show("输入的年份不符合要求", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
                     ///查询内部是否存在该isbn值
-                    string sql_isbn = "select b_name from book where b_isbn='" + mtext_isbn.Text.Trim() + "'";
+                    string sql_isbn = "select b_name from book where b_isbn='" + text_isbn.Text.Trim() + "'";
                     string sql_bookname = "select b_isbn from book where b_name='" + text_book.Text.Trim() + "'";
                     con = dButil.SqlOpen();//打开数据库
                     int n = 0;//定义一个整型，用来判断是否修改数据库
@@ -113,12 +113,12 @@ namespace Library.admin
                             //提示对话框
                             MessageBox.Show("ISBN编号与数据库中相同，图书名称不一样！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        else if (b_isbn != mtext_isbn.Text.Trim() && b_name == "")
+                        else if (b_isbn != text_isbn.Text.Trim() && b_name == "")
                         {
                             //提示对话框
                             MessageBox.Show("图书名称与数据库中相同，ISBN编号不一样！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        else if (b_name == text_book.Text.Trim() && b_isbn == mtext_isbn.Text.Trim() && b_isbn != "" && b_name != "")
+                        else if (b_name == text_book.Text.Trim() && b_isbn == text_isbn.Text.Trim() && b_isbn != "" && b_name != "")
                         {
                             //提示对话框，并获得返回值到dialog上
                             dialog = MessageBox.Show("检测到数据库中存在，是否直接增加库存？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -183,12 +183,12 @@ namespace Library.admin
                     else
                     {
                         //显示对话框并获得单击返回值
-                        dialog = MessageBox.Show("确认添加为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + mtext_isbn.Text + "\n图书类别：" + index + "\n作者：" + text_author.Text.Trim() + "\n出版社：" + text_press.Text.Trim() + "\n出版年份：" + year + "\n价格：" + text_price.Text.Trim() + "\n库存：" + stocks, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        dialog = MessageBox.Show("确认添加为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + text_isbn.Text + "\n图书类别：" + cmb_type.Text + "\n作者：" + text_author.Text.Trim() + "\n出版社：" + text_press.Text.Trim() + "\n出版年份：" + year + "\n价格：" + text_price.Text.Trim() + "\n库存：" + stocks, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                         //二次确认
                         if (DialogResult.OK == dialog)
                         {
-                            string sql_b = "insert into book values('" + mtext_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + mtext_stocks.Text.Trim() + "')";
+                            string sql_b = "insert into book values('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + text_stocks.Text.Trim() + "')";
                             con = dButil.SqlOpen();//打开数据库
                             cmd = new SqlCommand(sql_b, con);//储存sql语句
                             n = cmd.ExecuteNonQuery();//执行语句，返回影响行
@@ -201,7 +201,7 @@ namespace Library.admin
                                                        //利用for循环，执行多次
                                 for (int i = 0; i < stocks; i++)
                                 {
-                                    string sql_bs = "insert into books values ('" + mtext_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + index + "','" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + year + "','" + text_price.Text.Trim() + "',1)";
+                                    string sql_bs = "insert into books values ('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + index + "','" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + year + "','" + text_price.Text.Trim() + "',1)";
                                     cmd = new SqlCommand(sql_bs, con);
                                     n = n + cmd.ExecuteNonQuery();
                                 }
@@ -254,9 +254,61 @@ namespace Library.admin
         //库存数量输入判断
         private void mtext_stocks_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (mtext_stocks.Text.Trim().Length > 0)
+            if (text_stocks.Text.Trim().Length > 0)
             {
-                mtext_stocks.Text = string.Format("{0:#,#}", Convert.ToDouble(mtext_stocks.Text.Trim()));
+                text_stocks.Text = string.Format("{0:#,#}", Convert.ToDouble(text_stocks.Text.Trim()));
+            }
+        }
+
+        //isbn值的输入
+        private void text_isbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键 
+            {
+                int len = text_isbn.Text.Length;//获得长度
+                if (len < 1 && e.KeyChar == '0')//首字不能为0
+                {
+                    e.Handled = true;
+                }
+                else if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字 
+                {
+                    e.Handled = true;
+                }
+
+            }
+        }
+
+        //年份的输入
+        private void text_year_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                int len = text_year.Text.Length;//获得长度
+                if (len < 1 && e.KeyChar == '0')//首字不能为0
+                {
+                    e.Handled = true;
+                }
+                else if((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        //库存的输入
+        private void text_stocks_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                int len = text_year.Text.Length;//获得长度
+                if (len < 1 && e.KeyChar == '0')//首字不能为0
+                {
+                    e.Handled = true;
+                }
+                else if((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
             }
         }
     }

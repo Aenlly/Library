@@ -25,7 +25,7 @@ namespace Library.admin
         private void admin_BookEdit_Load(object sender, EventArgs e)
         {
             bookname = Log.log.b_name;//图书名
-            mtext_isbn.Text = Log.log.b_isbn;//isbn编号
+            text_isbn.Text = Log.log.b_isbn;//isbn编号
             text_author.Text = Log.log.b_author;//作者
             text_press.Text = Log.log.b_press;//出版社
             mtext_year.Text = Log.log.b_time;//出版年份
@@ -81,7 +81,7 @@ namespace Library.admin
         //确认修改按钮
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (text_book.Text.Trim() == "" || text_author.Text.Trim() == "" || text_press.Text.Trim() == "" || text_price.Text.Trim() == "" || mtext_isbn.Text.Trim() == "" || mtext_stocks.Text.Trim() == "" || mtext_year.Text.Trim() == "" || cmb_type.Text == "")
+            if (text_book.Text.Trim() == "" || text_author.Text.Trim() == "" || text_press.Text.Trim() == "" || text_price.Text.Trim() == "" || text_isbn.Text.Trim() == "" || mtext_stocks.Text.Trim() == "" || mtext_year.Text.Trim() == "" || cmb_type.Text == "")
             {
                 MessageBox.Show("内容不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -95,7 +95,7 @@ namespace Library.admin
                 else
                 {
                     text_price.Text = string.Format("{0:#,##0.00}", Convert.ToDouble(text_price.Text)); //价格文本框必须显示2位小数点
-                    DialogResult dialog = MessageBox.Show("确认修改为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + mtext_isbn.Text + "\n图书类别：" + cmb_type.Text + "\n作者：" + text_author.Text + "\n出版社：" + text_press.Text + "\n出版年份：" + year + "\n价格：" + text_price.Text + "\n库存：" + mtext_stocks.Text, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    DialogResult dialog = MessageBox.Show("确认修改为以下信息？\n图书名：" + text_book.Text + "\nISBN编号：" + text_isbn.Text + "\n图书类别：" + cmb_type.Text + "\n作者：" + text_author.Text + "\n出版社：" + text_press.Text + "\n出版年份：" + year + "\n价格：" + text_price.Text + "\n库存：" + mtext_stocks.Text, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (DialogResult.OK == dialog)
                     {
                         //判断数量与之前相比是增加了还是减少了
@@ -103,7 +103,7 @@ namespace Library.admin
                         if (m >= 0)
                         {
                             //插入语句
-                            string sql_books = "insert into books values ('" + mtext_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "',(select t_id from [type] where t_name='" + cmb_type.Text + "'),'" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + year + "','" + text_price.Text.Trim() + "',1)";
+                            string sql_books = "insert into books values ('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "',(select t_id from [type] where t_name='" + cmb_type.Text + "'),'" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + year + "','" + text_price.Text.Trim() + "',1)";
                             int n = 0;//定义个局部变量用于判断是否成功执行sql语句
                             con = dButil.SqlOpen();//打开数据库
                             for (int i = 0; i < m; i++)

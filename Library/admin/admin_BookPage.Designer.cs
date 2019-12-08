@@ -34,20 +34,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_BookPage));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_BookPage));
             this.Dgv_adminBook = new System.Windows.Forms.DataGridView();
-            this.b_isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.t_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_press = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b_stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cl_delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Cl_edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bindNavig = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -67,6 +57,16 @@
             this.tsbtn_type = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_edit = new System.Windows.Forms.ToolStripButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.b_isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_press = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cl_delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cl_edit = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_adminBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindNavig)).BeginInit();
             this.bindNavig.SuspendLayout();
@@ -127,82 +127,9 @@
             this.Dgv_adminBook.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.Dgv_adminBook.RowTemplate.Height = 23;
             this.Dgv_adminBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_adminBook.Size = new System.Drawing.Size(1159, 497);
+            this.Dgv_adminBook.Size = new System.Drawing.Size(1265, 497);
             this.Dgv_adminBook.TabIndex = 1;
             this.Dgv_adminBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_adminBook_CellClick);
-            // 
-            // b_isbn
-            // 
-            this.b_isbn.HeaderText = "ISBN编号";
-            this.b_isbn.Name = "b_isbn";
-            this.b_isbn.ReadOnly = true;
-            this.b_isbn.Width = 150;
-            // 
-            // b_name
-            // 
-            this.b_name.HeaderText = "图书名称";
-            this.b_name.Name = "b_name";
-            this.b_name.ReadOnly = true;
-            this.b_name.Width = 150;
-            // 
-            // t_name
-            // 
-            this.t_name.HeaderText = "图书类别";
-            this.t_name.Name = "t_name";
-            this.t_name.ReadOnly = true;
-            // 
-            // b_author
-            // 
-            this.b_author.HeaderText = "作者";
-            this.b_author.Name = "b_author";
-            this.b_author.ReadOnly = true;
-            // 
-            // b_press
-            // 
-            this.b_press.HeaderText = "出版社";
-            this.b_press.Name = "b_press";
-            this.b_press.ReadOnly = true;
-            // 
-            // b_time
-            // 
-            this.b_time.HeaderText = "出版年份";
-            this.b_time.Name = "b_time";
-            this.b_time.ReadOnly = true;
-            // 
-            // b_price
-            // 
-            this.b_price.HeaderText = "价格";
-            this.b_price.Name = "b_price";
-            this.b_price.ReadOnly = true;
-            // 
-            // b_stocks
-            // 
-            this.b_stocks.HeaderText = "库存";
-            this.b_stocks.Name = "b_stocks";
-            this.b_stocks.ReadOnly = true;
-            // 
-            // Cl_delete
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Red;
-            this.Cl_delete.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Cl_delete.HeaderText = "操作";
-            this.Cl_delete.Name = "Cl_delete";
-            this.Cl_delete.ReadOnly = true;
-            this.Cl_delete.Text = "删除";
-            this.Cl_delete.UseColumnTextForButtonValue = true;
-            // 
-            // Cl_edit
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
-            this.Cl_edit.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Cl_edit.HeaderText = "操作";
-            this.Cl_edit.Name = "Cl_edit";
-            this.Cl_edit.ReadOnly = true;
-            this.Cl_edit.Text = "修改信息";
-            this.Cl_edit.UseColumnTextForButtonValue = true;
             // 
             // bindNavig
             // 
@@ -235,7 +162,7 @@
             this.bindNavig.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindNavig.Name = "bindNavig";
             this.bindNavig.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindNavig.Size = new System.Drawing.Size(1159, 28);
+            this.bindNavig.Size = new System.Drawing.Size(1265, 28);
             this.bindNavig.TabIndex = 0;
             this.bindNavig.Text = "bindingNavigator1";
             // 
@@ -373,12 +300,86 @@
             this.tsbtn_edit.Text = "更改类别";
             this.tsbtn_edit.Click += new System.EventHandler(this.tsbtn_del_Click);
             // 
+            // b_isbn
+            // 
+            this.b_isbn.HeaderText = "ISBN编号";
+            this.b_isbn.Name = "b_isbn";
+            this.b_isbn.ReadOnly = true;
+            this.b_isbn.Width = 150;
+            // 
+            // b_name
+            // 
+            this.b_name.HeaderText = "图书名称";
+            this.b_name.Name = "b_name";
+            this.b_name.ReadOnly = true;
+            this.b_name.Width = 200;
+            // 
+            // t_name
+            // 
+            this.t_name.HeaderText = "图书类别";
+            this.t_name.Name = "t_name";
+            this.t_name.ReadOnly = true;
+            // 
+            // b_author
+            // 
+            this.b_author.HeaderText = "作者";
+            this.b_author.Name = "b_author";
+            this.b_author.ReadOnly = true;
+            // 
+            // b_press
+            // 
+            this.b_press.HeaderText = "出版社";
+            this.b_press.Name = "b_press";
+            this.b_press.ReadOnly = true;
+            this.b_press.Width = 150;
+            // 
+            // b_time
+            // 
+            this.b_time.HeaderText = "出版年份";
+            this.b_time.Name = "b_time";
+            this.b_time.ReadOnly = true;
+            // 
+            // b_price
+            // 
+            this.b_price.HeaderText = "价格";
+            this.b_price.Name = "b_price";
+            this.b_price.ReadOnly = true;
+            // 
+            // b_stocks
+            // 
+            this.b_stocks.HeaderText = "库存";
+            this.b_stocks.Name = "b_stocks";
+            this.b_stocks.ReadOnly = true;
+            // 
+            // Cl_delete
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Red;
+            this.Cl_delete.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cl_delete.HeaderText = "操作";
+            this.Cl_delete.Name = "Cl_delete";
+            this.Cl_delete.ReadOnly = true;
+            this.Cl_delete.Text = "删除";
+            this.Cl_delete.UseColumnTextForButtonValue = true;
+            // 
+            // Cl_edit
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
+            this.Cl_edit.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Cl_edit.HeaderText = "操作";
+            this.Cl_edit.Name = "Cl_edit";
+            this.Cl_edit.ReadOnly = true;
+            this.Cl_edit.Text = "修改信息";
+            this.Cl_edit.UseColumnTextForButtonValue = true;
+            // 
             // admin_BookPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1159, 525);
+            this.ClientSize = new System.Drawing.Size(1265, 525);
             this.Controls.Add(this.Dgv_adminBook);
             this.Controls.Add(this.bindNavig);
             this.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -403,16 +404,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView Dgv_adminBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_isbn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn t_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_press;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn b_stocks;
-        private System.Windows.Forms.DataGridViewButtonColumn Cl_delete;
-        private System.Windows.Forms.DataGridViewButtonColumn Cl_edit;
         private System.Windows.Forms.BindingNavigator bindNavig;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -432,5 +423,15 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ToolStripButton tsbtn_type;
         private System.Windows.Forms.ToolStripButton tsbtn_edit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_isbn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn t_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_press;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn b_stocks;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_delete;
+        private System.Windows.Forms.DataGridViewButtonColumn Cl_edit;
     }
 }

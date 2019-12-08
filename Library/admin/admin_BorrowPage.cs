@@ -53,7 +53,7 @@ namespace Library.admin
             cmd.ExecuteNonQuery();//执行sql语句
             con.Close();//关闭数据库
             //查询全部内容的语句
-            sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 0 then '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+            sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
             databind(sql);//传递sql语句进行查询
         }
 

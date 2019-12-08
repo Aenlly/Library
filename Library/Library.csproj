@@ -379,10 +379,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DB\LibraryMS.sql" />
+    <Content Include="DB\LibraryMS.txt" />
     <Content Include="DB\LibraryMS_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>LibraryMS.mdf</DependentUpon>
     </Content>
+    <Content Include="DB\数据库所有对象数据.txt" />
     <Content Include="image\Home_title.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

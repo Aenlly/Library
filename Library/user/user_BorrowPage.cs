@@ -48,7 +48,7 @@ namespace Library.user
         private void user_BorrowPage_Load(object sender, EventArgs e)
         {
             //每次执行时，更新下数据
-            string sql = "update borrow set bo_eme=1 where bo_rtnatl is NULL and datediff(day,bo_rtnatl,getdate())>0 and u_id='"+Log.log.u_id+"'";
+            string sql = "update borrow set bo_emeover= 1 where bo_rtnatl is NULL and datediff(day,bo_rtnatl,getdate())>0 and u_id='"+Log.log.u_id+"'";
             con = dButil.SqlOpen();//打开数据库
             cmd = new SqlCommand(sql, con);//储存sql语句
             cmd.ExecuteNonQuery();//执行sql语句

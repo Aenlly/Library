@@ -153,11 +153,29 @@ namespace Library.admin
         //添加用户按钮的显示事件
         private void tsbtn_add_Click(object sender, EventArgs e)
         {
-            admin_userAdd userAdd = new admin_userAdd();
-            userAdd.ShowDialog();
-            //查询全部的sql语句,实现刷新
-            string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
-            databind(sql);//传递sql然后查询填充
+            string sql = "select c_id from college";//查询语句
+            con = dButil.SqlOpen();//打开数据库
+            cmd = new SqlCommand(sql, con);//储存语句
+            string id = Convert.ToString(cmd.ExecuteScalar());//执行sql语句，获得返回值进行判断
+            con.Close();//关闭数据库
+            if (id.Equals(""))//如果为空跳转到添加学院界面
+            {
+                DialogResult dialog = MessageBox.Show("数据库中无学院请先添加学院，点击确认跳转！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dialog == DialogResult.OK)
+                {
+                    Log.log.user_college = true;//判断是用户窗体处单击的
+                    admin_Type admin_BookType = new admin_Type();//实例化admin_BookType窗体
+                    admin_BookType.ShowDialog();//以对话框模式显示
+                }
+            }
+            else//否则显示添加图书界面
+            {
+                admin_userAdd userAdd = new admin_userAdd();
+                userAdd.ShowDialog();
+                //查询全部的sql语句,实现刷新
+                sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                databind(sql);//传递sql然后查询填充
+            }
         }
 
         private void tbtn_college_Click(object sender, EventArgs e)

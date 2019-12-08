@@ -45,8 +45,8 @@
             this.mtext_year = new System.Windows.Forms.MaskedTextBox();
             this.cmb_type = new System.Windows.Forms.ComboBox();
             this.mtext_stocks = new System.Windows.Forms.MaskedTextBox();
-            this.mtext_isbn = new System.Windows.Forms.MaskedTextBox();
             this.text_price = new System.Windows.Forms.TextBox();
+            this.text_isbn = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +81,7 @@
             this.text_book.Location = new System.Drawing.Point(130, 21);
             this.text_book.Name = "text_book";
             this.text_book.ReadOnly = true;
-            this.text_book.Size = new System.Drawing.Size(137, 23);
+            this.text_book.Size = new System.Drawing.Size(180, 23);
             this.text_book.TabIndex = 24;
             this.text_book.TabStop = false;
             // 
@@ -174,7 +174,7 @@
             // 
             // btn_ret
             // 
-            this.btn_ret.Location = new System.Drawing.Point(150, 355);
+            this.btn_ret.Location = new System.Drawing.Point(223, 355);
             this.btn_ret.Name = "btn_ret";
             this.btn_ret.Size = new System.Drawing.Size(87, 32);
             this.btn_ret.TabIndex = 7;
@@ -213,22 +213,6 @@
             this.mtext_stocks.ValidatingType = typeof(int);
             this.mtext_stocks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtext_stocks_KeyPress);
             // 
-            // mtext_isbn
-            // 
-            this.mtext_isbn.Cursor = System.Windows.Forms.Cursors.Default;
-            this.mtext_isbn.Enabled = false;
-            this.mtext_isbn.Font = new System.Drawing.Font("宋体", 12F);
-            this.mtext_isbn.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
-            this.mtext_isbn.Location = new System.Drawing.Point(130, 61);
-            this.mtext_isbn.Mask = "0000000000";
-            this.mtext_isbn.Name = "mtext_isbn";
-            this.mtext_isbn.ReadOnly = true;
-            this.mtext_isbn.ShortcutsEnabled = false;
-            this.mtext_isbn.Size = new System.Drawing.Size(107, 26);
-            this.mtext_isbn.TabIndex = 40;
-            this.mtext_isbn.TabStop = false;
-            this.mtext_isbn.ValidatingType = typeof(int);
-            // 
             // text_price
             // 
             this.text_price.Location = new System.Drawing.Point(130, 254);
@@ -238,14 +222,26 @@
             this.text_price.TabIndex = 4;
             this.text_price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_price_KeyPress);
             // 
+            // text_isbn
+            // 
+            this.text_isbn.Cursor = System.Windows.Forms.Cursors.No;
+            this.text_isbn.Enabled = false;
+            this.text_isbn.Location = new System.Drawing.Point(130, 56);
+            this.text_isbn.MaxLength = 20;
+            this.text_isbn.Name = "text_isbn";
+            this.text_isbn.ReadOnly = true;
+            this.text_isbn.Size = new System.Drawing.Size(180, 23);
+            this.text_isbn.TabIndex = 41;
+            this.text_isbn.TabStop = false;
+            // 
             // admin_BookEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(294, 406);
+            this.ClientSize = new System.Drawing.Size(364, 406);
+            this.Controls.Add(this.text_isbn);
             this.Controls.Add(this.text_price);
-            this.Controls.Add(this.mtext_isbn);
             this.Controls.Add(this.mtext_stocks);
             this.Controls.Add(this.cmb_type);
             this.Controls.Add(this.mtext_year);
@@ -289,7 +285,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmb_type;
         private System.Windows.Forms.MaskedTextBox mtext_stocks;
-        private System.Windows.Forms.MaskedTextBox mtext_isbn;
         private System.Windows.Forms.TextBox text_price;
+        private System.Windows.Forms.TextBox text_isbn;
     }
 }

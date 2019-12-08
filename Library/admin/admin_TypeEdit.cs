@@ -21,7 +21,6 @@ namespace Library.admin
 
         SqlConnection con;//创建数据库连接对象
         SqlCommand cmd;//创建执行的sql语句对象
-        SqlDataReader sdr;//创建一个只读的结果集
         DButil dButil = new DButil();//实例化DButil工具类
 
         private void admin_TypeEdit_Load(object sender, EventArgs e)

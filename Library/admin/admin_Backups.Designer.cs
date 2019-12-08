@@ -71,6 +71,7 @@
             // text_path
             // 
             this.text_path.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.text_path.Enabled = false;
             this.text_path.Font = new System.Drawing.Font("宋体", 10.5F);
             this.text_path.Location = new System.Drawing.Point(106, 36);
             this.text_path.Name = "text_path";

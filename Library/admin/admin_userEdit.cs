@@ -130,5 +130,11 @@ namespace Library.admin
                 }
             }
         }
+
+        //退出按钮
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

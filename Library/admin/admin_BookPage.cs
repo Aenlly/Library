@@ -46,7 +46,14 @@ namespace Library.admin
         //窗体加载事件
         private void admin_BookPage_Load(object sender, EventArgs e)
         {
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+            //每次执行时，更新下借书表
+            string sql = "update borrow set bo_emeover= 1 where bo_rtnatl is NULL and datediff(day,bo_return,getdate())>0";
+            con = dButil.SqlOpen();//打开数据库
+            cmd = new SqlCommand(sql, con);//储存sql语句
+            cmd.ExecuteNonQuery();//执行sql语句
+            con.Close();//关闭数据库
+
+            sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
             databind(sql);//传递sql然后查询填充
         }
 
@@ -98,7 +105,7 @@ namespace Library.admin
                         }
                         else
                         {
-                            string strbor_del = "delete from [borrow] where  b_isbn='(select b_isbn from [book] where b_name='" + book_name + "'";
+                            string strbor_del = "delete from [borrow] where  b_isbn=(select b_isbn from [book] where b_name='" + book_name + "')";
                             string strb_del = "delete from [books] where b_name='" + book_name + "'";
                             string strbs_del = "delete from [book] where b_name='" + book_name + "'";
                             con = dButil.SqlOpen();

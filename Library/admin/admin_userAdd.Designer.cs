@@ -31,6 +31,7 @@
             this.btn_add = new System.Windows.Forms.Button();
             this.text_name = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,16 +39,19 @@
             this.cmb_user = new System.Windows.Forms.ComboBox();
             this.cmb_sex = new System.Windows.Forms.ComboBox();
             this.mtext_card = new System.Windows.Forms.MaskedTextBox();
+            this.cmb_college = new System.Windows.Forms.ComboBox();
+            this.link_college = new System.Windows.Forms.LinkLabel();
+            this.btn_close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_add
             // 
             this.btn_add.Font = new System.Drawing.Font("宋体", 12F);
-            this.btn_add.Location = new System.Drawing.Point(86, 186);
+            this.btn_add.Location = new System.Drawing.Point(52, 241);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(90, 33);
-            this.btn_add.TabIndex = 4;
+            this.btn_add.TabIndex = 6;
             this.btn_add.Text = "添加用户";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
@@ -62,14 +66,24 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(15, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(85, 148);
+            this.panel1.Size = new System.Drawing.Size(82, 194);
             this.panel1.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 119);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 14);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "学院：";
             // 
             // label7
             // 
@@ -101,7 +115,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 113);
+            this.label6.Location = new System.Drawing.Point(3, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 14);
             this.label6.TabIndex = 5;
@@ -111,10 +125,10 @@
             // 
             this.cmb_user.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_user.FormattingEnabled = true;
-            this.cmb_user.Location = new System.Drawing.Point(116, 123);
+            this.cmb_user.Location = new System.Drawing.Point(116, 168);
             this.cmb_user.Name = "cmb_user";
             this.cmb_user.Size = new System.Drawing.Size(87, 22);
-            this.cmb_user.TabIndex = 3;
+            this.cmb_user.TabIndex = 5;
             // 
             // cmb_sex
             // 
@@ -133,12 +147,45 @@
             this.mtext_card.Size = new System.Drawing.Size(151, 23);
             this.mtext_card.TabIndex = 2;
             // 
+            // cmb_college
+            // 
+            this.cmb_college.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_college.FormattingEnabled = true;
+            this.cmb_college.Location = new System.Drawing.Point(116, 128);
+            this.cmb_college.Name = "cmb_college";
+            this.cmb_college.Size = new System.Drawing.Size(170, 22);
+            this.cmb_college.TabIndex = 3;
+            // 
+            // link_college
+            // 
+            this.link_college.AutoSize = true;
+            this.link_college.Location = new System.Drawing.Point(311, 136);
+            this.link_college.Name = "link_college";
+            this.link_college.Size = new System.Drawing.Size(63, 14);
+            this.link_college.TabIndex = 4;
+            this.link_college.TabStop = true;
+            this.link_college.Text = "添加学院";
+            this.link_college.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_college_LinkClicked);
+            // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(223, 241);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(96, 32);
+            this.btn_close.TabIndex = 7;
+            this.btn_close.Text = "返回";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
             // admin_userAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(283, 242);
+            this.ClientSize = new System.Drawing.Size(409, 309);
+            this.Controls.Add(this.btn_close);
+            this.Controls.Add(this.link_college);
+            this.Controls.Add(this.cmb_college);
             this.Controls.Add(this.mtext_card);
             this.Controls.Add(this.cmb_sex);
             this.Controls.Add(this.cmb_user);
@@ -172,5 +219,9 @@
         private System.Windows.Forms.ComboBox cmb_user;
         private System.Windows.Forms.ComboBox cmb_sex;
         private System.Windows.Forms.MaskedTextBox mtext_card;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmb_college;
+        private System.Windows.Forms.LinkLabel link_college;
+        private System.Windows.Forms.Button btn_close;
     }
 }
