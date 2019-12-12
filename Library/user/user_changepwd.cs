@@ -43,17 +43,20 @@ namespace Library.user
                 int n = sqlDbHelper.Checkcard(sql, name_card);//传递参数进行判断
                 if (n==2)
                 {
-                    String card = name_card.Substring(name_card.Length-6);//取得身份证后六位
-                    //弹窗提示
-                    DialogResult dialog= MessageBox.Show("密码重置成功，为身份证后六位", "提示", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    if (dialog == DialogResult.OK)//判断是否点击了确认按钮
+                    string card = name_card.Substring(name_card.Length - 6);//取得身份证后六位
+                    sql = "update [user] set u_password='" + card + "' where u_id='" + name_id + "'";
+                    bool b_card = sqlDbHelper.EditPwd(sql);
+                    if (b_card == true)
                     {
-                        Login login = new Login();//实例化登录窗体
-                        login.Show();//显示登录窗体
-                        this.Close();//当前窗体关闭
+                        //弹窗提示
+                        MessageBox.Show("密码重置成功，为身份证后六位", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    
-                }
+                    else
+                    {
+                        //弹窗提示
+                        MessageBox.Show("密码重置失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }                   
                 else if(n==1)
                 {
                     //身份证错误提示

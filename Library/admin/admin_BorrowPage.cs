@@ -59,118 +59,121 @@ namespace Library.admin
 
         private void Dgv_borrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                //获取还书状态的值
-                string b_eme = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_eme"].Value.ToString();
-                //获取借书人的值
-                string u_name = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_u_name"].Value.ToString();
-                //获得借书编号
-                string bo_id = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
-                //判断是否点击了还书按钮
-                if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_btnrtn")
+            if (e.ColumnIndex >= 0) {
+                if (e.RowIndex >= 0)
                 {
-                    //判断是否申请了
-                    if (b_eme == "未申请")
+                    //获取还书状态的值
+                    string b_eme = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_eme"].Value.ToString();
+                    //获取借书人的值
+                    string u_name = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_u_name"].Value.ToString();
+                    //获得借书编号
+                    string bo_id = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                    //判断是否点击了还书按钮
+                    if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_btnrtn")
                     {
-                        //未申请提示
-                        MessageBox.Show("该用户未申请还书！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else if (b_eme == "未通过")
-                    {
-                        //未申请提示
-                        MessageBox.Show("该用户未通过还书审核！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else//通过
-                    {
-                        //提示，并获取单击的返回值
-                        DialogResult dialog=MessageBox.Show("确认通过用户："+ u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        //判断单击了确认按钮
-                        if (DialogResult.OK == dialog)
+                        //判断是否申请了
+                        if (b_eme == "未申请")
                         {
-
-                            //更新图书表中的一条数据，使数量变成+1
-                            string sql = "update top(1) books set  b_lend=1 output inserted.b_id where  b_name='" + Dgv_borrow.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString() + "' and b_lend=0";//只更新一条
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存需要执行的语句
-                            cmd.ExecuteNonQuery();//执行sql语句，返回影响行数
-
-                            //sql语句，更新为还书成功，并添加还书时间,添加管理员id
-                            sql = "update borrow set bo_eme=2,bo_rtnatl='" + DateTime.Now.ToString() + "',a_id='"+Log.log.a_id+"' where bo_id='" + bo_id + "'";
-                            cmd = new SqlCommand(sql, con);//储存sql语句
-                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
-
-                            //更新该用户的可借数量,总借书数量
-                            string sql_number = "update [user] set u_number=(u_number+1),u_book=(u_book+1) where u_id=(select u_id from borrow where bo_id='" + bo_id + "')";
-                            cmd = new SqlCommand(sql_number, con);//储存sql语句
-                            cmd.ExecuteNonQuery();//执行更新数量语句
-
-                            //isbn表中的数量储存
-                            string sql_b_stocks = "update [book] set b_stocks=(b_stocks+1) where b_isbn=(select b_isbn from borrow where bo_id='" + bo_id + "')";
-                            cmd = new SqlCommand(sql_b_stocks, con);//储存sql语句
-                            cmd.ExecuteNonQuery();//执行更新数量语句
-                            con.Close();//关闭数据库
-                            if (n > 0)//判断是否执行成功并修改
+                            //未申请提示
+                            MessageBox.Show("该用户未申请还书！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (b_eme == "未通过")
+                        {
+                            //未申请提示
+                            MessageBox.Show("该用户未通过还书审核！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else//通过
+                        {
+                            //提示，并获取单击的返回值
+                            DialogResult dialog = MessageBox.Show("确认通过用户：" + u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            //判断单击了确认按钮
+                            if (DialogResult.OK == dialog)
                             {
-                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                dbHelper.Operation("通过用户：" + u_name + "的还书申请");//插入操作记录
 
-                                //成功提示
-                                MessageBox.Show("已通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //查询全部内容的语句，该处用于刷新表
-                                sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
-                                databind(sql);//传递sql语句进行查询
-                            }
-                            else
-                            {
-                                //失败提示
-                                MessageBox.Show("通过申请操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //更新图书表中的一条数据，使数量变成+1
+                                string sql = "update top(1) books set  b_lend=1 output inserted.b_id where  b_name='" + Dgv_borrow.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString() + "' and b_lend=0";//只更新一条
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存需要执行的语句
+                                cmd.ExecuteNonQuery();//执行sql语句，返回影响行数
+
+                                //sql语句，更新为还书成功，并添加还书时间,添加管理员id
+                                sql = "update borrow set bo_eme=2,bo_rtnatl='" + DateTime.Now.ToString() + "',a_id='" + Log.log.a_id + "' where bo_id='" + bo_id + "'";
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
+
+                                //更新该用户的可借数量,总借书数量
+                                string sql_number = "update [user] set u_number=(u_number+1),u_book=(u_book+1) where u_id=(select u_id from borrow where bo_id='" + bo_id + "')";
+                                cmd = new SqlCommand(sql_number, con);//储存sql语句
+                                cmd.ExecuteNonQuery();//执行更新数量语句
+
+                                //isbn表中的数量储存
+                                string sql_b_stocks = "update [book] set b_stocks=(b_stocks+1) where b_isbn=(select b_isbn from borrow where bo_id='" + bo_id + "')";
+                                cmd = new SqlCommand(sql_b_stocks, con);//储存sql语句
+                                cmd.ExecuteNonQuery();//执行更新数量语句
+                                con.Close();//关闭数据库
+                                if (n > 0)//判断是否执行成功并修改
+                                {
+                                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                    dbHelper.Operation("通过用户：" + u_name + "的还书申请");//插入操作记录
+
+                                    //成功提示
+                                    MessageBox.Show("已通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //查询全部内容的语句，该处用于刷新表
+                                    sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+                                    databind(sql);//传递sql语句进行查询
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("通过申请操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
-                }
-                //点击了不通过按钮
-                if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_btnNo")
-                {
-                    //判断是否申请了
-                    if (b_eme == "未申请")
-                    {
-                        //未申请提示
-                        MessageBox.Show("该用户未申请还书！无法进行不通过审核操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else if (b_eme == "未通过")
-                    {
-                        //未申请提示
-                        MessageBox.Show("该用户已未通过还书审核！无法再次进行不通过审核操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        //提示，并获取单击的返回值
-                        DialogResult dialog = MessageBox.Show("确认不通过用户：" + u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        //判断单击了确认按钮
-                        if (DialogResult.OK == dialog)
-                        {
-                            //sql语句，更新为还书失败，并添加还书时间和管理员id
-                            string sql = "update borrow set bo_eme=3,a_id='"+Log.log.a_id+"' where bo_id='" + bo_id + "'";
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存sql语句
-                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
-                            con.Close();//关闭数据库
-                            if (n > 0)//判断是否执行成功并修改
-                            {
-                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                dbHelper.Operation("不通过用户："+u_name+"的还书申请");//插入操作记录
 
-                                //成功提示
-                                MessageBox.Show("已不通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //查询全部内容的语句，该处用于刷新表
-                                sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
-                                databind(sql);//传递sql语句进行查询
-                            }
-                            else
+                    //点击了不通过按钮
+                    if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_btnNo")
+                    {
+                        //判断是否申请了
+                        if (b_eme == "未申请")
+                        {
+                            //未申请提示
+                            MessageBox.Show("该用户未申请还书！无法进行不通过审核操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (b_eme == "未通过")
+                        {
+                            //未申请提示
+                            MessageBox.Show("该用户已未通过还书审核！无法再次进行不通过审核操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            //提示，并获取单击的返回值
+                            DialogResult dialog = MessageBox.Show("确认不通过用户：" + u_name + "的还书申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            //判断单击了确认按钮
+                            if (DialogResult.OK == dialog)
                             {
-                                //失败提示
-                                MessageBox.Show("不通过申请操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //sql语句，更新为还书失败，并添加还书时间和管理员id
+                                string sql = "update borrow set bo_eme=3,a_id='" + Log.log.a_id + "' where bo_id='" + bo_id + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数，并赋值给n用作判断
+                                con.Close();//关闭数据库
+                                if (n > 0)//判断是否执行成功并修改
+                                {
+                                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                    dbHelper.Operation("不通过用户：" + u_name + "的还书申请");//插入操作记录
+
+                                    //成功提示
+                                    MessageBox.Show("已不通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //查询全部内容的语句，该处用于刷新表
+                                    sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+                                    databind(sql);//传递sql语句进行查询
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("不通过申请操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }

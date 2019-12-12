@@ -60,74 +60,77 @@ namespace Library.admin
         //单击了表格内的列和行事件
         private void Dgv_adminBook_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //判断是否点击了表的内容而不是列标签
-            if (e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0)
             {
-                //判断是否点击了编辑按钮
-                if (Dgv_adminBook.Columns[e.ColumnIndex].Name == "Cl_edit")
+                //判断是否点击了表的内容而不是列标签
+                if (e.RowIndex >= 0)
                 {
-                    admin_BookEdit admin_BookEdit = new admin_BookEdit();//实例化编辑界面
-
-                    //把选中列的各个值传递到log类中
-                    Log.log.b_isbn = Dgv_adminBook.Rows[e.RowIndex].Cells["b_isbn"].Value.ToString();//传递isbn值
-                    Log.log.b_name = Dgv_adminBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString();//传递图书名
-                    Log.log.b_type = Dgv_adminBook.Rows[e.RowIndex].Cells["t_name"].Value.ToString();//传递图书类别
-                    Log.log.b_author = Dgv_adminBook.Rows[e.RowIndex].Cells["b_author"].Value.ToString();//传递作者
-                    Log.log.b_press = Dgv_adminBook.Rows[e.RowIndex].Cells["b_press"].Value.ToString();//传递出版社
-                    Log.log.b_time = Dgv_adminBook.Rows[e.RowIndex].Cells["b_time"].Value.ToString();//传递年份
-                    Log.log.b_price = Dgv_adminBook.Rows[e.RowIndex].Cells["b_price"].Value.ToString();//传递价格
-                    Log.log.b_stocks = Dgv_adminBook.Rows[e.RowIndex].Cells["b_stocks"].Value.ToString();//传递库存
-
-
-                    admin_BookEdit.ShowDialog();//显示编辑界面
-                                                //查询全部的sql语句,实现刷新
-                    string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
-                    databind(sql);//传递sql然后查询填充
-                }
-                //单击了删除按钮
-                if (Dgv_adminBook.Columns[e.ColumnIndex].Name == "Cl_delete")
-                {
-                    //弹窗提示
-                    string book_name = Dgv_adminBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString();
-                    DialogResult dialog = MessageBox.Show("确认删除图书" + book_name + "?  该操作会将借书记录一同删除并无法还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    if (dialog == DialogResult.OK)//点击了确定，执行删除语句
+                    //判断是否点击了编辑按钮
+                    if (Dgv_adminBook.Columns[e.ColumnIndex].Name == "Cl_edit")
                     {
-                        string sqlbo_select = "select * from [borrow],[books] where [borrow].b_id=[books].b_id and bo_eme!=2 and b_name='" + book_name + "'";
-                        con = dButil.SqlOpen();
-                        cmd = new SqlCommand(sqlbo_select, con);
-                        int n = cmd.ExecuteNonQuery();
-                        if (n == 0)
-                        {
-                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                            dbHelper.Operation("删除图书名为：" + book_name + "未成功");//插入操作记录
+                        admin_BookEdit admin_BookEdit = new admin_BookEdit();//实例化编辑界面
 
-                            MessageBox.Show("有用户未还书，无法删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                        else
+                        //把选中列的各个值传递到log类中
+                        Log.log.b_isbn = Dgv_adminBook.Rows[e.RowIndex].Cells["b_isbn"].Value.ToString();//传递isbn值
+                        Log.log.b_name = Dgv_adminBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString();//传递图书名
+                        Log.log.b_type = Dgv_adminBook.Rows[e.RowIndex].Cells["t_name"].Value.ToString();//传递图书类别
+                        Log.log.b_author = Dgv_adminBook.Rows[e.RowIndex].Cells["b_author"].Value.ToString();//传递作者
+                        Log.log.b_press = Dgv_adminBook.Rows[e.RowIndex].Cells["b_press"].Value.ToString();//传递出版社
+                        Log.log.b_time = Dgv_adminBook.Rows[e.RowIndex].Cells["b_time"].Value.ToString();//传递年份
+                        Log.log.b_price = Dgv_adminBook.Rows[e.RowIndex].Cells["b_price"].Value.ToString();//传递价格
+                        Log.log.b_stocks = Dgv_adminBook.Rows[e.RowIndex].Cells["b_stocks"].Value.ToString();//传递库存
+
+
+                        admin_BookEdit.ShowDialog();//显示编辑界面
+                                                    //查询全部的sql语句,实现刷新
+                        string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+                        databind(sql);//传递sql然后查询填充
+                    }
+                    //单击了删除按钮
+                    if (Dgv_adminBook.Columns[e.ColumnIndex].Name == "Cl_delete")
+                    {
+                        //弹窗提示
+                        string book_name = Dgv_adminBook.Rows[e.RowIndex].Cells["b_name"].Value.ToString();
+                        DialogResult dialog = MessageBox.Show("确认删除图书" + book_name + "?  该操作会将借书记录一同删除并无法还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (dialog == DialogResult.OK)//点击了确定，执行删除语句
                         {
-                            string strbor_del = "delete from [borrow] where  b_isbn=(select b_isbn from [book] where b_name='" + book_name + "')";
-                            string strb_del = "delete from [books] where b_name='" + book_name + "'";
-                            string strbs_del = "delete from [book] where b_name='" + book_name + "'";
+                            string sqlbo_select = "select * from [borrow],[books] where [borrow].b_id=[books].b_id and bo_eme!=2 and b_name='" + book_name + "'";
                             con = dButil.SqlOpen();
-                            cmd = new SqlCommand(strbor_del, con);//储存删除借书表中的记录语句
-                            cmd = new SqlCommand(strb_del, con);//再储存删除图书表中的记录语句
-                            cmd = new SqlCommand(strbs_del, con);//最后储存删除isbn表中的记录语句
-                            n = cmd.ExecuteNonQuery();//执行
-                            con.Close();
-                            if (n > 0)
+                            cmd = new SqlCommand(sqlbo_select, con);
+                            int n = cmd.ExecuteNonQuery();
+                            if (n == 0)
                             {
                                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                dbHelper.Operation("删除图书名为："+book_name+ "的图书表与ISBN表及借书表的记录");//插入操作记录
+                                dbHelper.Operation("删除图书名为：" + book_name + "未成功");//插入操作记录
 
-                                MessageBox.Show("删除图书:" + book_name + "成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //查询全部的sql语句,实现刷新
-                                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
-                                databind(sql);//传递sql然后查询填充
+                                MessageBox.Show("有用户未还书，无法删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else
                             {
-                                //失败提示
-                                MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                string strbor_del = "delete from [borrow] where  b_isbn=(select b_isbn from [book] where b_name='" + book_name + "')";
+                                string strb_del = "delete from [books] where b_name='" + book_name + "'";
+                                string strbs_del = "delete from [book] where b_name='" + book_name + "'";
+                                con = dButil.SqlOpen();
+                                cmd = new SqlCommand(strbor_del, con);//储存删除借书表中的记录语句
+                                cmd = new SqlCommand(strb_del, con);//再储存删除图书表中的记录语句
+                                cmd = new SqlCommand(strbs_del, con);//最后储存删除isbn表中的记录语句
+                                n = cmd.ExecuteNonQuery();//执行
+                                con.Close();
+                                if (n > 0)
+                                {
+                                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                    dbHelper.Operation("删除图书名为：" + book_name + "的图书表与ISBN表及借书表的记录");//插入操作记录
+
+                                    MessageBox.Show("删除图书:" + book_name + "成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //查询全部的sql语句,实现刷新
+                                    string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+                                    databind(sql);//传递sql然后查询填充
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }

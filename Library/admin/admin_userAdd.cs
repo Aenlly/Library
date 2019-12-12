@@ -50,7 +50,7 @@ namespace Library.admin
             sda.Fill(ds);//添加到ds缓存中
             cmb_college.DataSource = ds.Tables[0].DefaultView;//取出数据源填充到列表中
             cmb_college.DisplayMember = "c_college";//列表中显示的值对应的字段名
-            string sql = "select c_id from [type] where c_college='" + cmb_college.Text + "'";//查学院第一个的列的id
+            string sql = "select c_id from [college] where c_college='" + cmb_college.Text + "'";//查学院第一个的列的id
             cmd = new SqlCommand(sql, con);////储存需要执行的c_id语句
             int c_id = Convert.ToInt16(cmd.ExecuteScalar());//返回c_id值，用于这边选中，执行c_id语句
             cmb_college.SelectedIndex = c_id;//设置索引为c_id

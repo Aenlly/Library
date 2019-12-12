@@ -117,43 +117,47 @@ namespace Library.admin
         //单击表格内容时的事件
         private void Dgv_fbk_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //判断是否点在了内容行上，而不是表头
-            if (e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0)
             {
-                Log.log.f_id = Dgv_fbk.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
-                //单击了查看按钮
-                if(Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_see")
+                //判断是否点在了内容行上，而不是表头
+                if (e.RowIndex >= 0)
                 {
-                    Log.log.f_btn = "查看";//使f_btn值修改为查看
-                    admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
-                    admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
-
-                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                    dbHelper.Operation("查看反馈编号为" + Log.log.f_id + "的反馈记录");//插入操作记录
-                }
-                //单击了回复按钮
-                if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_Reply")
-                {
-                    if (Dgv_fbk.Rows[e.RowIndex].Cells["Cl_asrtime"].Value.ToString() != "") {
-                        DialogResult dialog = MessageBox.Show("该用户已经回复过了！点击确定转到查看界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if(DialogResult.OK==dialog)
-                        {
-                            Log.log.f_btn = "查看";//使f_btn值修改为查看
-                            admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
-                            admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
-
-                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                            dbHelper.Operation("查看反馈编号为"+ Log.log.f_id +"的反馈记录");//插入操作记录
-                        }
-                    }
-                    else
+                    Log.log.f_id = Dgv_fbk.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                    //单击了查看按钮
+                    if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_see")
                     {
-                        Log.log.f_btn = "回复";//使f_btn值修改为回复
+                        Log.log.f_btn = "查看";//使f_btn值修改为查看
                         admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
                         admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
-                                                //查询全部的反馈sql语句
-                        string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id";
-                        databind(sql);//传递sql
+
+                        SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                        dbHelper.Operation("查看反馈编号为" + Log.log.f_id + "的反馈记录");//插入操作记录
+                    }
+                    //单击了回复按钮
+                    if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_Reply")
+                    {
+                        if (Dgv_fbk.Rows[e.RowIndex].Cells["Cl_asrtime"].Value.ToString() != "")
+                        {
+                            DialogResult dialog = MessageBox.Show("该用户已经回复过了！点击确定转到查看界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (DialogResult.OK == dialog)
+                            {
+                                Log.log.f_btn = "查看";//使f_btn值修改为查看
+                                admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
+                                admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
+
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation("查看反馈编号为" + Log.log.f_id + "的反馈记录");//插入操作记录
+                            }
+                        }
+                        else
+                        {
+                            Log.log.f_btn = "回复";//使f_btn值修改为回复
+                            admin_FeedBack admin_Feed = new admin_FeedBack();//实例化admin_FeedBack窗体对象
+                            admin_Feed.ShowDialog();//admin_FeedBack窗体以对话框显示
+                                                    //查询全部的反馈sql语句
+                            string sql = "select f_id,[user].u_id,f_title,f_smntime,f_asrtime,f_solve from feedback,[user] where feedback.u_id=[user].u_id";
+                            databind(sql);//传递sql
+                        }
                     }
                 }
             }

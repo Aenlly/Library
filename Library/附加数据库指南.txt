@@ -1,0 +1,4 @@
+打开Library\Library\DB文件夹下“数据库所有对象数据.txt”，打开sqlserver数据库软件，打开新建查询，复制前面的“数据库所有对象数据.txt”里面的数据粘贴到新建查询窗口
+
+
+在sqlserver数据库软件数据库中展开LibraryMS数据库，打开表，user表是用户表，admin表是管理员表

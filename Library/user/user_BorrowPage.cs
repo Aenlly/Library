@@ -102,164 +102,168 @@ namespace Library.user
 
         private void Dgv_borrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DialogResult dialog;//获得对话框的用户所按的返回值
-            if (e.RowIndex >= 0)
-            {                
-                string bo_renew = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_renew"].Value.ToString();//获得续借资格值
-                string bo_id = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//获得借书编号
-                string bo_eme = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_eme"].Value.ToString();//获得借书状态
-                string bo_emeover = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_emeover"].Value.ToString();//获得是否逾期一栏的值
-                if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_Renewal")//续借按钮
+            if (e.ColumnIndex >= 0)
+            {
+                DialogResult dialog;//获得对话框的用户所按的返回值
+                if (e.RowIndex >= 0)
                 {
-                    if (bo_renew == "无")
+                    string bo_renew = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_renew"].Value.ToString();//获得续借资格值
+                    string bo_id = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//获得借书编号
+                    string bo_eme = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_eme"].Value.ToString();//获得借书状态
+                    string bo_emeover = Dgv_borrow.Rows[e.RowIndex].Cells["Cl_emeover"].Value.ToString();//获得是否逾期一栏的值
+                    if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_Renewal")//续借按钮
                     {
-                        dialog = MessageBox.Show("抱歉，你该图书的续借资格已经没有了", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                    }
-                    else if (bo_emeover == "已逾期")
-                    {
-                        //错误提示
-                        dialog = MessageBox.Show("所续借图书已经逾期，无法续借！\n点击确认跳转到逾期界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                        if (DialogResult.OK == dialog)
+                        if (bo_renew == "无")
                         {
-                            //点击确认按钮跳转到逾期记录
-                            user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
-                            user_Overdue.ShowDialog();//以对话模式显示
-                                                      //查询全部，这里等于返回该界面刷新
-                            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
-                            databind(sql);//传递sql语句
+                            dialog = MessageBox.Show("抱歉，你该图书的续借资格已经没有了", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         }
-                    }
-                    else if (bo_emeover == "审核中")
-                    {
-                        dialog = MessageBox.Show("所续借图书正在审核中，无法续借", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_emeover == "缴费审核中")
-                    {
-                        dialog = MessageBox.Show("所续借图书逾期缴费正在审核中，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_eme == "还书成功")
-                    {
-                        dialog = MessageBox.Show("所续借图书已经归还，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_eme == "审核中")
-                    {
-                        dialog = MessageBox.Show("所续借图书正在审核，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        dialog = MessageBox.Show("确定续借7天？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (DialogResult.OK == dialog)
+                        else if (bo_emeover == "已逾期")
                         {
-                            //创建sql语句
-                            string sql = "update borrow set bo_rtnatl=dateadd(day,7,bo_rtnatl),bo_renew='1' where bo_id='" + bo_id + "'";
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存sql语句
-                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行数赋值到n中，用于判断
-                            con.Close();//关闭数据库
-                            if (n > 0)//进行成功判断
+                            //错误提示
+                            dialog = MessageBox.Show("所续借图书已经逾期，无法续借！\n点击确认跳转到逾期界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            if (DialogResult.OK == dialog)
                             {
-                                //成功提示
-                                MessageBox.Show("续借成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                //查询全部，这里等于刷新
-                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                //点击确认按钮跳转到逾期记录
+                                user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
+                                user_Overdue.ShowDialog();//以对话模式显示
+                                                          //查询全部，这里等于返回该界面刷新
+                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
-                            else
+                        }
+                        else if (bo_emeover == "审核中")
+                        {
+                            dialog = MessageBox.Show("所续借图书正在审核中，无法续借", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_emeover == "缴费审核中")
+                        {
+                            dialog = MessageBox.Show("所续借图书逾期缴费正在审核中，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_eme == "还书成功")
+                        {
+                            dialog = MessageBox.Show("所续借图书已经归还，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_eme == "审核中")
+                        {
+                            dialog = MessageBox.Show("所续借图书正在审核，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            dialog = MessageBox.Show("确定续借7天？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (DialogResult.OK == dialog)
                             {
-                                //失败提示
-                                MessageBox.Show("续借失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //创建sql语句
+                                string sql = "update borrow set bo_rtnatl=dateadd(day,7,bo_rtnatl),bo_renew='1' where bo_id='" + bo_id + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                int n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行数赋值到n中，用于判断
+                                con.Close();//关闭数据库
+                                if (n > 0)//进行成功判断
+                                {
+                                    //成功提示
+                                    MessageBox.Show("续借成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    //查询全部，这里等于刷新
+                                    sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                    databind(sql);//传递sql语句
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("续借失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+                    if (Dgv_borrow.Columns[e.ColumnIndex].Name == "Cl_operation")//还书按钮
+                    {
+                        if (bo_emeover == "已逾期")
+                        {
+                            //错误提示
+                            dialog = MessageBox.Show("所还图书已经逾期，无法还书！\n点击确认跳转到逾期界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            if (DialogResult.OK == dialog)
+                            {
+                                //点击确认按钮跳转到逾期记录
+                                user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
+                                user_Overdue.ShowDialog();//以对话模式显示
+                                                          //查询全部，这里等于返回该界面刷新
+                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                databind(sql);//传递sql语句
+                            }
+                        }
+                        else if (bo_emeover == "缴费审核中")
+                        {
+                            dialog = MessageBox.Show("所续借图书逾期缴费正在审核中，无法还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_emeover == "缴费审核未通过")//判断缴费
+                        {
+                            dialog = MessageBox.Show("所续借图书逾期缴费审核未通过，无法还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_eme == "还书成功")//判断缴费
+                        {
+                            dialog = MessageBox.Show("该书已经归还，无法再次进行还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_eme == "审核中")//判断缴费
+                        {
+                            dialog = MessageBox.Show("该书正在审核，请勿再次提交审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (bo_emeover == "还书失败")
+                        {
+                            //错误提示
+                            dialog = MessageBox.Show("所还图书未通过审核，是否再次申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            if (DialogResult.OK == dialog)
+                            {
+                                //创建sql语句
+                                string sql = "update borrow set bo_rtnatl=getdate(),bo_eme=1 where bo_id='" + bo_id + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                int n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行数赋值到n中，用于判断
+                                con.Close();//关闭数据库
+                                if (n > 0)//进行成功判断
+                                {
+                                    //成功提示
+                                    MessageBox.Show("重新提交审核成功，请耐心等待管理员审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    //查询全部，这里等于刷新
+                                    sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                    databind(sql);//传递sql语句
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("提交失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            dialog = MessageBox.Show("确定归还该书？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (DialogResult.OK == dialog)
+                            {
+                                //创建sql语句
+                                string sql = "update borrow set bo_rtnatl=getdate(),bo_eme=1 where bo_id='" + bo_id + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                int n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行数赋值到n中，用于判断
+                                con.Close();//关闭数据库
+                                if (n > 0)//进行成功判断
+                                {
+                                    //成功提示
+                                    MessageBox.Show("提交审核成功，请耐心等待管理员审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    //查询全部，这里等于刷新
+                                    sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                    databind(sql);//传递sql语句
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("还书失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
                 }
-                if (Dgv_borrow.Columns[e.ColumnIndex].Name== "Cl_operation")//还书按钮
-                {
-                    if (bo_emeover == "已逾期")
-                    {
-                        //错误提示
-                        dialog = MessageBox.Show("所还图书已经逾期，无法还书！\n点击确认跳转到逾期界面", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                        if (DialogResult.OK == dialog)
-                        {
-                            //点击确认按钮跳转到逾期记录
-                            user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
-                            user_Overdue.ShowDialog();//以对话模式显示
-                                                      //查询全部，这里等于返回该界面刷新
-                            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
-                            databind(sql);//传递sql语句
-                        }
-                    }
-                    else if (bo_emeover == "缴费审核中")
-                    {
-                        dialog = MessageBox.Show("所续借图书逾期缴费正在审核中，无法还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_emeover == "缴费审核未通过")//判断缴费
-                    {
-                        dialog = MessageBox.Show("所续借图书逾期缴费审核未通过，无法还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_eme == "还书成功")//判断缴费
-                    {
-                        dialog = MessageBox.Show("该书已经归还，无法再次进行还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_eme == "审核中")//判断缴费
-                    {
-                        dialog = MessageBox.Show("该书正在审核，请勿再次提交审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (bo_emeover == "还书失败")
-                    {
-                        //错误提示
-                        dialog = MessageBox.Show("所还图书未通过审核，是否再次申请？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                        if (DialogResult.OK == dialog)
-                        {
-                            //创建sql语句
-                            string sql = "update borrow set bo_rtnatl=getdate(),bo_eme=1 where bo_id='" + bo_id + "'";
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存sql语句
-                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行数赋值到n中，用于判断
-                            con.Close();//关闭数据库
-                            if (n > 0)//进行成功判断
-                            {
-                                //成功提示
-                                MessageBox.Show("重新提交审核成功，请耐心等待管理员审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                //查询全部，这里等于刷新
-                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
-                                databind(sql);//传递sql语句
-                            }
-                            else
-                            {
-                                //失败提示
-                                MessageBox.Show("提交失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                    else {
-                        dialog = MessageBox.Show("确定归还该书？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (DialogResult.OK == dialog)
-                        {
-                            //创建sql语句
-                            string sql = "update borrow set bo_rtnatl=getdate(),bo_eme=1 where bo_id='" + bo_id + "'";
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存sql语句
-                            int n = cmd.ExecuteNonQuery();//执行sql语句，返回受影响的行数赋值到n中，用于判断
-                            con.Close();//关闭数据库
-                            if (n > 0)//进行成功判断
-                            {
-                                //成功提示
-                                MessageBox.Show("提交审核成功，请耐心等待管理员审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                //查询全部，这里等于刷新
-                                sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
-                                databind(sql);//传递sql语句
-                            }
-                            else
-                            {
-                                //失败提示
-                                MessageBox.Show("还书失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }                
             }
         }
     }

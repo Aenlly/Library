@@ -46,7 +46,7 @@ namespace Library.admin
         //加载窗体事件
         private void admin_userPage_Load(object sender, EventArgs e)
         {
-            tscmb_type.Items.Add("学号");//添加学号
+            tscmb_type.Items.Add("学号/工号");//添加学号
             tscmb_type.Items.Add("姓名");//添加姓名
             tscmb_type.Items.Add("身份证");//添加身份证
             tscmb_type.SelectedIndex = 0;//默认为学号查询
@@ -69,7 +69,7 @@ namespace Library.admin
         private void tsbtn_select_Click(object sender, EventArgs e)
         {
             //判断前面的查询类别选择，分别执行不同的查询语句
-            if (tscmb_type.Text == "学号")
+            if (tscmb_type.Text == "学号/工号")
             {
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询学号为：" + tstext.Text.Trim());//插入操作记录
@@ -104,47 +104,69 @@ namespace Library.admin
         //单击表格时的操作判断
         private void Dgv_user_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)//判断是否点击了表的内容而不是列标签
+            if (e.ColumnIndex >= 0)//判断是否点击了表的内容而不是行标签
             {
-                //判断是否点击了编辑按钮
-                if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_edit")
+                if (e.RowIndex >= 0)//判断是否点击了表的内容而不是列标签
                 {
-                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                    dbHelper.Operation("编辑用户：" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString());//插入操作记录
-
-                    admin_userEdit admin_UserEdit = new admin_userEdit();//实例化编辑界面
-                    Log.log.user_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//把当前列的id传递到log类中
-                    admin_UserEdit.ShowDialog();//显示编辑界面
-                    //查询全部的sql语句,实现刷新
-                    string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
-                    databind(sql);//传递sql然后查询填充
-                }
-                //单击了Schumacher按钮
-                if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_delete")
-                {
-                    //弹窗提示
-                    DialogResult dialog = MessageBox.Show("确认删除用户" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString() + "?  删除后不可还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    if (dialog == DialogResult.OK)//点击了确定，执行删除语句
+                    string u_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                    //判断是否点击了编辑按钮
+                    if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_edit")
                     {
-                        string sql = "delete from [user] where u_id='" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString() + "'";
+                        SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                        dbHelper.Operation("编辑用户：" + u_id);//插入操作记录
+
+                        admin_userEdit admin_UserEdit = new admin_userEdit();//实例化编辑界面
+                        Log.log.user_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//把当前列的id传递到log类中
+                        admin_UserEdit.ShowDialog();//显示编辑界面
+                                                    //查询全部的sql语句,实现刷新
+                        string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                        databind(sql);//传递sql然后查询填充
+                    }
+                    //单击了删除按钮
+                    if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_delete")
+                    {
+                        string sql="select bo_id from borrow where u_id='"+ u_id + "' and bo_eme=0 or bo_emeover in (1,2,4)";
                         con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//执行删除语句
-                        int n = cmd.ExecuteNonQuery();//返回执行影响的行数，判断是否删除了内容
+                        cmd = new SqlCommand(sql, con);//储存查询语句
+                        int n = Convert.ToInt16( cmd.ExecuteScalar());//判断是否有值
                         con.Close();//关闭数据库
-                        if (n > 0)//大于0删除了内容
+                        if (n > 0)
                         {
-                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                            dbHelper.Operation("成功删除用户：" + Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString());//插入操作记录
-
-                            //成功提示
-                            MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            //查询全部的sql语句,实现刷新
-                            sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
-                            databind(sql);//传递sql然后查询填充
+                            MessageBox.Show("该用户处于借书或逾期费用未缴清或未通过审核状态，无法删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        //失败提示
-                        else MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //弹窗提示
+                        DialogResult dialog = MessageBox.Show("确认删除用户" + u_id + "?  删除后不可还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (dialog == DialogResult.OK)//点击了确定，执行删除语句
+                        {
+                            sql = "delete from [borrow] where u_id='" + u_id + "'";
+                            con = dButil.SqlOpen();//打开数据库
+                            cmd = new SqlCommand(sql, con);//储存删除语句
+                            cmd.ExecuteNonQuery();
+
+                            sql = "delete from [login] where u_id='" + u_id + "'";
+                            cmd = new SqlCommand(sql, con);//储存删除语句
+                            cmd.ExecuteNonQuery();
+
+                            sql = "delete from [user] where u_id='" + u_id + "'";
+                            cmd = new SqlCommand(sql, con);//储存删除语句
+                            n = cmd.ExecuteNonQuery();//执行语句，返回执行影响的行数，判断是否删除了内容
+                            con.Close();//关闭数据库
+
+                            if (n > 0)//大于0删除了内容
+                            {
+                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                dbHelper.Operation("成功删除用户：" + u_id);//插入操作记录
+
+                                //成功提示
+                                MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                //查询全部的sql语句,实现刷新
+                                sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                                databind(sql);//传递sql然后查询填充
+                            }
+                            //失败提示
+                            else MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }

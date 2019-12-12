@@ -108,41 +108,44 @@ namespace Library.user
         //单击表格内容时的事件
         private void Dgv_fbk_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //判断是否点在了内容行上，而不是表头
-            if (e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0)
             {
-                //获得反馈编号
-                string f_id = Dgv_fbk.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
-                Log.log.user_fid = f_id;//储存在log类中
-                //单击了查看按钮
-                if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_see")
+                //判断是否点在了内容行上，而不是表头
+                if (e.RowIndex >= 0)
                 {
-                    user_FeedbackSee user_FeedbackSee = new user_FeedbackSee();//实例化user_FeedBack窗体对象
-                    user_FeedbackSee.ShowDialog();//admin_FeedBack窗体以对话框显示
-                }
-                //点击了删除按钮
-                if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_del")
-                {
-                    //弹出询问对话框，获得用户的按的按钮
-                    DialogResult dialog=MessageBox.Show("确认删除反馈编号：" + f_id + "的记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    if (dialog == DialogResult.OK)//点击了确认按钮
+                    //获得反馈编号
+                    string f_id = Dgv_fbk.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                    Log.log.user_fid = f_id;//储存在log类中
+                                            //单击了查看按钮
+                    if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_see")
                     {
-                        string sql = "delete feedback where f_id='" + f_id + "'";//创建sql删除语句
-                        con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//储存sql语句
-                        int n = cmd.ExecuteNonQuery();//执行sql语句，获得执行sql语句受影响的行数赋值到n中
-                        if (n > 0)//判断是否成功
+                        user_FeedbackSee user_FeedbackSee = new user_FeedbackSee();//实例化user_FeedBack窗体对象
+                        user_FeedbackSee.ShowDialog();//admin_FeedBack窗体以对话框显示
+                    }
+                    //点击了删除按钮
+                    if (Dgv_fbk.Columns[e.ColumnIndex].Name == "Cl_del")
+                    {
+                        //弹出询问对话框，获得用户的按的按钮
+                        DialogResult dialog = MessageBox.Show("确认删除反馈编号：" + f_id + "的记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (dialog == DialogResult.OK)//点击了确认按钮
                         {
-                            //成功提示
-                            MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //重新加载，刷新
-                            sql = "select f_id,u_id,f_title,f_smntime,f_asrtime,f_solve from feedback where u_id='" + Log.log.u_id + "'";
-                            databind(sql);//传递sql语句
-                        }
-                        else
-                        {
-                            //失败提示
-                            MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            string sql = "delete feedback where f_id='" + f_id + "'";//创建sql删除语句
+                            con = dButil.SqlOpen();//打开数据库
+                            cmd = new SqlCommand(sql, con);//储存sql语句
+                            int n = cmd.ExecuteNonQuery();//执行sql语句，获得执行sql语句受影响的行数赋值到n中
+                            if (n > 0)//判断是否成功
+                            {
+                                //成功提示
+                                MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //重新加载，刷新
+                                sql = "select f_id,u_id,f_title,f_smntime,f_asrtime,f_solve from feedback where u_id='" + Log.log.u_id + "'";
+                                databind(sql);//传递sql语句
+                            }
+                            else
+                            {
+                                //失败提示
+                                MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                 }

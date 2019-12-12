@@ -68,117 +68,120 @@ namespace Library.admin
         //表格内的单击事件
         private void Dgv_overdue_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //判断是否点击了列的内容
-            if (e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0)
             {
-                //判断单击了操作审核通过的按钮
-                if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examine")
+                //判断是否点击了列的内容
+                if (e.RowIndex >= 0)
                 {
-                    //获得状态一栏的值
-                    string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();
-                    if (bo_state == "未缴费")//判断是未缴费用户
+                    //判断单击了操作审核通过的按钮
+                    if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examine")
                     {
-                        //提示
-                        MessageBox.Show("用户未缴费！无法进行通过审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else if (bo_state == "已缴费")
-                    {
-                        //提示
-                        MessageBox.Show("用户已缴费无需再次通过审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else if (bo_state == "审核不通过")
-                    {
-                        //提示
-                        MessageBox.Show("用户审核未通过并未再次申请，无法通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        //弹窗询问，并获取返回值
-                        DialogResult dialog = MessageBox.Show("确认通过逾期缴费审核？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (DialogResult.OK == dialog)//判断是否点击了确认按钮
+                        //获得状态一栏的值
+                        string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();
+                        if (bo_state == "未缴费")//判断是未缴费用户
                         {
-                            //获取借书编号
-                            string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
-                            //获取借书人
-                            string u_name = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString();
-                            //创建sql更新语句
-                            string sql = "update borrow set bo_emeover=3 where bo_id=" + bo_id + "";
-                            //打开数据库
-                            con = dButil.SqlOpen();
-                            //储存需要执行的语句
-                            cmd = new SqlCommand(sql, con);
-                            //获取受影响的行数，执行sql语句
-                            int n = cmd.ExecuteNonQuery();
-                            //判断是否成功
-                            if (n > 0)
+                            //提示
+                            MessageBox.Show("用户未缴费！无法进行通过审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (bo_state == "已缴费")
+                        {
+                            //提示
+                            MessageBox.Show("用户已缴费无需再次通过审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (bo_state == "审核不通过")
+                        {
+                            //提示
+                            MessageBox.Show("用户审核未通过并未再次申请，无法通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            //弹窗询问，并获取返回值
+                            DialogResult dialog = MessageBox.Show("确认通过逾期缴费审核？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (DialogResult.OK == dialog)//判断是否点击了确认按钮
                             {
-                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                dbHelper.Operation(u_name+"的缴费审核已通过");//插入操作记录
+                                //获取借书编号
+                                string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                                //获取借书人
+                                string u_name = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString();
+                                //创建sql更新语句
+                                string sql = "update borrow set bo_emeover=3 where bo_id=" + bo_id + "";
+                                //打开数据库
+                                con = dButil.SqlOpen();
+                                //储存需要执行的语句
+                                cmd = new SqlCommand(sql, con);
+                                //获取受影响的行数，执行sql语句
+                                int n = cmd.ExecuteNonQuery();
+                                //判断是否成功
+                                if (n > 0)
+                                {
+                                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                    dbHelper.Operation(u_name + "的缴费审核已通过");//插入操作记录
 
-                                //成功提示
-                                MessageBox.Show("用户：" + u_name + "的缴费审核通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //执行查询语句刷新
-                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
-                                databind(sql);//传递语句填充到表格中
-                            }
-                            else
-                            {
-                                //失败提示
-                                MessageBox.Show("通过失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //成功提示
+                                    MessageBox.Show("用户：" + u_name + "的缴费审核通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //执行查询语句刷新
+                                    sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                    databind(sql);//传递语句填充到表格中
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("通过失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
-                }
-                if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examineNo")
-                {
-                    //获得状态一栏的值
-                    string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();
-                    if (bo_state == "已缴费")
+                    if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examineNo")
                     {
-                        //提示
-                        MessageBox.Show("用户已缴费无法执行该操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else if (bo_state == "审核不通过")
-                    {
-                        //提示
-                        MessageBox.Show("用户已未重新申请审核，无法再次不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        //弹窗询问，并获取返回值
-                        DialogResult dialog = MessageBox.Show("确认不通过该用户的逾期缴费审核？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (DialogResult.OK == dialog)//判断是否点击了确认按钮
+                        //获得状态一栏的值
+                        string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();
+                        if (bo_state == "已缴费")
                         {
-                            //获取借书编号
-                            string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
-                            //获取借书人
-                            string u_name = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString();
-                            //创建sql更新语句
-                            string sql = "update borrow set bo_emeover=4 where bo_id=" + bo_id + "";
-                            //打开数据库
-                            con = dButil.SqlOpen();
-                            //储存sql语句
-                            cmd = new SqlCommand(sql, con);
-                            //执行sql语句，获取受影响的行数
-                            int n = cmd.ExecuteNonQuery();
-                            //判断是否成功
-                            if (n > 0)
+                            //提示
+                            MessageBox.Show("用户已缴费无法执行该操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (bo_state == "审核不通过")
+                        {
+                            //提示
+                            MessageBox.Show("用户已未重新申请审核，无法再次不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            //弹窗询问，并获取返回值
+                            DialogResult dialog = MessageBox.Show("确认不通过该用户的逾期缴费审核？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (DialogResult.OK == dialog)//判断是否点击了确认按钮
                             {
-                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                dbHelper.Operation("不通过"+ u_name+ "的缴费审核");//插入操作记录
+                                //获取借书编号
+                                string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();
+                                //获取借书人
+                                string u_name = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString();
+                                //创建sql更新语句
+                                string sql = "update borrow set bo_emeover=4 where bo_id=" + bo_id + "";
+                                //打开数据库
+                                con = dButil.SqlOpen();
+                                //储存sql语句
+                                cmd = new SqlCommand(sql, con);
+                                //执行sql语句，获取受影响的行数
+                                int n = cmd.ExecuteNonQuery();
+                                //判断是否成功
+                                if (n > 0)
+                                {
+                                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                    dbHelper.Operation("不通过" + u_name + "的缴费审核");//插入操作记录
 
-                                //成功提示
-                                MessageBox.Show("用户：" + u_name + "的缴费审核已不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //执行查询语句刷新
-                                sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
-                                databind(sql);//传递语句填充到表格中
-                            }
-                            else
-                            {
-                                //失败提示
-                                MessageBox.Show("操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                                    //成功提示
+                                    MessageBox.Show("用户：" + u_name + "的缴费审核已不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //执行查询语句刷新
+                                    sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                    databind(sql);//传递语句填充到表格中
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("操作失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
 
+                            }
                         }
                     }
                 }

@@ -90,46 +90,48 @@ namespace Library.user
 
         private void Dgv_overdue_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //判断是否点击了列的内容而不是标题，防止超出索引
-            if (e.RowIndex >= 0)
-            {
-                string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//获得借书编号
-                string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();//获得逾期状态
-                if(Dgv_overdue.Columns[e.ColumnIndex].Name== "Cl_examine")
+            if (e.ColumnIndex >= 0) {
+                //判断是否点击了列的内容而不是标题，防止超出索引
+                if (e.RowIndex >= 0)
                 {
-                    if (bo_state == "审核中")
+                    string bo_id = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//获得借书编号
+                    string bo_state = Dgv_overdue.Rows[e.RowIndex].Cells["Cl_state"].Value.ToString();//获得逾期状态
+                    if (Dgv_overdue.Columns[e.ColumnIndex].Name == "Cl_examine")
                     {
-                        MessageBox.Show("审核中，无法再次提交！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    }
-                    else if (bo_state == "已缴费")
-                    {
-                        MessageBox.Show("用户已缴费无法再次提交！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        //获得弹窗按钮返回值
-                        DialogResult dialog = MessageBox.Show("确认提交逾期审核？如未交逾期金额则会不通过", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (DialogResult.OK == dialog)//按下确认按钮
+                        if (bo_state == "审核中")
                         {
-                            //sql更新语句
-                            string sql = "update borrow set bo_emeover=2 where bo_id='" + bo_id + "'";
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存sql语句
-                            int n = cmd.ExecuteNonQuery();//执行sql语句，赋值受影响的行数到n上
-                            con.Close();//关闭数据库
-                            if (n > 0)
+                            MessageBox.Show("审核中，无法再次提交！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        }
+                        else if (bo_state == "已缴费")
+                        {
+                            MessageBox.Show("用户已缴费无法再次提交！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            //获得弹窗按钮返回值
+                            DialogResult dialog = MessageBox.Show("确认提交逾期审核？如未交逾期金额则会不通过", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (DialogResult.OK == dialog)//按下确认按钮
                             {
-                                //成功提示
-                                MessageBox.Show("提交审核成功！等待管理员审核中", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //执行查询全部语句，这里用做刷新
-                                sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id + "'";
-                                databind(sql);//传递语句填充到表格中
-                            }
-                            else
-                            {
-                                //失败提示
-                                MessageBox.Show("提交审核失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //sql更新语句
+                                string sql = "update borrow set bo_emeover=2 where bo_id='" + bo_id + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存sql语句
+                                int n = cmd.ExecuteNonQuery();//执行sql语句，赋值受影响的行数到n上
+                                con.Close();//关闭数据库
+                                if (n > 0)
+                                {
+                                    //成功提示
+                                    MessageBox.Show("提交审核成功！等待管理员审核中", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //执行查询全部语句，这里用做刷新
+                                    sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id + "'";
+                                    databind(sql);//传递语句填充到表格中
+                                }
+                                else
+                                {
+                                    //失败提示
+                                    MessageBox.Show("提交审核失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
