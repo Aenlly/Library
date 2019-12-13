@@ -1,105 +1,8 @@
-USE [master]
-GO
-/****** Object:  Database [LibraryMS]    Script Date: 2019/12/8 22:18:51 ******/
 CREATE DATABASE [LibraryMS]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'LibraryMS', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\LibraryMS.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'LibraryMS_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\LibraryMS_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
-ALTER DATABASE [LibraryMS] SET COMPATIBILITY_LEVEL = 140
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [LibraryMS].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [LibraryMS] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [LibraryMS] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [LibraryMS] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [LibraryMS] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [LibraryMS] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [LibraryMS] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [LibraryMS] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [LibraryMS] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [LibraryMS] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [LibraryMS] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [LibraryMS] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [LibraryMS] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [LibraryMS] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [LibraryMS] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [LibraryMS] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [LibraryMS] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [LibraryMS] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [LibraryMS] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [LibraryMS] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [LibraryMS] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [LibraryMS] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [LibraryMS] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [LibraryMS] SET RECOVERY FULL 
-GO
-ALTER DATABASE [LibraryMS] SET  MULTI_USER 
-GO
-ALTER DATABASE [LibraryMS] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [LibraryMS] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [LibraryMS] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [LibraryMS] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [LibraryMS] SET DELAYED_DURABILITY = DISABLED 
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'LibraryMS', N'ON'
-GO
-ALTER DATABASE [LibraryMS] SET QUERY_STORE = OFF
 GO
 USE [LibraryMS]
 GO
-ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = ON;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
-GO
-USE [LibraryMS]
-GO
-/****** Object:  Table [dbo].[admin]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[admin]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +17,7 @@ CREATE TABLE [dbo].[admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[book]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[book]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +32,7 @@ CREATE TABLE [dbo].[book](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[books]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[books]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +53,7 @@ CREATE TABLE [dbo].[books](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[borrow]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[borrow]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -176,7 +79,7 @@ CREATE TABLE [dbo].[borrow](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[college]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[college]    Script Date: 2019/12/8 19:33:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -190,13 +93,13 @@ CREATE TABLE [dbo].[college](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[feedback]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[feedback]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[feedback](
-	[f_id] [int] IDENTITY(1,1) NOT NULL,
+	[f_id] [int] IDENTITY(0,1) NOT NULL,
 	[u_id] [int] NOT NULL,
 	[f_title] [nvarchar](10) NOT NULL,
 	[f_content] [nvarchar](100) NOT NULL,
@@ -210,7 +113,7 @@ CREATE TABLE [dbo].[feedback](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[login]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[login]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -225,7 +128,7 @@ CREATE TABLE [dbo].[login](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[operation]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[operation]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -241,7 +144,7 @@ CREATE TABLE [dbo].[operation](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[type]    Script Date: 2019/12/8 22:18:51 ******/
+/****** Object:  Table [dbo].[type]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -255,7 +158,7 @@ CREATE TABLE [dbo].[type](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[user]    Script Date: 2019/12/8 22:18:52 ******/
+/****** Object:  Table [dbo].[user]    Script Date: 2019/12/8 19:33:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -590,14 +493,7 @@ insert into [feedback] (u_id,f_title,f_content,f_asrcontent,f_smntime,f_asrtime,
 insert into [feedback] (u_id,f_title,f_content,f_smntime,f_solve) values ('100000','图书太少','能不能图书更多点','2019-12-8','未回复')
 
 insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('4','9787536692930','100000','2019-11-5','2019-11-20','15')--逾期
-insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('4','9787540446765','100000','2019-11-10','2019-11-17','7')--逾期
-insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_rtnatl,bo_day,bo_eme) values ('1','0','9787556246366','100000','2019-12-5','2019-12-12','2019-12-9','7','2')--还书成功
-insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day,bo_eme) values ('1','10','9787544266222','100000','2019-12-5','2020-1-5','30','3')--还书失败
-insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day,bo_renewday,bo_renew) values ('1','15','9787532174072','100000','2019-12-8','2019-12-22','7','7','1')--审核中
-
-GO
-
-USE [master]
-GO
-ALTER DATABASE [LibraryMS] SET  READ_WRITE 
-GO
+insert into borrow(b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day) values ('19','9787540446765','100000','2019-11-10','2019-11-17','7')--逾期
+insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_rtnatl,bo_day,bo_eme) values ('0','0','9787556246366','100000','2019-12-5','2019-12-12','2019-12-9','7','2')--还书成功
+insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day,bo_eme) values ('0','10','9787544266222','100000','2019-12-5','2020-1-5','30','3')--还书失败
+insert into borrow(a_id,b_id,b_isbn,u_id,bo_borrow,bo_return,bo_day,bo_renewday,bo_renew) values ('0','15','9787532174072','100000','2019-12-8','2019-12-22','7','7','1')--审核中
