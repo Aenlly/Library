@@ -125,7 +125,7 @@ namespace Library.admin
                     //单击了删除按钮
                     if (Dgv_user.Columns[e.ColumnIndex].Name == "Cl_delete")
                     {
-                        string sql="select bo_id from borrow where u_id='"+ u_id + "' and bo_eme=0 or bo_emeover in (1,2,4)";
+                        string sql="select bo_id from borrow where u_id='"+ u_id + "' and bo_eme=0 or bo_emeover in (1,2,4) and  u_id='" + u_id + "'";
                         con = dButil.SqlOpen();//打开数据库
                         cmd = new SqlCommand(sql, con);//储存查询语句
                         int n = Convert.ToInt16( cmd.ExecuteScalar());//判断是否有值
@@ -134,38 +134,78 @@ namespace Library.admin
                         {
                             MessageBox.Show("该用户处于借书或逾期费用未缴清或未通过审核状态，无法删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        //弹窗提示
-                        DialogResult dialog = MessageBox.Show("确认删除用户" + u_id + "?  删除后不可还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (dialog == DialogResult.OK)//点击了确定，执行删除语句
-                        {
-                            sql = "delete from [borrow] where u_id='" + u_id + "'";
-                            con = dButil.SqlOpen();//打开数据库
-                            cmd = new SqlCommand(sql, con);//储存删除语句
-                            cmd.ExecuteNonQuery();
-
-                            sql = "delete from [login] where u_id='" + u_id + "'";
-                            cmd = new SqlCommand(sql, con);//储存删除语句
-                            cmd.ExecuteNonQuery();
-
-                            sql = "delete from [user] where u_id='" + u_id + "'";
-                            cmd = new SqlCommand(sql, con);//储存删除语句
-                            n = cmd.ExecuteNonQuery();//执行语句，返回执行影响的行数，判断是否删除了内容
-                            con.Close();//关闭数据库
-
-                            if (n > 0)//大于0删除了内容
+                        else
+                        {//弹窗提示
+                            DialogResult dialog = MessageBox.Show("确认删除用户" + u_id + "?  删除后不可还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (dialog == DialogResult.OK)//点击了确定，执行删除语句
                             {
-                                SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                dbHelper.Operation("成功删除用户：" + u_id);//插入操作记录
+                                sql = "delete from [borrow] where u_id='" + u_id + "'";
+                                con = dButil.SqlOpen();//打开数据库
+                                cmd = new SqlCommand(sql, con);//储存删除语句
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();//执行删除借书记录
+                                }
+                                catch(Exception a)
+                                {
+                                    MessageBox.Show(a.ToString());
+                                }
 
-                                //成功提示
-                                MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                sql = "delete from [feedback] where u_id='" + u_id + "'";
+                                cmd = new SqlCommand(sql, con);//储存删除语句
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();//执行删除借书记录
+                                }
+                                catch (Exception a)
+                                {
+                                    MessageBox.Show(a.ToString());
+                                }
 
-                                //查询全部的sql语句,实现刷新
-                                sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
-                                databind(sql);//传递sql然后查询填充
+                                sql = "delete from [login] where u_id='" + u_id + "'";
+                                cmd = new SqlCommand(sql, con);//储存删除语句
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();//执行删除登录记录
+                                }
+                                catch (Exception a)
+                                {
+                                    MessageBox.Show(a.ToString());
+                                }
+
+                                sql = "delete from [user] where u_id='" + u_id + "'";
+                                cmd = new SqlCommand(sql, con);//储存删除语句
+
+                                
+                                try
+                                {                                    
+                                    n = cmd.ExecuteNonQuery();//执行删除用户语句，返回执行影响的行数，判断是否删除了内容
+                                }
+                                catch (Exception a)
+                                {
+                                    MessageBox.Show(a.ToString());
+                                    MessageBox.Show("删除失败！出现异常", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                finally
+                                {
+                                    con.Close();//关闭数据库
+                                }
+
+                                if (n > 0)//大于0删除了内容
+                                {
+                                    SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
+                                    dbHelper.Operation("成功删除用户：" + u_id);//插入操作记录
+
+                                    //成功提示
+                                    MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    //查询全部的sql语句,实现刷新
+                                    sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                                    databind(sql);//传递sql然后查询填充
+                                }
+                                //失败提示
+                                else { MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                             }
-                            //失败提示
-                            else MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

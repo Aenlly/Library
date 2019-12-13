@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Library.utils;
+using System.IO;
 
 namespace Library.admin
 {
@@ -19,7 +20,7 @@ namespace Library.admin
         public bool DataBakeup(string path)
         {
             con = new DButil().SqlOpen();//打开数据库
-            string backupstr = "backup database LibraryMS to disk='" + path + "';";//数据库备份语句
+            string backupstr = "backup database LibraryMS to disk='" + path + "' with format;";//数据库备份语句,with format覆盖原来的内容
 
             SqlCommand command = new SqlCommand(backupstr, con);//执行
             try//异常处理
@@ -62,7 +63,7 @@ namespace Library.admin
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)//点击了选择路径中的确认
             {
-                path = saveFileDialog1.FileName;//获得文件路径
+                path = saveFileDialog1.FileName;//获得文件路径          
                 text_path.Text = path;//显示在文本框中
             }
         }

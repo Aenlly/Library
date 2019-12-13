@@ -112,6 +112,7 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.CreatePrompt = true;
+            this.saveFileDialog1.DefaultExt = "bak";
             this.saveFileDialog1.Filter = "备份文件(*.bak)|*.bak";
             this.saveFileDialog1.RestoreDirectory = true;
             this.saveFileDialog1.Title = "数据库备份";
