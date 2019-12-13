@@ -93,10 +93,10 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "备份文件(*.bak)|*.bak|所有文件|*.*";
+            this.openFileDialog1.Filter = "备份文件(*.bak)|*.bak";
             this.openFileDialog1.InitialDirectory = "C";
             this.openFileDialog1.RestoreDirectory = true;
-            this.openFileDialog1.Title = "恢复数据库";
+            this.openFileDialog1.Title = "数据库恢复";
             // 
             // panel1
             // 
@@ -131,7 +131,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "admin_Recovery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据恢复";

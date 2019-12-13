@@ -74,40 +74,74 @@ namespace Library.admin
         //确认按钮
         private void btn_ok_Click(object sender, EventArgs e)
         {
-            con = dButil.SqlOpen();
+            con.Close();
             DialogResult dialog = MessageBox.Show("确定将" + cmb_type.Text + "更改为" + text_type.Text.Trim() + "？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dialog == DialogResult.OK)
             {
                 if (Log.log.user_college == true)
                 {
-                    string sql = "update college set c_college='" + text_type.Text.Trim() + "' where c_college='" + cmb_type.Text + "'";
+                    con = dButil.SqlOpen();
+                    string sql = "select c_id from college where c_college='" + cmb_type.Text + "'";
                     cmd = new SqlCommand(sql, con);
-                    int n = cmd.ExecuteNonQuery();
-                    if (n > 0)
+                    string c_id = Convert.ToString(cmd.ExecuteScalar());
+                    con.Close();
+                    sql = "select c_id from type where c_college='" + text_type.Text.Trim() + "'";
+                    con = dButil.SqlOpen();
+                    cmd = new SqlCommand(sql, con);
+                    string c_ids = Convert.ToString(cmd.ExecuteScalar());
+                    con.Close();
+                    if (c_id == c_ids||!c_ids.Equals (""))
                     {
-                        MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        type();
-                        text_type.Text = "";
+                        MessageBox.Show("修改的内容已存在，请修改成其他内容！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        sql = "update college set c_college='" + text_type.Text.Trim() + "' where c_college='" + cmb_type.Text + "'";
+                        cmd = new SqlCommand(sql, con);
+                        int n = cmd.ExecuteNonQuery();
+                        if (n > 0)
+                        {
+                            MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            type();
+                            text_type.Text = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 else
                 {
-                    string sql = "update type set t_name='" + text_type.Text.Trim() + "' where t_name='" + cmb_type.Text + "'";
+                    con = dButil.SqlOpen();
+                    string sql = "select t_id from type where t_name='" + cmb_type.Text + "'";
                     cmd = new SqlCommand(sql, con);
-                    int n = cmd.ExecuteNonQuery();
-                    if (n > 0)
+                    string t_id = Convert.ToString(cmd.ExecuteScalar());
+                    con.Close();
+                    sql = "select t_id from type where t_name='" + text_type.Text.Trim() + "'";
+                    con = dButil.SqlOpen();
+                    cmd = new SqlCommand(sql, con);
+                    string t_ids = Convert.ToString(cmd.ExecuteScalar());
+                    con.Close();
+                    if (t_id == t_ids||!t_ids.Equals(""))
                     {
-                        MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        type();
-                        text_type.Text = "";
+                        MessageBox.Show("修改的内容已存在，请修改成其他内容！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        sql = "update type set t_name='" + text_type.Text.Trim() + "' where t_name='" + cmb_type.Text + "'";
+                        cmd = new SqlCommand(sql, con);
+                        int n = cmd.ExecuteNonQuery();
+                        if (n > 0)
+                        {
+                            MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            type();
+                            text_type.Text = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }

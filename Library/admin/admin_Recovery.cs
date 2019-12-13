@@ -94,7 +94,7 @@ namespace Library.admin
             if (text_path.Text == "")
             {
                 //警告提示
-                MessageBox.Show("请先选择备份文件!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("请先选择恢复文件!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {

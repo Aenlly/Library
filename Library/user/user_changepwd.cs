@@ -56,7 +56,7 @@ namespace Library.user
                         //弹窗提示
                         MessageBox.Show("密码重置失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }                   
+                }
                 else if(n==1)
                 {
                     //身份证错误提示
@@ -106,7 +106,7 @@ namespace Library.user
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {
                     e.Handled = true;
                 }
@@ -117,7 +117,7 @@ namespace Library.user
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {
                     e.Handled = true;
                 }
