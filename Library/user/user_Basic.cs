@@ -98,10 +98,11 @@ namespace Library.user
             else
             {
                 //满足学院为空、手机号为空、手机号小于11位，进行提示
-                if (text_tel.Text.Trim() == "" || text_tel.Text.Length < 11)
+                if (text_tel.Text.Trim() != "" && text_tel.Text.Length < 11)
                 {
-                    MessageBox.Show("内容不能为空，手机号不能小于11位！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }else
+                    MessageBox.Show("手机号错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
                 {
                     if (rbtn_male.Checked == true)
                     {
@@ -192,7 +193,7 @@ namespace Library.user
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {
                     e.Handled = true;
                 }
