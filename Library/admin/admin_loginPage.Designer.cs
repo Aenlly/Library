@@ -103,13 +103,13 @@
             this.Dgv_login.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.Dgv_login.RowTemplate.Height = 23;
             this.Dgv_login.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_login.Size = new System.Drawing.Size(570, 422);
+            this.Dgv_login.Size = new System.Drawing.Size(474, 422);
             this.Dgv_login.TabIndex = 4;
             // 
             // btn_select
             // 
             this.btn_select.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_select.Location = new System.Drawing.Point(314, 51);
+            this.btn_select.Location = new System.Drawing.Point(314, 52);
             this.btn_select.Name = "btn_select";
             this.btn_select.Size = new System.Drawing.Size(120, 30);
             this.btn_select.TabIndex = 2;
@@ -152,7 +152,7 @@
             // btn_end
             // 
             this.btn_end.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_end.Location = new System.Drawing.Point(314, 7);
+            this.btn_end.Location = new System.Drawing.Point(314, 13);
             this.btn_end.Name = "btn_end";
             this.btn_end.Size = new System.Drawing.Size(120, 30);
             this.btn_end.TabIndex = 1;
@@ -199,16 +199,16 @@
             this.Cl_time.HeaderText = "登录时间";
             this.Cl_time.Name = "Cl_time";
             this.Cl_time.ReadOnly = true;
-            this.Cl_time.Width = 300;
+            this.Cl_time.Width = 200;
             // 
             // admin_loginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(570, 525);
-            this.Controls.Add(this.mcd_end);
+            this.ClientSize = new System.Drawing.Size(474, 525);
             this.Controls.Add(this.mcd_start);
+            this.Controls.Add(this.mcd_end);
             this.Controls.Add(this.btn_end);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_start);

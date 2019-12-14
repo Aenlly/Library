@@ -165,7 +165,6 @@
             this.bindNavig.Size = new System.Drawing.Size(1265, 28);
             this.bindNavig.TabIndex = 0;
             this.bindNavig.Text = "bindingNavigator1";
-            this.bindNavig.RefreshItems += new System.EventHandler(this.bindNavig_RefreshItems);
             // 
             // bindingNavigatorCountItem
             // 
@@ -313,14 +312,13 @@
             this.b_name.HeaderText = "图书名称";
             this.b_name.Name = "b_name";
             this.b_name.ReadOnly = true;
-            this.b_name.Width = 260;
+            this.b_name.Width = 200;
             // 
             // t_name
             // 
             this.t_name.HeaderText = "图书类别";
             this.t_name.Name = "t_name";
             this.t_name.ReadOnly = true;
-            this.t_name.Width = 90;
             // 
             // b_author
             // 
@@ -346,14 +344,12 @@
             this.b_price.HeaderText = "价格";
             this.b_price.Name = "b_price";
             this.b_price.ReadOnly = true;
-            this.b_price.Width = 80;
             // 
             // b_stocks
             // 
             this.b_stocks.HeaderText = "库存";
             this.b_stocks.Name = "b_stocks";
             this.b_stocks.ReadOnly = true;
-            this.b_stocks.Width = 80;
             // 
             // Cl_delete
             // 
@@ -365,7 +361,6 @@
             this.Cl_delete.ReadOnly = true;
             this.Cl_delete.Text = "删除";
             this.Cl_delete.UseColumnTextForButtonValue = true;
-            this.Cl_delete.Width = 80;
             // 
             // Cl_edit
             // 

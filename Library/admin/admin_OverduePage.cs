@@ -140,11 +140,6 @@ namespace Library.admin
                             //提示
                             MessageBox.Show("用户已缴费无法执行该操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        else if (bo_state == "未缴费")//判断是未缴费用户
-                        {
-                            //提示
-                            MessageBox.Show("用户未缴费！无法执行该操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
                         else if (bo_state == "审核不通过")
                         {
                             //提示

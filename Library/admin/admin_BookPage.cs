@@ -222,10 +222,5 @@ namespace Library.admin
             string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id  union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
             databind(sql);//传递sql然后查询填充
         }
-
-        private void bindNavig_RefreshItems(object sender, EventArgs e)
-        {
-
-        }
     }
 }
