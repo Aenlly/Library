@@ -108,11 +108,15 @@ namespace Library.admin
                             else
                             {
                                 string strbor_del = "delete from [borrow] where  b_isbn=(select b_isbn from [book] where b_name='" + book_name + "')";
-                                string strb_del = "delete from [books] where b_name='" + book_name + "'";
-                                string strbs_del = "delete from [book] where b_name='" + book_name + "'";
                                 con = dButil.SqlOpen();
                                 cmd = new SqlCommand(strbor_del, con);//储存删除借书表中的记录语句
+                                cmd.ExecuteNonQuery();//执行
+
+                                string strb_del = "delete from [books] where b_name='" + book_name + "'";
                                 cmd = new SqlCommand(strb_del, con);//再储存删除图书表中的记录语句
+                                cmd.ExecuteNonQuery();//执行
+
+                                string strbs_del = "delete from [book] where b_name='" + book_name + "'";
                                 cmd = new SqlCommand(strbs_del, con);//最后储存删除isbn表中的记录语句
                                 n = cmd.ExecuteNonQuery();//执行
                                 con.Close();

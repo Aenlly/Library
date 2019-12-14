@@ -43,7 +43,7 @@ namespace Library.admin
             }
             else
             {
-                cmb_sex.Items.Add("女");
+                cmb_sex.Items.Add("男");
             }
 
             cmb_position.Items.Add(sdr["u_position"].ToString());
@@ -86,17 +86,17 @@ namespace Library.admin
         //确认修改按钮事件
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (mtext_tel.Text.Trim().Length < 11){ MessageBox.Show("手机号错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            else if (mtext_card.Text.Trim().Length < 18) { MessageBox.Show("身份证错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            string[] tel_temp = mtext_tel.Text.Split('-');//去掉-，分成3个值储存在数组中
+            string str_tel = tel_temp[0].Trim() + tel_temp[1].Trim() + tel_temp[2].Trim();//进行组合成手机号
+            string[] card_temp = mtext_card.Text.Split('-');//去掉-，分成3个值储存在数组中
+            string str_card = card_temp[0].Trim() + card_temp[1].Trim() + card_temp[2].Trim();//进行组合成身份证
+
+            if (str_tel.Trim().Length < 11 && str_tel!="") { MessageBox.Show("手机号错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            else if (str_card.Trim().Length < 18) { MessageBox.Show("身份证错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             else
             {
                 if (text_name.Text != "" || mtext_tel.Text != "" || mtext_card.Text != "")
-                {
-                    string[] tel_temp = mtext_tel.Text.Split('-');//去掉-，分成3个值储存在数组中
-                    string str_tel = tel_temp[0].Trim() + tel_temp[1].Trim() + tel_temp[2].Trim();//进行组合成手机号
-                    string[] card_temp = mtext_card.Text.Split('-');//去掉-，分成3个值储存在数组中
-                    string str_card = card_temp[0].Trim() + card_temp[1].Trim() + card_temp[2].Trim();//进行组合成身份证
-
+                {                    
                     //sql更新语句
                     string sql = "update [user] set u_name='" + text_name.Text.Trim() + "',u_sex='" + cmb_sex.Text + "',u_tel='" + str_tel + "',u_card='" + str_card + "',u_position='" + cmb_position.Text + "',c_id='" + cmb_college.SelectedIndex + "' where u_id='" + text_id.Text + "'";
                     con = dButil.SqlOpen();

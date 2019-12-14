@@ -85,7 +85,7 @@ namespace Library.admin
                     cmd = new SqlCommand(sql, con);
                     string c_id = Convert.ToString(cmd.ExecuteScalar());
                     con.Close();
-                    sql = "select c_id from type where c_college='" + text_type.Text.Trim() + "'";
+                    sql = "select c_id from college where c_college='" + text_type.Text.Trim() + "'";
                     con = dButil.SqlOpen();
                     cmd = new SqlCommand(sql, con);
                     string c_ids = Convert.ToString(cmd.ExecuteScalar());
@@ -97,8 +97,9 @@ namespace Library.admin
                     else
                     {
                         sql = "update college set c_college='" + text_type.Text.Trim() + "' where c_college='" + cmb_type.Text + "'";
-                        cmd = new SqlCommand(sql, con);
-                        int n = cmd.ExecuteNonQuery();
+                        con = dButil.SqlOpen();//打开连接
+                        cmd = new SqlCommand(sql, con);//储存语句
+                        int n = cmd.ExecuteNonQuery();//执行
                         if (n > 0)
                         {
                             MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);

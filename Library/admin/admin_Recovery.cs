@@ -102,12 +102,12 @@ namespace Library.admin
                 if (RestoreDatabase(text_path.Text))
                 {
                     //成功提示
-                    MessageBox.Show("还原成功","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("恢复成功","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 else
                 {
                     //错误提示
-                    MessageBox.Show("还原失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("恢复失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

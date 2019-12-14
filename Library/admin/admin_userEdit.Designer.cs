@@ -183,6 +183,7 @@
             this.mtext_tel.Location = new System.Drawing.Point(131, 131);
             this.mtext_tel.Mask = "000-0000-0000";
             this.mtext_tel.Name = "mtext_tel";
+            this.mtext_tel.ResetOnSpace = false;
             this.mtext_tel.Size = new System.Drawing.Size(107, 23);
             this.mtext_tel.TabIndex = 3;
             // 
