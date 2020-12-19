@@ -44,24 +44,25 @@ namespace Library
                 //判断登录方式是否为用户
                 if (cmb_type.SelectedIndex == 0)
                 {
-                    string sql = "select u_password from [user] where u_id='" + name+"'";
+                    string sql = "select u_password from V_user where u_id='" + name+"'";
                     int n = sqlDbHelper.Checkuser(sql, pwd);
                     if (n == 2)//账号密码正确
                     {
                         //插入登陆信息
-                        sql = "insert into login values (" + text_name.Text.Trim() + ",getdate())";
-                        SqlConnection con= dButil.SqlOpen();//打开//储存需要执行的sql语句数据库
-                        SqlCommand cmd = new SqlCommand(sql, con);//储存sql语句
-                        cmd.ExecuteNonQuery();//执行sql语句
-                        con.Close();//关闭数据库
+                        sql = "execute sp_insert_login " + text_name.Text.Trim();
+                        n=SqlDbHelper.ExecuteNonQuery(sql);
+                        if (n == 0)
+                            MessageBox.Show(this, "数据出错", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        else
+                        {
+                            Log.log.u_id = text_name.Text.Trim();//储存id
+                            Log.log.pwd = text_pwd.Text.Trim();//储存密码              
 
-                        Log.log.u_id = text_name.Text.Trim();//储存id
-                        Log.log.pwd = text_pwd.Text.Trim();//储存密码              
-
-                        user_Home user_Home = new user_Home();//用户窗体实例化
-                        user_Home.Show();// 显示窗体
-                        user_Home.Activate();//给予焦点
-                        this.Visible = false;  // 当前窗体不可见
+                            user_Home user_Home = new user_Home();//用户窗体实例化
+                            user_Home.Show();// 显示窗体
+                            user_Home.Activate();//给予焦点
+                            this.Visible = false;  // 当前窗体不可见
+                        }
                     }
                     else if (n == 1)//密码正确
                     {
@@ -79,17 +80,13 @@ namespace Library
                 //判断登录方式是否为管理员
                 else if (cmb_type.SelectedIndex == 1)
                 {
-                    string sql = "select a_password from [admin] where a_name='" + name + "'";//执行管理员查询语句
+                    string sql = "select a_password from V_admin where a_name='" + name + "'";//执行管理员查询语句
                     int n = sqlDbHelper.Checkadmin(sql, pwd);//传递sql语句与用户输入的密码
                     if (n == 2)//账号密码正确
                     {
                         //创建查询管理员id的sql语句
-                        sql = "select a_id from admin where a_name='" + name + "' and a_password='" + pwd + "'";
-                        DButil dButil = new DButil();//实例化连接数据库类
-                        SqlConnection con = dButil.SqlOpen();//打开数据库
-                        SqlCommand cmd = new SqlCommand(sql, con);//储存需要执行的sql语句
-                        Log.log.a_id = Convert.ToInt16(cmd.ExecuteScalar());//赋值管理员编号，执行sql语句
-                        con.Close();//关闭数据库
+                        sql = "select a_id from V_admin where a_name='" + name + "' and a_password='" + pwd + "'";
+                        Log.log.a_id=sqlDbHelper.ExecuteScalar(sql);
 
                         Log.log.u_id = text_name.Text.Trim();
                         Log.log.pwd = text_pwd.Text.Trim();

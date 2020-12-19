@@ -130,7 +130,6 @@ namespace Library.admin
                     }
                     else
                     {
-                        con = dButil.SqlOpen();
                         sql = "update type set t_name='" + text_type.Text.Trim() + "' where t_name='" + cmb_type.Text + "'";
                         cmd = new SqlCommand(sql, con);
                         int n = cmd.ExecuteNonQuery();

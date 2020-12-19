@@ -25,6 +25,7 @@ namespace Library.user
         public int college;//学院
         public string tel;//手机号
         public string u_id;//学号
+        private SqlDbHelper sqlDbHelper = new SqlDbHelper();
 
         private void user_Basic_Load(object sender, EventArgs e)
         {
@@ -69,16 +70,17 @@ namespace Library.user
         public void College()
         {
             con = dButil.SqlOpen();
+            
             //初始化，comboBox1绑定客户表
             string sql_col = "select c_college from [college]";//查询有多少学院
             SqlDataAdapter sda = new SqlDataAdapter(sql_col, con);//创建sql适配器
             DataSet ds = new DataSet();//创建ds缓存
             sda.Fill(ds);//添加到ds缓存中
             cmb_college.DataSource = ds.Tables[0].DefaultView;//取出数据源填充到列表中
+
             cmb_college.DisplayMember = "c_college";//列表中显示的值对应的字段名
-            string sql = "select c_id from [user] where u_id='" + Log.log.u_id + "'";
-            cmd = new SqlCommand(sql, con);////储存需要执行的c_id语句
-            int t_id = Convert.ToInt16(cmd.ExecuteScalar());//返回c_id值，用于这边选中，执行c_id语句
+            string sql = "select c_id from V_user where u_id='" + Log.log.u_id + "'";
+            int t_id = sqlDbHelper.ExecuteScalar(sql);//返回c_id值，用于这边选中，执行c_id语句
             cmb_college.SelectedIndex = t_id;//设置索引为t_id
             con.Close();//关闭数据库
         }
@@ -98,19 +100,17 @@ namespace Library.user
             else
             {
                 //满足学院为空、手机号为空、手机号小于11位，进行提示
-                if (text_tel.Text.Trim() == "" || text_tel.Text.Length < 11)
+                if (text_tel.Text.Trim() != "" && text_tel.Text.Length < 11)
                 {
-                    MessageBox.Show("内容不能为空，手机号不能小于11位！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }else
+                    MessageBox.Show("手机号错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
                 {
                     if (rbtn_male.Checked == true)
                     {
                         //执行选中男的sql语句
                         string sql = "update [user] set u_sex='男',c_id='" + cmb_college.SelectedIndex + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
-                        con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//储存sql语句
-                        int n = cmd.ExecuteNonQuery();//执行sql语句，获得受影响的行数
-                        con.Close();//关闭数据库
+                        int n = SqlDbHelper.ExecuteNonQuery(sql);//执行sql语句，获得受影响的行数
                         if (n > 0)//判断是否执行成功
                         {
                             //成功提示
@@ -132,10 +132,7 @@ namespace Library.user
                     {
                         //执行选中女的sql语句
                         string sql = "update [user] set u_sex='女',c_id='" + cmb_college.SelectedIndex + "',u_tel='" + text_tel.Text.Trim() + "' where u_id='" + u_id + "'";
-                        con = dButil.SqlOpen();//打开数据库
-                        cmd = new SqlCommand(sql, con);//执行sql语句
-                        int n = cmd.ExecuteNonQuery();//获得受影响的行数
-                        con.Close();//关闭数据库
+                        int n = SqlDbHelper.ExecuteNonQuery(sql);//获得受影响的行数
                         if (n > 0)//判断是否执行成功
                         {
                             //成功提示
@@ -192,7 +189,7 @@ namespace Library.user
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {
                     e.Handled = true;
                 }

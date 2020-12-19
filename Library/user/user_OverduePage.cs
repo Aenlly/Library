@@ -46,18 +46,8 @@ namespace Library.user
         private void user_OverduePage_Load(object sender, EventArgs e)
         {
             //每次执行时，更新下借书表
-            string sql = "update borrow set bo_emeover= 1 where bo_rtnatl is NULL and datediff(day,bo_return,getdate())>0 and u_id='" + Log.log.u_id + "'";
-            con = dButil.SqlOpen();//打开数据库
-            cmd = new SqlCommand(sql, con);//储存sql语句
-            cmd.ExecuteNonQuery();//执行sql语句
-            con.Close();//关闭数据库
-
-            //加载该窗体时执行sql更新语句方法，实时更新逾期天数，要求：必须是未还书或者是还书失败，以及已逾期或逾期审核不通过的用户
-            string sql_ovup = "update borrow set bo_dayover=datediff(day,bo_return,getdate()) where bo_emeover=1 or bo_emeover=4 and bo_eme in (0,3)";
-            con = dButil.SqlOpen();//打开数据库
-            cmd = new SqlCommand(sql_ovup, con);//储存sql语句
-            cmd.ExecuteNonQuery();//执行sql语句
-            con.Close();//关闭数据库
+            string sql = "execute sp_update_u_id_borrow " + Log.log.u_id + "";
+            SqlDbHelper.ExecuteNonQuery(sql);
             //执行查询全部语句
             sql = "select bo_id,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '审核中' when 3 then '已缴费' else '审核不通过' end from borrow,[books] where borrow.b_id=books.b_id and bo_emeover!=0 and u_id='" + Log.log.u_id+"'";
             databind(sql);//传递语句填充到表格中
@@ -114,11 +104,8 @@ namespace Library.user
                             if (DialogResult.OK == dialog)//按下确认按钮
                             {
                                 //sql更新语句
-                                string sql = "update borrow set bo_emeover=2 where bo_id='" + bo_id + "'";
-                                con = dButil.SqlOpen();//打开数据库
-                                cmd = new SqlCommand(sql, con);//储存sql语句
-                                int n = cmd.ExecuteNonQuery();//执行sql语句，赋值受影响的行数到n上
-                                con.Close();//关闭数据库
+                                string sql = "execute sp_update_bo_id_borrow " + bo_id + "";
+                                int n = SqlDbHelper.ExecuteNonQuery(sql);//执行sql语句，赋值受影响的行数到n上
                                 if (n > 0)
                                 {
                                     //成功提示
@@ -128,10 +115,8 @@ namespace Library.user
                                     databind(sql);//传递语句填充到表格中
                                 }
                                 else
-                                {
                                     //失败提示
                                     MessageBox.Show("提交审核失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
                             }
                         }
                     }

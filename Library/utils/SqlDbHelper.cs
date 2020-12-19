@@ -9,8 +9,15 @@ namespace Library
 {
     class SqlDbHelper
     {
-        DButil dButil = new DButil();
+        private DButil dButil;
         SqlConnection con;//创建数据库连接对象
+
+        public SqlDbHelper()
+        {
+            dButil = new DButil();
+        }
+
+
 
         /// <summary>
         /// 修改密码事件
@@ -120,10 +127,32 @@ namespace Library
         {
             //添加操作记录的sql语句
             string sql = "insert operation(a_id,o_ort,o_time) values ('"+Log.log.a_id+"','"+ort+"',getdate())";
-            con = dButil.SqlOpen();//打开数据库
+            ExecuteNonQuery(sql);
+        }
+
+        //添加判断
+        public static int ExecuteNonQuery(string sql)
+        {
+            DButil butil = new DButil();
+            SqlConnection con = butil.SqlOpen();//打开//储存需要执行的sql语句数据库
             SqlCommand cmd = new SqlCommand(sql, con);//储存sql语句
-            int n=cmd.ExecuteNonQuery();//查询sql语句，返回是否成功
+            int n=cmd.ExecuteNonQuery();//执行sql语句
             con.Close();//关闭数据库
+            return n;
+        }
+
+        /// <summary>
+        /// 查询表首列的方法
+        /// </summary>
+        /// <param name="sql">数据库查询语句</param>
+        public int ExecuteScalar(string sql)
+        {
+            DButil dButil = new DButil();//实例化连接数据库类
+            SqlConnection con = dButil.SqlOpen();//打开数据库
+            SqlCommand cmd = new SqlCommand(sql, con);//储存需要执行的sql语句
+            int n= Convert.ToInt16(cmd.ExecuteScalar());//赋值管理员编号，执行sql语句
+            con.Close();//关闭数据库
+            return n;
         }
     }
 }
