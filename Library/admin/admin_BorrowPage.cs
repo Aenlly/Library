@@ -53,7 +53,7 @@ namespace Library.admin
             cmd.ExecuteNonQuery();//执行sql语句
             con.Close();//关闭数据库
             //查询全部内容的语句
-            sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+            sql = "select * from V_AdminBorrow where bo_eme!='2'";
             databind(sql);//传递sql语句进行查询
         }
 
@@ -73,15 +73,11 @@ namespace Library.admin
                     {
                         //判断是否申请了
                         if (b_eme == "未申请")
-                        {
                             //未申请提示
                             MessageBox.Show("该用户未申请还书！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
                         else if (b_eme == "未通过")
-                        {
                             //未申请提示
                             MessageBox.Show("该用户未通过还书审核！无法进行确认还书操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
                         else//通过
                         {
                             //提示，并获取单击的返回值
@@ -119,7 +115,7 @@ namespace Library.admin
                                     //成功提示
                                     MessageBox.Show("已通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //查询全部内容的语句，该处用于刷新表
-                                    sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+                                    sql = "select * from V_AdminBorrow where bo_eme!='2'";
                                     databind(sql);//传递sql语句进行查询
                                 }
                                 else
@@ -166,7 +162,7 @@ namespace Library.admin
                                     //成功提示
                                     MessageBox.Show("已不通过用户：" + u_name + "的还书申请！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //查询全部内容的语句，该处用于刷新表
-                                    sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+                                    sql = "select * from V_AdminBorrow where bo_eme!='2'";
                                     databind(sql);//传递sql语句进行查询
                                 }
                                 else
@@ -191,7 +187,7 @@ namespace Library.admin
                 dbHelper.Operation("查询全部的借书记录");//插入操作记录
 
                 //查询全部内容的语句
-                string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+                string sql = "select * from V_AdminBorrow where bo_eme!='2'";
                 databind(sql);//传递sql语句进行查询
             }
             else
@@ -200,7 +196,7 @@ namespace Library.admin
                 dbHelper.Operation("查询借书人为："+ tstext_name.Text.Trim()+ "的借书记录");//插入操作记录
 
                 //查询指定借书人的内容的语句，模糊查询
-                string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2 and [user].u_name like '%" + tstext_name.Text.Trim() + "%'";
+                string sql = "select * from V_AdminBorrow where bo_eme!='2' and [user].u_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递sql语句进行查询
             }
         }
@@ -212,7 +208,7 @@ namespace Library.admin
             dbHelper.Operation("查询全部的借书记录");//插入操作记录
 
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme!=2";
+            string sql = "select * from V_AdminBorrow where bo_eme!='2'";
             databind(sql);//传递sql语句进行查询
         }
 
@@ -223,7 +219,7 @@ namespace Library.admin
             dbHelper.Operation("查询未还书的借书记录");//插入操作记录
 
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme in (0,3)";
+            string sql = "select * from V_AdminBorrow where bo_eme in ('未申请','未通过')";
             databind(sql);//传递sql语句进行查询
         }
 
@@ -234,7 +230,7 @@ namespace Library.admin
             dbHelper.Operation("查询待审核的借书记录");//插入操作记录
 
             //查询全部内容的语句
-            string sql = "select bo_id,[user].u_name,[books].b_name,bo_borrow,bo_rtnatl,bo_day,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_eme=case bo_eme when 1 then '待审核' when 3 then '未通过' else '未申请' end from borrow,[books],[user] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and bo_emeover=0 and bo_eme=1";
+            string sql = "select * from V_AdminBorrow where bo_eme='待审核'";
             databind(sql);//传递sql语句进行查询
         }
     }

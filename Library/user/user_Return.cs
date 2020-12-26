@@ -47,7 +47,7 @@ namespace Library.user
         private void user_Return_Load(object sender, EventArgs e)
         {
             //查询全部的sql语句
-            string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='"+Log.log.u_id+"'";
+            string sql = "select * from V_Return where u_id='"+Log.log.u_id+"'";
             databind(sql);//传递sql语句过去，并填充数据到表格中
         }
 
@@ -57,13 +57,13 @@ namespace Library.user
             if ("".Equals(tsbtn_book.Text.Trim()))
             {
                 //为空时显示全部
-                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.u_id + "'";
+                string sql = "select * from V_Return where u_id='" + Log.log.u_id + "'";
                 databind(sql);//传递sql语句过去，并填充数据到表格中
             }
             else
             {
                 //否则查询输入的内容
-                string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.u_id + "' and [books].b_name like '%" + tsbtn_book.Text.Trim() + "%'";
+                string sql = "select * from V_Return where u_id='" + Log.log.u_id + "' and [books].b_name like '%" + tsbtn_book.Text.Trim() + "%'";
                 databind(sql);//传递sql语句过去，并填充数据到表格中
             }
         }
@@ -72,7 +72,7 @@ namespace Library.user
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
             //查询sql语句
-            string sql = "select bo_id,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[type] where borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_id='" + Log.log.u_id + "'";
+            string sql = "select * from V_Return where u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句过去，并填充数据到表格中
         }
     }

@@ -18,6 +18,7 @@ namespace Library.admin
             InitializeComponent();
         }
         public string bookname;//储存原来的图书名称
+        public string b_isbn;//储存原来的图书名称
         public SqlConnection con;//创建sql连接对象
         public SqlCommand cmd;//创建sql执行对象
         DButil dButil = new DButil();//实例化DButil类
@@ -32,6 +33,7 @@ namespace Library.admin
             text_price.Text = Log.log.b_price;//价格
             mtext_stocks.Text = Log.log.b_stocks;//数量
             text_book.Text = bookname;//赋值到图书名称框中显示
+            b_isbn = text_isbn.Text;
             BookType();//获得类别
         }
 
@@ -67,31 +69,21 @@ namespace Library.admin
         private void text_price_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
-            {
                 if (e.KeyChar != '.')//允许使用.符合
-                {
                     if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是不允许输入0-9数字  
-                    {
                         e.Handled = true;
-                    }
-                }
-            }
         }
 
         //确认修改按钮
         private void btn_edit_Click(object sender, EventArgs e)
         {
             if (text_book.Text.Trim() == "" || text_author.Text.Trim() == "" || text_press.Text.Trim() == "" || text_price.Text.Trim() == "" || text_isbn.Text.Trim() == "" || mtext_stocks.Text.Trim() == "" || mtext_year.Text.Trim() == "" || cmb_type.Text == "")
-            {
                 MessageBox.Show("内容不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
             {
                 int year = Convert.ToInt16(mtext_year.Text);//获得年份
                 if (year > DateTime.Now.Year)
-                {
                     MessageBox.Show("输入的年份不符合要求", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
                 else
                 {
                     text_price.Text = string.Format("{0:#,##0.00}", Convert.ToDouble(text_price.Text)); //价格文本框必须显示2位小数点
@@ -103,7 +95,7 @@ namespace Library.admin
                         if (m >= 0)
                         {
                             //插入语句
-                            string sql_books = "insert into books values ('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "',(select t_id from [type] where t_name='" + cmb_type.Text + "'),'" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + year + "','" + text_price.Text.Trim() + "',1)";
+                            string sql_books = "insert into books values ('" + text_isbn.Text.Trim() + "',1)";
                             int n = 0;//定义个局部变量用于判断是否成功执行sql语句
                             con = dButil.SqlOpen();//打开数据库
                             for (int i = 0; i < m; i++)
@@ -115,20 +107,14 @@ namespace Library.admin
                             if (n ==m)
                             {
                                 //更新语句，先更新book表中的isbn再更新books表
-                                string sql = "update [book] set b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
-                                string sql_book = "update [books] set b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + year + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
+                                string sql = "update [book] set b_count=b_count+"+mtext_stocks.Text.Trim()+"-b_stocks,b_stocks='" + mtext_stocks.Text.Trim() + "',b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + year + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
+                                Console.WriteLine(sql);
                                 con = dButil.SqlOpen();//打开数据库
                                 cmd = new SqlCommand(sql, con);//储存sql语句
                                 n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行
                                 con.Close();//关闭数据库
                                 if (n >0) //判断是否执行成功
                                 {
-                                    con = dButil.SqlOpen();//打开数据库
-                                    cmd = new SqlCommand(sql_book, con);//储存sql语句
-                                    n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行
-                                    con.Close();//关闭数据库
-                                    if (n > 0)//判断是否执行成功
-                                    {
                                         SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                                         dbHelper.Operation("成功图书："+ bookname +"的数据");//插入操作记录
 
@@ -139,15 +125,6 @@ namespace Library.admin
                                             //返回图书管理界面
                                             btn_ret_Click(sender, e);
                                         }
-                                    }
-                                    else
-                                    {
-                                        SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                        dbHelper.Operation("修改图书名为：" + bookname + "的数据失败");//插入操作记录
-
-                                        //失败提示
-                                        MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
                                 }
                                 else
                                 {
@@ -171,23 +148,23 @@ namespace Library.admin
                         {
                             m = -m;//转为正数
                             //查询是否有存在m条未借出的数据
-                            string sql = "select count(*) from books where b_name='" + bookname + "' and b_lend=1";
+                            string sql = "select count(*) from books where b_isbn='" + b_isbn + "' and b_lend=1";
                             con = dButil.SqlOpen();//打开数据库
                             cmd = new SqlCommand(sql, con);//储存sql语句
                             int n = Convert.ToInt16(cmd.ExecuteScalar());//赋值进行对比，执行sql语句，返回第一行第一列的值
                             con.Close();//关闭数据库
                             if (n >=m)
                             {
-                                    //更新语句，先更新book表中的isbn再更新books表
-                                    sql = "update [book] set b_stocks='" + mtext_stocks.Text.Trim() + "' where b_name='" + bookname + "'";
-                                    string sql_book = "update [books] set b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + year + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_name='" + bookname + "'";
+                                //更新语句，先更新book表中的isbn再更新books表
+                                    sql = "update [book] set b_count=b_count+"+mtext_stocks.Text.Trim()+"-b_stocks,b_stocks='" + mtext_stocks.Text.Trim() + "',b_author='" + text_author.Text.Trim() + "',b_press='" + text_press.Text.Trim() + "',b_time='" + year + "',b_price='" + text_price.Text.Trim() + "',t_id=(select t_id from [type] where t_name='" + cmb_type.Text + "') where b_isbn='" + b_isbn + "'";
+                                Console.WriteLine(sql);
                                     con = dButil.SqlOpen();//打开数据库
                                     cmd = new SqlCommand(sql, con);//储存语句
                                     n = cmd.ExecuteNonQuery();//，执行语句返回影响行
                                     con.Close();//关闭数据库
                                     if (n > 0) //判断是否执行成功
                                     {
-                                    string sql_books = "set rowcount " + m + " delete books where b_name='" + bookname + "' and b_lend=1";
+                                    string sql_books = "set rowcount " + m + " delete books where b_isbn='" + b_isbn + "' and b_lend=1";
                                     con = dButil.SqlOpen();//打开数据库
                                     cmd = new SqlCommand(sql_books, con);//储存语句
                                     n = cmd.ExecuteNonQuery();//执行
@@ -195,13 +172,6 @@ namespace Library.admin
 
                                     if (n > 0)
                                     {
-
-                                        con = dButil.SqlOpen();//打开数据库
-                                        cmd = new SqlCommand(sql_book, con);//储存语句
-                                        n = cmd.ExecuteNonQuery();//执行语句，返回影响行
-                                        con.Close();//关闭数据库
-                                        if (n > 0)//判断是否执行成功
-                                        {
                                             SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                                             dbHelper.Operation("成功修改图书：" + bookname + "的数据");//插入操作记录
 
@@ -212,15 +182,6 @@ namespace Library.admin
                                                 //按确认键关闭该窗体
                                                 btn_ret_Click(sender, e);
                                             }
-                                        }
-                                        else
-                                        {
-                                            SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
-                                            dbHelper.Operation("修改图书名为：" + bookname + "的数据失败");//插入操作记录
-
-                                            //失败提示
-                                            MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
                                     }
                                     else
                                     {

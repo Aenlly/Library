@@ -61,7 +61,7 @@ namespace Library.admin
             con.Close();//关闭数据库
 
             //查询语句
-            sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+            sql = "select * from V_AdminOver where bo_emeover!='0'";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -120,7 +120,7 @@ namespace Library.admin
                                     //成功提示
                                     MessageBox.Show("用户：" + u_name + "的缴费审核通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //执行查询语句刷新
-                                    sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                    sql = "select * from V_AdminOver where bo_emeover!=0";
                                     databind(sql);//传递语句填充到表格中
                                 }
                                 else
@@ -177,7 +177,7 @@ namespace Library.admin
                                     //成功提示
                                     MessageBox.Show("用户：" + u_name + "的缴费审核已不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //执行查询语句刷新
-                                    sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                                    sql = "select * from V_AdminOver where bo_emeover!='0'";
                                     databind(sql);//传递语句填充到表格中
                                 }
                                 else
@@ -202,7 +202,7 @@ namespace Library.admin
                 dbHelper.Operation("查询全部数据记录");//插入操作记录
 
                 //执行全部查询语句
-                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+                string sql = "select * from V_AdminOver where bo_emeover!='0'";
                 databind(sql);//传递语句填充到表格中
             }
             else
@@ -211,7 +211,7 @@ namespace Library.admin
                 dbHelper.Operation("查询借书人为："+ tstext_name.Text.Trim()+ "记录");//插入操作记录
 
                 //执行查询借书人语句
-                string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0 and u_name like '%" + tstext_name.Text.Trim() + "%'";
+                string sql = "select * from V_AdminOver where bo_emeover!='0' and u_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递语句填充到表格中
             }
         }
@@ -223,7 +223,7 @@ namespace Library.admin
             dbHelper.Operation("查询全部数据记录");//插入操作记录
 
             //执行全部查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover!=0";
+            string sql = "select * from V_AdminOver where bo_emeover!='0'";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -234,7 +234,7 @@ namespace Library.admin
             dbHelper.Operation("查询未缴费用户数据记录");//插入操作记录
 
             //执行未缴费用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=1";
+            string sql = "select * from V_AdminOver where bo_emeover='未缴费'";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -245,7 +245,7 @@ namespace Library.admin
             dbHelper.Operation("查询待审核用户数据记录");//插入操作记录
 
             //执行待审核用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=2";
+            string sql = "select * from V_AdminOver where bo_emeover='待审核'";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -256,7 +256,7 @@ namespace Library.admin
             dbHelper.Operation("查询已缴费用户数据记录");//插入操作记录
 
             //执行已缴费用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=3";
+            string sql = "select * from V_AdminOver where bo_emeover='已缴费'";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -267,7 +267,7 @@ namespace Library.admin
             dbHelper.Operation("查询未通过用户数据记录");//插入操作记录
 
             //执行未通过用户查询语句
-            string sql = "select bo_id,u_name,b_name,bo_borrow,bo_return,bo_dayover,bo_money=(bo_dayover*0.1),bo_emeover=case bo_emeover when 1 then '未缴费' when 2 then '待审核' when 3 then '已缴费' else '审核不通过' end from borrow,[user],[books] where borrow.u_id=[user].u_id and borrow.b_id=books.b_id and bo_emeover=4";
+            string sql = "select * from V_AdminOver where bo_emeover='审核未通过'";
             databind(sql);//传递语句填充到表格中
         }
     }

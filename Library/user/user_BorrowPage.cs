@@ -37,10 +37,7 @@ namespace Library.user
             bindingNavigator1.BindingSource = bindingSource1;//获得数据
             Dgv_borrow.DataSource = bindingSource1;//导出到dataGridView1中显示并用下列代码对于列名 
             for (int i = 0; i < 8; i++)//循环添加
-            {
                 Dgv_borrow.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
-            }
-
             con.Close();
         }
 
@@ -55,7 +52,7 @@ namespace Library.user
             con.Close();//关闭数据库
 
             //查询表内列名中的值的sql语句
-            sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+            sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句
         }
 
@@ -65,13 +62,13 @@ namespace Library.user
             if (tstext_book.Text.Trim() == "")//为空查询全部
             {
                 //查询全部
-                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                string sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
                 databind(sql);//传递sql语句
             }
             else
             {
                 //查询模糊图书名查询
-                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "' and b_name like '%" + tstext_book.Text.Trim() +"%'";
+                string sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "' and b_name like '%" + tstext_book.Text.Trim() +"%'";
                 databind(sql);//传递sql语句
             }
         }
@@ -80,7 +77,7 @@ namespace Library.user
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
             //查询全部
-            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+            string sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句
         }
 
@@ -88,7 +85,7 @@ namespace Library.user
         private void ts_borrow_Click(object sender, EventArgs e)
         {
             //查询bo_eme=1或bo_eme=0的记录
-            string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and bo_eme in (0,1,3) and u_id='" + Log.log.u_id + "'";
+            string sql = "select * from V_Borrow where bo_eme in (0,1,3) and u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句
         }
 
@@ -96,7 +93,7 @@ namespace Library.user
         private void tsbtn_borrowNo_Click(object sender, EventArgs e)
         {
             //查询bo_eme=1或bo_eme=2的记录
-            string sql = "select borrow.bo_id,b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id  and bo_eme in (1,3) and u_id='" + Log.log.u_id + "'";
+            string sql = "select * from V_Borrow where bo_eme in (1,3) and u_id='" + Log.log.u_id + "'";
             databind(sql);//传递sql语句
         }
 
@@ -127,26 +124,18 @@ namespace Library.user
                                 user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
                                 user_Overdue.ShowDialog();//以对话模式显示
                                                           //查询全部，这里等于返回该界面刷新
-                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                string sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
                         }
                         else if (bo_emeover == "审核中")
-                        {
                             dialog = MessageBox.Show("所续借图书正在审核中，无法续借", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_emeover == "缴费审核中")
-                        {
                             dialog = MessageBox.Show("所续借图书逾期缴费正在审核中，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_eme == "还书成功")
-                        {
                             dialog = MessageBox.Show("所续借图书已经归还，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_eme == "审核中")
-                        {
                             dialog = MessageBox.Show("所续借图书正在审核，无法续借！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else
                         {
                             dialog = MessageBox.Show("确定续借7天？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -164,7 +153,7 @@ namespace Library.user
                                     MessageBox.Show("续借成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     //查询全部，这里等于刷新
-                                    sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                    sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
                                     databind(sql);//传递sql语句
                                 }
                                 else
@@ -187,26 +176,18 @@ namespace Library.user
                                 user_OverduePage user_Overdue = new user_OverduePage();//实例化逾期记录界面
                                 user_Overdue.ShowDialog();//以对话模式显示
                                                           //查询全部，这里等于返回该界面刷新
-                                string sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                string sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
                                 databind(sql);//传递sql语句
                             }
                         }
                         else if (bo_emeover == "缴费审核中")
-                        {
                             dialog = MessageBox.Show("所续借图书逾期缴费正在审核中，无法还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_emeover == "缴费审核未通过")//判断缴费
-                        {
                             dialog = MessageBox.Show("所续借图书逾期缴费审核未通过，无法还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_eme == "还书成功")//判断缴费
-                        {
                             dialog = MessageBox.Show("该书已经归还，无法再次进行还书！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_eme == "审核中")//判断缴费
-                        {
                             dialog = MessageBox.Show("该书正在审核，请勿再次提交审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                         else if (bo_emeover == "还书失败")
                         {
                             //错误提示
@@ -225,7 +206,7 @@ namespace Library.user
                                     MessageBox.Show("重新提交审核成功，请耐心等待管理员审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     //查询全部，这里等于刷新
-                                    sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                    sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
                                     databind(sql);//传递sql语句
                                 }
                                 else
@@ -252,7 +233,7 @@ namespace Library.user
                                     MessageBox.Show("提交审核成功，请耐心等待管理员审核！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     //查询全部，这里等于刷新
-                                    sql = "select bo_id,books.b_name,bo_borrow,bo_return,bo_renewday,bo_renew=case bo_renew when 0 then '有' else '无' end,bo_emeover=case bo_emeover when 0 then '未逾期' when 1 then '已逾期' when 2 then '缴费审核中' when 3 then '已缴费' else '缴费未通过' end,bo_eme=case bo_eme when 0 then '未还书' when 1 then '审核中' when 2 then '还书成功' else '还书失败' end from borrow,books where borrow.b_id=books.b_id and u_id='" + Log.log.u_id + "'";
+                                    sql = "select * from V_Borrow where u_id='" + Log.log.u_id + "'";
                                     databind(sql);//传递sql语句
                                 }
                                 else

@@ -125,7 +125,7 @@ namespace Library.admin
                             if (DialogResult.OK == dialog)//单击确认
                             {
                                 //查询books表
-                                string sql_book = "select * from books where b_name='" + b_name + "'";
+                                string sql_book = "select * from book where b_isbn='" + b_isbn + "'";
                                 con = dButil.SqlOpen();//打开数据库
                                 cmd = new SqlCommand(sql_book, con);//储存sql语句
                                 SqlDataReader reader = cmd.ExecuteReader();//获得各列的值，执行语句
@@ -144,7 +144,7 @@ namespace Library.admin
                                 //循环添加
                                 for (int i = 0; i < stocks; i++)
                                 {
-                                    string sql_inserb = "insert into books values ('" + b_isbn + "','" + name + "','" +id + "','" + author + "','" + press + "','" + time + "','" + price + "','1')";
+                                    string sql_inserb = "insert into books values ('" + b_isbn + "','1')";
                                     cmd = new SqlCommand(sql_inserb, con);//储存插入语句
                                     n = n + cmd.ExecuteNonQuery();//储存执行sql语句，每次循环n加一
                                 }
@@ -153,7 +153,7 @@ namespace Library.admin
                                 if (n== stocks)
                                 {
                                     con = dButil.SqlOpen();//打开数据库
-                                    string sql = "update book set b_stocks=(select count(*) from books where b_lend=1 and b_name='" + name + "') where b_isbn='" + b_isbn + "'";
+                                    string sql = "update book set b_count=(select count(*) from books where b_isbn='" + b_isbn + "'), b_stocks=(select count(*) from books where b_lend=1 and b_isbn='" + b_isbn + "') where b_isbn='" + b_isbn + "'";
                                     cmd = new SqlCommand(sql, con);//储存插入语句
                                     n =cmd.ExecuteNonQuery();//储存执行sql语句，返回影响行
                                     con.Close();
@@ -188,7 +188,12 @@ namespace Library.admin
                         //二次确认
                         if (DialogResult.OK == dialog)
                         {
-                            string sql_b = "insert into book values('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + text_stocks.Text.Trim() + "')";
+                            con = dButil.SqlOpen();//打开数据库
+                            string sql_type = "select t_id from type where t_name='" + cmb_type.Text + "'";
+                            cmd = new SqlCommand(sql_type, con);
+                            string t_id=cmd.ExecuteScalar().ToString();
+                            con.Close();//关闭数据库
+                            string sql_b = "insert into book values('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','"+ t_id + "','"+text_author.Text.Trim()+"','"+text_press.Text.Trim()+"','"+text_year.Text.Trim()+"','"+text_price.Text.Trim()+"','"+stocks+"','" + text_stocks.Text.Trim() + "')";
                             con = dButil.SqlOpen();//打开数据库
                             cmd = new SqlCommand(sql_b, con);//储存sql语句
                             n = cmd.ExecuteNonQuery();//执行语句，返回影响行
@@ -201,7 +206,7 @@ namespace Library.admin
                                                        //利用for循环，执行多次
                                 for (int i = 0; i < stocks; i++)
                                 {
-                                    string sql_bs = "insert into books values ('" + text_isbn.Text.Trim() + "','" + text_book.Text.Trim() + "','" + index + "','" + text_author.Text.Trim() + "','" + text_press.Text.Trim() + "','" + year + "','" + text_price.Text.Trim() + "',1)";
+                                    string sql_bs = "insert into books values ('" + text_isbn.Text.Trim() + "',1)";
                                     cmd = new SqlCommand(sql_bs, con);
                                     n = n + cmd.ExecuteNonQuery();
                                 }

@@ -37,9 +37,7 @@ namespace Library.admin
             bindingNavigator1.BindingSource = bindingSource1;//连接数据源
             Dgv_return.DataSource = bindingSource1;//导出到dataGridView1中显示并用下列代码对于列名 
             for (int i = 0; i < 10; i++)
-            {
                 Dgv_return.Columns[i].DataPropertyName = ds.Tables[0].Columns[i].ColumnName;
-            }
             con.Close();
         }
 
@@ -47,7 +45,7 @@ namespace Library.admin
         private void admin_ReturnPage_Load(object sender, EventArgs e)
         {
             //查询表格全部内容
-            string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2";
+            string sql = "select * from V_AdminReturn";
             databind(sql);//传递sql语句
             mcd_time.Hide();//日历隐藏
             tscmb_type.SelectedIndex = 0;//让下拉列表的借书人为第一选项并显示
@@ -80,7 +78,7 @@ namespace Library.admin
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询借书人：" + tsbtn_book.Text.Trim() +"的记录");//插入操作记录
 
-                string sql= "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and u_name like '%" + tsbtn_book.Text.Trim()+"%'";
+                string sql= "select * from V_AdminReturn where u_name like '%" + tsbtn_book.Text.Trim()+"%'";
                 databind(sql);
             }
             else if (tscmb_type.Text == "借书时间")
@@ -88,7 +86,7 @@ namespace Library.admin
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询借书时间为"+ tsbtn_book.Text.Trim() + "的记录");//插入操作记录
 
-                string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and bo_borrow = '" + tsbtn_book.Text.Trim() + "'";
+                string sql = "select * from V_AdminReturn where bo_borrow = '" + tsbtn_book.Text.Trim() + "'";
                 databind(sql);
             }
             else if (tscmb_type.Text == "还书时间")
@@ -96,14 +94,12 @@ namespace Library.admin
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询还书时间为" + tsbtn_book.Text.Trim() + "的记录");//插入操作记录
 
-                string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2 and bo_rtnatl = '" + tsbtn_book.Text.Trim() + "'";
+                string sql = "select * from V_AdminReturn where bo_rtnatl = '" + tsbtn_book.Text.Trim() + "'";
                 databind(sql);
             }
             else
-            {
                 //提示警告
                 MessageBox.Show("请选择查询类别！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void tsbtn_whole_Click(object sender, EventArgs e)
@@ -111,7 +107,7 @@ namespace Library.admin
             SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
             dbHelper.Operation("查询全部数据记录");//插入操作记录
             //查询表格全部内容
-            string sql = "select bo_id,[user].u_name,[books].b_name,[type].t_name,bo_borrow,bo_rtnatl,bo_day,bo_renewday,bo_renew=case bo_renew when 0 then '未续借' else '已续借' end,bo_eme=case bo_eme when 2 then '还书成功' end from borrow,[books],[user],[type] where [user].u_id=borrow.u_id and borrow.b_id=books.b_id and books.t_id=[type].t_id and bo_eme=2";
+            string sql = "select * from V_AdminReturn";
             databind(sql);//传递sql语句
         }
     }

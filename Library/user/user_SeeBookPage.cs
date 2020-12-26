@@ -45,7 +45,7 @@ namespace Library.user
         //加载窗体时的事件
         private void user_SeeBookPage_Load(object sender, EventArgs e)
         {
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+            string sql = "select * from V_listBook";
             databind(sql);//填充到表格控件中
         }
 
@@ -55,13 +55,13 @@ namespace Library.user
         {
             if ("".Equals(tstext_book.Text.Trim()))
             {
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+                string sql = "select * from V_listBook";
                 databind(sql);//填充到表格控件中
             }
             else
             {
                 //查询输入框中的值，以及按类别联合查找
-                string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id and [book].b_name like '%" + tstext_book.Text.Trim() + "%' union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id and [book].b_name like '%" + tstext_book.Text.Trim() + "%'";
+                string sql = "select * from V_listBook where b_name like '%" + tstext_book.Text.Trim() + "%'";
                 databind(sql);
             }
         }
@@ -69,7 +69,7 @@ namespace Library.user
         //查询全部按钮
         private void tsbtn_whole_Click(object sender, EventArgs e)
         {
-            string sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+            string sql = "select * from V_listBook";
             databind(sql);//填充到表格控件中
         }
 
@@ -102,7 +102,7 @@ namespace Library.user
                             //打开数据库
                             con = dButil.SqlOpen();
                             //sql查询语句
-                            string sql = "select [borrow].b_id from [borrow],[books],[user] where [borrow].u_id=[user].u_id and [borrow].b_id=[books].b_id and bo_eme!=2 and [books].b_name='" + b_name + "' and [borrow].u_id='" + Log.log.u_id + "'";
+                            string sql = "select [borrow].b_id from [borrow],[books],[user] where [borrow].u_id=[user].u_id and [borrow].b_id=[books].b_id and bo_eme!=2 and [books].b_isbn='" + b_isbn + "' and [borrow].u_id='" + Log.log.u_id + "'";
                             cmd = new SqlCommand(sql, con);//储存需要执行的语句
                             string b_id = Convert.ToString(cmd.ExecuteScalar());//执行，并返回第一行第一列内容
                             con.Close();//关闭数据库
@@ -121,7 +121,7 @@ namespace Library.user
                                     {
                                         int n = 0;
                                         //更新第一条数据，并且返回更新的b_id
-                                        sql = "update top(1) books set  b_lend=0 output inserted.b_id where  b_name='" + b_name + "' and b_lend=1";//只更新一条
+                                        sql = "update top(1) books set  b_lend=0 output inserted.b_id where  b_isbn='" + b_isbn + "' and b_lend=1";//只更新一条
                                         con = dButil.SqlOpen();//打开数据库
                                         cmd = new SqlCommand(sql, con);//储存需要执行的语句
                                         string return_b_id = cmd.ExecuteScalar().ToString();//执行语句，返回更新的b_id，用做插入信息的数据
@@ -191,7 +191,7 @@ namespace Library.user
                                             Log.log.user_number = Log.log.user_number - 1;//更新log类中的可借数量
 
                                             // 查询列表内容，这里等于刷新
-                                            sql = "select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id union select book.b_isbn,[book].b_name,t_name,b_author,b_press,b_time,b_price,b_stocks=case b_stocks when 0 then '不可借' else '可借' end from books,book,[type] where books.b_isbn=book.b_isbn and [type].t_id=books.t_id";
+                                            sql = "select * from V_listBook";
                                             databind(sql);//填充到表格控件中
                                         }
                                         else
