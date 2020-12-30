@@ -377,6 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\LibraryMS.sql" />
+    <Content Include="DB\script1.1.sql" />
     <Content Include="DB\数据库所有对象数据.txt" />
     <Content Include="image\Home_title.jpg" />
   </ItemGroup>

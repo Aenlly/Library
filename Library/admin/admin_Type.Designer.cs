@@ -41,7 +41,7 @@
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(104, 16);
             this.lbl.TabIndex = 0;
-            this.lbl.Text = "图书类别名：";
+            this.lbl.Text = "书籍类型名：";
             // 
             // text_type
             // 
@@ -72,7 +72,7 @@
             this.btn_no.UseVisualStyleBackColor = true;
             this.btn_no.Click += new System.EventHandler(this.btn_no_Click);
             // 
-            // admin_BookType
+            // admin_Type
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,9 +87,9 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "admin_BookType";
+            this.Name = "admin_Type";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "添加新类别";
+            this.Text = "添加新书籍类型";
             this.Load += new System.EventHandler(this.admin_BookType_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

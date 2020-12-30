@@ -43,7 +43,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "原类别名：";
+            this.label1.Text = "原类型名：";
             // 
             // label2
             // 
@@ -108,7 +108,7 @@
             this.MinimizeBox = false;
             this.Name = "admin_TypeEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "更改类别";
+            this.Text = "更改书籍类型";
             this.Load += new System.EventHandler(this.admin_TypeEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
