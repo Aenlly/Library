@@ -96,9 +96,18 @@ namespace Library.admin
             else
             {
                 if (text_name.Text != "" || mtext_tel.Text != "" || mtext_card.Text != "")
-                {                    
+                {
+                    string sql = "";
                     //sql更新语句
-                    string sql = "update [user] set u_name='" + text_name.Text.Trim() + "',u_sex='" + cmb_sex.Text + "',u_tel='" + str_tel + "',u_card='" + str_card + "',u_position='" + cmb_position.Text + "',c_id='" + cmb_college.SelectedIndex + "' where u_id='" + text_id.Text + "'";
+                    if (cmb_position.Text.Equals("学生"))
+                    {
+                        sql = "update [user] set u_name='" + text_name.Text.Trim() + "',u_sex='" + cmb_sex.Text + "',u_tel='" + str_tel + "',u_card='" + str_card + "',u_position='" + cmb_position.Text + "',c_id='" + cmb_college.SelectedIndex + "',u_number='5' where u_id='" + text_id.Text + "'";
+                    }
+                    else
+                    {
+                        sql = "update [user] set u_name='" + text_name.Text.Trim() + "',u_sex='" + cmb_sex.Text + "',u_tel='" + str_tel + "',u_card='" + str_card + "',u_position='" + cmb_position.Text + "',c_id='" + cmb_college.SelectedIndex + "',u_number='8' where u_id='" + text_id.Text + "'";
+                    }
+                    
                     con = dButil.SqlOpen();
                     cmd = new SqlCommand(sql, con);//储存sql语句
                     int n = cmd.ExecuteNonQuery();//执行sql语句，返回影响行数判断是否修改成功

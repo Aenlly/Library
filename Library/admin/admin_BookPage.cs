@@ -95,12 +95,13 @@ namespace Library.admin
                         DialogResult dialog = MessageBox.Show("确认删除图书" + name + "?  该操作会将借书记录一同删除并无法还原！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dialog == DialogResult.OK)//点击了确定，执行删除语句
                         {
-                            string sqlbo_select = "select * from [borrow],[books],[book] where  book.b_isbn=books.b_isbn and [borrow].b_id=[books].b_id and bo_eme!=2 and b_name='" + name + "'";
+                            string sqlbo_select = "select b_name from [borrow],[books],[book] where  book.b_isbn=books.b_isbn and [borrow].b_id=[books].b_id and bo_eme!=2 and b_name='" + name + "'";
                             con = dButil.SqlOpen();
                             cmd = new SqlCommand(sqlbo_select, con);
-                            int n = cmd.ExecuteNonQuery();
-                            if (n == 0)
+
+                            if (cmd.ExecuteScalar() != null)
                             {
+                                con.Close();
                                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                                 dbHelper.Operation("删除图书名为：" + name + "未成功");//插入操作记录
 
@@ -108,18 +109,12 @@ namespace Library.admin
                             }
                             else
                             {
-                                string strbor_del = "delete from [borrow] where  b_isbn=(select b_isbn from [book] where b_name='" + name + "')";
+                                
+                                int n = 0;
+                                string book_del = "execute sp_delete_book_books_borrow '"+isbn+"'";
                                 con = dButil.SqlOpen();
-                                cmd = new SqlCommand(strbor_del, con);//储存删除借书表中的记录语句
-                                cmd.ExecuteNonQuery();//执行
-
-                                string strb_del = "delete from [books] where b_isbn='" + isbn + "'";
-                                cmd = new SqlCommand(strb_del, con);//再储存删除图书表中的记录语句
-                                cmd.ExecuteNonQuery();//执行
-
-                                string strbs_del = "delete from [book] where b_isbn='" + isbn + "'";
-                                cmd = new SqlCommand(strbs_del, con);//最后储存删除isbn表中的记录语句
-                                n = cmd.ExecuteNonQuery();//执行
+                                cmd = new SqlCommand(book_del, con);//储存删除借书表中的记录语句
+                                n=cmd.ExecuteNonQuery();//执行
                                 con.Close();
                                 if (n > 0)
                                 {
@@ -152,7 +147,7 @@ namespace Library.admin
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询全部图书记录");//插入操作记录
 
-                string sql = "select * from V_bookPage where b_name like '%" + tstext_book.Text.Trim() + "%'";
+                string sql = "select * from V_bookPage";
                 databind(sql);
             }
             else
@@ -160,7 +155,7 @@ namespace Library.admin
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询图书名为："+tstext_book.Text.Trim()+"的记录");//插入操作记录
 
-                string sql = "select * from V_bookPage";
+                string sql = "select * from V_bookPage where b_name like '%" + tstext_book.Text.Trim() + "%'";
                 databind(sql);//传递sql然后查询填充
             }
         }

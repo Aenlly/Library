@@ -105,7 +105,7 @@
             this.btn_Return.Name = "btn_Return";
             this.btn_Return.Size = new System.Drawing.Size(75, 27);
             this.btn_Return.TabIndex = 2;
-            this.btn_Return.Text = "还书记录";
+            this.btn_Return.Text = "还书管理";
             this.btn_Return.UseVisualStyleBackColor = true;
             this.btn_Return.Click += new System.EventHandler(this.btn_Return_Click);
             // 

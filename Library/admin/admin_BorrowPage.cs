@@ -47,7 +47,7 @@ namespace Library.admin
         private void admin_BorrowPage_Load(object sender, EventArgs e)
         {
             //每次执行时，更新下数据
-            string sql = "update borrow set bo_eme=1 where bo_rtnatl is NULL and datediff(day,bo_rtnatl,getdate())>0";
+            string sql = "update borrow set bo_emeover = 1 where bo_rtnatl is NULL and datediff(day, bo_return, getdate()) > 0";
             con = dButil.SqlOpen();//打开数据库
             cmd = new SqlCommand(sql, con);//储存sql语句
             cmd.ExecuteNonQuery();//执行sql语句
@@ -87,7 +87,7 @@ namespace Library.admin
                             {
 
                                 //更新图书表中的一条数据，使数量变成+1
-                                string sql = "update top(1) books set  b_lend=1 output inserted.b_id where  b_name='" + Dgv_borrow.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString() + "' and b_lend=0";//只更新一条
+                                string sql = "update top(1) books set  b_lend=1 output inserted.b_id where b_isbn=(select b_isbn from book where b_name='" + Dgv_borrow.Rows[e.RowIndex].Cells["Cl_name"].Value.ToString() + "') and b_lend=0";//只更新一条
                                 con = dButil.SqlOpen();//打开数据库
                                 cmd = new SqlCommand(sql, con);//储存需要执行的语句
                                 cmd.ExecuteNonQuery();//执行sql语句，返回影响行数

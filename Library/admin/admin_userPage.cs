@@ -51,7 +51,7 @@ namespace Library.admin
             tscmb_type.Items.Add("身份证");//添加身份证
             tscmb_type.SelectedIndex = 0;//默认为学号查询
             //查询全部的sql语句
-            string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+            string sql = "select * from V_Listuser";
             databind(sql);//传递sql然后查询填充
         }
 
@@ -61,7 +61,7 @@ namespace Library.admin
             SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
             dbHelper.Operation("查询全部用户");//插入操作记录
             //查询全部的sql语句
-            string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+            string sql = "select * from V_Listuser";
             databind(sql);//传递sql然后查询填充
         }
 
@@ -73,21 +73,21 @@ namespace Library.admin
             {
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询学号为：" + tstext.Text.Trim());//插入操作记录
-                string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id and u_id like '%" + tstext.Text.Trim() + "%'";
+                string sql = "select * from V_Listuser where u_id like '%" + tstext.Text.Trim() + "%'";
                 databind(sql);
             }
             else if (tscmb_type.Text == "姓名")
             {
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询姓名为：" + tstext.Text.Trim());//插入操作记录
-                string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id and u_name like '%" + tstext.Text.Trim() + "%'";
+                string sql = "select * from V_Listuser where u_name like '%" + tstext.Text.Trim() + "%'";
                 databind(sql);
             }
             else if(tscmb_type.Text=="身份证")
             {
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询身份证为："+ tstext.Text.Trim());//插入操作记录
-                string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id and u_card like '%" + tstext.Text.Trim() + "%'";
+                string sql = "select * from V_Listuser where u_card like '%" + tstext.Text.Trim() + "%'";
                 databind(sql);
             }
             //文本框内容为空则显示全部
@@ -96,7 +96,7 @@ namespace Library.admin
                 SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
                 dbHelper.Operation("查询全部用户");//插入操作记录
                 //查询全部的sql语句
-                string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                string sql = "select * from V_Listuser";
                 databind(sql);//传递sql然后查询填充
             }
         }
@@ -119,7 +119,7 @@ namespace Library.admin
                         Log.log.user_id = Dgv_user.Rows[e.RowIndex].Cells["Cl_id"].Value.ToString();//把当前列的id传递到log类中
                         admin_UserEdit.ShowDialog();//显示编辑界面
                                                     //查询全部的sql语句,实现刷新
-                        string sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                        string sql = "select * from V_Listuser";
                         databind(sql);//传递sql然后查询填充
                     }
                     //单击了删除按钮
@@ -200,7 +200,7 @@ namespace Library.admin
                                     MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     //查询全部的sql语句,实现刷新
-                                    sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                                    sql = "select * from V_Listuser";
                                     databind(sql);//传递sql然后查询填充
                                 }
                                 //失败提示
@@ -235,7 +235,7 @@ namespace Library.admin
                 admin_userAdd userAdd = new admin_userAdd();
                 userAdd.ShowDialog();
                 //查询全部的sql语句,实现刷新
-                sql = "select u_id,u_name,u_sex,u_card,c_college,u_tel,u_position,u_book from [user],[college] where [user].c_id=[college].c_id";
+                sql = "select * from V_Listuser";
                 databind(sql);//传递sql然后查询填充
             }
         }

@@ -61,7 +61,7 @@ namespace Library.admin
             con.Close();//关闭数据库
 
             //查询语句
-            sql = "select * from V_AdminOver where bo_emeover!='0'";
+            sql = "select * from V_AdminOver where bo_emeover!='未逾期'";
             databind(sql);//传递语句填充到表格中
         }
 
@@ -120,7 +120,7 @@ namespace Library.admin
                                     //成功提示
                                     MessageBox.Show("用户：" + u_name + "的缴费审核通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //执行查询语句刷新
-                                    sql = "select * from V_AdminOver where bo_emeover!=0";
+                                    sql = "select * from V_AdminOver where bo_emeover!='未逾期'";
                                     databind(sql);//传递语句填充到表格中
                                 }
                                 else
@@ -177,7 +177,7 @@ namespace Library.admin
                                     //成功提示
                                     MessageBox.Show("用户：" + u_name + "的缴费审核已不通过！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //执行查询语句刷新
-                                    sql = "select * from V_AdminOver where bo_emeover!='0'";
+                                    sql = "select * from V_AdminOver where bo_emeover!='未逾期'";
                                     databind(sql);//传递语句填充到表格中
                                 }
                                 else
@@ -211,7 +211,7 @@ namespace Library.admin
                 dbHelper.Operation("查询借书人为："+ tstext_name.Text.Trim()+ "记录");//插入操作记录
 
                 //执行查询借书人语句
-                string sql = "select * from V_AdminOver where bo_emeover!='0' and u_name like '%" + tstext_name.Text.Trim() + "%'";
+                string sql = "select * from V_AdminOver where bo_emeover!='未逾期' and u_name like '%" + tstext_name.Text.Trim() + "%'";
                 databind(sql);//传递语句填充到表格中
             }
         }
@@ -223,7 +223,7 @@ namespace Library.admin
             dbHelper.Operation("查询全部数据记录");//插入操作记录
 
             //执行全部查询语句
-            string sql = "select * from V_AdminOver where bo_emeover!='0'";
+            string sql = "select * from V_AdminOver where bo_emeover!='未逾期'";
             databind(sql);//传递语句填充到表格中
         }
 

@@ -60,7 +60,7 @@ namespace Library.admin
         //窗体加载
         private void admin_OperationPage_Load(object sender, EventArgs e)
         {
-            String sql = "select * from operation";//查询全部操作的sql语句
+            String sql = "select * from V_Operation";//查询全部操作的sql语句
             mcd_time.Hide();//隐藏日历
             mcd_end.Hide();//隐藏日历
             databind(sql);//传递sql语句
@@ -80,7 +80,7 @@ namespace Library.admin
                 dbHelper.Operation("查询开始时间：" + btn_time.Text + "，结束时间："+btn_end.Text+"的操作记录");//插入操作记录
 
                 //sql语句按时间查询
-                string sql = "select * from operation where o_time>'" + btn_time.Text + "' and o_time<'"+btn_end.Text+"'";
+                string sql = "select * from V_Operation where o_time>'" + btn_time.Text + "' and o_time<'"+btn_end.Text+"'";
                 databind(sql);//传递sql参数
             }
         }
@@ -107,7 +107,7 @@ namespace Library.admin
             SqlDbHelper dbHelper = new SqlDbHelper();//实例化SqlDbHelper类
             dbHelper.Operation("查询全部的操作记录");//插入操作记录
 
-            string sql= "select * from operation";//查询全部操作的sql语句
+            string sql= "select * from V_Operation";//查询全部操作的sql语句
             databind(sql);//传递sql语句
         }
 
